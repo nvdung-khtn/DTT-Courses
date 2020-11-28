@@ -1,0 +1,285 @@
+.header {
+    width: 100%;
+    color: var(--text-color);
+}
+
+.header-top {
+    border-bottom: 1px solid #eee;
+    padding: 8px 8px 0 8px;
+}
+
+.header-navbar {
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+.header-navbar__list {
+    list-style: none;
+    padding-left: 0;
+    display: flex;
+}
+
+.header-navbar__item {
+    margin-right: 16px;
+}
+
+.header-navbar__item:nth-child(3) {
+    padding-right: 16px;
+}
+
+.header-navbar__link {
+    text-decoration: none;
+    color: #233d63;
+}
+
+.header-navbar__link span {
+    font-size: 1.4rem;
+    margin-left: 6px;
+    font-weight: 500;
+}
+
+.header-navbar__link:hover {
+    text-decoration: none;
+    color: var(--primary-color);
+}
+
+.header-navbar__icon {
+    width: 30px;
+    height: 30px;
+}
+
+.header-navbar__email {
+    padding-left: 16px;
+    border-left: 1px solid #DDD;
+}
+
+/** Header with search */
+.header-with-search {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px;
+    width: 100%;
+}
+
+.header__logo {
+
+}
+
+.header-logo__link {
+
+}
+
+.header-logo__img {
+
+}
+
+.header__search {
+    display: flex;
+    flex: 1;
+    align-items: center;
+}
+
+/* Danh mục khóa học */
+.header__category-dropdown {
+    font-size: 1.4rem;
+    margin: 0 30px 0 20px;
+    cursor: pointer;
+    position: relative;
+}
+
+.header__category-dropdown svg {
+    position: relative;
+    top: -2px;
+}
+
+.header__category-dropdown-label {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.header__category-dropdown:hover > .header__category-dropdown-list {
+    display: block;
+}
+
+.header__category-dropdown-list {
+    width: calc(200% + 30px);
+    position: absolute;
+    left: 0;
+    top: calc(100% + 11px);
+    box-shadow: 0 1px 3px #666;
+    background-color: var(--white-color);
+    border-radius: 3px;
+    display: none;
+    z-index: 2;
+    list-style: none;
+    padding-left: 0;
+    padding-bottom: 12px;
+    margin: 0;
+}
+
+/* Kỹ thuật bắc cầu */ /* Chỉ dùng đc cho quan hệ cha-con*/
+.header__category-dropdown-list::after {
+    content: "";
+    width: 100%;
+    height: 30px;
+    position: absolute;
+    display: inline-block;
+    left: 0;
+    top: -14%;
+}
+
+
+.header__category-dropdown-item {
+    padding: 0;
+    height: 35px;
+}
+
+.header__category-dropdown-item a:hover {
+    color: var(--primary-color);
+}
+
+.header__category-dropdown-item:last-child {
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+.header__category-dropdown-item a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-size: 1.6rem;
+    font-weight: 600;
+    display: block;
+    width: 100%;
+    padding: 2px 8px 2px 18px;
+    line-height: 35px;
+}
+
+.header-search__input-wrap {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    position: relative;
+}
+
+.header-search__input {
+    flex: 1;
+    outline: none;
+    height: 50px;
+    border: 1px solid #DDD;
+    margin-right: 12px;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px #DDD;
+    font-size: 1.6rem;
+    padding: 4px 16px;
+    color: var(--text-color);
+}
+
+.header-search__input:focus {
+    border: 1px solid var(--primary-color);
+}
+
+.header-search__history {
+
+}
+
+.header-search__icon {
+    font-size: 1.6rem;
+    position: absolute;
+    right: 22px;
+    top: 14px;
+    cursor: pointer;
+    padding: 4px 8px;
+}
+
+.header-search__icon:hover {
+    color: var(--primary-color);
+}
+
+.header__button-group {
+
+}
+
+.btn-type-one {
+    height: 36px;
+    width: 80px;
+    line-height: 20px;
+}
+
+.btn-type-one:hover {
+    color: var(--primary-color);
+}
+
+.btn-type-two {
+    display: inline-block;
+    width: 110px;
+    height: 40px;
+    margin-left: 8px;
+    color: var(--white-color);
+}
+
+.btn-type-two:hover {
+    color: var(--text-color);
+}
+
+.myBtn {
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 5px;
+}
+
+/** Search history */
+.header__search-history{
+    width: calc(100% - 16px);
+    position: absolute;
+    left: 0;
+    top: calc(100% + 2px);
+    box-shadow: 0 1px 3px #666;
+    background-color: var(--white-color);
+    border-radius: 3px;
+    display: none;
+    z-index: 1;
+}
+
+.header-search__input:focus ~ .header__search-history {
+    display: block;
+}
+
+.header__search-history-heading{
+    color: #888;
+    font-weight: 400;
+    padding: 0 0 0 12px;
+    margin: 8px 0;
+}
+
+.header__search-history-list{
+    list-style: none;
+    padding-left: 0;
+    margin: 6px 0 0 0;
+}
+
+.header__search-history-item{
+    padding: 0 12px;
+    height: 35px;
+    line-height: 35px;  
+}
+
+.header__search-history-item:hover{
+    background-color: #CCC;
+}
+
+.header__search-history-item:last-child{
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+.header__search-history-item a{
+    text-decoration: none;
+    color: var(--text-color);
+    font-size: 1.4rem;
+    font-weight: 500;
+    display: block;
+    width: 100%;
+}
