@@ -56,3 +56,42 @@
 .product-item__footer a {
     font-size: 1.4rem;
 }
+
+/* Phân trang */
+.pagination{
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pagination-item{
+    margin: 0 14px;
+}
+
+.pagination-item--active .pagination-item-link{
+    background-color: var(--primary-color);
+    color: var(--white-color);
+}
+
+.pagination-item--active .pagination-item-link:hover{
+    background-color: #449985;
+}
+
+.pagination-item-link{
+    --height: 30px;
+    color: #939393;
+    text-decoration: none;
+    font-size: 2rem;
+    height: var(--height);
+    min-width: 40px;
+    display: inline-block;
+    text-align: center;
+    line-height: var(--height);
+    border-radius: 3px;
+}
+
+.pagination-item-link:hover {
+    text-decoration: none;
+    color: var(--primary-color);
+}
