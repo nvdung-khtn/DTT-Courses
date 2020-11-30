@@ -1,0 +1,71 @@
+.footer{
+    border-top: 4px solid var(--primary-color);
+    padding-top: 16px;
+    background-color: var(--white-color);
+}
+
+.footer__heading{
+    font-size: 1.6rem;
+    text-transform: uppercase;
+    color: var(--text-color);
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.footer-list{
+    padding-left: 0;
+    list-style: none;
+}
+
+.footer-item__link{
+    text-decoration: none;
+    font-size: 1.4rem;
+    color: #666;
+    padding-top: 2px;
+    display: block;
+    display: flex;
+    align-items: center;
+}
+
+.footer-item__link:hover {
+    text-decoration: none;
+}
+
+.footer-item__link:hover{
+    color: var(--primary-color);
+}
+
+.footer-text {
+    font-size: 1.4rem;
+    color: #666;
+    padding-top: 2px;
+}
+
+.footer__input {
+    outline: none;
+    background-color: #fff;
+    border: 2px solid #CCC;
+    padding: 6px 12px;
+    border-radius: 2rem;
+    font-size: 1.4rem;
+}
+
+.footer__btn {
+    background-color: var(--primary-color);
+    font-size: 1.4rem;
+    border-radius: 1.2rem;
+    margin-left: 6px;
+}
+
+/* Phần dưới cùng */
+.footer__bottom{
+    background-color: #F5F5F5;
+    margin: 28px 0 12px;
+}
+
+.footer__text{
+    margin: 0;
+    font-size: 1.5rem;
+    text-align: center;
+    color: #737373;
+}
