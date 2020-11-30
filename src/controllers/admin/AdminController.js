@@ -1,7 +1,7 @@
 class AdminController {
     // [GET] /home
     index(req, res) {
-        res.render('admin/index', {
+        res.render('vwAdmin/index', {
             layout: false,
         });
     }

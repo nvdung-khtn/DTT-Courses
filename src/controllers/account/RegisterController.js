@@ -1,7 +1,7 @@
 class RegisterController {
     // [GET] /register
     index(req, res) {
-        res.render('accountView/register', {
+        res.render('vwAccount/register', {
             layout: false,
         });
     }

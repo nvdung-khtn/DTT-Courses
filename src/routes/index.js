@@ -1,7 +1,7 @@
 // File điều hướng của ứng dụng
-const loginRouter = require('./accountRoute/login.js');
-const registerRouter = require('./accountRoute/register.js');
-const homeRouter = require('./home.js');
+const loginRouter = require('./account/login.route');
+const registerRouter = require('./account/register.route');
+const homeRouter = require('./home.route');
 const adminRouter = require('./admin/admin.route');
 
 function route(app) {

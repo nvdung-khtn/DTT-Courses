@@ -4,7 +4,7 @@
 }
 
 .banner__overlay {
-    background-image: url('/image/banner.jpg');
+    background-image: url('/image/home/banner.jpg');
     background-size: cover;
     background-position: center center;
     width: 100%;
