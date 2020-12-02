@@ -3,12 +3,15 @@ const morgan = require('morgan');
 const handlebars = require('express-handlebars');
 const path = require('path');
 const numeral = require('numeral');
+const route = require('./routes/index');
+const db = require('./config/db');
 require('express-async-errors');
 
 const PORT = 3000;
 const app = express();
 
-const route = require('./routes/index');
+// connect to DB server
+db.connect();
 
 app.use(express.static(path.join(__dirname, 'public')));
 
