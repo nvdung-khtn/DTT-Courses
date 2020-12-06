@@ -4,13 +4,14 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/base.css">
     <link rel="stylesheet" href="/css/register.css" />
     <title>Register Form</title>
 </head>
 
 <body>
     <div class="main">
-        <form action="" method="POST" class="form" id="form-1">
+        <form action="" method="POST" class="form" id="formRegister">
             <h3 class="heading">Thành viên đăng ký</h3>
             <p class="desc">Cùng nhau học lập trình miễn phí tại DTT Courses ❤️</p>
 
@@ -24,7 +25,8 @@
 
             <div class="form-group">
                 <label for="email" class="form-label">Email</label>
-                <input id="email" name="email" type="text" placeholder="VD: nvdung.khtn@gmail.com" class="form-control" />
+                <input id="email" name="email" type="text" placeholder="VD: nvdung.khtn@gmail.com"
+                    class="form-control" />
                 <span class="form-message"></span>
             </div>
 
@@ -44,6 +46,34 @@
             <button class="form-submit">Đăng ký</button>
         </form>
     </div>
+
+    <script src="/javascript/validator.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            Validator({
+                form: "#formRegister",
+                formGroupSelector: ".form-group",
+                errorSelector: ".form-message",
+                rules: [
+                    Validator.isRequired("#fullname", "Vui lòng nhập tên đầy đủ của bạn"),
+                    Validator.isEmail("#email"),
+                    Validator.minLength("#password", 8),
+                    Validator.isRequired("#password_confirmation"),
+                    Validator.isConfirmed(
+                        "#password_confirmation",
+                        function () {
+                            return document.querySelector("#formRegister #password").value;
+                        },
+                        "Mật khẩu nhập lại không chính xác"
+                    ),
+                ],
+                onSubmit: function (data) {
+                    // Call API
+                    console.log(data);
+                },
+            });
+        });
+    </script>
 </body>
 
 </html>
