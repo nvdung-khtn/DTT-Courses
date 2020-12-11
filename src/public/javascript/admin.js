@@ -9,6 +9,40 @@ const themeLight = 'light'
 
 const body = document.getElementsByTagName('body')[0]
 
+
+$(document).ready(function () {
+
+	$('.sidebar-nav li').click(function(){
+
+		// Removing class from all list elements
+		$('.sidebar-nav li').removeClass('active');
+		  
+			// Adding class to clicked list element
+		$(this).addClass('active');
+		});
+	
+	$( '.info' ).click(function() {
+		$( '#card-info').show()
+		});
+
+	$( '.add-product' ).click(function() {
+		$( '#addEmployeeModal').show()
+		});
+	
+	$( '.edit' ).click(function() {
+		$( '#editEmployeeModal').show()
+	  });
+
+	$( '.close' ).click(function() {
+	$( '#addEmployeeModal, #editEmployeeModal, #deleteEmployeeModal, #card-info ').hide()
+	});
+
+	$( '.delete' ).click(function() {
+		$( '#deleteEmployeeModal').show()
+	  });
+
+	});
+
 function setCookie(cname, cvalue, exdays) {
   var d = new Date()
   d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000))
@@ -42,10 +76,12 @@ function switchTheme() {
 	if (body.classList.contains(themeLight)) {
 		body.classList.remove(themeLight)
 		body.classList.add(themeDark)
+		$('.modal-content, .form-control, .wrapper-card, .right-card').css('background-color',' #23242D')
 		setCookie(themeCookieName, themeDark)
 	} else {
 		body.classList.remove(themeDark)
 		body.classList.add(themeLight)
+		$('.modal-content, .form-control, .wrapper-card, .right-card').css('background-color','#ffffff')
 		setCookie(themeCookieName, themeLight)
 	}
 }
@@ -113,3 +149,8 @@ var lineChart = new Chart(ctx, {
 		bezierCurve: false,
 	}
 })
+
+
+
+
+

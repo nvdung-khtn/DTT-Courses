@@ -2,7 +2,7 @@
 	--primary-color: #4834d4;
 	--success-color: #6ab04c;
 	--warning-color: #f0932b;
-	--danger-color: #eb4d4b;
+	--danger-color:rgb(81, 190, 120);
 
 	--light-color: #212529;
 	--light-second-color: #727475;
@@ -201,7 +201,7 @@ body {
 	width: 100%;
 }
 
-.dropdown-menu-link {
+.dropdown-menu-link  {
 	display: flex;
 	flex-direction: row;
 	align-items: center;
@@ -301,7 +301,7 @@ body {
 }
 
 .sidebar:hover {
-	width: 250px;
+	width: 280px;
 }
 
 .sidebar-nav {
@@ -344,21 +344,21 @@ body {
 	background: var(--second-bg-color);
 }
 
-.sidebar-nav-link.active {
+.active {
 	background: var(--second-bg-color);
 	color: var(--danger-color);
 }
 
-.sidebar-nav-link.active div {
+.active div {
 	border-left: 5px solid var(--danger-color);
 }
 
-.sidebar-nav-link.active i {
+.active i {
 	color: var(--danger-color);
 	margin-left: -5px;
 }
 
-.sidebar-expand .sidebar {
+.sidebar-expand .side-bar {
 	width: 250px;
 }
 
@@ -496,7 +496,11 @@ body {
 	padding: 15px 30px;
 	border-bottom: 1px solid var(--second-bg-color);
 	position: relative;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 }
+
 
 .card-header i {
 	color: var(--main-color);
@@ -562,3 +566,5 @@ table th {
 	border-radius: .25rem;
 	box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
 }
+
+

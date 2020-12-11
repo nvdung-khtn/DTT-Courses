@@ -7,7 +7,7 @@ const route = require('./routes/index');
 const db = require('./config/db');
 require('express-async-errors');
 
-const PORT = 3000;
+const PORT = 3001;
 const app = express();
 
 // connect to DB server
