@@ -1,0 +1,100 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background: linear-gradient(to right, #50be77, #3ed372) */
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAYAAACpSkzOAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+/AAAABZ0RVh0Q3JlYXRpb24gVGltZQAxMC8yOS8xMiKqq3kAAAAcdEVYdFNvZnR3YXJlAEFkb2JlIEZpcmV3b3JrcyBDUzVxteM2AAABHklEQVRIib2Vyw6EIAxFW5idr///Qx9sfG3pLEyJ3tAwi5EmBqRo7vHawiEEERHS6x7MTMxMVv6+z3tPMUYSkfTM/R0fEaG2bbMv+Gc4nZzn+dN4HAcREa3r+hi3bcuu68jLskhVIlW073tWaYlQ9+F9IpqmSfq+fwskhdO/AwmUTJXrOuaRQNeRkOd5lq7rXmS5InmERKoER/QMvUAPlZDHcZRhGN4CSeGY+aHMqgcks5RrHv/eeh455x5KrMq2yHQdibDO6ncG/KZWL7M8xDyS1/MIO0NJqdULLS81X6/X6aR0nqBSJcPeZnlZrzN477NKURn2Nus8sjzmEII0TfMiyxUuxphVWjpJkbx0btUnshRihVv70Bv8ItXq6Asoi/ZiCbU6YgAAAABJRU5ErkJggg==);
+
+}
+
+input {
+    width: 12%;
+    height: 4rem;
+    border-radius: 5px;
+    border: 1px solid #dddddd;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    transition: .3s;
+    color: #222;
+}
+
+input:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px #b6c5f2;
+    border: 1px solid #97aff0;
+}
+
+.container{
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+    background-color: #FAF8F8;
+    width: 35%;
+    height: 70vh;
+    border-radius: .5rem;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+    border: 1px solid #dddddd;
+}
+
+.warraper{
+    padding: 0 1.5rem;
+   
+}
+
+.title{
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+.timer{
+    text-align: center;
+    margin-top: 15px;
+}
+
+.decrip{
+    font-size: 13px;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.btnfooter{
+    text-align: center;
+    padding: 0 12px;
+    font-size: 14px;
+    bottom: 0;
+    margin-top: 2rem;
+}
+
+.userInput{
+    display: flex;
+    justify-content: space-around;
+}
+
+.txtTimer{
+    font-size: 15px;
+}
+
+.spTimer{
+    font-weight: bold;
+}
+
+.txtResendOTP{
+    margin: 0;
+}
+
+.linkResendOTP{
+    color: blue;
+    cursor: pointer;
+
+}
+
