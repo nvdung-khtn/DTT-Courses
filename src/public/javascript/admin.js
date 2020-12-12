@@ -12,8 +12,7 @@ const body = document.getElementsByTagName('body')[0]
 
 $(document).ready(function () {
 
-	$('.sidebar-nav li').click(function(){
-
+	$('.sidebar-nav li').click(function(){	
 		// Removing class from all list elements
 		$('.sidebar-nav li').removeClass('active');
 		  
