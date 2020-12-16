@@ -567,4 +567,24 @@ table th {
 	box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
 }
 
+.form-message{
+    font-size: 13px;
+    margin-left: 10px;
+    font-style: italic;
+}
+
+.message-clone{
+    opacity: 0;
+    visibility: hidden;
+}
+
+.form-group.invalid input,.form-group.invalid textarea {
+    border-color: #f33a58;
+}
+
+.form-group.invalid .form-message {
+    color: #f33a58;
+}
+
+
 
