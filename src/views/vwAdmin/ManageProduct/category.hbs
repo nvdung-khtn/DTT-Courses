@@ -2,7 +2,7 @@
 <div id="addEmployeeModal" class="modal"  >
 	<div class="modal-dialog" >
 		<div class="modal-content" >
-			<form>
+			<form id="add-categories">
 				<div class="modal-header">						
 					<h4 class="modal-title">Thêm Danh Mục Khóa học</h4>
 					<button type="button" class="close" aria-hidden="true">&times;</button>
@@ -10,11 +10,14 @@
 				<div class="modal-body">					
 					<div class="form-group">
 						<label>ID Danh mục</label>
-						<input type="text" class="form-control" required>
+						<input type="text" class="form-control" id="id">
+						<span class="form-message"></span><span class="message-clone">0</span>
 					</div>
 					<div class="form-group">
 						<label>Tên Danh mục</label>
-						<input type="text" class="form-control" required>
+						<input type="text" class="form-control" id="name">
+						<span class="form-message"></span><span class="message-clone">0</span>
+
 					</div>
 					</div>
 					<div class="modal-footer">
@@ -132,10 +135,31 @@
 		</div>
 
 	
-
+<script src="/javascript/validator.js"></script>	
 <script>
 		$('.sidebar-nav .dashboard').removeClass('active');
 		$('.sidebar-nav .categories-management').addClass('active');
+
+		    document.addEventListener("DOMContentLoaded", function () {
+            Validator({
+                form: "#add-categories",
+                formGroupSelector: ".form-group",
+                errorSelector: ".form-message",
+                rules: [
+                    Validator.isRequired("#name", "Category name invalid"),
+                    Validator.isRequired("#id", "ID invalid"),
+                    Validator.isConfirmed(
+                        function () {
+                            return document.querySelector("#add-categories").value;
+                        },
+                    ),
+                ],
+                onSubmit: function (data) {
+                    // Call API
+                    console.log(data);
+                },
+            });
+        });
 </script>
 
 

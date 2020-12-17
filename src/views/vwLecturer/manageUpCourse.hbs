@@ -1,0 +1,68 @@
+
+<div class="content">
+    <div class="page-title">
+        <h1>Quản lý khóa học</h1>
+    </div><!-- /.page-title -->
+
+    <div class="background-white p20 mb30">
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link my-course" href="/lecturer/course">Khóa học của tôi</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link up-course" href="#">Đăng khóa học</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link edit-course" href="#">Bổ sung khóa học</a>
+            </li>
+        </ul>
+
+        <div class="row">
+            <div class="form-group col-sm-6">
+                <label>Tên khóa học</label>
+                <input type="text" class="form-control" value="Tên khóa học . . .">
+            </div><!-- /.form-group -->
+
+            <div class="form-group col-sm-6">
+                <label>Danh mục</label>
+                <input type="text" class="form-control" value="Danh mục khóa học . . .">
+            </div><!-- /.form-group -->
+
+            <div class="form-group col-sm-6">
+                <label>Mô tả ngắn gọn nội dung khóa học</label>
+                <textarea class="form-control" rows="3"></textarea>
+            </div> <!--/.form-group -->
+
+            <div class="form-group col-sm-6">
+                <label>Mô tả chi tiết nội dung khóa học</label>
+                <textarea class="form-control" rows="3"></textarea>
+            </div> <!--/.form-group -->
+            <div class="form-group col-sm-6">
+                <label>Học phí</label>
+                <input type="text" class="form-control" value="">
+            </div><!-- /.form-group -->
+            <div class="form-group col-sm-6">
+                <label>Thông tin khuyến mãi</label>
+                <input type="text" class="form-control" value="">
+            </div><!-- /.form-group -->
+
+            <span style="width: 100%;display: flex; justify-content: flex-end; padding-right: 15px">
+                <a href="#" class="btn btn-primary btn-xs pull-right">Save</a>
+            </span>
+        </div><!-- /.row -->
+
+    </div>
+
+    
+
+</div><!-- /.content -->
+
+<script>
+    $(document).ready(function () {
+        $('.up-course').addClass('active-item');
+        $('.menu-advanced .edit-info').removeClass('active');
+        $('.menu-advanced .course-management').addClass('active');
+    });
+</script>
+                    
+

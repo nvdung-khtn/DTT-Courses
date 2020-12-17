@@ -53,7 +53,7 @@ body {
     cursor: not-allowed; }
 
 textarea.form-control {
-  height: auto; }
+  height: 100px; }
 
 input[type="search"] {
   -webkit-appearance: none; }
@@ -679,7 +679,7 @@ fieldset[disabled]
 .page-title {
   border-bottom: 1px solid #e9e9e9;
   margin: 0px 0px 30px 0px;
-  padding: 0px 0px 20px 0px; }
+  padding: 0px 0px 10px 0px; }
   .page-title h1 {
     color: #363636;
     font-size: 36px;
@@ -957,44 +957,7 @@ blockquote {
 /*------------------------------------------------------------------
 [ 5. Forms ]
 */
-label {
-  color: #444;
-  cursor: pointer;
-  font-size: 13px;
-  font-weight: 400; }
 
-.form-control {
-  box-shadow: none;
-  border-radius: 0px;
-  border: 2px solid #e9e9e9;
-  height: 40px;
-  line-height: 20px; }
-  .form-control:active, .form-control:focus {
-    border: 2px solid #e9e9e9;
-    box-shadow: none;
-    outline: 0px; }
-
-.form-horizontal .control-label {
-  padding-top: 12px; }
-
-.form-horizontal .checkbox {
-  margin-top: 7px;
-  padding-top: 0px; }
-
-.form-inline .form-group {
-  margin-right: 30px; }
-  .form-inline .form-group label {
-    margin-right: 8px; }
-  .form-inline .form-group input[type=checkbox] + label, .form-inline .form-group input[type=radio] + label {
-    display: inline-block; }
-  .form-inline .form-group.input-rating input[type=radio] + label {
-    vertical-align: -3px;
-    margin-right: 0px;
-    margin-top: 5px; }
-
-.form-inline h6 {
-  display: inline;
-  margin-right: 8px; }
 
 textarea {
   resize: vertical; }
@@ -1002,8 +965,7 @@ textarea {
 button i {
   margin-right: 10px; }
 
-.required {
-  color: #d81814; }
+
 
 .textarea-resize {
   border: 7px solid #009f8b;
@@ -1272,8 +1234,10 @@ ul.dropdown-menu li a {
         right: 10px;
         top: 12px; }
       .widget .menu-advanced li:hover {
-        text-decoration: none;
         background-color: rgba(0, 0, 0, 0.03); }
+      .widget .menu-advanced li a:hover {
+        text-decoration: none;
+      }
       .widget .menu-advanced li:last-child {
         margin: 0px; }
 
@@ -1283,6 +1247,19 @@ ul.dropdown-menu li a {
 /*------------------------------------------------------------------
 [ 18. User ]
 */
+
+.file-upload-input {
+  cursor: pointer;
+  opacity: 1;
+  filter: opacity(0);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9;
+}
+
 .user-photo {
   background-color: #fff;
   border: 2px dashed #e9e9e9;
@@ -1395,8 +1372,6 @@ h4, h5, h6 {
   font-weight: normal;
   margin-bottom: 10px; }
 
-h4 {
-  font-size: 18px; }
 
 h5 {
   font-size: 16px; }
@@ -1422,3 +1397,102 @@ ol li {
 
 .main-inner {
   padding: 80px 0px; }
+
+
+  /* ----------------MANAGE COURSES-------------- */
+
+ .nav-link {
+   font-size: 16px;
+   font-weight: bold;
+  color: #363636;
+  padding: 10px 30px;
+ }
+ .nav-tabs .nav-link:focus, .nav-tabs .nav-link:hover, .active-item {
+   color: #009f8b;
+  border-bottom: 2px solid #009f8b !important;
+}
+
+.nav-tabs {
+  margin-bottom: 40px;
+}
+
+
+
+/* --------------------ALL PRODUCTS---------------------- */
+
+
+.product-item:hover {
+  text-decoration: none;
+}
+
+.card-item {
+  box-shadow: 0 2px 2px #ccc;
+  border: 1px solid #ddd;
+}
+
+.product-item__img {
+  object-fit: contain;
+  box-shadow: 0 2px 2px #ccc;
+}
+
+.product-item__title {
+  color: var(--text-color);
+  font-size: 1.7rem;
+  margin-bottom: 12px;
+}
+
+.product-item__category {
+  font-size: 1.4rem;
+  color: #333;
+  margin-top: 12px;
+  font-weight: 600;
+}
+
+.product-item__rating {
+  color: #d5d5d5;
+  margin-left: auto;
+}
+
+.product-item__rating i {
+  font-size: 1.2rem;
+}
+
+.product-item__total-star {
+  font-size: 1.4rem;
+  color: #be5a0e;
+  position: relative;
+  top: 2px;
+  margin-right: 6px;
+}
+
+.product-item__star--gold {
+  color: var(--star-gold-color);
+}
+
+.product-item__total-rating {
+  display: inline-block;
+  font-size: 1.4rem;
+  margin-left: 4px;
+}
+
+.product-item__price {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  font-size: 1.5rem;
+}
+
+.product-item__price-old {
+  color: #666;
+  text-decoration: line-through;
+}
+
+.product-item__price-current {
+  color: red;
+  margin-left: 10px;
+  font-size: 1.5rem;
+}
+
+.product-item__footer a {
+  font-size: 1.4rem;
+}
