@@ -1,0 +1,121 @@
+[{
+  "_id": {
+    "$oid": "5fdb2bf5913b57e9602bb621"
+  },
+  "courseArr": [
+    "5fdb2c4f913b57e9602bb622",
+    "5fdb2c61913b57e9602bb623"
+  ],
+  "category": {
+    "catId": "999999999",
+    "catName": "Lập trình Web"
+  }
+},{
+  "_id": {
+    "$oid": "5fdb3da441c10b2570a7cd29"
+  },
+  "courseArr": [
+    "5fdb2c4f913b57e9602bb622",
+    "5fdb2c61913b57e9602bb623"
+  ],
+  "category": {
+    "catId": "999999999",
+    "catName": "Lập trình Web"
+  }
+},{
+  "_id": {
+    "$oid": "5fdb3db141c10b2570a7cd2a"
+  },
+  "courseArr": [
+    "5fdb2c4f913b57e9602bb622",
+    "5fdb2c61913b57e9602bb623"
+  ],
+  "category": {
+    "catId": "999999999",
+    "catName": "Lập trình Web"
+  }
+},{
+  "_id": {
+    "$oid": "5fdb3dc241c10b2570a7cd2b"
+  },
+  "courseArr": [
+    "5fdb2c4f913b57e9602bb622",
+    "5fdb2c61913b57e9602bb623"
+  ],
+  "category": {
+    "catId": "88888888",
+    "catName": "Lập trình di động"
+  }
+},{
+  "_id": {
+    "$oid": "5fdb3dc541c10b2570a7cd2c"
+  },
+  "courseArr": [
+    "5fdb2c4f913b57e9602bb622",
+    "5fdb2c61913b57e9602bb623"
+  ],
+  "category": {
+    "catId": "999999999",
+    "catName": "Lập trình Web"
+  }
+},{
+  "_id": {
+    "$oid": "5fdb3dc741c10b2570a7cd2d"
+  },
+  "courseArr": [
+    "5fdb2c4f913b57e9602bb622",
+    "5fdb2c61913b57e9602bb623"
+  ],
+  "category": {
+    "catId": "77777777",
+    "catName": "Tin học văn phòng"
+  }
+},{
+  "_id": {
+    "$oid": "5fdb3e0b41c10b2570a7cd2e"
+  },
+  "courseArr": [
+    "5fdb2c4f913b57e9602bb622",
+    "5fdb2c61913b57e9602bb623"
+  ],
+  "category": {
+    "catId": "88888888",
+    "catName": "Lập trình di động"
+  }
+},{
+  "_id": {
+    "$oid": "5fdb3e1041c10b2570a7cd2f"
+  },
+  "courseArr": [
+    "5fdb2c4f913b57e9602bb622",
+    "5fdb2c61913b57e9602bb623"
+  ],
+  "category": {
+    "catId": "88888888",
+    "catName": "Lập trình di động"
+  }
+},{
+  "_id": {
+    "$oid": "5fdb3e3441c10b2570a7cd30"
+  },
+  "courseArr": [
+    "5fdb2c4f913b57e9602bb622",
+    "5fdb2c61913b57e9602bb623"
+  ],
+  "category": {
+    "catId": "77777777",
+    "catName": "Tin học văn phòng"
+  }
+},{
+  "_id": {
+    "$oid": "5fdb3e3f41c10b2570a7cd31"
+  },
+  "courseArr": [
+    "5fdb2c4f913b57e9602bb622",
+    "5fdb2c61913b57e9602bb623"
+  ],
+  "category": {
+    "catId": "77777777",
+    "catName": "Tin học văn phòng"
+  }
+}]

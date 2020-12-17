@@ -1,0 +1,138 @@
+[{
+  "_id": {
+    "$oid": "5fc7726db016bfc06cf1d14d"
+  },
+  "name": "HTML, CSS từ zero đến Hero",
+  "slug": "html-css",
+  "lecturer": {
+    "lecId": "5fdb341e913b57e9602bb627",
+    "lecName": "Nguyễn Văn Dũng"
+  },
+  "price": {
+    "initialPrice": 100000,
+    "currentPrice": 200000
+  },
+  "videoId": "R6plN3FvzFY",
+  "rating": 4.5,
+  "fullDes": [
+    "Biết cách xây dựng giao diện website với HTML, CSS",
+    "Biết cách phân tích giao diện website",
+    "Biết cách đặt tên class CSS theo chuẩn BEM",
+    "Biết cách làm giao diện Responsive (12 columns)"
+  ],
+  "tinyDes": "Khóa học đề cao việc thực hành qua những ví dụ trong thực tế giúp học viên nhanh chóng xây dựng được giao diện website",
+  "fieldId": "5fdb2bf5913b57e9602bb621",
+  "totalRating": 200,
+  "imgPath": "/image/product/product_1.jpg",
+  "status": false,
+  "studentArr": [
+    "5fdb2bf5913b57e9602bb621",
+    "5fdb2bf5913b57e9602bb622"
+  ],
+  "__v": 0,
+  "createdAt": {
+    "$date": "2020-11-08T07:30:45.035Z"
+  },
+  "updatedAt": {
+    "$date": "2020-11-08T07:30:45.035Z"
+  }
+},{
+  "_id": {
+    "$oid": "5fdb3e6a41c10b2570a7cd32"
+  },
+  "name": "Lập trình mobile với Java",
+  "slug": "mobile",
+  "lecturer": {
+    "lecId": "5fdb2f1b913b57e9602bb626",
+    "lecName": "Nguyễn Văn Dũng"
+  },
+  "price": {
+    "initialPrice": 100000,
+    "currentPrice": 200000
+  },
+  "videoId": "rcH4NbngPEk",
+  "rating": 4.5,
+  "fullDes": "lorem",
+  "tinyDes": "Lập trình ứng dụng di động với ngôn ngữ là Java",
+  "fieldId": "5fdb2bf5913b57e9602bb621",
+  "totalRating": 200,
+  "imgPath": "/image/product/product_1.jpg",
+  "status": false,
+  "studentArr": [
+    "5fdb2bf5913b57e9602bb621",
+    "5fdb2bf5913b57e9602bb622"
+  ],
+  "__v": 0,
+  "createdAt": {
+    "$date": "2020-11-08T07:30:45.035Z"
+  },
+  "updatedAt": {
+    "$date": "2020-11-08T07:30:45.035Z"
+  }
+},{
+  "_id": {
+    "$oid": "5fdb3e6f41c10b2570a7cd33"
+  },
+  "name": "Lập trình mobile với Java",
+  "slug": "mobile",
+  "lecturer": {
+    "lecId": "5fdb2f1b913b57e9602bb626",
+    "lecName": "Nguyễn Văn Dũng"
+  },
+  "price": {
+    "initialPrice": 100000,
+    "currentPrice": 200000
+  },
+  "videoId": "rcH4NbngPEk",
+  "rating": 4.5,
+  "fullDes": "lorem",
+  "tinyDes": "Lập trình ứng dụng di động với ngôn ngữ là Java",
+  "fieldId": "5fdb2bf5913b57e9602bb621",
+  "totalRating": 200,
+  "imgPath": "/image/product/product_1.jpg",
+  "status": false,
+  "studentArr": [
+    "5fdb2bf5913b57e9602bb621",
+    "5fdb2bf5913b57e9602bb622"
+  ],
+  "__v": 0,
+  "createdAt": {
+    "$date": "2020-11-08T07:30:45.035Z"
+  },
+  "updatedAt": {
+    "$date": "2020-11-08T07:30:45.035Z"
+  }
+},{
+  "_id": {
+    "$oid": "5fdb3e7241c10b2570a7cd34"
+  },
+  "name": "Lập trình mobile với Java",
+  "slug": "mobile",
+  "lecturer": {
+    "lecId": "5fdb2f1b913b57e9602bb626",
+    "lecName": "Nguyễn Văn Dũng"
+  },
+  "price": {
+    "initialPrice": 100000,
+    "currentPrice": 200000
+  },
+  "videoId": "rcH4NbngPEk",
+  "rating": 4.5,
+  "fullDes": "lorem",
+  "tinyDes": "Lập trình ứng dụng di động với ngôn ngữ là Java",
+  "fieldId": "5fdb2bf5913b57e9602bb621",
+  "totalRating": 200,
+  "imgPath": "/image/product/product_1.jpg",
+  "status": false,
+  "studentArr": [
+    "5fdb2bf5913b57e9602bb621",
+    "5fdb2bf5913b57e9602bb622"
+  ],
+  "__v": 0,
+  "createdAt": {
+    "$date": "2020-11-08T07:30:45.035Z"
+  },
+  "updatedAt": {
+    "$date": "2020-11-08T07:30:45.035Z"
+  }
+}]

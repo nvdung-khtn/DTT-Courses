@@ -1,0 +1,97 @@
+[{
+  "_id": {
+    "$oid": "5fdb341e913b57e9602bb627"
+  },
+  "username": "admin",
+  "password": "123456",
+  "name": "Nguyễn Văn Dũng",
+  "email": "nvdung.khtn@gmail.com",
+  "dob": {
+    "$date": "1997-11-08T07:30:45.035Z"
+  },
+  "address": "127 Âu Cơ, Phường 14, Quận 11, TpHCM",
+  "phone": "0398202274",
+  "cart": [
+    "456",
+    "789"
+  ],
+  "permission": 0,
+  "registered": {
+    "$date": "2019-11-08T07:30:45.035Z"
+  },
+  "status": true,
+  "courseArr": [
+    {
+      "role": 1,
+      "courseId": "123"
+    },
+    {
+      "role": "1",
+      "courseId": "456"
+    }
+  ]
+},{
+  "_id": {
+    "$oid": "5fdb468941c10b2570a7cd35"
+  },
+  "username": "admin1",
+  "password": "123456",
+  "name": "Phạm Văn Trình",
+  "email": "admin1@gmail.com",
+  "dob": {
+    "$date": "1999-11-08T07:30:45.035Z"
+  },
+  "address": "127 Âu Cơ, Phường 14, Quận 11, TpHCM",
+  "phone": "0213625698",
+  "cart": [
+    "456",
+    "789"
+  ],
+  "permission": 0,
+  "registered": {
+    "$date": "2019-11-08T07:30:45.035Z"
+  },
+  "status": true,
+  "courseArr": [
+    {
+      "role": 1,
+      "courseId": "123"
+    },
+    {
+      "role": "1",
+      "courseId": "456"
+    }
+  ]
+},{
+  "_id": {
+    "$oid": "5fdb46e841c10b2570a7cd37"
+  },
+  "username": "admin2",
+  "password": "123456",
+  "name": "Đỗ Trần Anh Tuấn",
+  "email": "admin2@gmail.com",
+  "dob": {
+    "$date": "1998-11-08T07:30:45.035Z"
+  },
+  "address": "127 Trường Chinh, Phường 14, Quận 11, TpHCM",
+  "phone": "0213625698",
+  "cart": [
+    "456",
+    "789"
+  ],
+  "permission": 0,
+  "registered": {
+    "$date": "2019-11-08T07:30:45.035Z"
+  },
+  "status": true,
+  "courseArr": [
+    {
+      "role": 1,
+      "courseId": "123"
+    },
+    {
+      "role": "1",
+      "courseId": "456"
+    }
+  ]
+}]
