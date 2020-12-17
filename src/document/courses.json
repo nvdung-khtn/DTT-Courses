@@ -22,12 +22,12 @@
   ],
   "tinyDes": "Khóa học đề cao việc thực hành qua những ví dụ trong thực tế giúp học viên nhanh chóng xây dựng được giao diện website",
   "fieldId": "5fdb2bf5913b57e9602bb621",
-  "totalRating": 200,
+  "totalRating": 8208,
   "imgPath": "/image/product/product_1.jpg",
   "status": false,
   "studentArr": [
-    "5fdb2bf5913b57e9602bb621",
-    "5fdb2bf5913b57e9602bb622"
+    "5fdb468941c10b2570a7cd35",
+    "5fdb46e841c10b2570a7cd37"
   ],
   "__v": 0,
   "createdAt": {
@@ -38,29 +38,37 @@
   }
 },{
   "_id": {
-    "$oid": "5fdb3e6a41c10b2570a7cd32"
+    "$oid": "5fdb85243d72d607a4cc1804"
   },
-  "name": "Lập trình mobile với Java",
-  "slug": "mobile",
+  "name": "Lập trình Javascript cơ bản",
+  "slug": "javascript-co-ban",
   "lecturer": {
-    "lecId": "5fdb2f1b913b57e9602bb626",
+    "lecId": "5fdb341e913b57e9602bb627",
     "lecName": "Nguyễn Văn Dũng"
   },
   "price": {
-    "initialPrice": 100000,
-    "currentPrice": 200000
+    "initialPrice": 500000,
+    "currentPrice": 300000
   },
-  "videoId": "rcH4NbngPEk",
+  "videoId": "0SJE9dYdpps",
   "rating": 4.5,
-  "fullDes": "lorem",
-  "tinyDes": "Lập trình ứng dụng di động với ngôn ngữ là Java",
+  "fullDes": [
+    "Hiểu chi tiết về các khái niệm cơ bản trong JS",
+    "Xây dựng được website đầu tiên kết hợp với JS",
+    "Biết cách đặt tên class CSS theo chuẩn BEM",
+    "Tự tin khi phỏng vấn với kiến thức vững chắc",
+    "Có nền tảng để học các thư viện và framework JS",
+    "Nắm chắc các tính năng trong phiên bản ES6",
+    "Thành thạo DOM APIs để tương tác với trang web"
+  ],
+  "tinyDes": "Khóa học Javascript cơ bản dành cho mọi đối tượng bắt đầu học lập trình với nội dng ngắn gọn, dễ hiểu và hệ thống làm bài tập phong phú.",
   "fieldId": "5fdb2bf5913b57e9602bb621",
-  "totalRating": 200,
-  "imgPath": "/image/product/product_1.jpg",
+  "totalRating": 8208,
+  "imgPath": "/image/product/product_2.jpg",
   "status": false,
   "studentArr": [
-    "5fdb2bf5913b57e9602bb621",
-    "5fdb2bf5913b57e9602bb622"
+    "5fdb468941c10b2570a7cd35",
+    "5fdb46e841c10b2570a7cd37"
   ],
   "__v": 0,
   "createdAt": {
@@ -71,29 +79,34 @@
   }
 },{
   "_id": {
-    "$oid": "5fdb3e6f41c10b2570a7cd33"
+    "$oid": "5fdb87d657a5262550e6439c"
   },
-  "name": "Lập trình mobile với Java",
-  "slug": "mobile",
+  "name": "Xây dựng web responsive",
+  "slug": "responsive-web-design",
   "lecturer": {
-    "lecId": "5fdb2f1b913b57e9602bb626",
+    "lecId": "5fdb341e913b57e9602bb627",
     "lecName": "Nguyễn Văn Dũng"
   },
   "price": {
-    "initialPrice": 100000,
-    "currentPrice": 200000
+    "initialPrice": 500000,
+    "currentPrice": 300000
   },
-  "videoId": "rcH4NbngPEk",
-  "rating": 4.5,
-  "fullDes": "lorem",
-  "tinyDes": "Lập trình ứng dụng di động với ngôn ngữ là Java",
+  "videoId": "uz5LIP85J5Y",
+  "rating": 4.3,
+  "fullDes": [
+    "Biết cách xây dựng website Responsive",
+    "Hiểu được tư tưởng thiết kế với Grid system",
+    "Tự tay xây dựng được thư viện CSS Grid",
+    "Tự hiểu được Grid layout trong bootstrap"
+  ],
+  "tinyDes": "Khóa học này sẽ giúp bạn nắm chắc tư tưởng cốt lõi của việc xây dựng giao diện website responsive và áp dụng trong thực tế.",
   "fieldId": "5fdb2bf5913b57e9602bb621",
-  "totalRating": 200,
-  "imgPath": "/image/product/product_1.jpg",
+  "totalRating": 6500,
+  "imgPath": "/image/product/product_3.jpg",
   "status": false,
   "studentArr": [
-    "5fdb2bf5913b57e9602bb621",
-    "5fdb2bf5913b57e9602bb622"
+    "5fdb468941c10b2570a7cd35",
+    "5fdb46e841c10b2570a7cd37"
   ],
   "__v": 0,
   "createdAt": {
@@ -104,29 +117,38 @@
   }
 },{
   "_id": {
-    "$oid": "5fdb3e7241c10b2570a7cd34"
+    "$oid": "5fdb884957a5262550e6439d"
   },
-  "name": "Lập trình mobile với Java",
-  "slug": "mobile",
+  "name": "Xây dựng web với NodeJS & ExpressJS",
+  "slug": "Nodejs",
   "lecturer": {
-    "lecId": "5fdb2f1b913b57e9602bb626",
+    "lecId": "5fdb341e913b57e9602bb627",
     "lecName": "Nguyễn Văn Dũng"
   },
   "price": {
-    "initialPrice": 100000,
-    "currentPrice": 200000
+    "initialPrice": 700000,
+    "currentPrice": 600000
   },
-  "videoId": "rcH4NbngPEk",
-  "rating": 4.5,
-  "fullDes": "lorem",
-  "tinyDes": "Lập trình ứng dụng di động với ngôn ngữ là Java",
+  "videoId": "0SJE9dYdpps",
+  "rating": 4.7,
+  "fullDes": [
+    "HNắm chắc lý thuyết chung trong việc xây dựng web",
+    "Biết cách làm việc với Mongoose, MongoDB trong NodeJS",
+    "Xây dựng web với Express bằng kiến thức thực tế",
+    "Biết cách xây dựng API theo chuẩn RESTful API",
+    "CNắm chắc lý thuyết về API và RESTful API",
+    "Được chia sẻ lại kinh nghiệm làm việc thực tế",
+    "ắm chắc khái niệm về giao thức HTTP",
+    "Hiểu rõ tư tưởng và cách hoạt động của mô hình MVC"
+  ],
+  "tinyDes": "Khóa học Javascript cơ bản dành cho mọi đối tượng bắt đầu học lập trình với nội dng ngắn gọn, dễ hiểu và hệ thống làm bài tập phong phú.",
   "fieldId": "5fdb2bf5913b57e9602bb621",
-  "totalRating": 200,
-  "imgPath": "/image/product/product_1.jpg",
-  "status": false,
+  "totalRating": 9653,
+  "imgPath": "/image/product/product_4.jpg",
+  "status": true,
   "studentArr": [
-    "5fdb2bf5913b57e9602bb621",
-    "5fdb2bf5913b57e9602bb622"
+    "5fdb468941c10b2570a7cd35",
+    "5fdb46e841c10b2570a7cd37"
   ],
   "__v": 0,
   "createdAt": {

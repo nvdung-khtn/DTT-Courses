@@ -2,7 +2,7 @@
   "_id": {
     "$oid": "5fdb341e913b57e9602bb627"
   },
-  "username": "admin",
+  "username": "nvdung.khtn",
   "password": "123456",
   "name": "Nguyễn Văn Dũng",
   "email": "nvdung.khtn@gmail.com",
@@ -15,7 +15,7 @@
     "456",
     "789"
   ],
-  "permission": 0,
+  "permission": 1,
   "registered": {
     "$date": "2019-11-08T07:30:45.035Z"
   },
@@ -23,26 +23,34 @@
   "courseArr": [
     {
       "role": 1,
-      "courseId": "123"
+      "courseId": "5fc7726db016bfc06cf1d14d"
     },
     {
-      "role": "1",
-      "courseId": "456"
+      "role": 1,
+      "courseId": "5fdb85243d72d607a4cc1804"
+    },
+    {
+      "role": 1,
+      "courseId": "5fdb87d657a5262550e6439c"
+    },
+    {
+      "role": 1,
+      "courseId": "5fdb884957a5262550e6439d"
     }
   ]
 },{
   "_id": {
     "$oid": "5fdb468941c10b2570a7cd35"
   },
-  "username": "admin1",
+  "username": "admin",
   "password": "123456",
-  "name": "Phạm Văn Trình",
-  "email": "admin1@gmail.com",
+  "name": "Philip Nguyen",
+  "email": "admin@gmail.com",
   "dob": {
-    "$date": "1999-11-08T07:30:45.035Z"
+    "$date": "1995-11-08T07:30:45.035Z"
   },
-  "address": "127 Âu Cơ, Phường 14, Quận 11, TpHCM",
-  "phone": "0213625698",
+  "address": "333 Đinh Tiên Hoàng, Phường 1, Quận 1, TpHCM",
+  "phone": "0356244742",
   "cart": [
     "456",
     "789"
@@ -79,7 +87,39 @@
     "456",
     "789"
   ],
-  "permission": 0,
+  "permission": 2,
+  "registered": {
+    "$date": "2019-11-08T07:30:45.035Z"
+  },
+  "status": true,
+  "courseArr": [
+    {
+      "role": 1,
+      "courseId": "123"
+    },
+    {
+      "role": "1",
+      "courseId": "456"
+    }
+  ]
+},{
+  "_id": {
+    "$oid": "5fdb8cac57a5262550e643a1"
+  },
+  "username": "admin1",
+  "password": "123456",
+  "name": "Phạm Văn Trình",
+  "email": "admin1@gmail.com",
+  "dob": {
+    "$date": "1999-11-08T07:30:45.035Z"
+  },
+  "address": "127 Âu Cơ, Phường 14, Quận 11, TpHCM",
+  "phone": "0213625698",
+  "cart": [
+    "456",
+    "789"
+  ],
+  "permission": 2,
   "registered": {
     "$date": "2019-11-08T07:30:45.035Z"
   },

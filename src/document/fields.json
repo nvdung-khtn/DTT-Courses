@@ -3,13 +3,16 @@
     "$oid": "5fdb2bf5913b57e9602bb621"
   },
   "courseArr": [
-    "5fdb2c4f913b57e9602bb622",
-    "5fdb2c61913b57e9602bb623"
+    "5fc7726db016bfc06cf1d14d",
+    "5fdb85243d72d607a4cc1804",
+    "5fdb87d657a5262550e6439c",
+    "5fdb884957a5262550e6439d"
   ],
   "category": {
     "catId": "999999999",
     "catName": "Lập trình Web"
-  }
+  },
+  "fieldName": "HTML && CSS"
 },{
   "_id": {
     "$oid": "5fdb3da441c10b2570a7cd29"
@@ -21,7 +24,8 @@
   "category": {
     "catId": "999999999",
     "catName": "Lập trình Web"
-  }
+  },
+  "fieldName": "Javascript"
 },{
   "_id": {
     "$oid": "5fdb3db141c10b2570a7cd2a"
@@ -33,7 +37,8 @@
   "category": {
     "catId": "999999999",
     "catName": "Lập trình Web"
-  }
+  },
+  "fieldName": "React"
 },{
   "_id": {
     "$oid": "5fdb3dc241c10b2570a7cd2b"
@@ -45,7 +50,8 @@
   "category": {
     "catId": "88888888",
     "catName": "Lập trình di động"
-  }
+  },
+  "fieldName": "Flutter"
 },{
   "_id": {
     "$oid": "5fdb3dc541c10b2570a7cd2c"
@@ -57,7 +63,8 @@
   "category": {
     "catId": "999999999",
     "catName": "Lập trình Web"
-  }
+  },
+  "fieldName": "Nodejs"
 },{
   "_id": {
     "$oid": "5fdb3dc741c10b2570a7cd2d"
@@ -69,7 +76,8 @@
   "category": {
     "catId": "77777777",
     "catName": "Tin học văn phòng"
-  }
+  },
+  "fieldName": "Word"
 },{
   "_id": {
     "$oid": "5fdb3e0b41c10b2570a7cd2e"
@@ -81,7 +89,8 @@
   "category": {
     "catId": "88888888",
     "catName": "Lập trình di động"
-  }
+  },
+  "field": "Android"
 },{
   "_id": {
     "$oid": "5fdb3e1041c10b2570a7cd2f"
@@ -93,7 +102,8 @@
   "category": {
     "catId": "88888888",
     "catName": "Lập trình di động"
-  }
+  },
+  "fieldName": "IOS"
 },{
   "_id": {
     "$oid": "5fdb3e3441c10b2570a7cd30"
@@ -105,7 +115,8 @@
   "category": {
     "catId": "77777777",
     "catName": "Tin học văn phòng"
-  }
+  },
+  "fieldName": "Excel"
 },{
   "_id": {
     "$oid": "5fdb3e3f41c10b2570a7cd31"
@@ -117,5 +128,45 @@
   "category": {
     "catId": "77777777",
     "catName": "Tin học văn phòng"
-  }
+  },
+  "fieldName": "PowerPoint"
+},{
+  "_id": {
+    "$oid": "5fdb8b2357a5262550e6439e"
+  },
+  "courseArr": [
+    "5fdb2c4f913b57e9602bb622",
+    "5fdb2c61913b57e9602bb623"
+  ],
+  "category": {
+    "catId": "88888888",
+    "catName": "Lập trình di động"
+  },
+  "fieldName": "Swift"
+},{
+  "_id": {
+    "$oid": "5fdb8b3457a5262550e6439f"
+  },
+  "courseArr": [
+    "5fdb2c4f913b57e9602bb622",
+    "5fdb2c61913b57e9602bb623"
+  ],
+  "category": {
+    "catId": "88888888",
+    "catName": "Lập trình di động"
+  },
+  "fieldName": "React Native"
+},{
+  "_id": {
+    "$oid": "5fdb8b4257a5262550e643a0"
+  },
+  "courseArr": [
+    "5fdb2c4f913b57e9602bb622",
+    "5fdb2c61913b57e9602bb623"
+  ],
+  "category": {
+    "catId": "999999999",
+    "catName": "Lập trình Web"
+  },
+  "fieldName": "Angular"
 }]
