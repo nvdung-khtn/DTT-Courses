@@ -17,7 +17,48 @@
     <div class="product mt-5">
         <!-- Khóa học nổi bật -->
         <div class="row">
+            {{#each courses}}
+            {{#if this.isHighlight}}
             <div class="col-sm-4 mb-4">
+                <a href="" class="product-item">
+                    <div class="card card-item">
+                        <img src="/image/products/product1.jpg" class="product-item__img card-img-top" alt="" title="">
+                        <div class="card-body">
+                            <h5 class="card-title product-item__title">{{name}}</h5>
+                            <h4 class="card-subtitle mb-2 text-muted">{{lecturer.lecName}}</h4>
+                            <span class="card-text product-item__category">Lĩnh vực: {{field.fieldName}}</span>
+                            <div class="product-item__rating">
+                                <span class="product-item__total-star">{{rating}}</span>
+                                <i class="product-item__star--gold fas fa-star"></i>
+                                <i class="product-item__star--gold fas fa-star"></i>
+                                <i class="product-item__star--gold fas fa-star"></i>
+                                <i class="product-item__star--gold fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <h6 class="product-item__total-rating card-subtitle text-muted">({{totalRating}})</h6>
+                            </div>
+                            <div class="product-item__price mt-1">
+                                <span class="product-item__price-old">{{price.initialPrice}}</span>
+                                <span class="product-item__price-current">{{price.currentPrice}}</span>
+                            </div>
+                        </div>
+                        <div class="card-footer  product-item__footer">
+                            <a class="btn btn-outline-danger mr-3" href="#" role="button">
+                                <i class="fas fa-heart"></i>
+                                Yêu Thích
+                            </a>
+                            <a class="btn btn-outline-success" href="#" role="button">
+                                <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                                Thêm Giỏ Hàng
+                            </a>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            {{/if}}
+
+            {{/each}}
+
+            {{!-- <div class="col-sm-4 mb-4">
                 <a href="" class="product-item">
                     <div class="card card-item">
                         <img src="/image/products/product1.jpg" class="product-item__img card-img-top" alt="" title="">
@@ -51,77 +92,7 @@
                         </div>
                     </div>
                 </a>
-            </div>
-            <div class="col-sm-4 mb-4">
-                <a href="" class="product-item">
-                    <div class="card card-item">
-                        <img src="/image/products/product1.jpg" class="product-item__img card-img-top" alt="" title="">
-                        <div class="card-body">
-                            <h5 class="card-title product-item__title">HTML, CSS từ zero đến Hero</h5>
-                            <h4 class="card-subtitle mb-2 text-muted">Nguyễn Văn Dũng</h4>
-                            <span class="card-text product-item__category">Lĩnh vực: Lập trình web</span>
-                            <div class="product-item__rating">
-                                <span class="product-item__total-star">4</span>
-                                <i class="product-item__star--gold fas fa-star"></i>
-                                <i class="product-item__star--gold fas fa-star"></i>
-                                <i class="product-item__star--gold fas fa-star"></i>
-                                <i class="product-item__star--gold fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <h6 class="product-item__total-rating card-subtitle text-muted">(200)</h6>
-                            </div>
-                            <div class="product-item__price mt-1">
-                                <span class="product-item__price-old">1.200.000đ</span>
-                                <span class="product-item__price-current">1.000.000đ</span>
-                            </div>
-                        </div>
-                        <div class="card-footer  product-item__footer">
-                            <a class="btn btn-outline-danger mr-3" href="#" role="button">
-                                <i class="fas fa-heart"></i>
-                                Yêu Thích
-                            </a>
-                            <a class="btn btn-outline-success" href="#" role="button">
-                                <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                                Thêm Giỏ Hàng
-                            </a>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-sm-4 mb-4">
-                <a href="" class="product-item">
-                    <div class="card card-item">
-                        <img src="/image/products/product1.jpg" class="product-item__img card-img-top" alt="" title="">
-                        <div class="card-body">
-                            <h5 class="card-title product-item__title">HTML, CSS từ zero đến Hero</h5>
-                            <h4 class="card-subtitle mb-2 text-muted">Nguyễn Văn Dũng</h4>
-                            <span class="card-text product-item__category">Lĩnh vực: Lập trình web</span>
-                            <div class="product-item__rating">
-                                <span class="product-item__total-star">4</span>
-                                <i class="product-item__star--gold fas fa-star"></i>
-                                <i class="product-item__star--gold fas fa-star"></i>
-                                <i class="product-item__star--gold fas fa-star"></i>
-                                <i class="product-item__star--gold fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <h6 class="product-item__total-rating card-subtitle text-muted">(200)</h6>
-                            </div>
-                            <div class="product-item__price mt-1">
-                                <span class="product-item__price-old">1.200.000đ</span>
-                                <span class="product-item__price-current">1.000.000đ</span>
-                            </div>
-                        </div>
-                        <div class="card-footer  product-item__footer">
-                            <a class="btn btn-outline-danger mr-3" href="#" role="button">
-                                <i class="fas fa-heart"></i>
-                                Yêu Thích
-                            </a>
-                            <a class="btn btn-outline-success" href="#" role="button">
-                                <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                                Thêm Giỏ Hàng
-                            </a>
-                        </div>
-                    </div>
-                </a>
-            </div>
+            </div> --}}
             <div class="col-sm-12 d-flex justify-content-center my-3">
                 <button type="button" class="btn btn-lg btn-success viewAllBtn">Tất cả khóa học</button>
             </div>
@@ -171,7 +142,7 @@
                         </div>
                     </a>
                 </div>
-                 <div class="mySlickShow">
+                <div class="mySlickShow">
                     <a href="" class="product-item">
                         <div class="card card-item">
                             <img src="/image/products/product1.jpg" class="product-item__img card-img-top" alt=""
@@ -207,7 +178,7 @@
                         </div>
                     </a>
                 </div>
-                 <div class="mySlickShow">
+                <div class="mySlickShow">
                     <a href="" class="product-item">
                         <div class="card card-item">
                             <img src="/image/products/product1.jpg" class="product-item__img card-img-top" alt=""
@@ -243,7 +214,7 @@
                         </div>
                     </a>
                 </div>
-                 <div class="mySlickShow">
+                <div class="mySlickShow">
                     <a href="" class="product-item">
                         <div class="card card-item">
                             <img src="/image/products/product1.jpg" class="product-item__img card-img-top" alt=""
@@ -279,7 +250,7 @@
                         </div>
                     </a>
                 </div>
-                 <div class="mySlickShow">
+                <div class="mySlickShow">
                     <a href="" class="product-item">
                         <div class="card card-item">
                             <img src="/image/products/product1.jpg" class="product-item__img card-img-top" alt=""
@@ -315,7 +286,7 @@
                         </div>
                     </a>
                 </div>
-                 <div class="mySlickShow">
+                <div class="mySlickShow">
                     <a href="" class="product-item">
                         <div class="card card-item">
                             <img src="/image/products/product1.jpg" class="product-item__img card-img-top" alt=""

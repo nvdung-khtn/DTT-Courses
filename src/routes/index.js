@@ -10,9 +10,9 @@ function route(app) {
     app.use('/login', loginRouter);
     app.use('/register', registerRouter);
     app.use('/admin', adminRouter);
-    app.use('/', homeRouter);
     app.use('/lecturer',lecturerRouter);
     app.use('/course', courseRouter)
+    app.use('/', homeRouter);
 }
 
 module.exports = route;

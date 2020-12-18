@@ -20,6 +20,10 @@
 .product {
 }
 
+.card-body {
+    min-height: 190px;
+}
+
 .product-item:hover {
     text-decoration: none;
 }

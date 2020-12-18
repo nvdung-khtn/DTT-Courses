@@ -9,7 +9,7 @@ const Course = new Schema({
     description: { type: String},
     image: { type: String, maxLength: 255 },
     videoId: { type: String, require: true },
-    slug: { type: String, slug: "name", unique: true},
+    slug: { type: String, slug: "name", unique: true },
 }, {
     timestamps: true,
 });
