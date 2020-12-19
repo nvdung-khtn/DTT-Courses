@@ -13,12 +13,15 @@ class SiteController {
     index(req, res, next) {
         Course.find({})
             .then((coursesDB) => {
-                const courses = multipleMongooseToObject(coursesDB)
+                const courses = multipleMongooseToObject(coursesDB) //Khóa học nổi bật
                 // convert Mongoose Object to Object Literals
                 const mostViewedCourses = homeService.filterMostViewedCourse(courses);
+                const newCourses = homeService.filterNewCourse(courses);
+                console.log(newCourses);
                 res.render('home', { 
                     courses,
-                    mostViewedCourses
+                    mostViewedCourses,
+                    newCourses
                 })
                
             })
