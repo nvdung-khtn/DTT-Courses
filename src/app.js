@@ -3,6 +3,8 @@ const morgan = require('morgan');
 const handlebars = require('express-handlebars');
 const path = require('path');
 const numeral = require('numeral');
+const hbs_sections = require('express-handlebars-sections');
+
 const route = require('./routes/index');
 const db = require('./config/db');
 require('express-async-errors');
@@ -31,6 +33,12 @@ app.engine(
     'hbs',
     handlebars({
         extname: '.hbs',
+        helpers: { 
+            section: hbs_sections(),
+            format(value) {
+                return numeral(value).format('0,0');
+            }
+        }
     }),
 );
 app.set('view engine', 'hbs');

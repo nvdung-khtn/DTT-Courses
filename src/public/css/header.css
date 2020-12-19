@@ -100,7 +100,7 @@
     color: var(--text-color);
 }
 
-.header__category-dropdown:hover > .header__category-dropdown-list {
+.header__category-dropdown:hover .header__category-dropdown-list {
     display: block;
 }
 

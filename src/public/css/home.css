@@ -176,7 +176,13 @@
 }
 
 .group-product-heading {
-    color: #333;
+    color: #111;
     font-weight: 600;
-    font-size: 2.7rem;
+    font-size: 3rem;
+}
+
+.group-product-description {
+    color: #555;
+    font-size: 1.5rem;
+
 }

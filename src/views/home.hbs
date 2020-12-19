@@ -1,21 +1,29 @@
-<div class="container mt-5">
-    <div class="row">
-        <div class="col-sm-7 offset-sm-3 category-btn-group px-1">
-            <a name="" id="" class="btn btn-success btn-lg category-btn category-btn--active mr-2" href="#"
-                role="button">
-                Khóa học nổi bật
-            </a>
-            <a name="" id="" class="btn btn-success btn-lg category-btn mr-2" href="#" role="button">Lập trình ứng dụng
-                Web</a>
-            <a name="" id="" class="btn btn-success btn-lg category-btn mr-2" href="#" role="button">Lập trình thiết bị
-                di động</a>
-            <a name="" id="" class="btn btn-success btn-lg category-btn mr-2" href="#" role="button">Lập trình
-                windows</a>
-        </div>
-    </div>
+
+{{#section 'js'}}
+<script>
+    $(document).ready(function () {
+        $('.myCarousel').slick({
+            infinite: true,
+            slidesToShow: 4,
+            slidesToScroll: 3,
+            nextArrow: "<button type='button' class='slick-prev'>Next</button>",
+            prevArrow: "<button type='button' class='slick-next'>Previous</button>",
+            draggable: false,
+        });
+    });
+</script>
+{{/section}}
+
+<div class="container my-5">
     <!-- Product item -->
     <div class="product mt-5">
         <!-- Khóa học nổi bật -->
+        <div class="d-flex justify-content-center flex-column mb-5">
+            <h2 class="group-product-heading mx-auto">Khóa học nổi bật</h2>
+            <h5 class="group-product-description mx-auto">
+                Những khóa học có số lượng học viên theo học nhiều nhất và có phản hồi tích cực nhất.
+            </h5>
+        </div>
         <div class="row">
             {{#each courses}}
             {{#if this.isHighlight}}
@@ -57,6 +65,104 @@
             {{/if}}
 
             {{/each}}
+            <div class="col-sm-12 d-flex justify-content-center mt-2 mb-1">
+                <a id="showCoursesBtn" class="btn btn-lg btn-success viewAllBtn" href="/course" role="button">Tất cả khóa học</a>
+            </div>
+        </div>
+
+        <!-- Khóa học được xem nhiều nhất -->
+        <div class="row">
+            <div class="col-sm-12">
+                <h2 class="text-left group-product-heading mb-3">Khóa học được xem nhiều nhất</h2>
+            </div>
+            <!-- Carousel khóa học được xem nhiều nhất -->
+            <div class="myCarousel col-sm-12">
+                {{#each mostViewedCourses}}
+                <div class="mySlickShow">
+                    <a href="" class="product-item">
+                    <div class="card card-item">
+                        <img src="/image/products/product1.jpg" class="product-item__img card-img-top" alt="" title="">
+                        <div class="card-body">
+                            <h5 class="card-title product-item__title">{{name}}</h5>
+                            <h4 class="card-subtitle mb-2 text-muted">{{lecturer.lecName}}</h4>
+                            <span class="card-text product-item__category">Lĩnh vực: {{field.fieldName}}</span>
+                            <div class="product-item__rating">
+                                <span class="product-item__total-star">{{rating}}</span>
+                                <i class="product-item__star--gold fas fa-star"></i>
+                                <i class="product-item__star--gold fas fa-star"></i>
+                                <i class="product-item__star--gold fas fa-star"></i>
+                                <i class="product-item__star--gold fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <h6 class="product-item__total-rating card-subtitle text-muted">({{totalRating}})</h6>
+                            </div>
+                            <div class="product-item__price mt-1">
+                                <span class="product-item__price-old">{{price.initialPrice}}</span>
+                                <span class="product-item__price-current">{{price.currentPrice}}</span>
+                            </div>
+                        </div>
+                        <div class="card-footer  product-item__footer">
+                            <a class="btn btn-outline-danger mr-3" href="#" role="button">
+                                <i class="fas fa-heart"></i>
+                                Yêu Thích
+                            </a>
+                            <a class="btn btn-outline-success" href="#" role="button">
+                                <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                                Thêm Giỏ Hàng
+                            </a>
+                        </div>
+                    </div>
+                </a>
+                </div>
+                {{/each}}
+            </div>
+        </div>
+
+
+        <!-- Khóa học mới nhất -->
+        <div class="row mt-2">
+            <div class="col-sm-12">
+                <h2 class="text-left group-product-heading mt-5 mb-3">Khóa học mới nhất</h2>
+            </div>
+             <!-- Carousel khóa học mới nhất -->
+            <div class="myCarousel col-sm-12">
+                {{#each mostViewedCourses}}
+                <div class="mySlickShow">
+                    <a href="" class="product-item">
+                    <div class="card card-item">
+                        <img src="/image/products/product1.jpg" class="product-item__img card-img-top" alt="" title="">
+                        <div class="card-body">
+                            <h5 class="card-title product-item__title">{{name}}</h5>
+                            <h4 class="card-subtitle mb-2 text-muted">{{lecturer.lecName}}</h4>
+                            <span class="card-text product-item__category">Lĩnh vực: {{field.fieldName}}</span>
+                            <div class="product-item__rating">
+                                <span class="product-item__total-star">{{rating}}</span>
+                                <i class="product-item__star--gold fas fa-star"></i>
+                                <i class="product-item__star--gold fas fa-star"></i>
+                                <i class="product-item__star--gold fas fa-star"></i>
+                                <i class="product-item__star--gold fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <h6 class="product-item__total-rating card-subtitle text-muted">({{totalRating}})</h6>
+                            </div>
+                            <div class="product-item__price mt-1">
+                                <span class="product-item__price-old">{{price.initialPrice}}</span>
+                                <span class="product-item__price-current">{{price.currentPrice}}</span>
+                            </div>
+                        </div>
+                        <div class="card-footer  product-item__footer">
+                            <a class="btn btn-outline-danger mr-3" href="#" role="button">
+                                <i class="fas fa-heart"></i>
+                                Yêu Thích
+                            </a>
+                            <a class="btn btn-outline-success" href="#" role="button">
+                                <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                                Thêm Giỏ Hàng
+                            </a>
+                        </div>
+                    </div>
+                </a>
+                </div>
+                {{/each}}
+            </div>
 
             {{!-- <div class="col-sm-4 mb-4">
                 <a href="" class="product-item">
@@ -93,492 +199,6 @@
                     </div>
                 </a>
             </div> --}}
-            <div class="col-sm-12 d-flex justify-content-center my-3">
-                <a id="showCoursesBtn" class="btn btn-lg btn-success viewAllBtn" href="/course" role="button">Tất cả khóa học</a>
-            </div>
-        </div>
-
-        <!-- Khóa học được xem nhiều nhất -->
-        <div class="row">
-            <div class="col-sm-12">
-                <h2 class="text-left group-product-heading mt-2 mb-3">Khóa học được xem nhiều nhất</h2>
-            </div>
-
-            <!-- Carousel -->
-            <div class="myCarousel col-sm-12">
-                <div class="mySlickShow">
-                    <a href="" class="product-item">
-                        <div class="card card-item">
-                            <img src="/image/products/product1.jpg" class="product-item__img card-img-top" alt=""
-                                title="">
-                            <div class="card-body">
-                                <h5 class="card-title product-item__title">HTML, CSS từ zero đến Hero</h5>
-                                <h4 class="card-subtitle mb-2 text-muted">Nguyễn Văn Dũng</h4>
-                                <span class="card-text product-item__category">Lĩnh vực: Lập trình web</span>
-                                <div class="product-item__rating">
-                                    <span class="product-item__total-star">4</span>
-                                    <i class="product-item__star--gold fas fa-star"></i>
-                                    <i class="product-item__star--gold fas fa-star"></i>
-                                    <i class="product-item__star--gold fas fa-star"></i>
-                                    <i class="product-item__star--gold fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <h6 class="product-item__total-rating card-subtitle text-muted">(200)</h6>
-                                </div>
-                                <div class="product-item__price mt-1">
-                                    <span class="product-item__price-old">1.200.000đ</span>
-                                    <span class="product-item__price-current">1.000.000đ</span>
-                                </div>
-                            </div>
-                            <div class="card-footer  product-item__footer">
-                                <a class="btn btn-outline-danger mr-3" href="#" role="button">
-                                    <i class="fas fa-heart"></i>
-                                    Yêu Thích
-                                </a>
-                                <a class="btn btn-outline-success" href="#" role="button">
-                                    <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                                    Thêm Giỏ Hàng
-                                </a>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="mySlickShow">
-                    <a href="" class="product-item">
-                        <div class="card card-item">
-                            <img src="/image/products/product1.jpg" class="product-item__img card-img-top" alt=""
-                                title="">
-                            <div class="card-body">
-                                <h5 class="card-title product-item__title">HTML, CSS từ zero đến Hero</h5>
-                                <h4 class="card-subtitle mb-2 text-muted">Nguyễn Văn Dũng</h4>
-                                <span class="card-text product-item__category">Lĩnh vực: Lập trình web</span>
-                                <div class="product-item__rating">
-                                    <span class="product-item__total-star">4</span>
-                                    <i class="product-item__star--gold fas fa-star"></i>
-                                    <i class="product-item__star--gold fas fa-star"></i>
-                                    <i class="product-item__star--gold fas fa-star"></i>
-                                    <i class="product-item__star--gold fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <h6 class="product-item__total-rating card-subtitle text-muted">(200)</h6>
-                                </div>
-                                <div class="product-item__price mt-1">
-                                    <span class="product-item__price-old">1.200.000đ</span>
-                                    <span class="product-item__price-current">1.000.000đ</span>
-                                </div>
-                            </div>
-                            <div class="card-footer  product-item__footer">
-                                <a class="btn btn-outline-danger mr-3" href="#" role="button">
-                                    <i class="fas fa-heart"></i>
-                                    Yêu Thích
-                                </a>
-                                <a class="btn btn-outline-success" href="#" role="button">
-                                    <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                                    Thêm Giỏ Hàng
-                                </a>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="mySlickShow">
-                    <a href="" class="product-item">
-                        <div class="card card-item">
-                            <img src="/image/products/product1.jpg" class="product-item__img card-img-top" alt=""
-                                title="">
-                            <div class="card-body">
-                                <h5 class="card-title product-item__title">HTML, CSS từ zero đến Hero</h5>
-                                <h4 class="card-subtitle mb-2 text-muted">Nguyễn Văn Dũng</h4>
-                                <span class="card-text product-item__category">Lĩnh vực: Lập trình web</span>
-                                <div class="product-item__rating">
-                                    <span class="product-item__total-star">4</span>
-                                    <i class="product-item__star--gold fas fa-star"></i>
-                                    <i class="product-item__star--gold fas fa-star"></i>
-                                    <i class="product-item__star--gold fas fa-star"></i>
-                                    <i class="product-item__star--gold fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <h6 class="product-item__total-rating card-subtitle text-muted">(200)</h6>
-                                </div>
-                                <div class="product-item__price mt-1">
-                                    <span class="product-item__price-old">1.200.000đ</span>
-                                    <span class="product-item__price-current">1.000.000đ</span>
-                                </div>
-                            </div>
-                            <div class="card-footer  product-item__footer">
-                                <a class="btn btn-outline-danger mr-3" href="#" role="button">
-                                    <i class="fas fa-heart"></i>
-                                    Yêu Thích
-                                </a>
-                                <a class="btn btn-outline-success" href="#" role="button">
-                                    <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                                    Thêm Giỏ Hàng
-                                </a>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="mySlickShow">
-                    <a href="" class="product-item">
-                        <div class="card card-item">
-                            <img src="/image/products/product1.jpg" class="product-item__img card-img-top" alt=""
-                                title="">
-                            <div class="card-body">
-                                <h5 class="card-title product-item__title">HTML, CSS từ zero đến Hero</h5>
-                                <h4 class="card-subtitle mb-2 text-muted">Nguyễn Văn Dũng</h4>
-                                <span class="card-text product-item__category">Lĩnh vực: Lập trình web</span>
-                                <div class="product-item__rating">
-                                    <span class="product-item__total-star">4</span>
-                                    <i class="product-item__star--gold fas fa-star"></i>
-                                    <i class="product-item__star--gold fas fa-star"></i>
-                                    <i class="product-item__star--gold fas fa-star"></i>
-                                    <i class="product-item__star--gold fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <h6 class="product-item__total-rating card-subtitle text-muted">(200)</h6>
-                                </div>
-                                <div class="product-item__price mt-1">
-                                    <span class="product-item__price-old">1.200.000đ</span>
-                                    <span class="product-item__price-current">1.000.000đ</span>
-                                </div>
-                            </div>
-                            <div class="card-footer  product-item__footer">
-                                <a class="btn btn-outline-danger mr-3" href="#" role="button">
-                                    <i class="fas fa-heart"></i>
-                                    Yêu Thích
-                                </a>
-                                <a class="btn btn-outline-success" href="#" role="button">
-                                    <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                                    Thêm Giỏ Hàng
-                                </a>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="mySlickShow">
-                    <a href="" class="product-item">
-                        <div class="card card-item">
-                            <img src="/image/products/product1.jpg" class="product-item__img card-img-top" alt=""
-                                title="">
-                            <div class="card-body">
-                                <h5 class="card-title product-item__title">HTML, CSS từ zero đến Hero</h5>
-                                <h4 class="card-subtitle mb-2 text-muted">Nguyễn Văn Dũng</h4>
-                                <span class="card-text product-item__category">Lĩnh vực: Lập trình web</span>
-                                <div class="product-item__rating">
-                                    <span class="product-item__total-star">4</span>
-                                    <i class="product-item__star--gold fas fa-star"></i>
-                                    <i class="product-item__star--gold fas fa-star"></i>
-                                    <i class="product-item__star--gold fas fa-star"></i>
-                                    <i class="product-item__star--gold fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <h6 class="product-item__total-rating card-subtitle text-muted">(200)</h6>
-                                </div>
-                                <div class="product-item__price mt-1">
-                                    <span class="product-item__price-old">1.200.000đ</span>
-                                    <span class="product-item__price-current">1.000.000đ</span>
-                                </div>
-                            </div>
-                            <div class="card-footer  product-item__footer">
-                                <a class="btn btn-outline-danger mr-3" href="#" role="button">
-                                    <i class="fas fa-heart"></i>
-                                    Yêu Thích
-                                </a>
-                                <a class="btn btn-outline-success" href="#" role="button">
-                                    <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                                    Thêm Giỏ Hàng
-                                </a>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="mySlickShow">
-                    <a href="" class="product-item">
-                        <div class="card card-item">
-                            <img src="/image/products/product1.jpg" class="product-item__img card-img-top" alt=""
-                                title="">
-                            <div class="card-body">
-                                <h5 class="card-title product-item__title">HTML, CSS từ zero đến Hero</h5>
-                                <h4 class="card-subtitle mb-2 text-muted">Nguyễn Văn Dũng</h4>
-                                <span class="card-text product-item__category">Lĩnh vực: Lập trình web</span>
-                                <div class="product-item__rating">
-                                    <span class="product-item__total-star">4</span>
-                                    <i class="product-item__star--gold fas fa-star"></i>
-                                    <i class="product-item__star--gold fas fa-star"></i>
-                                    <i class="product-item__star--gold fas fa-star"></i>
-                                    <i class="product-item__star--gold fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <h6 class="product-item__total-rating card-subtitle text-muted">(200)</h6>
-                                </div>
-                                <div class="product-item__price mt-1">
-                                    <span class="product-item__price-old">1.200.000đ</span>
-                                    <span class="product-item__price-current">1.000.000đ</span>
-                                </div>
-                            </div>
-                            <div class="card-footer  product-item__footer">
-                                <a class="btn btn-outline-danger mr-3" href="#" role="button">
-                                    <i class="fas fa-heart"></i>
-                                    Yêu Thích
-                                </a>
-                                <a class="btn btn-outline-success" href="#" role="button">
-                                    <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                                    Thêm Giỏ Hàng
-                                </a>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
-
-
-        <!-- Khóa học mới nhất -->
-        <div class="row">
-            <div class="col-sm-12">
-                <h2 class="text-center group-product-heading mt-5 mb-3">Khóa học mới nhất</h2>
-            </div>
-            <div class="col-sm-4 mb-4">
-                <a href="" class="product-item">
-                    <div class="card card-item">
-                        <img src="/image/products/product1.jpg" class="product-item__img card-img-top" alt="" title="">
-                        <div class="card-body">
-                            <h5 class="card-title product-item__title">HTML, CSS từ zero đến Hero</h5>
-                            <h4 class="card-subtitle mb-2 text-muted">Nguyễn Văn Dũng</h4>
-                            <span class="card-text product-item__category">Lĩnh vực: Lập trình web</span>
-                            <div class="product-item__rating">
-                                <span class="product-item__total-star">4</span>
-                                <i class="product-item__star--gold fas fa-star"></i>
-                                <i class="product-item__star--gold fas fa-star"></i>
-                                <i class="product-item__star--gold fas fa-star"></i>
-                                <i class="product-item__star--gold fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <h6 class="product-item__total-rating card-subtitle text-muted">(200)</h6>
-                            </div>
-                            <div class="product-item__price mt-1">
-                                <span class="product-item__price-old">1.200.000đ</span>
-                                <span class="product-item__price-current">1.000.000đ</span>
-                            </div>
-                        </div>
-                        <div class="card-footer  product-item__footer">
-                            <a class="btn btn-outline-danger mr-3" href="#" role="button">
-                                <i class="fas fa-heart"></i>
-                                Yêu Thích
-                            </a>
-                            <a class="btn btn-outline-success" href="#" role="button">
-                                <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                                Thêm Giỏ Hàng
-                            </a>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-sm-4 mb-4">
-                <a href="" class="product-item">
-                    <div class="card card-item">
-                        <img src="/image/products/product1.jpg" class="product-item__img card-img-top" alt="" title="">
-                        <div class="card-body">
-                            <h5 class="card-title product-item__title">HTML, CSS từ zero đến Hero</h5>
-                            <h4 class="card-subtitle mb-2 text-muted">Nguyễn Văn Dũng</h4>
-                            <span class="card-text product-item__category">Lĩnh vực: Lập trình web</span>
-                            <div class="product-item__rating">
-                                <span class="product-item__total-star">4</span>
-                                <i class="product-item__star--gold fas fa-star"></i>
-                                <i class="product-item__star--gold fas fa-star"></i>
-                                <i class="product-item__star--gold fas fa-star"></i>
-                                <i class="product-item__star--gold fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <h6 class="product-item__total-rating card-subtitle text-muted">(200)</h6>
-                            </div>
-                            <div class="product-item__price mt-1">
-                                <span class="product-item__price-old">1.200.000đ</span>
-                                <span class="product-item__price-current">1.000.000đ</span>
-                            </div>
-                        </div>
-                        <div class="card-footer  product-item__footer">
-                            <a class="btn btn-outline-danger mr-3" href="#" role="button">
-                                <i class="fas fa-heart"></i>
-                                Yêu Thích
-                            </a>
-                            <a class="btn btn-outline-success" href="#" role="button">
-                                <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                                Thêm Giỏ Hàng
-                            </a>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-sm-4 mb-4">
-                <a href="" class="product-item">
-                    <div class="card card-item">
-                        <img src="/image/products/product1.jpg" class="product-item__img card-img-top" alt="" title="">
-                        <div class="card-body">
-                            <h5 class="card-title product-item__title">HTML, CSS từ zero đến Hero</h5>
-                            <h4 class="card-subtitle mb-2 text-muted">Nguyễn Văn Dũng</h4>
-                            <span class="card-text product-item__category">Lĩnh vực: Lập trình web</span>
-                            <div class="product-item__rating">
-                                <span class="product-item__total-star">4</span>
-                                <i class="product-item__star--gold fas fa-star"></i>
-                                <i class="product-item__star--gold fas fa-star"></i>
-                                <i class="product-item__star--gold fas fa-star"></i>
-                                <i class="product-item__star--gold fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <h6 class="product-item__total-rating card-subtitle text-muted">(200)</h6>
-                            </div>
-                            <div class="product-item__price mt-1">
-                                <span class="product-item__price-old">1.200.000đ</span>
-                                <span class="product-item__price-current">1.000.000đ</span>
-                            </div>
-                        </div>
-                        <div class="card-footer  product-item__footer">
-                            <a class="btn btn-outline-danger mr-3" href="#" role="button">
-                                <i class="fas fa-heart"></i>
-                                Yêu Thích
-                            </a>
-                            <a class="btn btn-outline-success" href="#" role="button">
-                                <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                                Thêm Giỏ Hàng
-                            </a>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-sm-4 mb-4">
-                <a href="" class="product-item">
-                    <div class="card card-item">
-                        <img src="/image/products/product1.jpg" class="product-item__img card-img-top" alt="" title="">
-                        <div class="card-body">
-                            <h5 class="card-title product-item__title">HTML, CSS từ zero đến Hero</h5>
-                            <h4 class="card-subtitle mb-2 text-muted">Nguyễn Văn Dũng</h4>
-                            <span class="card-text product-item__category">Lĩnh vực: Lập trình web</span>
-                            <div class="product-item__rating">
-                                <span class="product-item__total-star">4</span>
-                                <i class="product-item__star--gold fas fa-star"></i>
-                                <i class="product-item__star--gold fas fa-star"></i>
-                                <i class="product-item__star--gold fas fa-star"></i>
-                                <i class="product-item__star--gold fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <h6 class="product-item__total-rating card-subtitle text-muted">(200)</h6>
-                            </div>
-                            <div class="product-item__price mt-1">
-                                <span class="product-item__price-old">1.200.000đ</span>
-                                <span class="product-item__price-current">1.000.000đ</span>
-                            </div>
-                        </div>
-                        <div class="card-footer  product-item__footer">
-                            <a class="btn btn-outline-danger mr-3" href="#" role="button">
-                                <i class="fas fa-heart"></i>
-                                Yêu Thích
-                            </a>
-                            <a class="btn btn-outline-success" href="#" role="button">
-                                <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                                Thêm Giỏ Hàng
-                            </a>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-sm-4 mb-4">
-                <a href="" class="product-item">
-                    <div class="card card-item">
-                        <img src="/image/products/product1.jpg" class="product-item__img card-img-top" alt="" title="">
-                        <div class="card-body">
-                            <h5 class="card-title product-item__title">HTML, CSS từ zero đến Hero</h5>
-                            <h4 class="card-subtitle mb-2 text-muted">Nguyễn Văn Dũng</h4>
-                            <span class="card-text product-item__category">Lĩnh vực: Lập trình web</span>
-                            <div class="product-item__rating">
-                                <span class="product-item__total-star">4</span>
-                                <i class="product-item__star--gold fas fa-star"></i>
-                                <i class="product-item__star--gold fas fa-star"></i>
-                                <i class="product-item__star--gold fas fa-star"></i>
-                                <i class="product-item__star--gold fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <h6 class="product-item__total-rating card-subtitle text-muted">(200)</h6>
-                            </div>
-                            <div class="product-item__price mt-1">
-                                <span class="product-item__price-old">1.200.000đ</span>
-                                <span class="product-item__price-current">1.000.000đ</span>
-                            </div>
-                        </div>
-                        <div class="card-footer  product-item__footer">
-                            <a class="btn btn-outline-danger mr-3" href="#" role="button">
-                                <i class="fas fa-heart"></i>
-                                Yêu Thích
-                            </a>
-                            <a class="btn btn-outline-success" href="#" role="button">
-                                <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                                Thêm Giỏ Hàng
-                            </a>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-sm-4 mb-4">
-                <a href="" class="product-item">
-                    <div class="card card-item">
-                        <img src="/image/products/product1.jpg" class="product-item__img card-img-top" alt="" title="">
-                        <div class="card-body">
-                            <h5 class="card-title product-item__title">HTML, CSS từ zero đến Hero</h5>
-                            <h4 class="card-subtitle mb-2 text-muted">Nguyễn Văn Dũng</h4>
-                            <span class="card-text product-item__category">Lĩnh vực: Lập trình web</span>
-                            <div class="product-item__rating">
-                                <span class="product-item__total-star">4</span>
-                                <i class="product-item__star--gold fas fa-star"></i>
-                                <i class="product-item__star--gold fas fa-star"></i>
-                                <i class="product-item__star--gold fas fa-star"></i>
-                                <i class="product-item__star--gold fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <h6 class="product-item__total-rating card-subtitle text-muted">(200)</h6>
-                            </div>
-                            <div class="product-item__price mt-1">
-                                <span class="product-item__price-old">1.200.000đ</span>
-                                <span class="product-item__price-current">1.000.000đ</span>
-                            </div>
-                        </div>
-                        <div class="card-footer  product-item__footer">
-                            <a class="btn btn-outline-danger mr-3" href="#" role="button">
-                                <i class="fas fa-heart"></i>
-                                Yêu Thích
-                            </a>
-                            <a class="btn btn-outline-success" href="#" role="button">
-                                <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                                Thêm Giỏ Hàng
-                            </a>
-                        </div>
-                    </div>
-                </a>
-            </div>
-        </div>
-
-        <div class="row d-flex justify-content-center mt-4">
-            <ul class="pagination home-product__pagination">
-                <li class="pagination-item">
-                    <a href="" class="pagination-item-link">
-                        <i class="pagination-item-icon fas fa-angle-left"></i>
-                    </a>
-                </li>
-
-                <li class="pagination-item pagination-item--active">
-                    <a href="" class="pagination-item-link">1</a>
-                </li>
-                <li class="pagination-item">
-                    <a href="" class="pagination-item-link">2</a>
-                </li>
-                <li class="pagination-item">
-                    <a href="" class="pagination-item-link">3</a>
-                </li>
-                <li class="pagination-item">
-                    <a href="" class="pagination-item-link">4</a>
-                </li>
-                <li class="pagination-item">
-                    <a href="" class="pagination-item-link">5</a>
-                </li>
-                <li class="pagination-item">
-                    <a href="" class="pagination-item-link">...</a>
-                </li>
-                <li class="pagination-item">
-                    <a href="" class="pagination-item-link">15</a>
-                </li>
-
-                <li class="pagination-item">
-                    <a href="" class="pagination-item-link">
-                        <i class="pagination-item-icon fas fa-angle-right"></i>
-                    </a>
-                </li>
-            </ul>
         </div>
     </div>
 </div>
