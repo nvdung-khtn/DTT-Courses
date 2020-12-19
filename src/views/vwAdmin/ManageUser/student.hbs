@@ -1,125 +1,4 @@
-<!-- Card Infor -->
-<div id="card-info" class="modal"  >
-	<div class="modal-dialog-card" >
-		<div class="wrapper-card">
-			<div class="left-card">
-				<img src="https://i.imgur.com/cMy8V5j.png" 
-				alt="user" width="100">
-				<h4>Họ tên</h4>
-				<p>Username</p>
-			</div>
-			<div class="right-card">
-				<div class="info-card">
-					<h3>Thông tin cơ bản</h3>
-					<div class="info_data">
-						<div class="data">
-							<h4>Email</h4>
-							<p>trinhpham5337@gmail.com</p>
-						</div>
-						<div class="data">
-						<h4>Điện thoại</h4>
-							<p>0333225337</p>
-						</div>
-					</div>
-				</div>
-			
-					<div class="projects">
-						<h3>Chi tiết</h3>
-						<div class="projects_data">
-							<div class="data">
-								<h4>Ngày sinh</h4>
-								<P > 16/01/1999 </P >
-							</div>
-							<div class="data">
-							<h4>Địa chỉ</h4>
-								<p>QUận 11, tphcm</p>
-							</div>
-							<div class="data">
-							<h4>Số điện thoại</h4>
-								<p>0333225337</p>
-							</div>
-							<div class="data">
-							<h4>Vai trò</h4>
-								<p>Học viên</p>
-							</div>
-							
-					</div>
-				</div>
-		
-			</div>
-			<span style="padding-top: 5%;">
-				<button type="button" class="close" aria-hidden="true" onclick="editEmployeeModal()">&times;</button>
-			</span>
-		</div>
-	</div>
-</div>
-<!-- Edit Modal HTML -->
-<div id="editEmployeeModal" class="modal"  >
-	<div class="modal-dialog" >
-		<div class="modal-content" >
-			<form id="edit-student">
-				<div class="modal-header">						
-					<h4 class="modal-title">Chỉnh sửa học viên</h4>
-					<button type="button" class="close" aria-hidden="true" onclick="editEmployeeModal()">&times;</button>
-				</div>
-				<div class="modal-body">					
-					<div class="form-group">
-						<label>Họ tên</label>
-						<input type="text" class="form-control" id="name">
-						<span class="form-message"></span><span class="message-clone">0</span>
 
-					</div>
-					<div class="form-group">
-						<label>Email</label>
-						<input type="email" class="form-control" id="email">
-						<span class="form-message"></span><span class="message-clone">0</span>
-
-					</div>
-					<div class="form-group">
-						<label>Số điện thoại</label>
-						<input type="text" class="form-control" id="sdt">
-						<span class="form-message"></span><span class="message-clone">0</span>
-
-					</div>
-					<div class="form-group">
-						<label>Địa chỉ</label>
-						<textarea class="form-control" id="address"></textarea>
-						<span class="form-message"></span><span class="message-clone">0</span>
-
-
-					</div>					
-				</div>
-				<div class="modal-footer">
-					<input type="button" class="btn btn-default close" value="Cancel">
-					<input type="submit" class="btn btn-info" value="Save">
-				</div>
-			</form>
-		</div>
-	</div>
-</div>
-<!--End Edit Modal HTML -->
-
-<!-- Delete Modal HTML -->
-<div id="deleteEmployeeModal" class="modal">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<form>
-				<div class="modal-header">						
-					<h4 class="modal-title">Xóa Học viên</h4>
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="deleteEmployeeModal()">&times;</button>
-				</div>
-				<div class="modal-body">					
-					<p>Bạn thật sự muốn xóa Học viên này?</p>
-					<p class="text-warning"><small>This action cannot be undone.</small></p>
-				</div>
-				<div class="modal-footer">
-					<input type="button" class="btn btn-default close" data-dismiss="modal" value="Cancel">
-					<input type="submit" class="btn btn-danger" value="Delete">
-				</div>
-			</form>
-		</div>
-	</div>
-</div>
 
 
 
@@ -134,31 +13,122 @@
 	
 					</div>
 					<div class="card-content">
+
+						<!-- Edit Modal HTML -->
+						<div id="editEmployeeModal" class="modal"  >
+							<div class="modal-dialog" >
+								<div class="modal-content" >
+									<form id="edit-student">
+										<div class="modal-header">						
+											<h3 class="modal-title">Chỉnh sửa học viên</h3>
+											<button type="button" class="close" aria-hidden="true" onclick="editEmployeeModal()">&times;</button>
+										</div>
+										<div class="modal-body">
+
+											<div class="form-group">
+												<label>Username</label>
+												<input type="text" class="form-control" id="username" value="Username . . .">
+												<span class="form-message"></span><span class="message-clone">0</span>
+											</div>
+
+											<div class="form-group">
+												<label>Password</label>
+												<input type="text" class="form-control" id="password" value="Password . . .">
+												<span class="form-message"></span><span class="message-clone">0</span>
+											</div>
+
+											<div class="form-group">
+												<label>Họ tên</label>
+												<input type="text" class="form-control" id="name" value="Họ tên . . .">
+												<span class="form-message"></span><span class="message-clone">0</span>
+											</div>
+
+											<div class="form-group">
+												<label>Ngày sinh</label>
+												<input type="date" class="form-control" id="dob" value="2005-01-01" min="2000-01-01" max="2010-01-01" >
+												<span class="form-message"></span><span class="message-clone">0</span>
+											</div>
+
+											<div class="form-group">
+												<label>Email</label>
+												<input type="email" class="form-control" id="email" value="Email . . .">
+												<span class="form-message"></span><span class="message-clone">0</span>
+
+											</div>
+											<div class="form-group">
+												<label>Số điện thoại</label>
+												<input type="text" class="form-control" id="sdt" value="Số điện thoại . . .">
+												<span class="form-message"></span><span class="message-clone">0</span>
+
+											</div>
+											<div class="form-group">
+												<label>Địa chỉ</label>
+												<textarea class="form-control" id="address" ></textarea>
+												<span class="form-message"></span><span class="message-clone">0</span>
+
+
+											</div>					
+										</div>
+										<div class="modal-footer">
+											<input type="button" class="btn btn-default close" value="Cancel">
+											<input type="submit" class="btn btn-info" value="Save">
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+						<!--End Edit Modal HTML -->
+
+						<!-- Delete Modal HTML -->
+						<div id="deleteEmployeeModal" class="modal">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<form>
+										<div class="modal-header">						
+											<h3 class="modal-title">Xóa Học viên</h3>
+											<button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="deleteEmployeeModal()">&times;</button>
+										</div>
+										<div class="modal-body">					
+											<p>Bạn thật sự muốn xóa Học viên này?</p>
+											<p class="text-warning"><small>This action cannot be undone.</small></p>
+										</div>
+										<div class="modal-footer">
+											<input type="button" class="btn btn-default close" data-dismiss="modal" value="Cancel">
+											<input type="submit" class="btn btn-danger" value="Delete">
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+						<!--End Delete Modal HTML -->
 						<table>
 							<thead>
 								<tr>
 									<th>ID</th>
 									<th>Username</th>
+									<th>Password</th>
 									<th>Họ tên</th>
 									<th>Email</th>
 									<th>Số điện thoại</th>
+									<th>Trạng thái</th>
 									<th>Quản lý</th>
 								</tr>
 							</thead>
 							<tbody>
 								<tr>
 									<td>1</td>
-									<td>React</td>
+									<td>concuxinhxan</td>
+									<td>concuxinhxan123</td>
 									<td>Tran Anh Tuat</td>
+									<td>bbbbb@gmail.com</td>
+									<td>17/07/2020</td>
 									<td>
 										<span class="dot">
 											<i class="bg-success"></i>
 											Completed
 										</span>
 									</td>
-									<td>17/07/2020</td>
 									<td>
-										<a href="" class="info" data-toggle="modal"><i class="material-icons" title="Info">info</i></a>
 										<a href="" class="edit" data-toggle="modal"><i class="material-icons" title="Edit">&#xE254;</i></a>
 										<a href="" class="delete" data-toggle="modal"><i class="material-icons" title="Delete">&#xE872;</i></a>
 									</td>
@@ -166,16 +136,17 @@
 								<tr>
 									<td>2</td>
 									<td>Vue</td>
+									<td>concuxinhxan</td>
 									<td>Bui Nhu Sang</td>
+									<td>aaaaaaa@gmail.com</td>
+									<td>18/07/2020</td>
 									<td>
 										<span class="dot">
 											<i class="bg-warning"></i>
 											In progress
 										</span>
 									</td>
-									<td>18/07/2020</td>
 									<td>
-										<a href="" class="info" data-toggle="modal"><i class="material-icons" title="Info">info</i></a>
 										<a href="" class="edit" data-toggle="modal"><i class="material-icons" title="Edit">&#xE254;</i></a>
 										<a href="" class="delete" data-toggle="modal"><i class="material-icons" title="Delete">&#xE872;</i></a>
 									</td>
@@ -191,8 +162,8 @@
 
 <script src="/javascript/validator.js"></script>
 <script>
-		$('.sidebar-nav .dashboard').removeClass('active');
-		$('.sidebar-nav .student-management').addClass('active');
+		$('.sidebar-nav-item .dashboard').removeClass('active');
+		$('.sidebar-nav-item .student-management').addClass('active');
 
 		    document.addEventListener("DOMContentLoaded", function () {
             Validator({
@@ -200,7 +171,9 @@
                 formGroupSelector: ".form-group",
                 errorSelector: ".form-message",
                 rules: [
+					Validator.isRequired("#username", "Username invalid"),
                     Validator.isRequired("#name", "Student name invalid"),
+					Validator.isRequired("#password", "Password invalid"),
                     Validator.isEmail("#email", "Email invalid"),
                     Validator.isRequired("#sdt", "Phone number invalid"),
                     Validator.isRequired("#address", "Address invalid"),

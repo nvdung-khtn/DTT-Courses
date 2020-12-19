@@ -301,7 +301,7 @@ body {
 }
 
 .sidebar:hover {
-	width: 280px;
+	width: 250px;
 }
 
 .sidebar-nav {
@@ -358,7 +358,7 @@ body {
 	margin-left: -5px;
 }
 
-.sidebar-expand .side-bar {
+.sidebar-expand .sidebar {
 	width: 250px;
 }
 
@@ -370,6 +370,7 @@ body {
 	display: flex;
 	flex-wrap: wrap;
 	flex-direction: row;
+	position: relative;
 }
 
 .row:after, .row:before {
@@ -495,24 +496,12 @@ body {
 .card-header {
 	padding: 15px 30px;
 	border-bottom: 1px solid var(--second-bg-color);
-	position: relative;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 }
 
 
-.card-header i {
-	color: var(--main-color);
-	position: absolute;
-	right: 30px;
-	top: 50%;
-	transform: translateY(-50%);
-}
-
-.card-header i:hover {
-	cursor: pointer;
-}
 
 .card-header h3 {
 	margin: 0;
@@ -538,6 +527,24 @@ table th {
 	border-bottom: 1px solid var(--second-bg-color);
 	padding: 15px 12px;
 	text-align: left;
+}
+
+table td a i{
+	color: rgb(81, 190, 120);
+	/* box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); */
+	/* border-radius: 50%; */
+	/* background-color: rgba(0,0,0,0.1); */
+	margin-right: 10px;
+	text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.material-icons {
+	text-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+	/* box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); */
+}
+
+table td a i:hover{
+	color: #009f8b;
 }
 
 .dot i {
