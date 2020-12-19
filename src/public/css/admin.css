@@ -3,6 +3,7 @@
 	--success-color: #6ab04c;
 	--warning-color: #f0932b;
 	--danger-color:rgb(81, 190, 120);
+	--red-color: rgb(243, 26, 48);
 
 	--light-color: #212529;
 	--light-second-color: #727475;
@@ -156,7 +157,7 @@ body {
 	right: 5px;
 	top: 9px;
 	color: #fff;
-	background: var(--danger-color);
+	background: var(--red-color);
 	border-radius: 5px;
 }
 
@@ -530,22 +531,30 @@ table th {
 }
 
 table td a i{
-	color: rgb(81, 190, 120);
-	/* box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); */
-	/* border-radius: 50%; */
-	/* background-color: rgba(0,0,0,0.1); */
 	margin-right: 10px;
 	text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
 }
 
-.material-icons {
-	text-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-	/* box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); */
+table td .delete i {
+	color: #d9534f;
 }
 
-table td a i:hover{
-	color: #009f8b;
+table td .delete i:hover {
+	color: #d4352f;
 }
+
+table td .edit i {
+	color: #5cb85c;
+}
+
+table td .edit i:hover {
+	color: #44d444;
+}
+
+.material-icons {
+	text-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
 
 .dot i {
 	display: inline-block;
