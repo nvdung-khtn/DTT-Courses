@@ -1,0 +1,40 @@
+.page-heading {
+    color: #333;
+    margin-bottom: 12px;
+    font-size: 2rem;
+}
+
+.form-body {
+    color: #333;
+}
+
+.form-group label {
+    font-size: 1.6rem;
+    font-weight: 500;
+}
+
+.form-group .form-control {
+    display: block;
+    width: 100%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857;
+    color: #555555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+}
+
+.save .btn.btn-success {
+    display: inline-block;
+    font-size: 1.6rem;
+    padding: 4px 12px;
+}
+
+textarea.form-control {
+    height: 90px !important;
+}
