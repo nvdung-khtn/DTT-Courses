@@ -2,15 +2,9 @@ const express = require('express');
 const router = express.Router();
 
 const lecturerController = require('../../controllers/lecturer/LecturerController');
-const manageCourseController = require('../../controllers/lecturer/manageCourseController');
-const manageUpCourseController = require('../../controllers/lecturer/manageUpCourseController');
 
-
-
-router.get('/', lecturerController.index);
-router.get('/course', manageCourseController.index);
-router.get('/course/upload', manageUpCourseController.index);
-
-
+router.get('/profile', lecturerController.showProfile);
+router.get('/courses/create', lecturerController.create);
+router.get('/courses', lecturerController.index); /* /lecturer/courses: địa chỉ đầu tiên. */
 
 module.exports = router;

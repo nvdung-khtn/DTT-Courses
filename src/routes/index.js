@@ -1,17 +1,21 @@
 // File điều hướng của ứng dụng
-const loginRouter = require('./account/login.route');
-const registerRouter = require('./account/register.route');
-const homeRouter = require('./home.route');
+const accountRouter = require('./account/account.route');
+const courseRouter = require('./course/course.route');
 const adminRouter = require('./admin/admin.route');
 const lecturerRouter = require('./lecturer/lecturer.route');
-const courseRouter = require('./course/course.route');
+const homeRouter = require('./home.route')
 
 function route(app) {
-    app.use('/login', loginRouter);
-    app.use('/register', registerRouter);
+    /** Route of Guest */
+    app.use('/account', accountRouter);
+    /** Route of Admin */
     app.use('/admin', adminRouter);
+    /** Route of Lecturer */
     app.use('/lecturer',lecturerRouter);
-    app.use('/course', courseRouter)
+    /** Route of User */
+    app.use('/courses', courseRouter);
+    
+    /** Route Home page */
     app.use('/', homeRouter);
 }
 

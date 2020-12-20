@@ -1,6 +1,8 @@
+
 @media (min-width: 1200px) {
-.container {
-    max-width: 1250px !important;
+    .container {
+        max-width: 1250px !important;
+    }
 }
 
 *{
@@ -106,6 +108,6 @@ p{
     color: #333;
 }
 
-.time-course{
+.time-course {
     margin-right: 1rem;
 }
