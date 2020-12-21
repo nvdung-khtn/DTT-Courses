@@ -25,16 +25,15 @@
             </h5>
         </div>
         <div class="row">
-            {{#each courses}}
-            {{#if this.isHighlight}}
-            <div class="col-sm-4 mb-4">
+            {{#each hightLightCourse}}
+            <div class="col-sm-3 mb-4">
                 <a href="/courses/{{slug}}" class="product-item">
                     <div class="card card-item">
                         <img src="/image/products/product1.jpg" class="product-item__img card-img-top" alt="" title="">
                         <div class="card-body">
                             <h5 class="card-title product-item__title">{{name}}</h5>
-                            <h4 class="card-subtitle mb-2 text-muted">{{lecturer.lecName}}</h4>
-                            <span class="card-text product-item__category">Lĩnh vực: {{field.fieldName}}</span>
+                            <h4 class="card-subtitle mb-2 text-muted">{{lecName}}</h4>
+                            <span class="card-text product-item__category">Lĩnh vực: {{fieldName}}</span>
                             <div class="product-item__rating">
                                 <span class="product-item__total-star">{{rating}}</span>
                                 <i class="product-item__star--gold fas fa-star"></i>
@@ -45,8 +44,8 @@
                                 <h6 class="product-item__total-rating card-subtitle text-muted">({{totalRating}})</h6>
                             </div>
                             <div class="product-item__price mt-1">
-                                <span class="product-item__price-old">{{price.initialPrice}}</span>
-                                <span class="product-item__price-current">{{price.currentPrice}}</span>
+                                <span class="product-item__price-old">{{initialPrice}}</span>
+                                <span class="product-item__price-current">{{currentPrice}}</span>
                             </div>
                         </div>
                         <div class="card-footer  product-item__footer">
@@ -62,11 +61,9 @@
                     </div>
                 </a>
             </div>
-            {{/if}}
-
             {{/each}}
             <div class="col-sm-12 d-flex justify-content-center mt-2 mb-1">
-                <a id="showCoursesBtn" class="btn btn-lg btn-success viewAllBtn" href="/course" role="button">Tất cả khóa học</a>
+                <a id="showCoursesBtn" class="btn btn-lg btn-success viewAllBtn" href="/courses" role="button">Tất cả khóa học</a>
             </div>
         </div>
 
@@ -84,8 +81,8 @@
                         <img src="/image/products/product1.jpg" class="product-item__img card-img-top" alt="" title="">
                         <div class="card-body">
                             <h5 class="card-title product-item__title">{{name}}</h5>
-                            <h4 class="card-subtitle mb-2 text-muted">{{lecturer.lecName}}</h4>
-                            <span class="card-text product-item__category">Lĩnh vực: {{field.fieldName}}</span>
+                            <h4 class="card-subtitle mb-2 text-muted">{{lecName}}</h4>
+                            <span class="card-text product-item__category">Lĩnh vực: {{fieldName}}</span>
                             <div class="product-item__rating">
                                 <span class="product-item__total-star">{{rating}}</span>
                                 <i class="product-item__star--gold fas fa-star"></i>
@@ -96,8 +93,8 @@
                                 <h6 class="product-item__total-rating card-subtitle text-muted">({{totalRating}})</h6>
                             </div>
                             <div class="product-item__price mt-1">
-                                <span class="product-item__price-old">{{price.initialPrice}}</span>
-                                <span class="product-item__price-current">{{price.currentPrice}}</span>
+                                <span class="product-item__price-old">{{initialPrice}}</span>
+                                <span class="product-item__price-current">{{currentPrice}}</span>
                             </div>
                         </div>
                         <div class="card-footer  product-item__footer">
@@ -132,8 +129,8 @@
                         <img src="/image/products/product1.jpg" class="product-item__img card-img-top" alt="" title="">
                         <div class="card-body">
                             <h5 class="card-title product-item__title">{{name}}</h5>
-                            <h4 class="card-subtitle mb-2 text-muted">{{lecturer.lecName}}</h4>
-                            <span class="card-text product-item__category">Lĩnh vực: {{field.fieldName}}</span>
+                            <h4 class="card-subtitle mb-2 text-muted">{{lecName}}</h4>
+                            <span class="card-text product-item__category">Lĩnh vực: {{fieldName}}</span>
                             <div class="product-item__rating">
                                 <span class="product-item__total-star">{{rating}}</span>
                                 <i class="product-item__star--gold fas fa-star"></i>
@@ -144,8 +141,8 @@
                                 <h6 class="product-item__total-rating card-subtitle text-muted">({{totalRating}})</h6>
                             </div>
                             <div class="product-item__price mt-1">
-                                <span class="product-item__price-old">{{price.initialPrice}}</span>
-                                <span class="product-item__price-current">{{price.currentPrice}}</span>
+                                <span class="product-item__price-old">{{initialPrice}}</span>
+                                <span class="product-item__price-current">{{currentPrice}}</span>
                             </div>
                         </div>
                         <div class="card-footer  product-item__footer">

@@ -1,20 +1,36 @@
-module.exports = { 
-    filterMostViewedCourse: function (courses) {
-        courses.sort(function(courseA, courseB) {   
-            return courseB.view - courseA.view;
-        })
+const courseService = require('../course/courseService');
 
-        return courses.slice(0, 5);
+module.exports = {
+    getHighLightCourse: function (courses) {
+        let hightLightCourse = courses.filter(function (course) {
+            return course.nIndex === 1; //update late
+        });
+
+        return hightLightCourse.map(function (course) {
+            return courseService.getInforCourse(course);
+        });
     },
 
-    filterNewCourse: function (courses) {
-        courses.sort(function(courseA, courseB) {
+    getMostViewedCourse: function (courses, n) {
+        let ret = courses.sort(function (courseA, courseB) {
+            return courseB.view - courseA.view;
+        });
+
+        return ret.slice(0,n).map(function (course) {
+            return courseService.getInforCourse(course);
+        });
+    },
+
+    getNewCourse: function (courses, n) {
+        let ret = courses.sort(function (courseA, courseB) {
             // return number && date lớn => number lớn.
             const dateA = courseA.createdAt.getTime();
             const dateB = courseB.createdAt.getTime();
             return dateB - dateA;
-        })
+        });
 
-        return courses.slice(0, 5);
-    }
-}
+        return ret.slice(0,n).map(function (course) {
+            return courseService.getInforCourse(course);
+        });
+    },
+};

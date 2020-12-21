@@ -5,6 +5,8 @@ const lecturerController = require('../../controllers/lecturer/LecturerControlle
 
 router.get('/profile', lecturerController.showProfile);
 router.get('/courses/create', lecturerController.create);
+// router.post('/courses/create', lecturerController.store);
+router.post('/courses/store', lecturerController.store);
 router.get('/courses', lecturerController.index); /* /lecturer/courses: địa chỉ đầu tiên. */
 
 module.exports = router;

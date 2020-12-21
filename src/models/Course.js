@@ -5,14 +5,25 @@ const slug = require('mongoose-slug-generator');
 
 mongoose.plugin(slug);
 const Course = new Schema({
-    name: { type: String, require: true },
-    description: { type: String},
-    image: { type: String, maxLength: 255 },
-    videoId: { type: String, require: true },
+    name: String,
     slug: { type: String, slug: "name", unique: true },
+    videoId: String,  //videoPath
+    rating: Number,
+    tinyDes: String,
+    totalRating: String,
+    imgPath: String,
+    status: Boolean,
+    view: Number,
+    students: [mongoose.ObjectId],  // Định nghĩa mảng???
+    lecId: mongoose.ObjectId,
+    fieldId: mongoose.ObjectId,
+    initialPrice: Number,
+    currentPrice: Number,
+    fullDes: String,
+    nIndex: Number,
 }, {
     timestamps: true,
 });
 
 // Mongodb sẽ tự hiểu Course => courses
-module.exports = mongoose.model('Course', Course);
+module.exports = mongoose.model('Course', Course);  //ts2: schemaName
