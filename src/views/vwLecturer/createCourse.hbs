@@ -1,3 +1,40 @@
+
+{{#section 'css'}}  
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.1.3/css/fileinput.min.css">
+<link rel="stylesheet" href="/css/lecturer/createCourse.css">
+{{/section}}
+{{#section 'js'}}
+<script src="https://cdn.tiny.cloud/1/ezd73nxbzc7bu6e86g2l82jbbffke0mwevwrnyvc5q8h89j6/tinymce/5/tinymce.min.js"
+    referrerpolicy="origin"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.1.3/js/fileinput.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.1.3/themes/fa/theme.min.js"></script>
+<script>
+    tinymce.init({
+        selector: '#fullDes',
+        height: 300,
+        plugins: 'paste image link autolink lists table media',
+        menubar: false,
+        toolbar: [
+            'undo redo | bold italic underline strikethrough | numlist bullist | alignleft aligncenter alignright | forecolor backcolor | table link image media',
+        ],
+    });
+
+    $('#videoPath').fileinput({
+        theme: 'fa',
+        dropZoneEnabled: false,  //Khung để kéo thả bự bự
+        allowedFileExtensions: ['mp4'],  //chỉ cho phép upload các định dạng sau
+    });
+
+    $('#imgPath').fileinput({
+        theme: 'fa',
+        dropZoneEnabled: false,
+        allowedFileExtensions: ['png', 'jpg', 'gif']
+    });
+
+</script>
+{{/section}}
+
+
 <div class="content">
     <div class="page-title">
         <h1>Quản lý khóa học</h1>
@@ -17,44 +54,55 @@
         </ul>
 
         <div class="row">
-            <form method="POST" action="/lecturer/courses/store">
-                <div class="form-body">
-                    <div class="form-group col-sm-6">
-                        <label for="name">Tên khóa học</label>
-                        <input type="text" class="form-control" id="name" name="name" placeholder="Ten khoa hoc">
-                    </div>
-
-                    <div class="form-group col-sm-6">
-                        <label for="fieldName">Danh muc</label>
-                        <input type="text" class="form-control" id="fieldName" name="fieldName" placeholder="Danh muc">
-                    </div><!-- /.form-group -->
-
-                    <div class="form-group col-sm-6">
-                        <label for="tinyDes">Mo ta khoa hoc</label>
-                        <input type="text" class="form-control" id="tinyDes" name="tinyDes" placeholder="Mo ta khoa hoc">
-                    </div>
-                    <!--/.form-group -->
-
-                    <div class="form-group col-sm-6">
-                       <label for="fullDes">Mo ta chi tiet</label>
-                        <input type="text" class="form-control" id="fullDes" name="fullDes" placeholder="Mo ta chi tiet">
-                    </div>
-                    <!--/.form-group -->
-                    <div class="form-group col-sm-6">
-                       <label for="initialPrice">Hoc phi</label>
-                        <input type="number" class="form-control" id="initialPrice" name="initialPrice" placeholder="Hoc phi">
-                    </div><!-- /.form-group -->
-                    <div class="form-group col-sm-6">
-                        <label for="currentPrice">Gia khuyen mai</label>
-                        <input type="number" class="form-control" id="currentPrice" name="currentPrice" placeholder="Gia khuyen mai">
-                    </div><!-- /.form-group -->
-
-                    <button type="submit" class="btn btn-success">Them khoa hoc</button>
+            <form id="frmMain" method="POST" action="/lecturer/courses/store" enctype="multipart/form-data">
+                <div class="form-group col-sm-6">
+                    <label for="name">Tên khóa học</label>
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Ten khoa hoc">
                 </div>
-            </form>
-        </div><!-- /.row -->
 
+                <div class="form-group col-sm-6">
+                    <label for="fieldName">Danh muc</label>
+                    <input type="text" class="form-control" id="fieldName" name="fieldName" placeholder="Danh muc">
+                </div>
+
+                <div class="form-group col-sm-6">
+                    <label for="tinyDes">Mo ta khoa hoc</label>
+                    <input type="text" class="form-control" id="tinyDes" name="tinyDes"
+                        placeholder="Mo ta khoa hoc">
+                </div>
+
+                <div class="form-group col-sm-12">
+                    <label for="fullDes">Mo ta chi tiet</label>
+                    <textarea class="form-control" name="fullDes" id="fullDes" cols="10" rows="10"></textarea>
+                </div>
+
+                <div class="form-group col-sm-6">
+                    <label for="initialPrice">Hoc phi</label>
+                    <input type="number" class="form-control" id="initialPrice" name="initialPrice"
+                        placeholder="Hoc phi">
+                </div>
+
+                <div class="form-group col-sm-6">
+                    <label for="currentPrice">Gia khuyen mai</label>
+                    <input type="number" class="form-control" id="currentPrice" name="currentPrice"
+                        placeholder="Gia khuyen mai">
+                </div>
+
+                <div class="form-group col-sm-6">
+                    <label for="videoPath">Upload Video</label>
+                    <input type="file" class="file" id="videoPath" name="videoPath" placeholder="Upload file">
+                </div>
+
+                <div class="form-group col-sm-6">
+                    <label for="imgPath">Upload Image</label>
+                    <input type="file" class="file" id="imgPath" name="imgPath" multiple>
+                </div>
+
+                <button type="submit" class="btn btn-success" id="btnSubmit">Add course</button>
+            </form>
+        </div>
     </div>
+</div>
 
 
 

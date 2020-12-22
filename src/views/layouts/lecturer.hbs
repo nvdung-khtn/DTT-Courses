@@ -6,10 +6,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
     <link href="../../css/lecturer/superlist.css" rel="stylesheet" type="text/css">
-    <link href="http://fonts.googleapis.com/css?family=Nunito:300,400,700" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css">
-    <link rel="shortcut icon" type="image/x-icon" href="assets/favicon.png">
+    <!-- Thư viện reset CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <!-- Thư viện font của GG -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <!-- Thư viện Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
     <link rel="stylesheet" href="/css/base.css">
     <link rel="stylesheet" href="/css/header.css">
     <link rel="stylesheet" href="/css/footer.css">
@@ -43,13 +46,29 @@
                             </div><!-- /.widget -->
                             <div class="widget">
                                 <ul class="menu-advanced">
-                                    <li class="course-management menu-item"><a href="/lecturer/Courses"><i
-                                                class="fa fa-pencil"></i> Quản lý khóa học</a></li>
-                                    <li class="edit-info active menu-item"><a href="/lecturer/profile"><i class="fa fa-user"></i>
-                                            Chỉnh sửa hồ sơ</a></li>
-                                    <li class="change-password menu-item"><a href="/lecturer/changePassword"><i class="fa fa-key"></i> Đổi mật
-                                            khẩu</a></li>
-                                    <li class="log-out menu-item"><a href="/lecturer/logout"><i class="fa fa-sign-out"></i> Đăng xuất</a>
+                                    <li class="course-management menu-item">
+                                        <a href="/lecturer/Courses">
+                                            <i class="fas fa-tasks mr-3"></i>
+                                            Quản lý khóa học
+                                        </a>
+                                    </li>
+                                    <li class="edit-info active menu-item">
+                                        <a href="/lecturer/profile">
+                                            <i class="fas fa-user mr-3"></i>
+                                            Chỉnh sửa hồ sơ
+                                        </a>
+                                    </li>
+                                    <li class="change-password menu-item">
+                                        <a href="/lecturer/changePassword">
+                                            <i class="fas fa-key mr-3"></i>
+                                            Đổi mật khẩu
+                                        </a>
+                                    </li>
+                                    <li class="log-out menu-item">
+                                        <a href="/lecturer/logout">
+                                           <i class="fas fa-sign-out-alt mr-3"></i>
+                                            Đăng xuất
+                                        </a>
                                     </li>
                                 </ul>
                             </div><!-- /.widget -->
@@ -64,37 +83,9 @@
         {{>footer}}
     </div><!-- /.page-wrapper -->
 
-
-    <script src="assets/js/jquery.js" type="text/javascript"></script>
-    <script src="assets/js/map.js" type="text/javascript"></script>
-
-    <script src="assets/libraries/bootstrap-sass/javascripts/bootstrap/collapse.js" type="text/javascript"></script>
-    <script src="assets/libraries/bootstrap-sass/javascripts/bootstrap/carousel.js" type="text/javascript"></script>
-    <script src="assets/libraries/bootstrap-sass/javascripts/bootstrap/transition.js" type="text/javascript"></script>
-    <script src="assets/libraries/bootstrap-sass/javascripts/bootstrap/dropdown.js" type="text/javascript"></script>
-    <script src="assets/libraries/bootstrap-sass/javascripts/bootstrap/tooltip.js" type="text/javascript"></script>
-    <script src="assets/libraries/bootstrap-sass/javascripts/bootstrap/tab.js" type="text/javascript"></script>
-    <script src="assets/libraries/bootstrap-sass/javascripts/bootstrap/alert.js" type="text/javascript"></script>
-
-    <script src="assets/libraries/colorbox/jquery.colorbox-min.js" type="text/javascript"></script>
-
-    <script src="assets/libraries/flot/jquery.flot.min.js" type="text/javascript"></script>
-    <script src="assets/libraries/flot/jquery.flot.spline.js" type="text/javascript"></script>
-
-    <script src="assets/libraries/bootstrap-select/bootstrap-select.min.js" type="text/javascript"></script>
-
-    <script src="http://maps.googleapis.com/maps/api/js?libraries=weather,geometry,visualization,places,drawing"
-        type="text/javascript"></script>
-
-    <script type="text/javascript" src="assets/libraries/jquery-google-map/infobox.js"></script>
-    <script type="text/javascript" src="assets/libraries/jquery-google-map/markerclusterer.js"></script>
-    <script type="text/javascript" src="assets/libraries/jquery-google-map/jquery-google-map.js"></script>
-
-    <script type="text/javascript" src="assets/libraries/owl.carousel/owl.carousel.js"></script>
-    <script type="text/javascript" src="assets/libraries/bootstrap-fileinput/fileinput.min.js"></script>
-
-    <script src="assets/js/superlist.js" type="text/javascript"></script>
-    {{{sections.js}}}
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
+    {{{_sections.js}}}
 </body>
 
 </html>
