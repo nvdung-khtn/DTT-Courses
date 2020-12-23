@@ -15,9 +15,9 @@
             <div class="col-lg-6 d-none d-lg-block cont-left"></div>
             <div class="col-lg-6 cont-right shadow">
                 <p class="title">Create an Account</p>
-                <form id="formRegister">
+                <form id="formRegister" method="POST" action="">
                     <div class="form-group">
-                        <input type="text" id="username" name="username" placeholder="Enter your name..." />  
+                        <input type="text" id="username" name="name" placeholder="Enter your name..." />  
                         <span class="form-message"></span>
                         <span class="message-clone">0</span>
                     </div>
@@ -35,7 +35,7 @@
                     </div>
                     
                     <hr>
-                    <button class="btn-login">Create Account</button>
+                    <button type="submit" class="btn-login">Create Account</button>
                    
                 </form>
             </div>
@@ -60,11 +60,7 @@
                         },
                         "Repeat password invalid"
                     ),
-                ],
-                onSubmit: function (data) {
-                    // Call API
-                    console.log(data);
-                },
+                ]
             });
         });
     </script>
