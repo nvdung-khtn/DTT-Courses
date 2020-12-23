@@ -2,17 +2,16 @@ const express = require('express');
 const router = express.Router();
 
 const adminController = require('../../controllers/admin/AdminController');
-const ManageStudentController = require('../../controllers/admin/ManageStudentController');
-const ManageLecturerController = require('../../controllers/admin/ManageLecturerController.js');
-const ManageProductController = require('../../controllers/admin/ManageProductController');
-const ManageCategoryController = require('../../controllers/admin/ManageCategoryController');
 
 
 router.get('/', adminController.index);
-router.get('/student',ManageStudentController.index)
-router.get('/lecturer',ManageLecturerController.index)
-router.get('/product',ManageProductController.index)
-router.get('/category',ManageCategoryController.index)
+router.get('/student',adminController.manageStudent)
+router.get('/lecturer',adminController.manageLecturer)
+router.get('/product',adminController.manageProduct)
+router.get('/category',adminController.manageCategory)
+router.get('/student/edit',adminController.editStudent)
+router.get('/lecturer/edit',adminController.editLecturer)
+router.get('/product/edit',adminController.editCourse)
 
 //router.post('/', loginController.login);
 

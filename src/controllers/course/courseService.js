@@ -7,6 +7,7 @@ module.exports = {
         return 'HTML && CSS';
     },
 
+
     getInforCourse(course) {
         const lecName = this.getLecturerName(course.lecId);
         const fieldName = this.getFieldName(course.fieldId);

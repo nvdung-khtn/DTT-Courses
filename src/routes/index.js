@@ -5,6 +5,7 @@ const adminRouter = require('./admin/admin.route');
 const lecturerRouter = require('./lecturer/lecturer.route');
 const homeRouter = require('./home.route')
 
+
 function route(app) {
     /** Route of Guest */
     app.use('/account', accountRouter);

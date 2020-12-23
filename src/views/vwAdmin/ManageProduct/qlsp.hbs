@@ -1,159 +1,42 @@
 
-
+{{#section 'css'}}
+<link rel="stylesheet" href="/css/admin/qlsp.css">
+{{/section}}
 
 <div class="wrapper">
 		<div class="row">
-			<div class="col-100 col-m-12 col-sm-12">
+			<div class="col-12">
 				<div class="card">
 					<div class="card-header">
-			            <h3>Quản lý Khóa học</h3>						
+			            <h3>Quản lý Khóa học</h3>					
 					</div>
 					<div class="card-content">
-
-
-					<!-- Edit Modal HTML -->
-					<div id="editEmployeeModal" class="modal"  >
-						<div class="modal-dialog" >
-							<div class="modal-content" >
-								<form id="edit-product">
-									<div class="modal-header">						
-										<h3 class="modal-title">Chỉnh sửa Khóa học</h3>
-										<button type="button" class="close" aria-hidden="true">&times;</button>
-									</div>
-									<div class="modal-body">					
-										<div class="form-group">
-											<label>Tên khóa học</label>
-											<input type="text" class="form-control" id="name">
-											<span class="form-message"></span><span class="message-clone">0</span>
-										</div>
-
-										<div class="form-group">
-											<label>Tên Danh mục</label>
-											<select class="form-control" id="category">
-												<option value="volvo">Volvo</option>
-												<option value="saab">Saab</option>
-												<option value="opel">Opel</option>
-												<option value="audi">Audi</option>
-											</select>
-										</div>
-
-										<div class="form-group">
-											<label>Giá </label>
-											<input type="text" class="form-control" id="price">
-											<span class="form-message"></span><span class="message-clone">0</span>
-										</div>
-
-										<div class="form-group">
-											<label>Số lượng tồn</label>
-											<input type="text" class="form-control" id="quantity">
-											<span class="form-message"></span><span class="message-clone">0</span>
-										</div>
-
-										<div class="form-group">
-											<label>Giảng viên phụ trách</label>
-											<select class="form-control" id="lecturer">
-												<option value="volvo">Volvo</option>
-												<option value="saab">Saab</option>
-												<option value="opel">Opel</option>
-												<option value="audi">Audi</option>
-											</select>
-											<span class="form-message"></span><span class="message-clone">0</span>
-										</div>
-
-									</div>
-									<div class="modal-footer">
-										<input type="button" class="btn btn-default close" value="Hủy bỏ">
-										<input type="submit" class="btn btn-info" value="Lưu lại">
-									</div>
-								</form>
-							</div>
-						</div>
-					</div>
-					<!--End Edit Modal HTML -->
-
-					<!-- Delete Modal HTML -->
-					<div id="deleteEmployeeModal" class="modal">
-						<div class="modal-dialog">
-							<div class="modal-content">
-								<form>
-									<div class="modal-header">						
-										<h4 class="modal-title">Xóa Sản phẩm</h4>
-										<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-									</div>
-									<div class="modal-body">					
-										<p>Bạn thật sự muốn xóa Sản phẩm này?</p>
-										<p class="text-warning"><small>Thao tác này không thể khôi phục.</small></p>
-									</div>
-									<div class="modal-footer">
-										<input type="button" class="btn btn-default close" data-dismiss="modal" value="Hủy bỏ">
-										<input type="submit" class="btn btn-danger" value="Xóa">
-									</div>
-								</form>
-							</div>
-						</div>
-					</div>
-
-					<!--End Delete Modal HTML -->
 						<table>
 							<thead>
 								<tr>
 									<th>ID</th>
 									<th>Tên khóa học</th>
 									<th>Danh mục</th>
-									<th>Giá</th>
+									<th>Giá hiện tại</th>
 									<th>Trạng thái</th>
 									<th>Quản lý</th>
 								</tr>
 							</thead>
 							<tbody>
+								{{#each courses}}
 								<tr>
-									<td>1</td>
-									<td>Khóa học tiếng anh</td>
-									<td>Tiếng Anh</td>
-									<td>120000 VND</td>
+									<td>{{_id}}</td>
+									<td class="custom-display">{{name}}</td>
+									<td>{{slug}}</td>
+									<td>{{format currentPrice}}</td>
+									<td>{{status}}</td>
 									<td>
-										<span class="dot">
-											<i class="bg-success"></i>
-											Completed
-										</span>
-									</td>
-									<td>
-										<a href="" class="edit" data-toggle="modal"><i class="material-icons" title="Edit">&#xE254;</i></a>
-										<a href="" class="delete" data-toggle="modal"><i class="material-icons" title="Delete">&#xE872;</i></a>
+										<a href="/admin/product/edit" class="edit"><i class="material-icons" title="Edit">&#xE254;</i></a>
+										<a href="" class="delete"><i class="material-icons" title="Delete">&#xE872;</i></a>
 									</td>
 								</tr>
-								<tr>
-									<td>1</td>
-									<td>Khóa học tiếng anh</td>
-									<td>Tiếng Anh</td>
-									<td>120000 VND</td>
-									<td>
-										<span class="dot">
-											<i class="bg-success"></i>
-											Completed
-										</span>
-									</td>
-									<td>
-										<a href="" class="edit" data-toggle="modal"><i class="material-icons" title="Edit">&#xE254;</i></a>
-										<a href="" class="delete" data-toggle="modal"><i class="material-icons" title="Delete">&#xE872;</i></a>
-									</td>
-								</tr>
-								<tr>
-									<td>1</td>
-									<td>Khóa học tiếng anh</td>
-									<td>Tiếng Anh</td>
-									<td>120000 VND</td>
-									<td>
-										<span class="dot">
-											<i class="bg-success"></i>
-											Completed
-										</span>
-									</td>
-									<td>
-										<a href="" class="edit" data-toggle="modal"><i class="material-icons" title="Edit">&#xE254;</i></a>
-										<a href="" class="delete" data-toggle="modal"><i class="material-icons" title="Delete">&#xE872;</i></a>
-									</td>
-								</tr>
+
+								{{/each}}
 								
 							</tbody>
 						</table>

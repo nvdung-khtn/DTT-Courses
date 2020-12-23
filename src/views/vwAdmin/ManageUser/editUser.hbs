@@ -1,0 +1,87 @@
+{{#section 'css'}}
+<link rel="stylesheet" href="/css/admin/manage.css">
+{{/section}}
+
+<div class="wrapper">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3>Thông Tin Học Viên</h3>					
+                </div>
+                <div class="card-content">
+                    <form id="editProduct">
+                        <div class="modal-body">
+
+                            <div class="form-group">
+                                <label for="ID">ID</label>
+                                <input type="text" class="form-control" id="ID" name="ID" value="ID . . ." disabled>
+                                <span class="form-message"></span><span class="message-clone">0</span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="name">Họ tên</label>
+                                <input type="text" class="form-control" id="name" name="name" value="Họ tên . . .">
+                                <span class="form-message"></span><span class="message-clone">0</span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" class="form-control" id="email" name="email" value="Email . . .">
+                                <span class="form-message"></span><span class="message-clone">0</span>
+                            </div>
+ 
+
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input type="text" class="form-control" id="password" name="password" value="Password . . .">
+                                <span class="form-message"></span><span class="message-clone">0</span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="dob">Ngày sinh</label>
+                                <input type="date" class="form-control" id="dob" name="dob" value="2005-01-01" min="2000-01-01" max="2010-01-01" >
+                                <span class="form-message"></span><span class="message-clone">0</span>
+                            </div>
+                           
+                            <div class="form-group">
+                                <label for="sdt">Số điện thoại</label>
+                                <input type="text" class="form-control" id="sdt" name="sdt" value="Số điện thoại . . .">
+                                <span class="form-message"></span><span class="message-clone">0</span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="address">Địa chỉ</label>
+                                <textarea class="form-control" id="address" name="address" ></textarea>
+                                <span class="form-message"></span><span class="message-clone">0</span>
+                            </div>	
+
+                            <div class="form-group">
+                                <label for="createAt">Ngày đăng ký</label>
+                                <input type="text" class="form-control" id="createAt" name="createAt" value="">
+                                <span class="form-message"></span><span class="message-clone">0</span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="join">Số khóa học đã đăng ký</label>
+                                <input type="text" class="form-control" id="join" name="join" value="" disabled>
+                                <span class="form-message"></span><span class="message-clone">0</span>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label for="status">Trạng thái</label>
+                                <input type="text" class="form-control" id="status" name="status" value="Trạng thái . . .">
+                                <span class="form-message"></span><span class="message-clone">0</span>
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <input type="button" class="btn back" value="Quay lại">
+                            <input type="submit" class="btn update" value="Cập nhật">
+                        </div>
+                    </form>
+            </div>
+        </div>
+    </div>
+</div>
