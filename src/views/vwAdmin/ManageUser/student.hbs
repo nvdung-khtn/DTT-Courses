@@ -3,52 +3,7 @@
 <link rel="stylesheet" href="/css/admin/manage.css">
 {{/section}}
 
-
-<div class="wrapper">
-		<div class="row">
-			<div class="col-100 col-m-12 col-sm-12">
-				<div class="card">
-					<div class="card-header">
-						<h3>
-							Quản lý Học viên
-						</h3>
-	
-					</div>
-					<div class="card-content">
-						<table>
-							<thead>
-								<tr>
-									<th>ID</th>
-									<th>Họ tên</th>
-									<th>Email</th>
-									<th>Password</th>									
-									<th>Số điện thoại</th>
-									<th>Trạng thái</th>
-									<th>Quản lý</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>1</td>
-									<td>Tran Anh Tuat</td>
-									<td>bbbbb@gmail.com</td>
-									<td>concuxinhxan123</td>
-									<td>0123456789</td>
-									<td>Hoan thanh</td>
-									<td>
-										<a href="/admin/student/edit" class="edit"><i class="material-icons" title="Edit">&#xE254;</i></a>
-										<a href="" class="delete"><i class="material-icons" title="Delete">&#xE872;</i></a>
-									</td>
-								</tr>
-								
-							</tbody>
-						</table>
-					</div>
-				</div>
-			</div>
-			
-		</div>
-
+{{#section 'js'}}
 <script src="/javascript/validator.js"></script>
 <script>
 		$('.sidebar-nav-item .dashboard').removeClass('active');
@@ -79,6 +34,57 @@
             });
         });
 </script>
+{{/section}}
+
+
+<div class="wrapper">
+		<div class="row">
+			<div class="col-100 col-m-12 col-sm-12">
+				<div class="card">
+					<div class="card-header">
+						<h3>
+							Quản lý Học viên
+						</h3>
+	
+					</div>
+					<div class="card-content">
+						<table>
+							<thead>
+								<tr>
+									<th>ID</th>
+									<th>Họ tên</th>
+									<th>Email</th>
+									<th>Số điện thoại</th>
+									<th>Trạng thái</th>
+									<th>Quản lý</th>
+								</tr>
+							</thead>
+							<tbody>
+
+								{{#each users}}
+								<tr>
+									<td>{{_id}}</td>
+									<td>{{name}}</td>
+									<td>{{email}}</td>
+									<td>{{phone}}</td>
+									<td>{{stringStatus}}</td>
+									<td>
+										<a href="/admin/student/edit/{{_id}}" class="edit"><i class="material-icons" title="Edit">&#xE254;</i></a>
+										<a href="" class="delete"><i class="material-icons" title="Delete">&#xE872;</i></a>
+									</td>
+								</tr>
+
+								{{/each}}
+								
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+
+
 
 
 

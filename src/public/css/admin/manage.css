@@ -40,6 +40,10 @@
 	resize: vertical;
 }
 
+.form-control:disabled {
+    background-color: rgb(231, 231, 231);
+}
+
 .form-group {
     margin-bottom: 1rem;
     width: 30%;
@@ -53,6 +57,9 @@ label {
 }
 
 
+input[type="date" i], textarea{
+    font-family: 'Roboto', sans-serif;;
+}
 
 .btn {
     font-weight: 400;

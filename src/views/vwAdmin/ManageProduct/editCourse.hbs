@@ -1,5 +1,39 @@
 {{#section 'css'}}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 <link rel="stylesheet" href="/css/admin/manage.css">
+{{/section}}
+
+{{#section 'js'}}
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script>
+    $('.sidebar-nav-item .dashboard').removeClass('active');
+    flatpickr("#createAt, #updateAt", {dateFormat: 'd-m-Y'});
+
+    document.addEventListener("DOMContentLoaded", function () {
+            Validator({
+                form: "#editProduct",
+                formGroupSelector: ".form-group",
+                errorSelector: ".form-message",
+                rules: [
+                    Validator.isRequired("#name", "Tên sản phẩm còn trống"),
+					Validator.isRequired("#category", "Danh mục sản phẩm còn trống"),
+                    Validator.isRequired("#tinyDes", "Product name invalid"),
+					Validator.isRequired("#price", "Price invalid"),
+					Validator.isRequired("#lecturer", "Lecturer invalid"),
+                    Validator.isConfirmed(
+                        function () {
+                            return document.querySelector("#editProduct").value;
+                        },
+                    ),
+                ],
+                onSubmit: function (data) {
+                    // Call API
+                    console.log(data);
+                },
+            });
+        });
+
+</script>
 {{/section}}
 
 <div class="wrapper">
@@ -15,54 +49,67 @@
 
                             <div class="form-group">
                                 <label for="ID">ID</label>
-                                <input type="text" class="form-control" id="ID" name="ID" value="ID . . ." disabled>
+                                <input type="text" class="form-control" id="ID" name="ID" value="{{this.course._id}}" disabled>
                                 <span class="form-message"></span><span class="message-clone">0</span>
                             </div>
 
                             <div class="form-group">
                                 <label for="name">Tên khóa học</label>
-                                <input type="text" class="form-control" id="name" name="name" value="Họ tên . . .">
+                                <input type="text" class="form-control" id="name" name="name" value="{{this.course.name}}">
+                                <span class="form-message"></span><span class="message-clone">0</span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="category">Danh mục</label>
+                                <input type="text" class="form-control" id="category" name="category" value="{{this.course.catName}}">
                                 <span class="form-message"></span><span class="message-clone">0</span>
                             </div>
  
                             <div class="form-group">
                                 <label for="tinyDes">Mô tả</label>
-                                <input type="text" class="form-control" id="tinyDes" name="tinyDes" value="tinyDes . . .">
+                                <textarea class="form-control" id="tinyDes" name="tinyDes" >{{this.course.tinyDes}}</textarea>
                                 <span class="form-message"></span><span class="message-clone">0</span>
                             </div>
 
                             <div class="form-group">
                                 <label for="createAt">Ngày tạo</label>
-                                <input type="text" class="form-control" id="createAt" name="createAt"   >
+                                <input type="text" class="form-control" id="createAt" name="createAt" value="{{this.course.createdAt}}"  >
+                                <span class="form-message"></span><span class="message-clone">0</span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="updateAt">Ngày cập nhật</label>
+                                <input type="text" class="form-control" id="updateAt" name="updateAt" value="{{this.course.updatedAt}}"  >
                                 <span class="form-message"></span><span class="message-clone">0</span>
                             </div>
 
                             <div class="form-group">
                                 <label for="lecId">Giảng viên đăng tải</label>
-                                <select class="form-control" id="lecId" name="lecId">
-                                    <option value="volvo">Volvo</option>
-                                    <option value="saab">Saab</option>
-                                    <option value="opel">Opel</option>
-                                    <option value="audi">Audi</option>
+                                <select class="form-control" id="lecId" name="lecId" >
+                                    <option value="{{this.course.lecId}}">{{this.course.lecName}}</option>
+                                    {{#each lecturers}}
+                                    <option value="{{name}}" id="{{_id}}">{{name}}</option>
+                                    {{/each}}
                                 </select>
+
                                 <span class="form-message"></span><span class="message-clone">0</span>
                             </div>
 
                             <div class="form-group">
                                 <label for="currentPrice">Giá</label>
-                                <input type="text" class="form-control" id="currentPrice" name="currentPrice" value="Giá hiện tại . . .">
+                                <input type="text" class="form-control" id="currentPrice" name="currentPrice" value="{{format this.course.currentPrice}}">
                                 <span class="form-message"></span><span class="message-clone">0</span>
                             </div>
 
                             <div class="form-group">
                                 <label for="status">Trạng thái</label>
-                                <input type="text" class="form-control" id="status" name="status" value="Trạng thái . . .">
+                                <input type="text" class="form-control" id="status" name="status" value="{{this.course.status}}">
                                 <span class="form-message"></span><span class="message-clone">0</span>
                             </div>
 
                         </div>
                         <div class="modal-footer">
-                            <input type="button" class="btn back" value="Quay lại">
+                            <a href="/admin/product"><input type="button" class="btn back" value="Quay lại"></a>
                             <input type="submit" class="btn update" value="Cập nhật">
                         </div>
                     </form>
@@ -70,3 +117,5 @@
         </div>
     </div>
 </div>
+
+

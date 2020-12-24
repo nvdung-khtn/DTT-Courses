@@ -2,53 +2,7 @@
 <link rel="stylesheet" href="/css/admin/qlsp.css">
 {{/section}}
 
-<div class="wrapper">
-		<div class="row">
-			<div class="col-100 col-m-12 col-sm-12">
-				<div class="card">
-					<div class="card-header">
-              <h3>Quản lý Danh mục Sản phẩm</h3>
-						
-					</div>
-					<div class="card-content">
-						<table>
-							<thead>
-								<tr>
-									<th>ID</th>
-									<th>Tên danh mục</th>
-									<th>Số lượng khóa học</th>
-									<th>Quản lý</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>1</td>
-									<td>Tiếng Anh</td>
-									<td>6</td>
-									<td>
-										<a href="" class="edit" data-toggle="modal"><i class="material-icons" title="Edit">&#xE254;</i></a>
-										<a href="" class="delete" data-toggle="modal"><i class="material-icons" title="Delete">&#xE872;</i></a>
-									</td>
-								</tr>
-								<tr>
-									<td>2</td>
-									<td>Lập Trình</td>
-									<td>11</td>
-									<td>
-										<a href="" class="edit" data-toggle="modal"><i class="material-icons" title="Edit">&#xE254;</i></a>
-										<a href="" class="delete" data-toggle="modal"><i class="material-icons" title="Delete">&#xE872;</i></a>
-									</td>
-								</tr>
-								
-							</tbody>
-						</table>
-					</div>
-				</div>
-			</div>
-			
-		</div>
-
-	
+{{#section 'js'}}
 <script src="/javascript/validator.js"></script>	
 <script>
 		$('.sidebar-nav-item .dashboard').removeClass('active');
@@ -96,6 +50,56 @@
             });
         });
 </script>
+{{/section}}
+
+<div class="wrapper">
+		<div class="row">
+			<div class="col-100 col-m-12 col-sm-12">
+				<div class="card">
+					<div class="card-header">
+              <h3>Quản lý Danh mục Sản phẩm</h3>
+						
+					</div>
+					<div class="card-content">
+						<table>
+							<thead>
+								<tr>
+									<th>ID</th>
+									<th>Tên danh mục</th>
+									<th>Số lượng khóa học</th>
+									<th>Quản lý</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>1</td>
+									<td>Tiếng Anh</td>
+									<td>6</td>
+									<td>
+										<a href="" class="edit" data-toggle="modal"><i class="material-icons" title="Edit">&#xE254;</i></a>
+										<a href="" class="delete" data-toggle="modal"><i class="material-icons" title="Delete">&#xE872;</i></a>
+									</td>
+								</tr>
+								<tr>
+									<td>2</td>
+									<td>Lập Trình</td>
+									<td>11</td>
+									<td>
+										<a href="" class="edit" data-toggle="modal"><i class="material-icons" title="Edit">&#xE254;</i></a>
+										<a href="" class="delete" data-toggle="modal"><i class="material-icons" title="Delete">&#xE872;</i></a>
+									</td>
+								</tr>
+								
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+
+	
+
 
 
 

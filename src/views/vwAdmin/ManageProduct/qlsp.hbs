@@ -3,6 +3,39 @@
 <link rel="stylesheet" href="/css/admin/qlsp.css">
 {{/section}}
 
+{{#section 'js'}}
+<script src="/javascript/validator.js"></script>
+<script>
+
+	$('.sidebar-nav-item .dashboard').removeClass('active');
+	$('.sidebar-nav-item .product-management').addClass('active');
+document.addEventListener("DOMContentLoaded", function () {
+            Validator({
+                form: "#edit-product",
+                formGroupSelector: ".form-group",
+                errorSelector: ".form-message",
+                rules: [
+                    Validator.isRequired("#name", "Product name invalid"),
+					Validator.isRequired("#category", "Category name invalid"),
+					Validator.isRequired("#price", "Price invalid"),
+					Validator.isRequired("#quantity", "Quantity invalid"),
+					Validator.isRequired("#lecturer", "Lecturer invalid"),
+                    Validator.isConfirmed(
+                        function () {
+                            return document.querySelector("#edit-product").value;
+                        },
+                    ),
+                ],
+                onSubmit: function (data) {
+                    // Call API
+                    console.log(data);
+                },
+            });
+        });
+
+</script>
+{{/section}}
+
 <div class="wrapper">
 		<div class="row">
 			<div class="col-12">
@@ -31,7 +64,7 @@
 									<td>{{format currentPrice}}</td>
 									<td>{{status}}</td>
 									<td>
-										<a href="/admin/product/edit" class="edit"><i class="material-icons" title="Edit">&#xE254;</i></a>
+										<a href="/admin/product/edit/{{_id}}" class="edit"><i class="material-icons" title="Edit">&#xE254;</i></a>
 										<a href="" class="delete"><i class="material-icons" title="Delete">&#xE872;</i></a>
 									</td>
 								</tr>
@@ -46,42 +79,7 @@
 			
 		</div>
    
-<script src="/javascript/validator.js"></script>
-<script>
 
-	//$('.sidebar-nav li').click(function(){	
-		// Removing class from all list elements
-		$('.sidebar-nav-item .dashboard').removeClass('active');
-		  
-			// Adding class to clicked list element
-		$('.sidebar-nav-item .product-management').addClass('active');
-		//});
-
-		    document.addEventListener("DOMContentLoaded", function () {
-            Validator({
-                form: "#edit-product",
-                formGroupSelector: ".form-group",
-                errorSelector: ".form-message",
-                rules: [
-                    Validator.isRequired("#name", "Product name invalid"),
-					Validator.isRequired("#category", "Category name invalid"),
-					Validator.isRequired("#price", "Price invalid"),
-					Validator.isRequired("#quantity", "Quantity invalid"),
-					Validator.isRequired("#lecturer", "Lecturer invalid"),
-                    Validator.isConfirmed(
-                        function () {
-                            return document.querySelector("#edit-product").value;
-                        },
-                    ),
-                ],
-                onSubmit: function (data) {
-                    // Call API
-                    console.log(data);
-                },
-            });
-        });
-
-</script>
 
 
 
