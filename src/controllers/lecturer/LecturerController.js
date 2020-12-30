@@ -1,20 +1,18 @@
 const multer = require('multer');
 const Course = require('../../models/Course');
 const courseService = require('../course/courseService');
-const {
-    mongooseToObject,
-    multipleMongooseToObject,
-} = require('../../utils/mongoose');
+const { mongooseToObject, multipleMongooseToObject } = require('../../utils/mongoose');
 
 class LecturerController {
     // [GET] /
     index(req, res, next) {
         Course.find({})
-            .then(coursesDB => {
+            .then(async coursesDB => {
                 // convert Mongoose Object to Object Literals
-                let courses = multipleMongooseToObject(coursesDB);
+                const courses = await courseService.getInforCourses(multipleMongooseToObject(coursesDB));
+                
                 res.render('vwLecturer/manageCourses', {
-                    courses: courseService.getInforCourses(courses),
+                    courses,
                     layout: 'lecturer',
                 });
             })

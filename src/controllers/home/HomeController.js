@@ -1,6 +1,7 @@
 const Course = require('../../models/Course');
 const { multipleMongooseToObject} = require('../../utils/mongoose')
 const homeService = require('./homeService');
+const courseService = require('../course/courseService');
 
 
 class SiteController {
@@ -11,10 +12,10 @@ class SiteController {
 
     index(req, res, next) {
         Course.find({})
-            .then((coursesDB) => {
+            .then(async coursesDB => {
                 // convert Mongoose Object to Object Literals
-                const courses = multipleMongooseToObject(coursesDB)
-                const hightLightCourse = homeService.getHighLightCourse(courses);
+                const courses = await courseService.getInforCourses(multipleMongooseToObject(coursesDB));
+                const hightLightCourse = homeService.getHighLightCourse(courses, 4);
                 const mostViewedCourses = homeService.getMostViewedCourse(courses, 4);
                 const newCourses = homeService.getNewCourse(courses,5);
 

@@ -1,14 +1,12 @@
 const courseService = require('../course/courseService');
 
 module.exports = {
-    getHighLightCourse: function (courses) {
-        let hightLightCourse = courses.filter(function (course) {
-            return course.nIndex === 1; //update late
+    getHighLightCourse: (courses, n) => {
+        let ret = courses.sort(function (courseA, courseB) {
+            return courseB.nIndex - courseA.nIndex;
         });
-
-        return hightLightCourse.map(function (course) {
-            return courseService.getInforCourse(course);
-        });
+        
+        return ret.slice(0,n);
     },
 
     getMostViewedCourse: function (courses, n) {
@@ -16,9 +14,7 @@ module.exports = {
             return courseB.view - courseA.view;
         });
 
-        return ret.slice(0,n).map(function (course) {
-            return courseService.getInforCourse(course);
-        });
+        return ret.slice(0,n);
     },
 
     getNewCourse: function (courses, n) {
@@ -29,8 +25,6 @@ module.exports = {
             return dateB - dateA;
         });
 
-        return ret.slice(0,n).map(function (course) {
-            return courseService.getInforCourse(course);
-        });
+        return ret.slice(0,n);
     },
 };

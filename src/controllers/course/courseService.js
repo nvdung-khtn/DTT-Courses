@@ -6,15 +6,6 @@ const userService = require('../user/userService');
 const { multipleMongooseToObject, mongooseToObject } = require('../../utils/mongoose');
 
 module.exports = {
-    getLecturerName(course){
-        User.findOne({_id : course.lecId})
-            .then(userDB => {
-                let user = mongooseToObject(userDB);
-                course.lecName = user.name;
-            })
-             return course;
-    },
-
     getListLectNameForCb(id, lecturers) {
         var lecs = [];
         for ( var i in lecturers) {
@@ -39,20 +30,23 @@ module.exports = {
     },
 
 
-    getInforCourse(course) {
-        const lecName = this.getLecturerName(course.lecId);
-        const fieldName = this.getFieldName(course.fieldId);
+    async getInforCourse(course) {
+        const lecturer = await User.findById(course.lecId, 'name');
+        const field = await Field.findById(course.fieldId, 'name');
 
         return {
             ...course,
-            lecName,
-            fieldName,
+            lecName: lecturer.name,
+            fieldName: field.name,
         };
     },
-
-    getInforCourses(courses) {
-        return courses.map(course => {
-            return course = this.getInforCourse(course);
-        })
+    async getInforCourses(courses) {
+        const ret = [];
+        for(course of courses) {
+            const result = await this.getInforCourse(course);
+            ret.push(result);
+        }
+        
+        return ret;
     }
 }

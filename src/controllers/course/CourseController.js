@@ -3,14 +3,14 @@ const courseService = require('./courseService');
 const { multipleMongooseToObject, mongooseToObject } = require('../../utils/mongoose');
 
 class CourseController {
-    // [GET] /course
+    // [GET] /courses
     index(req, res, next) {
         Course.find({})
-            .then(coursesDB => {
+            .then(async coursesDB => {
                 // convert Mongoose Object to Object Literals
-                let courses = multipleMongooseToObject(coursesDB);
+                const courses = await courseService.getInforCourses(multipleMongooseToObject(coursesDB));
                 res.render('home_fullCourse', {
-                    courses: courseService.getInforCourses(courses)
+                    courses
                 });
             })
             .catch(next);
