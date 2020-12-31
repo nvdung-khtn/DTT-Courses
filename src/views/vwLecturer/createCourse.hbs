@@ -40,7 +40,7 @@
         <h1>Quản lý khóa học</h1>
     </div><!-- /.page-title -->
 
-    <div class="background-white p20 mb30">
+    <div class="background-white p-3 mb30">
         <ul class="nav nav-tabs">
             <li class="nav-item">
                 <a class="nav-link my-course" href="/lecturer/courses">Khóa học của tôi</a>
@@ -53,39 +53,33 @@
             </li>
         </ul>
 
-        <div class="row">
-            <form id="frmMain" method="POST" action="/lecturer/courses/store" enctype="multipart/form-data">
+        <form id="frmMain" method="POST" action="/lecturer/courses/store" enctype="multipart/form-data">
+            <div class="row">
                 <div class="form-group col-sm-6">
                     <label for="name">Tên khóa học</label>
-                    <input type="text" class="form-control" id="name" name="name" placeholder="Ten khoa hoc">
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Vd: Lập trình web với PHP">
                 </div>
 
                 <div class="form-group col-sm-6">
-                    <label for="fieldName">Danh muc</label>
-                    <input type="text" class="form-control" id="fieldName" name="fieldName" placeholder="Danh muc">
+                    <label for="fieldName">Lĩnh vực</label>
+                    <select name="fieldName" id="fieldName" class="form-control">
+                        <option value="volvo">Volvo</option>
+                        <option value="saab">Saab</option>
+                        <option value="opel">Opel</option>
+                        <option value="audi">Audi</option>
+                    </select>
                 </div>
 
                 <div class="form-group col-sm-6">
-                    <label for="tinyDes">Mo ta khoa hoc</label>
-                    <input type="text" class="form-control" id="tinyDes" name="tinyDes"
-                        placeholder="Mo ta khoa hoc">
-                </div>
-
-                <div class="form-group col-sm-12">
-                    <label for="fullDes">Mo ta chi tiet</label>
-                    <textarea class="form-control" name="fullDes" id="fullDes" cols="10" rows="10"></textarea>
-                </div>
-
-                <div class="form-group col-sm-6">
-                    <label for="initialPrice">Hoc phi</label>
+                    <label for="initialPrice">Học phí</label>
                     <input type="number" class="form-control" id="initialPrice" name="initialPrice"
-                        placeholder="Hoc phi">
+                        placeholder="Vd: 1.000.000">
                 </div>
 
                 <div class="form-group col-sm-6">
-                    <label for="currentPrice">Gia khuyen mai</label>
+                    <label for="currentPrice">Giá khuyến mãi (nếu có)</label>
                     <input type="number" class="form-control" id="currentPrice" name="currentPrice"
-                        placeholder="Gia khuyen mai">
+                        placeholder="Vd: 900.000">
                 </div>
 
                 <div class="form-group col-sm-6">
@@ -98,9 +92,20 @@
                     <input type="file" class="file" id="introVideo" name="introVideo" placeholder="Chọn video">
                 </div>
 
-                <button type="submit" class="btn btn-success" id="btnSubmit">Add course</button>
-            </form>
-        </div>
+                <div class="form-group col-sm-6">
+                    <label for="tinyDes">Mô tả ngắn gọn nội dung</label>
+                    <input type="text" class="form-control" id="tinyDes" name="tinyDes"
+                        placeholder="Mô tả ngắn gọn....">
+                </div>
+
+                <div class="form-group col-sm-12">
+                    <label for="fullDes">Mô tả chi tiết nội dung</label>
+                    <textarea class="form-control" name="fullDes" id="fullDes" cols="10" rows="10" placeholder="Mô tả chi tiết...."></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-success" id="btnSubmit">Tạo khóa học</button>
+            </div>
+        </form>
     </div>
 </div>
 
