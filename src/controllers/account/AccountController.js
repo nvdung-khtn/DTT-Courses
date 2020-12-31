@@ -40,6 +40,13 @@ class AccountController {
             layout: false,
         });
     }
+
+    // [GET] account/forgotpassword
+    forgotPassword(req, res) {
+        res.render('vwAccount/forgotpassword', {
+            layout: false,
+        });
+    }
 }
 
 module.exports = new AccountController();
