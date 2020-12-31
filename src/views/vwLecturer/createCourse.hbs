@@ -19,16 +19,16 @@
         ],
     });
 
-    $('#videoPath').fileinput({
+    $('#avatar').fileinput({
         theme: 'fa',
         dropZoneEnabled: false,  //Khung để kéo thả bự bự
-        allowedFileExtensions: ['mp4'],  //chỉ cho phép upload các định dạng sau
+        allowedFileExtensions: ['png', 'jpg', 'gif']
     });
 
-    $('#imgPath').fileinput({
+    $('#introVideo').fileinput({
         theme: 'fa',
         dropZoneEnabled: false,
-        allowedFileExtensions: ['png', 'jpg', 'gif']
+        allowedFileExtensions: ['mp4']  //chỉ cho phép upload các định dạng sau
     });
 
 </script>
@@ -89,13 +89,13 @@
                 </div>
 
                 <div class="form-group col-sm-6">
-                    <label for="videoPath">Upload Video</label>
-                    <input type="file" class="file" id="videoPath" name="videoPath" placeholder="Upload file">
+                    <label for="avatar">Ảnh đại diện</label>
+                    <input type="file" class="file" id="avatar" name="avatar" placeholder="Chọn ảnh">
                 </div>
 
                 <div class="form-group col-sm-6">
-                    <label for="imgPath">Upload Image</label>
-                    <input type="file" class="file" id="imgPath" name="imgPath" multiple>
+                    <label for="introVideo">Video giới thiệu khóa học</label>
+                    <input type="file" class="file" id="introVideo" name="introVideo" placeholder="Chọn video">
                 </div>
 
                 <button type="submit" class="btn btn-success" id="btnSubmit">Add course</button>

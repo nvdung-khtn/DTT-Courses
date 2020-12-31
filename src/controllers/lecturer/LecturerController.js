@@ -1,4 +1,6 @@
 const multer = require('multer');
+const fs = require('fs');
+const path = require('path'); 
 const Course = require('../../models/Course');
 const courseService = require('../course/courseService');
 const { mongooseToObject, multipleMongooseToObject } = require('../../utils/mongoose');
@@ -35,45 +37,55 @@ class LecturerController {
     // [POST] lecturer/course/store
     store(req, res, next) {
         let formData;
-        let imgPath, videoPath;
+        let avatar, introVideo;
+        const folderName = (Date.now() + Math.floor(Math.random() * 1000)).toString();
+        const folderAddress = `./src/public/products/${folderName}`
 
+        // Create folder to save new course.
+        fs.mkdir(path.join('./src/public/products/', folderName), (err) => { 
+            if (err) { 
+                return console.error(err); 
+            }
+            console.log('Directory created successfully!'); 
+        });
+        fs.mkdir(path.join(`${folderAddress}`, 'videos'), err => next);
+        fs.mkdir(path.join(`${folderAddress}`, 'images'), err => next);
+
+        // Handle upload file
         const storage = multer.diskStorage({
             destination: function (req, file, callback) {
-                if(file.fieldname === 'imgPath') {
-                    callback(null, './src/public/image/products/');
+                if(file.fieldname === 'avatar') {
+                    callback(null, `${folderAddress}/images`);
                 } else {
-                    callback(null, './src/public/image/login/'); //Luu video
+                    callback(null, `${folderAddress}/videos`); //save video
                 }
             },
             filename: function (req, file, callback) {
-                if(file.fieldname === 'imgPath') {
-                    imgPath = file.originalname;
+                if(file.fieldname === 'avatar') {
+                    avatar = file.originalname;
                 } else {
-                    videoPath = file.originalname;
+                    introVideo = file.originalname;
                 }
                 callback(null, file.originalname);
             },
         });
 
-        // const fileFilter = (req, file, cb)
-
         const upload = multer({ storage });
-        //upload.single('fuMain')(req, res, function (err) {
-        //upload.array('imgPath', 5)(req, res, function (err) {
         upload.fields([
             {
-                name: 'videoPath',
+                name: 'avatar',
                 maxCount: 1
             },
             {
-                name: 'imgPath',
-                maxCount: 5
+                name: 'introVideo',
+                maxCount: 1
             }
         ])(req, res, function (err) {
             formData = {
                 ...req.body,
-                imgPath,
-                videoPath
+                folderAddress,
+                avatar,
+                introVideo,
             };
 
             if (err) {
