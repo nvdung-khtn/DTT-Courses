@@ -39,22 +39,42 @@ class LecturerController {
 
         const storage = multer.diskStorage({
             destination: function (req, file, callback) {
-                console.log('file: ', file);
-                callback(null, './src/public/image/products/');
+                if(file.fieldname === 'imgPath') {
+                    callback(null, './src/public/image/products/');
+                } else {
+                    callback(null, './src/public/image/login/'); //Luu video
+                }
             },
             filename: function (req, file, callback) {
-                imgPath = file.originalname;
+                if(file.fieldname === 'imgPath') {
+                    imgPath = file.originalname;
+                } else {
+                    videoPath = file.originalname;
+                }
                 callback(null, file.originalname);
             },
         });
+
+        // const fileFilter = (req, file, cb)
+
         const upload = multer({ storage });
         //upload.single('fuMain')(req, res, function (err) {
-        upload.array('imgPath', 5)(req, res, function (err) {
+        //upload.array('imgPath', 5)(req, res, function (err) {
+        upload.fields([
+            {
+                name: 'videoPath',
+                maxCount: 1
+            },
+            {
+                name: 'imgPath',
+                maxCount: 5
+            }
+        ])(req, res, function (err) {
             formData = {
                 ...req.body,
                 imgPath,
+                videoPath
             };
-            // console.log('form Data:', formData);  =>ok
 
             if (err) {
                 next(err);
