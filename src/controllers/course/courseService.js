@@ -33,7 +33,8 @@ module.exports = {
     async getInforCourse(course) {
         const lecturer = await User.findById(course.lecId, 'name');
         const field = await Field.findById(course.fieldId, 'name');
-
+        console.log(lecturer);
+        console.log(field);
         return {
             ...course,
             lecName: lecturer.name,

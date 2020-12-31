@@ -8,29 +8,26 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/login.css">
-    <title>Login</title>
+    <title>Đăng nhập</title>
 </head>
 
 <body>
     <div class="container">
-        <div class="row">
-            <div class="col-lg-6 d-none d-lg-block cont-left"></div>
-            <div class="col-lg-6 cont-right shadow">
-                <p class="title">Login</p>
-                <form>
-                    <input type="text" name="username" placeholder="Enter Username..." />
-                    <input type="password" name="password" placeholder="Password"/>
-                    <button class="btn-login">Login</button>
-                    <hr>
-                    <a href="#" class="btnGoogle"><i class="fab fa-google mr-1"></i>Login with Google</a>
-                    <a href="#" class="btnFacebook"><i class="fab fa-facebook-f mr-1"></i>Login with Facebook</a>
-                    <hr>
-                    <div>
-                        <p class="link_bottom"><a href="" class="text-center">Forgot Password?</a></p>
-                        <p class="link_bottom">Don't have an account?<a class="ml-1" href="#">Register</a></p>
-                    </div>
-                </form>
-            </div>
+        <div class="cont-right shadow-sm">
+            <h2 class="title">Đăng nhập</h2>
+            <form>
+                <input type="email" name="email" placeholder="Email..." />
+                <input type="password" name="password" placeholder="Mật khẩu"/>
+                <button class="btn-login">Đăng nhập</button>
+                <hr>
+                <a href="#" class="btnGoogle"><i class="fab fa-google mr-1"></i>Đăng nhập với Google</a>
+                <a href="#" class="btnFacebook"><i class="fab fa-facebook-f mr-1"></i>Đăng nhập với Facebook</a>
+                <hr>
+                <div>
+                    <p class="link_bottom"><a href="" class="text-center">Quên mật khẩu?</a></p>
+                    <p class="link_bottom">Bạn chưa có tài khoản?<a class="ml-1" href="/account/register">Đăng ký</a></p>
+                </div>
+            </form>
         </div>
     </div>
 </body>
