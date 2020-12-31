@@ -47,6 +47,13 @@ class AccountController {
             layout: false,
         });
     }
+
+    // [GET] account/resetpassword
+    resetPassword(req, res) {
+        res.render('vwAccount/resetpassword', {
+            layout: false,
+        });
+    }
 }
 
 module.exports = new AccountController();

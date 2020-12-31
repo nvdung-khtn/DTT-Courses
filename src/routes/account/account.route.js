@@ -8,5 +8,6 @@ router.get('/register', accountController.getRegister);
 router.post('/register', accountController.postRegister);
 router.get('/confirm', accountController.confirmRegister);
 router.get('/forgotpassword', accountController.forgotPassword);
+router.get('/resetpassword', accountController.resetPassword);
 
 module.exports = router;
