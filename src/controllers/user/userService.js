@@ -2,33 +2,21 @@
 
 module.exports = {
 
-    convertStatusToStatusString(users) {
-        users.forEach(user => {
+    convertStatusToStatusStringUsers(users) {
+        return users.forEach(user => {
             const stringStatus = user.status === true ? "Đã kích hoạt" : "Vô hiệu hóa";
             user.stringStatus = stringStatus;
         });
-
-        return users;
     },
 
-    getInforLecturer(users) {
-        var lecturers = [];
-        for (var i in users) {
-            if (users[i].permission === 1) {
-                lecturers.push(users[i])
-            }
-        }
-        return lecturers;
+    convertStatusToStatusStringUser(user) {
+        const stringStatus = user.status === true ? "Đã kích hoạt" : "Vô hiệu hóa";
+        user.stringStatus = stringStatus;
     },
 
-    getInforStudent(users) {
-        var students = [];
-        for (var i in users) {
-            if (users[i].permission === 2) {
-                students.push(users[i])
-            }
-        }
-        return students
+    convertStatusToStatusBool(stringStatus) {
+        const status = stringStatus === "Đã kích hoạt" ? 1 : 0;
+        return status;
     },
 
     getInfoTotalCourse(user) {

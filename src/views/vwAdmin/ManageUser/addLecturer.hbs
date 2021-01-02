@@ -9,25 +9,22 @@
 <script>
     $('.sidebar-nav-item .dashboard').removeClass('active');
     $('.sidebar-nav-item .lecturer-management').addClass('active');
-    flatpickr('#dob', {dateFormat: 'd-m-Y'});
+    flatpickr('#createAt, #dob', {dateFormat: 'd-m-Y'});
 
-    if ($('#status option:nth-child(1)').val() === 'false'){
-        $('#status option:nth-child(2)').val('true');
-        $('#status option:nth-child(2)').text('Đã kích hoạt')
-        console.log($('#status option:nth-child(2)').val())
-    }
 </script>
 
 <script>
     document.addEventListener("DOMContentLoaded", function () {
             Validator({
-                form: "#edit-lecturer",
+                form: "#add-lecturer",
                 formGroupSelector: ".form-group",
                 errorSelector: ".form-message",
                 rules: [
                     Validator.isRequired("#name", "Tên giảng viên còn trống"),
                     Validator.isEmail("#email", "Email không hợp lệ"),
+                    Validator.minLength("#password", 6, "Mật khẩu phải hơn 6 kí tự"),
                     Validator.isRequired("#phone", "Số điện thoại còn trống"),
+                    Validator.isRequired("#dob", "Ngày sinh còn trống"),
                     Validator.isRequired("#address", "Địa chỉ còn trống"),
                     ]
             });
@@ -40,64 +37,52 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h3>Thông Tin Giảng viên</h3>					
+                    <h3>Thêm Giảng viên</h3>					
                 </div>
                 <div class="card-content">
-                    <form id="edit-lecturer" method="POST">
+                    <form id="add-lecturer" method="POST">
                         <div class="modal-body">
 
                             <div class="form-group">
-                                <label for="id">ID</label>
-                                <input type="text" class="form-control unable" id="id" name="id" value="{{this.lecturer._id}}" readonly="true">
-                                <span class="form-message"></span><span class="message-clone">0</span>
-                            </div>
-
-                            <div class="form-group">
                                 <label for="name">Họ tên</label>
-                                <input type="text" class="form-control" id="name" name="name" value="{{this.lecturer.name}}">
+                                <input type="text" class="form-control" id="name" name="name" value="" placeholder="Họ tên . . .">
                                 <span class="form-message"></span><span class="message-clone">0</span>
                             </div>
 
                             <div class="form-group">
                                 <label for="email">Email</label>
-                                <input type="email" class="form-control" id="email" name="email" value="{{this.lecturer.email}}">
+                                <input type="text" class="form-control" id="email" name="email" value="" placeholder="Email . . .">
+                                <span class="form-message"></span><span class="message-clone">0</span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input type="text" class="form-control" id="password" name="password" value="" placeholder="Mật khẩu . . .">
                                 <span class="form-message"></span><span class="message-clone">0</span>
                             </div>
 
                             <div class="form-group">
                                 <label for="dob">Ngày sinh</label>
-                                <input type="text" class="form-control" id="dob" name="dob" value="{{this.lecturer.dob}}" >
+                                <input type="text" class="form-control" id="dob" name="dob" value="" placeholder="Ngày sinh . . .">
                                 <span class="form-message"></span><span class="message-clone">0</span>
                             </div>
                            
                             <div class="form-group">
                                 <label for="phone">Số điện thoại</label>
-                                <input type="text" class="form-control" id="phone" name="phone" value="{{this.lecturer.phone}}">
+                                <input type="text" class="form-control" id="phone" name="phone" value="" placeholder="Số điện thoại . . .">
                                 <span class="form-message"></span><span class="message-clone">0</span>
                             </div>
 
                             <div class="form-group">
                                 <label for="address">Địa chỉ</label>
-                                <textarea class="form-control" id="address" name="address" >{{this.lecturer.address}}</textarea>
+                                <textarea class="form-control" id="address" name="address" placeholder="Địa chỉ . . ."></textarea>
                                 <span class="form-message"></span><span class="message-clone">0</span>
                             </div>	
 
                             <div class="form-group">
-                                <label for="createAt">Ngày đăng ký</label>
-                                <input type="text" class="form-control unable" id="createAt" name="createAt" value="{{this.lecturer.createdAt}}" disabled>
-                                <span class="form-message"></span><span class="message-clone">0</span>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="join">Số khóa học đã đăng</label>
-                                <input type="text" class="form-control unable" id="join" name="join" value="{{this.lecturer.totalCourse}}" disabled>
-                                <span class="form-message"></span><span class="message-clone">0</span>
-                            </div>
-
-                            <div class="form-group">
                                 <label for="status">Trạng thái</label>
                                 <select name="status" id="status" class="form-control">
-                                    <option value="{{this.lecturer.status}}">{{this.lecturer.stringStatus}}</option>
+                                    <option value="true">Đã kích hoạt</option>
                                     <option value="false">Vô hiệu hóa</option>
                                 </select>
                                 <span class="form-message"></span><span class="message-clone">0</span>
@@ -106,7 +91,7 @@
                         </div>
                         <div class="modal-footer">
                             <a href="/admin/lecturer"><input type="button" class="btn back" value="Quay lại"></a>
-                            <input type="submit" class="btn update" value="Cập nhật">
+                            <input type="submit" class="btn add" value="Thêm">
                         </div>
                     </form>
             </div>

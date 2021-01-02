@@ -5,8 +5,11 @@
 
 {{#section 'js'}}
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="/javascript/validator.js"></script>
+
 <script>
     $('.sidebar-nav-item .dashboard').removeClass('active');
+    $('.sidebar-nav-item .product-management').addClass('active');
     flatpickr("#createAt, #updateAt", {dateFormat: 'd-m-Y'});
 
     document.addEventListener("DOMContentLoaded", function () {
@@ -19,14 +22,8 @@
 					Validator.isRequired("#category", "Danh mục sản phẩm còn trống"),
                     Validator.isRequired("#tinyDes", "Product name invalid"),
 					Validator.isRequired("#price", "Price invalid"),
-					Validator.isRequired("#lecturer", "Lecturer invalid"),
-                    Validator.isConfirmed(
-                        function () {
-                            return document.querySelector("#editProduct").value;
-                        },
-                    ),
-                ],
-                onSubmit: function (data) {
+					Validator.isRequired("#lecturer", "Lecturer invalid"), ],
+                    onSubmit: function (data) {
                     // Call API
                     console.log(data);
                 },
@@ -34,6 +31,8 @@
         });
 
 </script>
+
+
 {{/section}}
 
 <div class="wrapper">
@@ -60,8 +59,16 @@
                             </div>
 
                             <div class="form-group">
+                                <label for="field">Lĩnh vực</label>
+                                <input type="text" class="form-control" id="field" name="field" value="{{this.course.fieldName}}">
+                                <span class="form-message"></span><span class="message-clone">0</span>
+                            </div>
+
+                            <div class="form-group">
                                 <label for="category">Danh mục</label>
-                                <input type="text" class="form-control" id="category" name="category" value="{{this.course.catName}}">
+                                <select class="form-control" id="category" name="category">
+                                    
+                                </select>
                                 <span class="form-message"></span><span class="message-clone">0</span>
                             </div>
  

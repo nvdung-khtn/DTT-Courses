@@ -1,5 +1,4 @@
 {{#section 'css'}}
-<link rel="stylesheet" href="/css/admin/qlsp.css">
 {{/section}}
 
 {{#section 'js'}}
@@ -45,6 +44,9 @@
 						<h3>
 							Quản lý Giảng viên
 						</h3>
+						<div class="btn-add">										
+							<a href="/admin/lecturer/add" class="add"><i class="material-icons" title="Add">person_add_alt_1</i></a>
+						</div>
 	
 					</div>
 					<div class="card-content">
@@ -60,7 +62,7 @@
 								</tr>
 							</thead>
 							<tbody>
-								{{#each users}}
+								{{#each lecturers}}
 								<tr>
 									<td>{{_id}}</td>
 									<td>{{name}}</td>
