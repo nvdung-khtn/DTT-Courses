@@ -40,8 +40,8 @@
 	resize: vertical;
 }
 
-.form-control:disabled {
-    background-color: rgb(231, 231, 231);
+.unable {
+    background-color: rgb(231, 231, 231) !important;
 }
 
 .form-group {
@@ -96,6 +96,10 @@ input.btn.update {
 
 input.btn.delete {
     background-color: #d9534f;
+}
+
+input.btn.add {
+    background-color: #5bc0de;
 }
 
 

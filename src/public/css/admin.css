@@ -552,6 +552,20 @@ table td .edit i:hover {
 	color: #44d444;
 }
 
+.btn-add {
+	background-color: #5bc0de;
+	font-weight: 400;
+	color: var(--white-color);
+	border: 1px solid transparent;
+	padding: .375rem .75rem;
+	cursor: pointer;
+	border-radius: .25rem;
+	transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+.add {
+	color: #fff;
+}
+
 .material-icons {
 	text-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 }

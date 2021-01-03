@@ -1,5 +1,4 @@
-
-{{#section 'css'}}  
+{{#section 'css'}}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.1.3/css/fileinput.min.css">
 <link rel="stylesheet" href="/css/lecturer/createCourse.css">
 {{/section}}
@@ -8,6 +7,7 @@
     referrerpolicy="origin"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.1.3/js/fileinput.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.1.3/themes/fa/theme.min.js"></script>
+<script src="/javascript/validator.js"></script>
 <script>
     tinymce.init({
         selector: '#fullDes',
@@ -19,18 +19,43 @@
         ],
     });
 
-    $('#videoPath').fileinput({
+    $('#avatar').fileinput({
         theme: 'fa',
         dropZoneEnabled: false,  //Khung để kéo thả bự bự
-        allowedFileExtensions: ['mp4'],  //chỉ cho phép upload các định dạng sau
-    });
-
-    $('#imgPath').fileinput({
-        theme: 'fa',
-        dropZoneEnabled: false,
         allowedFileExtensions: ['png', 'jpg', 'gif']
     });
 
+    $('#introVideo').fileinput({
+        theme: 'fa',
+        dropZoneEnabled: false,
+        allowedFileExtensions: ['mp4']  //chỉ cho phép upload các định dạng sau
+    });
+
+</script>
+
+{{!-- Validate form --}}
+<script>
+    Validator({
+        form: '#frmMain',
+        formGroupSelector: '.form-group',
+        errorSelector: '.form-message',
+        rules: [
+            Validator.isRequired("#name", "Vui lòng nhập tên khóa học."),
+            Validator.isRequired("#initialPrice", "Vui lòng nhập học phí."),
+            Validator.isRequired("#tinyDes", "Vui lòng nhập mô tả ngắn học về khóa học"),
+            Validator.isRequired("#fullDes", "Vui lòng nhập chi tiết nội dung của khóa học."),
+            Validator.isRequired("#avatar", "Vui lòng chọn ảnh đại diện cho khóa học."),
+            Validator.isRequired("#introVideo", "Vui lòng chọn video giới thiệu khóa học."),
+            Validator.ischecked("#fieldId",
+                function () {
+                    return document.querySelector("#frmMain #fieldId").value;
+                },
+                "Vui lòng chọn lĩnh vực của khóa học.")
+        ],
+        onSubmit: function (data) {
+            console.log(data);
+        }
+    })
 </script>
 {{/section}}
 
@@ -40,7 +65,7 @@
         <h1>Quản lý khóa học</h1>
     </div><!-- /.page-title -->
 
-    <div class="background-white p20 mb30">
+    <div class="background-white p-3 mb30">
         <ul class="nav nav-tabs">
             <li class="nav-item">
                 <a class="nav-link my-course" href="/lecturer/courses">Khóa học của tôi</a>
@@ -53,54 +78,68 @@
             </li>
         </ul>
 
-        <div class="row">
-            <form id="frmMain" method="POST" action="/lecturer/courses/store" enctype="multipart/form-data">
+        <form id="frmMain" method="POST" action="/lecturer/courses/store" enctype="multipart/form-data">
+            <div class="row">
                 <div class="form-group col-sm-6">
                     <label for="name">Tên khóa học</label>
-                    <input type="text" class="form-control" id="name" name="name" placeholder="Ten khoa hoc">
+                    <input type="text" class="form-control" id="name" name="name"
+                        placeholder="Vd: Lập trình web với PHP">
+                    <span class="form-message"></span>
                 </div>
 
                 <div class="form-group col-sm-6">
-                    <label for="fieldName">Danh muc</label>
-                    <input type="text" class="form-control" id="fieldName" name="fieldName" placeholder="Danh muc">
+                    <label for="fieldId">Lĩnh vực</label>
+                    <select name="fieldId" id="fieldId" class="form-control">
+                        <option value="0">Chọn lĩnh vực</option>
+                        {{#each fields}}
+                        <option value="{{_id}}">{{name}}</option>
+                        {{/each}}
+                    </select>
+                    <span class="form-message"></span>
                 </div>
 
                 <div class="form-group col-sm-6">
-                    <label for="tinyDes">Mo ta khoa hoc</label>
+                    <label for="initialPrice">Học phí</label>
+                    <input type="number" class="form-control" id="initialPrice" name="initialPrice"
+                        placeholder="Vd: 1.000.000">
+                    <span class="form-message"></span>
+                </div>
+
+                <div class="form-group col-sm-6">
+                    <label for="currentPrice">Giá khuyến mãi (nếu có)</label>
+                    <input type="number" class="form-control" id="currentPrice" name="currentPrice"
+                        placeholder="Vd: 900.000">
+                </div>
+
+                <div class="form-group col-sm-6">
+                    <label for="avatar">Ảnh đại diện</label>
+                    <input type="file" class="file" id="avatar" name="avatar" placeholder="Chọn ảnh">
+                    <span class="form-message"></span>
+                </div>
+
+                <div class="form-group col-sm-6">
+                    <label for="introVideo">Video giới thiệu khóa học</label>
+                    <input type="file" class="file" id="introVideo" name="introVideo" placeholder="Chọn video">
+                    <span class="form-message"></span>
+                </div>
+
+                <div class="form-group col-sm-6">
+                    <label for="tinyDes">Mô tả ngắn gọn nội dung</label>
                     <input type="text" class="form-control" id="tinyDes" name="tinyDes"
-                        placeholder="Mo ta khoa hoc">
+                        placeholder="Mô tả ngắn gọn....">
+                    <span class="form-message"></span>
                 </div>
 
                 <div class="form-group col-sm-12">
-                    <label for="fullDes">Mo ta chi tiet</label>
-                    <textarea class="form-control" name="fullDes" id="fullDes" cols="10" rows="10"></textarea>
+                    <label for="fullDes">Mô tả chi tiết nội dung</label>
+                    <textarea class="form-control" name="fullDes" id="fullDes" cols="10" rows="10"
+                        placeholder="Mô tả chi tiết...."></textarea>
+                    <span class="form-message"></span>
                 </div>
 
-                <div class="form-group col-sm-6">
-                    <label for="initialPrice">Hoc phi</label>
-                    <input type="number" class="form-control" id="initialPrice" name="initialPrice"
-                        placeholder="Hoc phi">
-                </div>
-
-                <div class="form-group col-sm-6">
-                    <label for="currentPrice">Gia khuyen mai</label>
-                    <input type="number" class="form-control" id="currentPrice" name="currentPrice"
-                        placeholder="Gia khuyen mai">
-                </div>
-
-                <div class="form-group col-sm-6">
-                    <label for="videoPath">Upload Video</label>
-                    <input type="file" class="file" id="videoPath" name="videoPath" placeholder="Upload file">
-                </div>
-
-                <div class="form-group col-sm-6">
-                    <label for="imgPath">Upload Image</label>
-                    <input type="file" class="file" id="imgPath" name="imgPath" multiple>
-                </div>
-
-                <button type="submit" class="btn btn-success" id="btnSubmit">Add course</button>
-            </form>
-        </div>
+                <button type="submit" class="btn btn-success" id="btnSubmit">Tạo khóa học</button>
+            </div>
+        </form>
     </div>
 </div>
 

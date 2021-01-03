@@ -8,32 +8,8 @@
 <script>
 		$('.sidebar-nav-item .dashboard').removeClass('active');
 		$('.sidebar-nav-item .student-management').addClass('active');
-
-		    document.addEventListener("DOMContentLoaded", function () {
-            Validator({
-                form: "#edit-student",
-                formGroupSelector: ".form-group",
-                errorSelector: ".form-message",
-                rules: [
-					Validator.isRequired("#username", "Username invalid"),
-                    Validator.isRequired("#name", "Student name invalid"),
-					Validator.isRequired("#password", "Password invalid"),
-                    Validator.isEmail("#email", "Email invalid"),
-                    Validator.isRequired("#sdt", "Phone number invalid"),
-                    Validator.isRequired("#address", "Address invalid"),
-                    Validator.isConfirmed(
-                        function () {
-                            return document.querySelector("#edit-student").value;
-                        },
-                    ),
-                ],
-                onSubmit: function (data) {
-                    // Call API
-                    console.log(data);
-                },
-            });
-        });
 </script>
+
 {{/section}}
 
 
@@ -61,7 +37,7 @@
 							</thead>
 							<tbody>
 
-								{{#each users}}
+								{{#each students}}
 								<tr>
 									<td>{{_id}}</td>
 									<td>{{name}}</td>
@@ -70,7 +46,7 @@
 									<td>{{stringStatus}}</td>
 									<td>
 										<a href="/admin/student/edit/{{_id}}" class="edit"><i class="material-icons" title="Edit">&#xE254;</i></a>
-										<a href="" class="delete"><i class="material-icons" title="Delete">&#xE872;</i></a>
+										<a href="/admin/student/delete/{{_id}}" class="delete"><i class="material-icons" title="Delete">&#xE872;</i></a>
 									</td>
 								</tr>
 
