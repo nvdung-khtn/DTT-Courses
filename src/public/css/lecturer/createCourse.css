@@ -1,35 +1,57 @@
 #frmMain {
-    width: 100%;
-    margin-top: -5px;
+  width: 100%;
+  margin-top: -5px;
 }
 
 #frmMain label {
-    font-size: 1.5rem;
-    color: var(--text-color);
-    font-weight: 500;
+  font-size: 1.5rem;
+  color: var(--text-color);
+  font-weight: 500;
 }
 
 .form-group.col-sm-6 {
-    padding-left: 2rem;
-    margin-bottom: 1.6rem
+  padding-left: 2rem;
+  margin-bottom: 1.6rem;
 }
 
 .form-group .form-control {
-    padding: 4px 8px;
-    font-size: 1.4rem;
+  padding: 4px 8px;
+  font-size: 1.4rem;
 }
 
 #btnSubmit {
-    background-color: var(--primary-color);
-    color: #FFF;
-    margin: 14px 0 0 14px;
-    line-height: 14px;
-    padding: 6px 12px;
-    border-radius: 5px;
-    font-size: 1.6rem;
+  background-color: var(--primary-color);
+  color: #fff;
+  margin: 14px 0 0 14px;
+  line-height: 14px;
+  padding: 6px 12px 8px 12px;
+  border-radius: 5px;
+  font-size: 1.6rem;
 }
 
 #btnSubmit:hover {
-    background-color: var(--primary-color-hover);
+  background-color: var(--primary-color-hover);
+}
+
+.form-group:active {
+    outline: none;
     
+}
+
+.form-control:hover {
+    border-color: var(--primary-color);
+}
+
+.form-group.invalid .form-control {
+  border-color: #f33a58;
+}
+
+.form-group.invalid .form-message {
+  color: #f33a58;
+}
+
+.form-message {
+  font-size: 1.2rem;
+  line-height: 1.6rem;
+  padding: 4px 0 0;
 }

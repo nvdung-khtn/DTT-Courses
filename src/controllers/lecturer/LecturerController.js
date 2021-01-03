@@ -1,7 +1,9 @@
 const multer = require('multer');
 const fs = require('fs');
-const path = require('path'); 
+const path = require('path');
+const mongoose = require('mongoose');
 const Course = require('../../models/Course');
+const Field = require('../../models/Field');
 const courseService = require('../course/courseService');
 const { mongooseToObject, multipleMongooseToObject } = require('../../utils/mongoose');
 
@@ -29,9 +31,17 @@ class LecturerController {
 
     // [GET] lecturer/course/create
     create(req, res, next) {
-        res.render('vwLecturer/createCourse', {
-            layout: 'lecturer',
-        });
+        // fake userId
+        const userId = mongoose.Types.ObjectId('5fdb468941c10b2570a7cd35');
+        Field.find()
+            .then(fieldsDB => {
+                res.render('vwLecturer/createCourse', {
+                    layout: 'lecturer',
+                    userId,
+                    fields: multipleMongooseToObject(fieldsDB)
+                });
+            })
+            .catch(next)
     }
 
     // [POST] lecturer/course/store
@@ -46,7 +56,7 @@ class LecturerController {
             if (err) { 
                 return console.error(err); 
             }
-            console.log('Directory created successfully!'); 
+            console.log('Tạo thư mục thành công.'); 
         });
         fs.mkdir(path.join(`${folderAddress}`, 'videos'), err => next);
         fs.mkdir(path.join(`${folderAddress}`, 'images'), err => next);
@@ -86,16 +96,26 @@ class LecturerController {
                 folderAddress,
                 avatar,
                 introVideo,
+                rating: 0,
+                totalRating: 0,
+                view: 0,
+                students: [],
+                lecId: "fake", //lấy trong session
+                nIndex: 0,
+                status: false,
             };
 
             if (err) {
                 next(err);
             } else {
-                console.log('Upload Image success');
+                console.log('Tạo khóa học thành công.');
                 const course = new Course(formData);
                 course
                     .save()
-                    .then(() => res.redirect('/lecturer/courses'))
+                    .then(() => {
+                        
+                        res.redirect('/lecturer/courses');
+                    })
                     .catch(error => {});
             }
         });

@@ -1,5 +1,4 @@
-
-{{#section 'css'}}  
+{{#section 'css'}}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.1.3/css/fileinput.min.css">
 <link rel="stylesheet" href="/css/lecturer/createCourse.css">
 {{/section}}
@@ -8,6 +7,7 @@
     referrerpolicy="origin"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.1.3/js/fileinput.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.1.3/themes/fa/theme.min.js"></script>
+<script src="/javascript/validator.js"></script>
 <script>
     tinymce.init({
         selector: '#fullDes',
@@ -31,6 +31,31 @@
         allowedFileExtensions: ['mp4']  //chỉ cho phép upload các định dạng sau
     });
 
+</script>
+
+{{!-- Validate form --}}
+<script>
+    Validator({
+        form: '#frmMain',
+        formGroupSelector: '.form-group',
+        errorSelector: '.form-message',
+        rules: [
+            Validator.isRequired("#name", "Vui lòng nhập tên khóa học."),
+            Validator.isRequired("#initialPrice", "Vui lòng nhập học phí."),
+            Validator.isRequired("#tinyDes", "Vui lòng nhập mô tả ngắn học về khóa học"),
+            Validator.isRequired("#fullDes", "Vui lòng nhập chi tiết nội dung của khóa học."),
+            Validator.isRequired("#avatar", "Vui lòng chọn ảnh đại diện cho khóa học."),
+            Validator.isRequired("#introVideo", "Vui lòng chọn video giới thiệu khóa học."),
+            Validator.ischecked("#fieldId",
+                function () {
+                    return document.querySelector("#frmMain #fieldId").value;
+                },
+                "Vui lòng chọn lĩnh vực của khóa học.")
+        ],
+        onSubmit: function (data) {
+            console.log(data);
+        }
+    })
 </script>
 {{/section}}
 
@@ -57,23 +82,27 @@
             <div class="row">
                 <div class="form-group col-sm-6">
                     <label for="name">Tên khóa học</label>
-                    <input type="text" class="form-control" id="name" name="name" placeholder="Vd: Lập trình web với PHP">
+                    <input type="text" class="form-control" id="name" name="name"
+                        placeholder="Vd: Lập trình web với PHP">
+                    <span class="form-message"></span>
                 </div>
 
                 <div class="form-group col-sm-6">
-                    <label for="fieldName">Lĩnh vực</label>
-                    <select name="fieldName" id="fieldName" class="form-control">
-                        <option value="volvo">Volvo</option>
-                        <option value="saab">Saab</option>
-                        <option value="opel">Opel</option>
-                        <option value="audi">Audi</option>
+                    <label for="fieldId">Lĩnh vực</label>
+                    <select name="fieldId" id="fieldId" class="form-control">
+                        <option value="0">Chọn lĩnh vực</option>
+                        {{#each fields}}
+                        <option value="{{_id}}">{{name}}</option>
+                        {{/each}}
                     </select>
+                    <span class="form-message"></span>
                 </div>
 
                 <div class="form-group col-sm-6">
                     <label for="initialPrice">Học phí</label>
                     <input type="number" class="form-control" id="initialPrice" name="initialPrice"
                         placeholder="Vd: 1.000.000">
+                    <span class="form-message"></span>
                 </div>
 
                 <div class="form-group col-sm-6">
@@ -85,22 +114,27 @@
                 <div class="form-group col-sm-6">
                     <label for="avatar">Ảnh đại diện</label>
                     <input type="file" class="file" id="avatar" name="avatar" placeholder="Chọn ảnh">
+                    <span class="form-message"></span>
                 </div>
 
                 <div class="form-group col-sm-6">
                     <label for="introVideo">Video giới thiệu khóa học</label>
                     <input type="file" class="file" id="introVideo" name="introVideo" placeholder="Chọn video">
+                    <span class="form-message"></span>
                 </div>
 
                 <div class="form-group col-sm-6">
                     <label for="tinyDes">Mô tả ngắn gọn nội dung</label>
                     <input type="text" class="form-control" id="tinyDes" name="tinyDes"
                         placeholder="Mô tả ngắn gọn....">
+                    <span class="form-message"></span>
                 </div>
 
                 <div class="form-group col-sm-12">
                     <label for="fullDes">Mô tả chi tiết nội dung</label>
-                    <textarea class="form-control" name="fullDes" id="fullDes" cols="10" rows="10" placeholder="Mô tả chi tiết...."></textarea>
+                    <textarea class="form-control" name="fullDes" id="fullDes" cols="10" rows="10"
+                        placeholder="Mô tả chi tiết...."></textarea>
+                    <span class="form-message"></span>
                 </div>
 
                 <button type="submit" class="btn btn-success" id="btnSubmit">Tạo khóa học</button>
