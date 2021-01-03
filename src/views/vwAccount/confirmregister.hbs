@@ -18,21 +18,24 @@
             <p class="title">Vui lòng nhập mã xác minh gồm 6 chữ số đã được gửi qua Email:</p>
             <p class="decrip">(Chúng tôi muốn xác minh rằng địa chỉ email đã đăng ký là của bạn)</p>
           </div>
+          <form action="/account/confirm" method="POST" id="formOtp">
+            <div class="userInput">
+              <input type="text" id="zero" name="zero" onfocus="this.value=''" maxlength="1" onkeyup="InputOTP(this, 'first')" autofocus>
+              <input type="text" id="first" name="first" onfocus="this.value=''" maxlength="1" onkeyup="InputOTP(this, 'second')">
+              <input type="text" id="second" name="second" onfocus="this.value=''" maxlength="1" onkeyup="InputOTP(this, 'third')">
+              <input type="text" id="third" name="third" onfocus="this.value=''" maxlength="1" onkeyup="InputOTP(this, 'four')">
+              <input type="text" id="four" name="four" onfocus="this.value=''" maxlength="1" onkeyup="InputOTP(this, 'fifth')">
+              <input type="text" id="fifth" name="fifth" onfocus="this.value=''" maxlength="1" onkeyup="checkOTP()">
+            </div>
+            <div class="timer">
+              <p class="txtTimer">Mã OTP sẽ hết hạn sau <span class="spTimer">00:15</span> giây </p>
+            </div>
+          </form>
           
-          <div class="userInput">
-            <input type="text" id="zero" onfocus="this.value=''" maxlength="1" onkeyup="InputOTP(this, 'first')" autofocus>
-            <input type="text" id="first" onfocus="this.value=''" maxlength="1" onkeyup="InputOTP(this, 'second')">
-            <input type="text" id="second" onfocus="this.value=''" maxlength="1" onkeyup="InputOTP(this, 'third')">
-            <input type="text" id="third" onfocus="this.value=''" maxlength="1" onkeyup="InputOTP(this, 'four')">
-            <input type="text" id="four" onfocus="this.value=''" maxlength="1" onkeyup="InputOTP(this, 'fifth')">
-            <input type="text" id="fifth" onfocus="this.value=''" maxlength="1" onkeyup="checkOTP()">
-          </div>
-          <div class="timer">
-            <p class="txtTimer">Mã OTP sẽ hết hạn sau <span class="spTimer">00:15</span> giây </p>
-          </div>
+          
           <div class="btnfooter">
             <p class="txtResendOTP">Bạn chưa nhận được OTP?</p>
-            <span class="linkResendOTP">Gửi lại OTP</span>
+            <a href="/account/confirm" class="linkResendOTP">Gửi lại OTP</a>
           </div>
         </div>
       </div>
@@ -43,15 +46,10 @@
         document.getElementById(last).focus();
       }
     }
+    
     function checkOTP(){
-      var arrinp = document.getElementsByTagName('input');
-      var result = '';
-      for (let i = 0; i < arrinp.length; i++) {
-        result += arrinp[i].value;
-        arrinp[i].value = '';
-      }
+      document.getElementById('formOtp').submit();
       document.getElementById('zero').focus();
-      alert(result);
     }
   </script>
 </body>

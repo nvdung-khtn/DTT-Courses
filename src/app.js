@@ -4,7 +4,7 @@ const handlebars = require('express-handlebars');
 const path = require('path');
 const numeral = require('numeral');
 const hbs_sections = require('express-handlebars-sections');
-
+const session = require('express-session');
 const route = require('./routes/index');
 const db = require('./config/db');
 require('express-async-errors');
@@ -44,8 +44,30 @@ app.engine(
 app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, 'views'));
 
+
+app.set('trust proxy', 1) // trust first proxy
+app.use(session({
+  secret: 'SECKET_KEY',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { 
+      //secure: true 
+    }
+}))
+
+
+app.use((req, res, next)=>{
+    if(req.session.isAuth === null ){
+        req.session.isAuth = false;
+    }
+    res.locals.isAuth = req.session.isAuth;
+    res.locals.authUser = req.session.authUser;
+    next();
+})
+
 // Routes initialization
 route(app);
+
 
 app.use(function (req, res) {
     res.render('vwErrors/404', {

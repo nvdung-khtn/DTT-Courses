@@ -117,13 +117,33 @@
                     </div>
 
                 </div>
+                <form action="/account/logout" method="POST" id="frmLogout"></form>
+                {{#if isAuth}}
 
-                <div class="header__button-group">
-                    <button type="button" class="btn btn-light btn-type-one myBtn">Blog</button>
-                    <button type="button" class="btn btn-light btn-type-one myBtn">Liên hệ</button>
-                    <a name="" id="" class="btn btn-warning btn-type-two myBtn" href="/account/login" role="button">Đăng nhập</a>
-                    <a name="" id="" class="btn btn-success btn-type-two myBtn" href="/account/register" role="button">Đăng ký</a>
-                </div>
+                    <ul class="user-login">
+                        <li class="user">
+                            <img src="/image/login/avt.jpg" alt="avatar" class="avt">
+                            <b>{{authUser.name}}</b>
+                            <ul class="subuser">
+                                <li class="sub-menu-choose"><a href="./managerinfor.html" class="link"><i class="fas fa-cog mr-2"></i>Quản lý tài khoản</a></li>
+                                <li class="sub-menu-choose"><a href="./mycourse.html" class="link"><i class="fas fa-list mr-2"></i>Khóa học của tôi</a></li>
+                                <li class="sub-menu-choose"><a href="./favorcourse.html" class="link"><i class="fas fa-clipboard-list mr-2"></i>Khóa học yêu thích</a></li>
+                                <li class="sub-menu-choose"><a href="./changepassword.html" class="link"><i class="fas fa-key mr-2"></i></i>Đổi mật khẩu</a></li>
+                                <li class="sub-menu-choose"><a href="javascript: $('#frmLogout').submit();" class="link">
+                                    <i class="fas fa-sign-out-alt mr-2"></i>Đăng xuất</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                {{else}}
+                    <div class="header__button-group">
+                        <button type="button" class="btn btn-light btn-type-one myBtn">Blog</button>
+                        <button type="button" class="btn btn-light btn-type-one myBtn">Liên hệ</button>
+                        <a name="" id="" class="btn btn-warning btn-type-two myBtn" href="/account/login" role="button">Đăng nhập</a>
+                        <a name="" id="" class="btn btn-success btn-type-two myBtn" href="/account/register" role="button">Đăng ký</a>
+                    </div>
+                {{/if}}
+                
             </div>
         </div>
     </div>
