@@ -1,5 +1,9 @@
 const multer = require('multer');
+const fs = require('fs');
+const path = require('path');
+const mongoose = require('mongoose');
 const Course = require('../../models/Course');
+const Field = require('../../models/Field');
 const courseService = require('../course/courseService');
 const { mongooseToObject, multipleMongooseToObject } = require('../../utils/mongoose');
 
@@ -27,43 +31,91 @@ class LecturerController {
 
     // [GET] lecturer/course/create
     create(req, res, next) {
-        res.render('vwLecturer/createCourse', {
-            layout: 'lecturer',
-        });
+        // fake userId
+        const userId = mongoose.Types.ObjectId('5fdb468941c10b2570a7cd35');
+        Field.find()
+            .then(fieldsDB => {
+                res.render('vwLecturer/createCourse', {
+                    layout: 'lecturer',
+                    userId,
+                    fields: multipleMongooseToObject(fieldsDB)
+                });
+            })
+            .catch(next)
     }
 
     // [POST] lecturer/course/store
     store(req, res, next) {
         let formData;
-        let imgPath, videoPath;
+        let avatar, introVideo;
+        const folderName = (Date.now() + Math.floor(Math.random() * 1000)).toString();
+        const folderAddress = `./src/public/products/${folderName}`
 
+        // Create folder to save new course.
+        fs.mkdir(path.join('./src/public/products/', folderName), (err) => { 
+            if (err) { 
+                return console.error(err); 
+            }
+            console.log('Tạo thư mục thành công.'); 
+        });
+        fs.mkdir(path.join(`${folderAddress}`, 'videos'), err => next);
+        fs.mkdir(path.join(`${folderAddress}`, 'images'), err => next);
+
+        // Handle upload file
         const storage = multer.diskStorage({
             destination: function (req, file, callback) {
-                console.log('file: ', file);
-                callback(null, './src/public/image/products/');
+                if(file.fieldname === 'avatar') {
+                    callback(null, `${folderAddress}/images`);
+                } else {
+                    callback(null, `${folderAddress}/videos`); //save video
+                }
             },
             filename: function (req, file, callback) {
-                imgPath = file.originalname;
+                if(file.fieldname === 'avatar') {
+                    avatar = file.originalname;
+                } else {
+                    introVideo = file.originalname;
+                }
                 callback(null, file.originalname);
             },
         });
+
         const upload = multer({ storage });
-        //upload.single('fuMain')(req, res, function (err) {
-        upload.array('imgPath', 5)(req, res, function (err) {
+        upload.fields([
+            {
+                name: 'avatar',
+                maxCount: 1
+            },
+            {
+                name: 'introVideo',
+                maxCount: 1
+            }
+        ])(req, res, function (err) {
             formData = {
                 ...req.body,
-                imgPath,
+                folderAddress,
+                avatar,
+                introVideo,
+                rating: 0,
+                totalRating: 0,
+                view: 0,
+                students: [],
+                lecId: "fake", //lấy trong session
+                nIndex: 0,
+                status: false,
             };
-            // console.log('form Data:', formData);  =>ok
 
             if (err) {
                 next(err);
             } else {
-                console.log('Upload Image success');
+                console.log('Tạo khóa học thành công.');
                 const course = new Course(formData);
                 course
                     .save()
-                    .then(() => res.redirect('/lecturer/courses'))
+                    .then(() => {
+                        
+                        res.redirect('/lecturer/courses');
+                    })
                     .catch(error => {});
             }
         });
