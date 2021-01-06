@@ -7,11 +7,12 @@ mongoose.plugin(slug);
 const Course = new Schema({
     name: String,
     slug: { type: String, slug: "name", unique: true },
-    videoId: String,  //videoPath
     rating: Number,
     tinyDes: String,
     totalRating: String,
-    imgPath: String,
+    folderAddress: String,
+    avatar: String,
+    introVideo: String,
     status: Boolean,
     view: Number,
     students: [mongoose.ObjectId],  // Định nghĩa mảng???

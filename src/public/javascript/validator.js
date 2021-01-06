@@ -174,3 +174,14 @@ Validator.isConfirmed = function (selector, getConfirmValue, message) {
         }
     }
 }
+
+Validator.ischecked = function (selector, getValue, message) {
+    console.log('getValue: ', getValue());
+    return {
+        selector: selector,
+        test: function (value) {
+            console.log('value:', value);
+            return getValue() !== '0' ? undefined : message || 'Vui lòng chọn trường này';
+        }
+    }
+}

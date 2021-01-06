@@ -59,6 +59,28 @@ module.exports = {
 
     
 
+    getListLectNameForCb(id, lecturers) {
+        var lecs = [];
+        for ( var i in lecturers) {
+            if (!lecturers[i]._id.equals(id)) {
+                lecs.push(lecturers[i]);
+            }
+        }
+        return lecs;
+    },
+
+    getCategoryName(course){
+        Field.findOne({_id: course.fieldId})
+            .then(fieldDB => {
+                let field = mongooseToObject(fieldDB);
+                Category.findOne({_id: field.catId})
+                    .then(categoryDB => {
+                        let category = mongooseToObject(categoryDB);
+                        course.catName = category.name;
+                    })
+            })
+            return course;
+    },
 
 
     async getInforCourse(course) {

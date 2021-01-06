@@ -9,7 +9,7 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(to right, #3caa63, #04ae50);
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAYAAACpSkzOAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+/AAAABZ0RVh0Q3JlYXRpb24gVGltZQAxMC8yOS8xMiKqq3kAAAAcdEVYdFNvZnR3YXJlAEFkb2JlIEZpcmV3b3JrcyBDUzVxteM2AAABHklEQVRIib2Vyw6EIAxFW5idr///Qx9sfG3pLEyJ3tAwi5EmBqRo7vHawiEEERHS6x7MTMxMVv6+z3tPMUYSkfTM/R0fEaG2bbMv+Gc4nZzn+dN4HAcREa3r+hi3bcuu68jLskhVIlW073tWaYlQ9+F9IpqmSfq+fwskhdO/AwmUTJXrOuaRQNeRkOd5lq7rXmS5InmERKoER/QMvUAPlZDHcZRhGN4CSeGY+aHMqgcks5RrHv/eeh455x5KrMq2yHQdibDO6ncG/KZWL7M8xDyS1/MIO0NJqdULLS81X6/X6aR0nqBSJcPeZnlZrzN477NKURn2Nus8sjzmEII0TfMiyxUuxphVWjpJkbx0btUnshRihVv70Bv8ItXq6Asoi/ZiCbU6YgAAAABJRU5ErkJggg==);
 }
 
 input {
@@ -19,7 +19,7 @@ input {
     border: 1px solid #999;
     font-size: 13px;
     padding: 0 1rem;
-    margin-top: 12px;
+    margin-top: 6px;
     transition: .3s;
     color: #777;
 }
@@ -30,46 +30,49 @@ input:focus {
     border: 1px solid #97aff0;
 }
 
+hr {
+    padding-top: 0;
+    margin-top: 0;
+}
+
 .container{
     overflow: hidden;
     position: relative;
-    width: 60%;
+    width: 35%;
     height: 85vh;
-    border-radius: .5rem;
 }
 
-.cont-left{
-    background: url("/image/login/background.jpg") no-repeat;
-    background-position: center;
-    background-size: cover;
-}
 .cont-right{
     background-color: #fff;
-    height: 100vh;
+    height: 85vh;
     padding: 20px 35px;
+    border: solid 1px #efefef;
+    border-radius: .5rem;
 }
 
 .title{
     text-align: center;
-    font-size: 1.6rem;
-    margin-top: 10px;
+    font-size: 1.8rem;
+    margin-bottom: 30px;
+    font-weight: bold;
+
 }
 
 .btn-login{
     width: 100%;
     height: 3rem;
     border-radius: 25px;
-    margin-top: 8px;
+    margin-top: 15px;
     border: none;
     outline: none;
     color: #fff;
-    font-size: 13px;
-    background: linear-gradient(to right, #4bd17a, #027234);
-    transition: 1s;
+    font-size: 15px;
+    background: rgb(81, 190, 120);
+    font-weight: bold;
 }
 
 .btn-login:hover{
-    background: linear-gradient(to right, #027234, #4bd17a);
+    background: rgb(81, 190, 120);
 }
 
 .btn-login:focus{
@@ -82,7 +85,7 @@ input:focus {
 }
 
 .form-message{
-    font-size: 13px;
+    font-size: 12px;
     margin-left: 10px;
     font-style: italic;
 }
@@ -93,11 +96,19 @@ input:focus {
 }
 
 .form-group.invalid input {
-    border-color: #f33a58;
+    border-color: red;
+    color: red;
 }
 
 .form-group.invalid .form-message {
-    color: #f33a58;
+    color: red;
 }
 
+
+.link_bottom{
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    font-size: 13px;
+}
 

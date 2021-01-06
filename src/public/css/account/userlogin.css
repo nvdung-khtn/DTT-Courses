@@ -1,0 +1,145 @@
+*{
+    padding: 0;
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+textarea:focus, input:focus{
+    outline: none;
+}
+
+.input-value{
+    width: 100%;
+    font-size: 1.8rem;
+    border-radius: 3px;
+    padding: 5px 10px;
+    border: solid 1px #fff;
+}
+
+li{
+    list-style: none;
+}
+
+.user-login{
+    margin-right: 3rem;
+    margin-left: 4rem;
+    cursor: pointer;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+.user-login:hover .subuser{
+    margin-top: 10px;
+    opacity: 1;
+    visibility: visible;
+}
+
+.user{
+    list-style: none;
+    position: relative;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.subuser{
+    position: absolute;
+    width: 200px;
+    background-color: #fff;
+    z-index: 2;
+    padding: 0 17px;
+    border: 1px solid #dedede;
+    border-radius: 3px;
+    margin-top: 40px;
+    transition: .5s;
+
+    opacity: 0;
+    visibility: hidden;
+}
+
+.sub-menu-choose{
+    list-style: none;
+    
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    font-size: 1rem;
+}
+
+.avt{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: .5rem;
+    border: 2px solid #000;
+}
+
+.link{
+    text-decoration: none;
+    color: #333;
+}
+
+.link:hover{
+    text-decoration: none;
+    color: rgb(81, 190, 120);
+}
+
+
+.content{
+    width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 1.7rem;
+}
+
+.content-small{
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+.big-title{
+    font-weight: bold;
+    font-size: 3.5rem;
+    text-align: center;
+    margin-top: 25px;
+    margin-bottom: 35px;
+}
+
+.btn-update{
+    text-align: center;
+    background-color:  rgb(81, 190, 120);
+    border-radius: 2px;
+    transition: .3s;
+}
+
+.btn-update i {
+    color: #fff;
+    
+}
+
+.btn-update:hover{
+    background-color: green;
+}
+
+.title{
+    font-size: 1.8rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+}
+
+
+
+.active{
+    border: solid 1px #dedede;
+}
+
+.bienmat{
+    display: none;
+}
+
+.password-unactive{
+    background-color: #efefef;
+    border: solid 1px #dedede;
+}
+
+.button-change{
+   font-size: 1.8rem;
+}
