@@ -1,5 +1,5 @@
 {{#section 'css'}}
-<link rel="stylesheet" href="/css/admin/qlsp.css">
+<link rel="stylesheet" href="/css/admin/manage.css">
 {{/section}}
 
 {{#section 'js'}}
@@ -8,56 +8,29 @@
 		$('.sidebar-nav-item .dashboard').removeClass('active');
 		$('.sidebar-nav-item .categories-management').addClass('active');
 
-		    document.addEventListener("DOMContentLoaded", function () {
-            Validator({
-                form: "#add-categories",
-                formGroupSelector: ".form-group",
-                errorSelector: ".form-message",
-                rules: [
-                    Validator.isRequired("#name", "Category name invalid"),
-                    Validator.isRequired("#id", "ID invalid"),
-					Validator.isRequired("#count-course", "Count course invalid"),
-                    Validator.isConfirmed(
-                        function () {
-                            return document.querySelector("#add-categories").value;
-                        },
-                    ),
-                ],
-                onSubmit: function (data) {
-                    // Call API
-                    console.log(data);
-                },
-            });
+		var page = parseInt($('#page').text()) + 1;
+		$('.pager__item').eq(`${page}`).addClass('active')
 
-			Validator({
-                form: "#edit-categories",
-                formGroupSelector: ".form-group",
-                errorSelector: ".form-message",
-                rules: [
-                    Validator.isRequired("#name", "Category name invalid"),
-                    Validator.isRequired("#id", "ID invalid"),
-					Validator.isRequired("#count-course", "Count course invalid"),
-                    Validator.isConfirmed(
-                        function () {
-                            return document.querySelector("#edit-categories").value;
-                        },
-                    ),
-                ],
-                onSubmit: function (data) {
-                    // Call API
-                    console.log(data);
-                },
-            });
-        });
+		$('#text-search').change(function() {
+			var stringSearch = $('#text-search').val();
+			$('#link-search').attr('href',`/admin/field?search=${stringSearch}`)
+		})
 </script>
 {{/section}}
 
+<span id="page" style="display: none;">{{prev_page}}</span>
 <div class="wrapper">
 		<div class="row">
 			<div class="col-100 col-m-12 col-sm-12">
 				<div class="card">
 					<div class="card-header">
-              <h3>Quản lý Danh mục Sản phẩm</h3>
+              			<h3>Quản lý Lĩnh vực Sản phẩm</h3>
+						<div class="header-search__input-wrap">
+							<input id="text-search" type="text" class="header-search__input" placeholder="{{#if disable_page}}Kết quả tìm kiếm '{{stringSearch}}'{{else}}Tìm kiếm học viên...{{/if}}">
+							<a id="link-search" href="" class="header-search__icon">
+								<i class="fa fa-search" aria-hidden="true"></i>
+							</a>
+						</div>
 						
 					</div>
 					<div class="card-content">
@@ -65,34 +38,57 @@
 							<thead>
 								<tr>
 									<th>ID</th>
+									<th>Tên lĩnh vực</th>
 									<th>Tên danh mục</th>
 									<th>Số lượng khóa học</th>
 									<th>Quản lý</th>
 								</tr>
 							</thead>
 							<tbody>
+								{{#each fields}}
 								<tr>
-									<td>1</td>
-									<td>Tiếng Anh</td>
-									<td>6</td>
+									<td>{{_id}}</td>
+									<td>{{name}}</td>
+									<td>{{catName}}</td>
+									<td>{{totalCourse}}</td>
 									<td>
 										<a href="" class="edit" data-toggle="modal"><i class="material-icons" title="Edit">&#xE254;</i></a>
-										<a href="" class="delete" data-toggle="modal"><i class="material-icons" title="Delete">&#xE872;</i></a>
+										<a href="/admin/category?page=1" class="delete" data-toggle="modal"><i class="material-icons" title="Delete">&#xE872;</i></a>
 									</td>
 								</tr>
-								<tr>
-									<td>2</td>
-									<td>Lập Trình</td>
-									<td>11</td>
-									<td>
-										<a href="" class="edit" data-toggle="modal"><i class="material-icons" title="Edit">&#xE254;</i></a>
-										<a href="" class="delete" data-toggle="modal"><i class="material-icons" title="Delete">&#xE872;</i></a>
-									</td>
-								</tr>
+								{{/each}}
 								
 							</tbody>
 						</table>
+						{{#if empty}}
+							<div class="empty">Không tìm thấy kết quả nào</div>
+						{{/if}}
 					</div>
+					{{#unless disable_page}}
+					<nav>
+						<ul class="pager">
+							<li class="pager__item pager__item--prev" {{#if can_go_prev }}style="pointer-events: none;"{{/if}}>
+								<a class="pager__link" href="/admin/field?page={{prev_page}}">
+								<svg xmlns="" width="8" height="12" viewbox="0 0 8 12">
+									<g fill="none" fill-rule="evenodd">
+									<path fill="#33313C" d="M7.41 1.41L6 0 0 6l6 6 1.41-1.41L2.83 6z"></path>
+									</g>
+								</svg></a></li>
+							{{#each page_items}}
+								<li class="pager__item"><a class="pager__link" href="/admin/field?page={{value}}">{{value}}</a></li>
+							{{/each}}
+							<li class="pager__item pager__item--next" {{#if can_go_next }}style="pointer-events: none;"{{/if}} >
+								<a class="pager__link" href="/admin/field?page={{next_page}}">
+									<svg xmlns="" width="8" height="12" viewbox="0 0 8 12">
+										<g fill="none" fill-rule="evenodd">
+										<path fill="#33313C" d="M7.41 1.41L6 0 0 6l6 6 1.41-1.41L2.83 6z"></path>
+										</g>
+									</svg>
+								</a>
+							</li>
+						</ul>
+					</nav>
+					{{/unless}}
 				</div>
 			</div>
 			

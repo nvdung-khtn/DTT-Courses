@@ -8,9 +8,16 @@
 <script src="/javascript/validator.js"></script>
 
 <script>
+    if ($('#status option:nth-child(1)').val() === 'false'){
+        $('#status option:nth-child(2)').val('true');
+        $('#status option:nth-child(2)').text('Đã hoàn thành')
+        }
+
+</script>
+
+<script>
     $('.sidebar-nav-item .dashboard').removeClass('active');
     $('.sidebar-nav-item .product-management').addClass('active');
-    flatpickr("#createAt, #updateAt", {dateFormat: 'd-m-Y'});
 
     document.addEventListener("DOMContentLoaded", function () {
             Validator({
@@ -43,12 +50,12 @@
                     <h3>Thông Tin Khóa Học</h3>					
                 </div>
                 <div class="card-content">
-                    <form id="editProduct">
+                    <form id="edit-course" method="POST">
                         <div class="modal-body">
 
                             <div class="form-group">
-                                <label for="ID">ID</label>
-                                <input type="text" class="form-control" id="ID" name="ID" value="{{this.course._id}}" disabled>
+                                <label for="id">ID</label>
+                                <input type="text" class="form-control unable" id="id" name="id" value="{{this.course._id}}" readonly="true">
                                 <span class="form-message"></span><span class="message-clone">0</span>
                             </div>
 
@@ -60,15 +67,18 @@
 
                             <div class="form-group">
                                 <label for="field">Lĩnh vực</label>
-                                <input type="text" class="form-control" id="field" name="field" value="{{this.course.fieldName}}">
+                                <select class="form-control" name="field" id="field">
+                                    <option value="{{this.course.fieldId}}">{{this.course.fieldName}}</option>
+                                    {{#each fields}}
+                                    <option value="{{_id}}">{{name}}</option>
+                                    {{/each}}
+                                </select>
                                 <span class="form-message"></span><span class="message-clone">0</span>
                             </div>
 
                             <div class="form-group">
                                 <label for="category">Danh mục</label>
-                                <select class="form-control" id="category" name="category">
-                                    
-                                </select>
+                                <input type="text" class="form-control unable" id="category" name="category" value="{{this.course.catName}}" disabled>
                                 <span class="form-message"></span><span class="message-clone">0</span>
                             </div>
  
@@ -80,13 +90,7 @@
 
                             <div class="form-group">
                                 <label for="createAt">Ngày tạo</label>
-                                <input type="text" class="form-control" id="createAt" name="createAt" value="{{this.course.createdAt}}"  >
-                                <span class="form-message"></span><span class="message-clone">0</span>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="updateAt">Ngày cập nhật</label>
-                                <input type="text" class="form-control" id="updateAt" name="updateAt" value="{{this.course.updatedAt}}"  >
+                                <input type="text" class="form-control unable" id="createAt" name="createAt" value="{{this.course.createdAt}}" disabled >
                                 <span class="form-message"></span><span class="message-clone">0</span>
                             </div>
 
@@ -95,7 +99,7 @@
                                 <select class="form-control" id="lecId" name="lecId" >
                                     <option value="{{this.course.lecId}}">{{this.course.lecName}}</option>
                                     {{#each lecturers}}
-                                    <option value="{{name}}" id="{{_id}}">{{name}}</option>
+                                    <option value="{{_id}}">{{name}}</option>
                                     {{/each}}
                                 </select>
 
@@ -110,13 +114,16 @@
 
                             <div class="form-group">
                                 <label for="status">Trạng thái</label>
-                                <input type="text" class="form-control" id="status" name="status" value="{{this.course.status}}">
+                                <select name="status" id="status" class="form-control">
+                                    <option value="{{this.course.status}}">{{this.course.stringStatus}}</option>
+                                    <option value="false">Đã hoàn thành</option>
+                                </select>
                                 <span class="form-message"></span><span class="message-clone">0</span>
                             </div>
 
                         </div>
                         <div class="modal-footer">
-                            <a href="/admin/product"><input type="button" class="btn back" value="Quay lại"></a>
+                            <a href="/admin/product?page=1"><input type="button" class="btn back" value="Quay lại"></a>
                             <input type="submit" class="btn update" value="Cập nhật">
                         </div>
                     </form>

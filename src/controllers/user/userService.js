@@ -18,10 +18,4 @@ module.exports = {
         const status = stringStatus === "Đã kích hoạt" ? 1 : 0;
         return status;
     },
-
-    getInfoTotalCourse(user) {
-        console.log(user);
-        user.totalCourse = user.courseArr.length;
-        return user;
-    }
 }

@@ -27,7 +27,6 @@
     "flatpickr": "^4.6.8",
     "method-override": "^3.0.0",
     "moment": "^2.29.1",
-    "moment-timezone": "^0.5.32",
     "mongoose": "^5.11.1",
     "mongoose-slug-generator": "^1.0.4",
     "morgan": "^1.10.0",

@@ -1,70 +1,67 @@
+
 {{#section 'css'}}
 <link rel="stylesheet" href="/css/admin/manage.css">
 {{/section}}
 
 {{#section 'js'}}
-<script src="/javascript/validator.js"></script>	
+<script src="/javascript/validator.js"></script>
 <script>
-		$('.sidebar-nav-item .dashboard').removeClass('active');
-		$('.sidebar-nav-item .lecturer-management').addClass('active');
 
-		var page = parseInt($('#page').text()) + 1;
+	$('.sidebar-nav-item .dashboard').removeClass('active');
+	$('.sidebar-nav-item .product-management').addClass('active');
+
+	var page = parseInt($('#page').text()) + 1;
 		$('.pager__item').eq(`${page}`).addClass('active')
 
 		$('#text-search').change(function() {
 			var stringSearch = $('#text-search').val();
-			$('#link-search').attr('href',`/admin/lecturer?search=${stringSearch}`)
+			$('#link-search').attr('href',`/admin/course?search=${stringSearch}`)
 		})
+
 </script>
 {{/section}}
 
 <span id="page" style="display: none;">{{prev_page}}</span>
 <div class="wrapper">
 		<div class="row">
-			<div class="col-100 col-m-12 col-sm-12">
+			<div class="col-12">
 				<div class="card">
 					<div class="card-header">
-						<h3>
-							Quản lý Giảng viên
-						</h3>
-							
+			            <h3>Quản lý Khóa học</h3>	
+
 						<div class="header-search__input-wrap">
 							<input id="text-search" type="text" class="header-search__input" placeholder="{{#if disable_page}}Kết quả tìm kiếm '{{stringSearch}}'{{else}}Tìm kiếm học viên...{{/if}}">
 								<a id="link-search" href="" class="header-search__icon">
 									<i class="fa fa-search" aria-hidden="true"></i>
 								</a>
-						</div>
-
-						<div class="btn-add">										
-							<a href="/admin/lecturer/add" class="add"><i class="material-icons" title="Add">person_add_alt_1</i></a>
-						</div>
-	
+						</div>				
 					</div>
 					<div class="card-content">
 						<table>
 							<thead>
 								<tr>
 									<th>ID</th>
-									<th>Họ tên</th>
-									<th>Email</th>
-									<th>Số điện thoại</th>
+									<th>Tên khóa học</th>
+									<th>Danh mục</th>
+									<th>Giá hiện tại</th>
 									<th>Trạng thái</th>
 									<th>Quản lý</th>
 								</tr>
 							</thead>
 							<tbody>
-								{{#each lecturers}}
+								{{#each courses}}
 								<tr>
 									<td>{{_id}}</td>
-									<td>{{name}}</td>
-									<td>{{email}}</td>
-									<td>{{phone}}</td>
+									<td class="custom-display">{{name}}</td>
+									<td>{{slug}}</td>
+									<td>{{format currentPrice}}</td>
 									<td>{{stringStatus}}</td>
 									<td>
-										<a href="/admin/lecturer/edit/{{_id}}" class="edit"><i class="material-icons" title="Edit">&#xE254;</i></a>
-										<a href="/admin/lecturer/delete/{{_id}}" class="delete"><i class="material-icons" title="Delete">&#xE872;</i></a>
+										<a href="/admin/course/edit/{{_id}}" class="edit"><i class="material-icons" title="Edit">&#xE254;</i></a>
+										<a href="/admin/course/delete/{{_id}}" class="delete"><i class="material-icons" title="Delete">&#xE872;</i></a>
 									</td>
 								</tr>
+
 								{{/each}}
 								
 							</tbody>
@@ -77,17 +74,17 @@
 					<nav>
 						<ul class="pager">
 							<li class="pager__item pager__item--prev" {{#if can_go_prev }}style="pointer-events: none;"{{/if}}>
-								<a class="pager__link" href="/admin/lecturer?page={{prev_page}}">
+								<a class="pager__link" href="/admin/course?page={{prev_page}}">
 								<svg xmlns="" width="8" height="12" viewbox="0 0 8 12">
 									<g fill="none" fill-rule="evenodd">
 									<path fill="#33313C" d="M7.41 1.41L6 0 0 6l6 6 1.41-1.41L2.83 6z"></path>
 									</g>
 								</svg></a></li>
 							{{#each page_items}}
-								<li class="pager__item"><a class="pager__link" href="/admin/lecturer?page={{value}}">{{value}}</a></li>
+								<li class="pager__item"><a class="pager__link" href="/admin/course?page={{value}}">{{value}}</a></li>
 							{{/each}}
 							<li class="pager__item pager__item--next" {{#if can_go_next }}style="pointer-events: none;"{{/if}} >
-								<a class="pager__link" href="/admin/lecturer?page={{next_page}}">
+								<a class="pager__link" href="/admin/course?page={{next_page}}">
 									<svg xmlns="" width="8" height="12" viewbox="0 0 8 12">
 										<g fill="none" fill-rule="evenodd">
 										<path fill="#33313C" d="M7.41 1.41L6 0 0 6l6 6 1.41-1.41L2.83 6z"></path>
@@ -100,8 +97,10 @@
 					{{/unless}}
 				</div>
 			</div>
-	</div>
 			
+		</div>
+   
+
 
 
 

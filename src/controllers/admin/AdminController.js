@@ -11,55 +11,77 @@ const Swal = require('sweetalert2');
 const bcrypt = require('bcryptjs');
 
 const SALT = 10;
+const PAGE_SIZE = 2;
 
 
 class AdminController {
     // [GET] /home
-    index(req, res) {
-        var students = [], lecturers = [], courses = [];
-        User.find({})
-            .then(usersDB => {
-                let users = multipleMongooseToObject(usersDB);
-                students = userService.getInforStudent(users);
-                lecturers = userService.getInforLecturer(users);
-            })
-        Course.find({})
-            .then(courseDB => {
-                courses = multipleMongooseToObject(courseDB);
-            })
-        console.log(students.length);
+    async index(req, res) {
+        const students = await User.find({permission:2}).lean();
+        const lecturers = await User.find({permission:1}).lean();
+        const courses = await Course.find().lean();
+        const category = await Category.find().lean()
         res.render('vwAdmin/index', {
             layout: "admin",
             students,
             lecturers,
-            courses
-
+            courses,
+            category
         });
     }
 
-    manageCategory(req, res) {
-        res.render('vwAdmin/ManageProduct/category', {
-            layout: "admin",
-        });
-    }
-
-    manageProduct(req, res, next) {
-        res.render('vwAdmin/ManageProduct/qlsp', {
-            layout: "admin",
-            courses
-        });
-    }
 
 
     // ---------------MANAGE STUDENT-----------------------
 
     async manageStudent(req, res) {
-        const students = await User.find({permission:2}).lean();
-        userService.convertStatusToStatusStringUsers(students);
-        res.render('vwAdmin/ManageUser/student', {
-            layout: "admin",
-            students
-        })
+        var page = req.query.page;
+        var stringSearch = req.query.search;
+        if (page) {
+            page = parseInt(page);
+            if (page<1) {
+                page = 1;
+            }
+            const totalStudent = await User.countDocuments({permission:2});
+            const totalPage = Math.ceil(totalStudent/PAGE_SIZE);
+            if (page > totalPage) {
+                page = totalPage;
+            }
+            const page_items = [];
+            for ( var i = 1; i <= totalPage; i++) {
+                const item = {
+                    value : i
+                }
+                page_items.push(item);
+            }
+            var skip = (page - 1)*PAGE_SIZE;
+            const students = await User.find({permission:2})
+                .skip(skip)
+                .limit(PAGE_SIZE).lean();
+            userService.convertStatusToStatusStringUsers(students);
+            return res.render('vwAdmin/ManageUser/student', {
+                layout: "admin",
+                students,
+                page_items,
+                prev_page : page - 1,
+                next_page : page + 1,
+                can_go_prev : (page <= 1),
+                can_go_next : (page >= totalPage),
+                disable_page : false
+            })
+        }
+        if (stringSearch) {
+            const students = await User.find({name:{$regex:`${stringSearch}`},permission:2}).lean();
+            userService.convertStatusToStatusStringUsers(students); 
+            return res.render('vwAdmin/ManageUser/student', {
+                layout: "admin",
+                students,
+                empty: students.length === 0,
+                stringSearch,
+                disable_page : true
+            })
+        }
+
     }
 
     updateStudent(req, res, next) {
@@ -74,7 +96,7 @@ class AdminController {
         };
         User.findOneAndUpdate({_id : req.body.id}, userData)
             .then(() => {    
-                res.redirect('/admin/student');
+                res.redirect('/admin/student?page=1');
             })
             .catch(next);
     }
@@ -82,7 +104,7 @@ class AdminController {
     deleteStudent(req, res, next) {
         User.findByIdAndRemove(req.params.id)
         .then(() => {
-            res.redirect('/admin/student');
+            res.redirect('/admin/student?page=1');
         })
         .catch(next);
     }
@@ -102,12 +124,52 @@ class AdminController {
 
     // ---------------MANAGE LECTURER-----------------------
     async manageLecturer(req, res) {
-        const lecturers = await User.find({permission:1}).lean();
-        userService.convertStatusToStatusStringUsers(lecturers);
-        res.render('vwAdmin/ManageUser/lecturer', {
-            layout: "admin",
-            lecturers
-        })
+        var page = req.query.page;
+        var stringSearch = req.query.search;
+        if (page) {
+            page = parseInt(page);
+            if (page<1) {
+                page = 1;
+            }
+            const totalLecturer = await User.countDocuments({permission:1});
+            const totalPage = Math.ceil(totalLecturer/PAGE_SIZE);
+            if (page > totalPage) {
+                page = totalPage;
+            }
+            const page_items = [];
+            for ( var i = 1; i <= totalPage; i++) {
+                const item = {
+                    value : i
+                }
+                page_items.push(item);
+            }
+            var skip = (page - 1)*PAGE_SIZE;
+            const lecturers = await User.find({permission:1})
+                .skip(skip)
+                .limit(PAGE_SIZE).lean();
+            userService.convertStatusToStatusStringUsers(lecturers);
+            return res.render('vwAdmin/ManageUser/lecturer', {
+                layout: "admin",
+                lecturers,
+                page_items,
+                prev_page : page - 1,
+                next_page : page + 1,
+                can_go_prev : (page <= 1),
+                can_go_next : (page >= totalPage),
+                disable_page : false
+            })
+        }
+        if (stringSearch) {
+            const lecturers = await User.find({name:{$regex:`${stringSearch}`},permission:1}).lean();
+            userService.convertStatusToStatusStringUsers(lecturers); 
+            return res.render('vwAdmin/ManageUser/lecturer', {
+                layout: "admin",
+                lecturers,
+                empty: lecturers.length === 0,
+                stringSearch,
+                disable_page : true
+            })
+        }
     }
 
     async editLecturer(req, res) {
@@ -140,9 +202,17 @@ class AdminController {
         console.log(userData);
         User.findOneAndUpdate({_id : req.body.id}, userData)
             .then(() => {    
-                res.redirect('/admin/lecturer');
+                res.redirect('/admin/lecturer?page=1');
             })
             .catch(next);
+    }
+
+    deleteLecturer(req, res, next) {
+        User.findByIdAndRemove(req.params.id)
+        .then(() => {
+            res.redirect('/admin/lecturer?page=1');
+        })
+        .catch(next);
     }
 
     addViewLecturer(req, res) {
@@ -168,7 +238,7 @@ class AdminController {
         };
         User.create(userData)
             .then(() => {
-                res.redirect('/admin/lecturer');
+                res.redirect('/admin/lecturer?page=1');
             })
             .catch(next);
     }
@@ -176,30 +246,156 @@ class AdminController {
 
 // ---------------MANAGE COURSES-----------------------
 
+    async manageCourse(req, res) {
+        var page = req.query.page;
+        var stringSearch = req.query.search;
+        if (page) {
+            page = parseInt(page);
+            if (page<1) {
+                page = 1;
+            }
+            const totalCourse = await Course.countDocuments();
+            const totalPage = Math.ceil(totalCourse/PAGE_SIZE);
+            if (page > totalPage) {
+                page = totalPage;
+            }
+            const page_items = [];
+            for ( var i = 1; i <= totalPage; i++) {
+                const item = {
+                    value : i
+                }
+                page_items.push(item);
+            }
+            var skip = (page - 1)*PAGE_SIZE;
+            const courses = await Course.find()
+                .skip(skip)
+                .limit(PAGE_SIZE).lean();
+            courseService.convertStatusToStatusStringCourses(courses);
+            return res.render('vwAdmin/ManageProduct/courses', {
+                layout: "admin",
+                courses,
+                page_items,
+                prev_page : page - 1,
+                next_page : page + 1,
+                can_go_prev : (page <= 1),
+                can_go_next : (page >= totalPage),
+                disable_page : false
+            })
+        }
+        if (stringSearch) {
+            const courses = await Course.find({name:{$regex:`${stringSearch}`}}).lean();
+            courseService.convertStatusToStatusStringCourses(courses); 
+            return res.render('vwAdmin/ManageProduct/courses', {
+                layout: "admin",
+                courses,
+                empty: courses.length === 0,
+                stringSearch,
+                disable_page : true
+            })
+        }
+    }
 
-    editCourse(req, res, next) {
-        // Course.findOne({ _id: req.params.id })
-        //     .then(async courseDB => {
-        //         let course = mongooseToObject(courseDB);
-        //         course.fieldName = await fieldService.getFieldName(course.fieldId);
-        //         course.lecName = await courseService.getLecturerName(course.lecId);
-        //         const lecturers = await courseService.getListLectNameForCb(course.lecId);
-        //         course.createdAt = moment(course.createdAt).format("DD/MM/YYYY");
-        //         course.updatedAt = moment(course.updatedAt).format("DD/MM/YYYY");
-        //         if (course.status === false) {
-        //             course.status = 'Chưa hoàn thành';
-        //         }
-        //         else course.status = 'Hoàn thành';
+    async editCourse(req, res) {
+        const course = await Course.findOne({_id : req.params.id}).lean();
+        await courseService.getDetailCourse(course);
+        const fields = await Field.find({_id : {$ne: course.fieldId}}).lean();
+        const lecturers = await User.find({_id : {$ne: course.lecId}, permission: 1}).lean();
+        courseService.convertStatusToStatusStringCourse(course);
+        course.createdAt = moment(course.createdAt).format("DD/MM/YYYY");
+        res.render('vwAdmin/ManageProduct/editCourse', {
+            layout: "admin",
+            course,
+            fields,
+            lecturers
+        });
+    }
 
-                res.render('vwAdmin/ManageProduct/editCourse', {
-                    layout: "admin",
-                    //course
-                });
-            // })
-            // .catch(next);
+    updateCourse(req, res, next) {
+        const userData = {
+            name : req.body.name,
+            fieldId : req.body.field,
+            tinyDes : req.body.tinyDes,
+            lecId : req.body.lecId,
+            currentPrice : req.body.currentPrice.replace(/\D/g, ''),
+            status : req.body.status,
+            updatedAt : moment().toDate()
+        };
+        Course.findOneAndUpdate({_id : req.body.id}, userData)
+            .then(() => {    
+                res.redirect('/admin/course?page=1');
+            })
+            .catch(next);
+    }
+
+    deleteCourse(req, res, next) {
+        Course.findByIdAndRemove(req.params.id)
+        .then(() => {
+            res.redirect('/admin/course?page=1');
+        })
+        .catch(next);
     }
 
 
+// ---------------MANAGE CATEGORY-----------------------
+
+    async manageField(req, res) {
+        var page = req.query.page;
+        var stringSearch = req.query.search;
+        if (page) {
+            page = parseInt(page);
+            if (page<1) {
+                page = 1;
+            }
+            const totalField = await Field.countDocuments();
+            const totalPage = Math.ceil(totalField/PAGE_SIZE);
+            if (page > totalPage) {
+                page = totalPage;
+            }
+            const page_items = [];
+            for ( var i = 1; i <= totalPage; i++) {
+                const item = {
+                    value : i
+                }
+                page_items.push(item);
+            }
+            var skip = (page - 1)*PAGE_SIZE;
+            const fields = await Field.find()
+                .skip(skip)
+                .limit(PAGE_SIZE).lean();
+            await courseService.getCatNameForFields(fields);
+            return res.render('vwAdmin/ManageProduct/category', {
+                layout: "admin",
+                fields,
+                page_items,
+                prev_page : page - 1,
+                next_page : page + 1,
+                can_go_prev : (page <= 1),
+                can_go_next : (page >= totalPage),
+                disable_page : false
+            })
+        }
+        if (stringSearch) {
+            const fields = await Course.find({name:{$regex:`${stringSearch}`}}).lean();
+            courseService.convertStatusToStatusStringCourses(fields); 
+            return res.render('vwAdmin/ManageProduct/category', {
+                layout: "admin",
+                fields,
+                empty: fields.length === 0,
+                stringSearch,
+                disable_page : true
+            })
+        }
+    }
+
+    deleteField( req, res, next) {
+            Field.findByIdAndRemove(req.params.id)
+            .then(() => {
+                res.redirect('/admin/category?page=1');
+            })
+            .catch(next);
+    }
+
+    
 
 
 }

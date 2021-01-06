@@ -619,3 +619,11 @@ table td .edit i:hover {
 
 
 
+.custom-display {
+    display: inline-block;
+    white-space: nowrap;
+    width: 400px; 
+    overflow: hidden;
+    text-overflow: ellipsis; 
+}
+
