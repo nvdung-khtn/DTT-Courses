@@ -23,7 +23,7 @@ module.exports = {
     async getDetailCourse(course){
         const field = await Field.findOne({_id:course.fieldId}).lean();
         const category = await Category.findOne({_id:field.catId}).lean();
-        const user = await User.findOne({_id:course.lecId}).lean()
+        const user = await User.findOne({_id:course.lecId}).lean();
         course.fieldName = field.name;
         course.catId = category._id;
         course.catName = category.name;

@@ -71,7 +71,7 @@ class AdminController {
             })
         }
         if (stringSearch) {
-            const students = await User.find({name:{$regex:`${stringSearch}`},permission:2}).lean();
+            const students = await User.find({$text: {$search: stringSearch},permission:2}).lean();
             userService.convertStatusToStatusStringUsers(students); 
             return res.render('vwAdmin/ManageUser/student', {
                 layout: "admin",
@@ -160,7 +160,7 @@ class AdminController {
             })
         }
         if (stringSearch) {
-            const lecturers = await User.find({name:{$regex:`${stringSearch}`},permission:1}).lean();
+            const lecturers = await User.find({$text: {$search: stringSearch},permission:1}).lean();
             userService.convertStatusToStatusStringUsers(lecturers); 
             return res.render('vwAdmin/ManageUser/lecturer', {
                 layout: "admin",
@@ -221,26 +221,33 @@ class AdminController {
         })
     }
 
-    addLecturer (req, res, next) {
-        const hash = bcrypt.hashSync(req.body.password, SALT);
-        const userData = {
-            name : req.body.name,
-            email : req.body.email,
-            password : hash,
-            dob : moment(req.body.dob).toDate(),
-            phone : req.body.phone,
-            address: req.body.address,
-            card: [],
-            permission : 1,
-            createdAt : moment().toDate(),
-            status : req.body.status,
-            courseArr : []
-        };
-        User.create(userData)
-            .then(() => {
-                res.redirect('/admin/lecturer?page=1');
-            })
-            .catch(next);
+    async addLecturer (req, res, next) {
+        const checkEmail = await User.exists({email: req.body.email})
+        if (checkEmail) {
+            Swal.fire('Oops...', 'Something went wrong!', 'error');
+            res.redirect('/admin/lecturer/add');
+        } else {
+
+            const hash = bcrypt.hashSync(req.body.password, SALT);
+            const userData = {
+                name : req.body.name,
+                email : req.body.email,
+                password : hash,
+                dob : moment(req.body.dob).toDate(),
+                phone : req.body.phone,
+                address: req.body.address,
+                card: [],
+                permission : 1,
+                createdAt : moment().toDate(),
+                status : req.body.status,
+                courseArr : []
+            };
+            User.create(userData)
+                .then(() => {
+                    res.redirect('/admin/lecturer?page=1');
+                })
+                .catch(next);
+        }
     }
     
 
@@ -283,7 +290,7 @@ class AdminController {
             })
         }
         if (stringSearch) {
-            const courses = await Course.find({name:{$regex:`${stringSearch}`}}).lean();
+            const courses = await Course.find({$text: {$search: stringSearch}}).lean();
             courseService.convertStatusToStatusStringCourses(courses); 
             return res.render('vwAdmin/ManageProduct/courses', {
                 layout: "admin",

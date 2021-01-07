@@ -185,9 +185,9 @@ input.btn.delete {
     display: flex;
     align-items: center;
     position: relative;
-    width: 50%;
+    width: 30%;
     /* width: 40%; */
-    margin-left: auto;
+    margin: auto;
 }
 
 .header-search__input {

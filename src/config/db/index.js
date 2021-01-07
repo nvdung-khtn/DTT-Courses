@@ -1,8 +1,9 @@
 const mongoose = require('mongoose');
 
+const STRING_CONNECT = "mongodb://localhost:27017/online_academy_dev"
 async function connect() {
     try {
-        await mongoose.connect('mongodb://localhost:27017/online_academy_dev', {
+        await mongoose.connect(STRING_CONNECT, {
             useNewUrlParser: true,
             useUnifiedTopology: true,
             useFindAndModify: false,
