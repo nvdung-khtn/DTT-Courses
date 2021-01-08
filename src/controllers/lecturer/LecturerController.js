@@ -29,7 +29,7 @@ class LecturerController {
         });
     }
 
-    // [GET] lecturer/course/create
+    // [GET] lecturer/courses/create
     create(req, res, next) {
         // fake userId
         const userId = mongoose.Types.ObjectId('5fdb468941c10b2570a7cd35');
@@ -44,7 +44,7 @@ class LecturerController {
             .catch(next)
     }
 
-    // [POST] lecturer/course/store
+    // [POST] lecturer/courses/store
     store(req, res, next) {
         let formData;
         let avatar, introVideo;
@@ -118,6 +118,20 @@ class LecturerController {
                     })
                     .catch(error => {});
             }
+        });
+    }
+
+    // [GET] lecturer/courses/update
+    updateCourse(req, res, next) {
+        res.render('vwLecturer/updateCourse', {
+            layout: 'lecturer'
+        });
+    }
+
+    //[GET] lecturer/courses/lesson/:id
+    editLesson(req, res, next) {
+        res.render('vwLecturer/editLesson', {
+            layout: 'lecturer'
         });
     }
 }

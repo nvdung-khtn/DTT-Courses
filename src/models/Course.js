@@ -22,6 +22,7 @@ const Course = new Schema({
     currentPrice: Number,
     fullDes: String,
     nIndex: Number,
+    quantity: Number,
 }, {
     timestamps: true,
 });

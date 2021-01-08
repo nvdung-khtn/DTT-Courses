@@ -1,0 +1,241 @@
+{{#section 'css'}}
+<link rel="stylesheet" href="/css/lecturer/updateCourse.css">
+<link rel="stylesheet" href="/css/home.css">
+{{/section}}
+<div class="content">
+    <div class="page-title">
+        <h1 class="course-name">
+            Lập trình web cơ bản với JavaScript
+            <span class="badge badge-pill badge-warning badge-custom">Chưa hoàn thành</span>
+        </h1>
+        <a href="#" class="course-completed"><i class="far fa-check-square"></i></a>
+    </div>
+    <div class="main-container">
+        <div class="header-update-course">
+            <div class="info-status">
+                <div class="quantity">
+                    Số lượng bài giảng: <span class="amount">12</span>
+                </div>
+                <div class="updated">
+                    Đã hoàn thành: <span class="amount">5</span>
+                </div>
+            </div>
+
+            <div class="search-bar">
+                <input type="text" class="search-bar__input" placeholder="Tìm kiếm bài giảng...">
+                <a href="" class="search-bar__icon">
+                    <i class="fa fa-search" aria-hidden="true"></i>
+                </a>
+            </div>
+
+            <a href="#" class="add-lesson" data-toggle="modal" data-target="#addLesson">
+                <i class="fas fa-plus"></i>
+            </a>
+            <!-- Modal add new lesson -->
+            <div class="modal fade" id="addLesson" data-backdrop="static" data-keyboard="false" tabindex="-1"
+                aria-labelledby="addLessonLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="addLessonLabel"><i>Thêm bài giảng</i></h5>
+                        </div>
+                        <div class="modal-body">
+                            <form id="frmAddLesson" method="POST" action="/lecturer/courses/store" enctype="multipart/form-data">
+                                <div class="form-group">
+                                    <label for="indexLesson">Bài giảng số </label>
+                                    <select class="form-control" id="indexLesson" name="indexLesson">
+                                        <option value="volvo">1</option>
+                                        <option value="volvo">2</option>
+                                        <option value="volvo">3</option>
+                                    </select>
+                                    <span class="form-message"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="lessonName">Tên bài giảng</label>
+                                    <input type="text" class="form-control" id="lessonName" name="lessonName"
+                                        placeholder="Vd: Lập trình web với PHP">
+                                    <span class="form-message"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="video">Video giới thiệu khóa học</label>
+                                    <input type="file" class="file" id="video" name="video"
+                                        placeholder="Chọn video">
+                                    <span class="form-message"></span>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer modal-footer-lesson">
+                            <button type="button" class="btn btn-secondary mr-2" data-dismiss="modal">Hủy bỏ</button>
+                            <button type="button" class="btn btn-primary">Thêm mới</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="lesson-table mb-5">
+            <table class="table table-hover table-bordered">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th class="lesson-name" scope="col">Tên bài giảng</th>
+                        <th scope="col">Video</th>
+                        <th scope="col">Cập nhập lần cuối</th>
+                        <th scope="col">Trạng thái</th>
+                        <th class="lesson-table__icon" scope="col">&nbsp;</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>Khai báo biến Lorem, ipsum dolor sit amet consectetur adipisicing elit. Non, consequatur
+                            id.
+                            Sed, odit. Autem, cupiditate enim. Ducimus id repellat nemo eaque, obcaecati expedita
+                            cupiditate similique iste officiis, eos vero et!</td>
+                        <td>Chưa cập nhập</td>
+                        <td>Chưa cập nhập</td>
+                        <td>Chưa hoàn thành</td>
+                        <td class="d-flex justify-content-end icon-update-course">
+                            <a data-toggle="modal" data-target="#editLesson" href=""
+                                class="edit-icon d-inline-block mr-4">
+                                <i class="fas fa-pencil-alt"></i>
+                            </a>
+                            <a href="#" class="delete-icon mr-2">
+                                <i class="fas fa-trash"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>Khai báo biến Lorem, ipsum dolor sit amet consectetur adipisicing elit. Non, consequatur
+                            id.
+                            Sed, odit. Autem, cupiditate enim. Ducimus id repellat nemo eaque, obcaecati expedita
+                            cupiditate similique iste officiis, eos vero et!</td>
+                        <td>Chưa cập nhập</td>
+                        <td>Chưa cập nhập</td>
+                        <td>Chưa hoàn thành</td>
+                        <td class="d-flex justify-content-end icon-update-course">
+                            <a href="#" class="edit-icon d-inline-block mr-4">
+                                <i class="fas fa-pencil-alt"></i>
+                            </a>
+                            <a href="#" class="delete-icon mr-2">
+                                <i class="fas fa-trash"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>Khai báo biến Lorem, </td>
+                        <td>Chưa cập nhập</td>
+                        <td>Chưa cập nhập</td>
+                        <td>Chưa hoàn thành</td>
+                        <td class="d-flex justify-content-end icon-update-course">
+                            <a href="#" class="edit-icon d-inline-block mr-4">
+                                <i class="fas fa-pencil-alt"></i>
+                            </a>
+                            <a href="#" class="delete-icon mr-2">
+                                <i class="fas fa-trash"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>Khai báo biến Lorem, </td>
+                        <td>Chưa cập nhập</td>
+                        <td>Chưa cập nhập</td>
+                        <td>Chưa hoàn thành</td>
+                        <td class="d-flex justify-content-end icon-update-course">
+                            <a href="#" class="edit-icon d-inline-block mr-4">
+                                <i class="fas fa-pencil-alt"></i>
+                            </a>
+                            <a href="#" class="delete-icon mr-2">
+                                <i class="fas fa-trash"></i>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- Modal edit lesson -->
+            <div class="modal fade" id="editLesson" data-backdrop="static" data-keyboard="false" tabindex="-1"
+                aria-labelledby="editLessonLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="editLessonLabel"><i>Cập nhập bài giảng</i></h5>
+                        </div>
+                        <div class="modal-body">
+                            <form id="frmAddLesson" method="POST" action="/lecturer/courses/store" enctype="multipart/form-data">
+                                <div class="form-group">
+                                    <label for="indexLesson">Bài giảng số </label>
+                                    <select class="form-control" id="indexLesson" name="indexLesson">
+                                        <option value="volvo">1</option>
+                                        <option value="volvo">2</option>
+                                        <option value="volvo">3</option>
+                                    </select>
+                                    <span class="form-message"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="lessonName">Tên bài giảng</label>
+                                    <input type="text" class="form-control" id="lessonName" name="lessonName"
+                                        placeholder="Vd: Lập trình web với PHP">
+                                    <span class="form-message"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="video">Video giới thiệu khóa học</label>
+                                    <input type="file" class="file" id="video" name="video"
+                                        placeholder="Chọn video">
+                                    <span class="form-message"></span>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer modal-footer-lesson">
+                            <button type="button" class="btn btn-secondary mr-2" data-dismiss="modal">Hủy bỏ</button>
+                            <button type="button" class="btn btn-primary">Cập nhập</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row d-flex justify-content-center mt-4">
+            <ul class="pagination home-product__pagination">
+                <li class="pagination-item">
+                    <a href="" class="pagination-item-link">
+                        <i class="pagination-item-icon fas fa-angle-left"></i>
+                    </a>
+                </li>
+
+                <li class="pagination-item pagination-item--active">
+                    <a href="" class="pagination-item-link">1</a>
+                </li>
+                <li class="pagination-item">
+                    <a href="" class="pagination-item-link">2</a>
+                </li>
+                <li class="pagination-item">
+                    <a href="" class="pagination-item-link">3</a>
+                </li>
+                <li class="pagination-item">
+                    <a href="" class="pagination-item-link">4</a>
+                </li>
+                <li class="pagination-item">
+                    <a href="" class="pagination-item-link">...</a>
+                </li>
+                <li class="pagination-item">
+                    <a href="" class="pagination-item-link">15</a>
+                </li>
+
+                <li class="pagination-item">
+                    <a href="" class="pagination-item-link">
+                        <i class="pagination-item-icon fas fa-angle-right"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

@@ -46,6 +46,7 @@
             Validator.isRequired("#fullDes", "Vui lòng nhập chi tiết nội dung của khóa học."),
             Validator.isRequired("#avatar", "Vui lòng chọn ảnh đại diện cho khóa học."),
             Validator.isRequired("#introVideo", "Vui lòng chọn video giới thiệu khóa học."),
+            Validator.isRequired("#quantity", "Vui lòng nhập số lượng bài giảng."),
             Validator.ischecked("#fieldId",
                 function () {
                     return document.querySelector("#frmMain #fieldId").value;
@@ -127,6 +128,13 @@
                     <label for="tinyDes">Mô tả ngắn gọn nội dung</label>
                     <input type="text" class="form-control" id="tinyDes" name="tinyDes"
                         placeholder="Mô tả ngắn gọn....">
+                    <span class="form-message"></span>
+                </div>
+
+                <div class="form-group col-sm-6">
+                    <label for="quantity">Số lượng bài giảng</label>
+                    <input type="number" class="form-control" id="quantity" name="quantity"
+                        placeholder="Vd: 12 bài">
                     <span class="form-message"></span>
                 </div>
 
