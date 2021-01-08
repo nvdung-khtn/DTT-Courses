@@ -10,6 +10,7 @@ router.get('/register', accountController.getRegister);
 router.post('/register', accountController.postRegister);
 router.get('/confirm', accountController.confirmRegister);
 router.post('/confirm', accountController.postConfirmRegister);
+router.post('/resetconfirm', accountController.postResetConfirmRegister);
 router.get('/forgotpassword', accountController.forgotPassword);
 router.get('/resetpassword', accountController.resetPassword);
 

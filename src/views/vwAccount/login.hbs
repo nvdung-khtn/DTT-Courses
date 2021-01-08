@@ -14,7 +14,7 @@
 <body>
     <div class="container">
         <div class="cont-right shadow">
-            <h2 class="title">Đăng nhập</h2>
+            <p class="title">Đăng nhập</p>
             <form id="frmLogin" action="/account/login" method="POST">
                 <div class="form-group">
                     <input id="email" type="text" name="email" placeholder="Email..." />
@@ -24,13 +24,20 @@
                     <input id="password" type="password" name="password" placeholder="Mật khẩu" />
                     <span class="form-message"></span>
                 </div>
-                <span id="error" class="error">{{error}}</span>
+                <div style="margin-top: 5px">
+                    <span class="error">{{error1}}</span>
+                    <span class="error">{{error2}}</span>
+                </div>
                 <button type="submit" class="btn-login">Đăng nhập</button>
-                <hr>
-                <a href="#" class="btnGoogle"><i class="fab fa-google mr-1"></i>Đăng nhập với Google</a>
-                <a href="#" class="btnFacebook"><i class="fab fa-facebook-f mr-1"></i>Đăng nhập với Facebook</a>
-                <hr>
-                <div>
+
+                <hr style="margin-top: 1.5rem; margin-bottom: 1.5rem">
+
+                <div >
+                    <a href="#" class="btnGoogle"><i class="fab fa-google mr-1"></i>Đăng nhập với Google</a>
+                    <a href="#" class="btnFacebook"><i class="fab fa-facebook-f mr-1"></i>Đăng nhập với Facebook</a> 
+                </div>
+                
+                <div style="margin-top: 1.5rem">
                     <p class="link_bottom"><a href="/account/forgotpassword" class="text-center">Quên mật khẩu?</a></p>
                     <p class="link_bottom">Bạn chưa có tài khoản?<a class="ml-1" href="/account/register">Đăng ký</a>
                     </p>

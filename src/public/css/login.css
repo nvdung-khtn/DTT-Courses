@@ -19,7 +19,8 @@ input {
     border: 1px solid #999;
     font-size: 13px;
     padding: 0 1rem;
-    margin: 8px 0;
+    margin-top: 8px;
+
     transition: 0.3s;
     color: #777;
 }
@@ -48,7 +49,7 @@ input:focus {
 .title {
     text-align: center;
     font-size: 1.8rem;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
     font-weight: bold;
 }
 
@@ -80,7 +81,7 @@ input:focus {
     line-height: 3rem;
     text-align: center;
     border-radius: 25px;
-    margin: 8px 0;
+    margin-top: 1rem;
     border: none;
     outline: none;
     color: #fff;
@@ -101,7 +102,7 @@ input:focus {
     line-height: 3rem;
     text-align: center;
     border-radius: 25px;
-    margin: 8px 0;
+    margin: 8px 0px;
     border: none;
     outline: none;
     color: #fff;
@@ -128,22 +129,30 @@ input:focus {
 }
 
 .form-group.invalid input {
-    border-color: #f33a58;
-    margin: 0;
+    border-color: red;
+    margin-top: 8px;
 }
 
 .form-group.invalid .form-message {
-    color: #f33a58;
+    color: red;
 }
 
-.form-message {
-    font-size: 0.8rem;
-    line-height: 1.6rem;
-    padding: 0 0 0 20px;
+.form-message{
+    font-size: .9rem;
+    margin-left: 8px;
+    font-style: italic;
+}
+
+.message-clone{
+    opacity: 0;
+    visibility: hidden;
 }
 
 .error {
-    color: #f33a58;
-    padding: 0 0 0 20px;
+    color: red;
+    font-size: .9rem;
+    margin-left: 8px;
+    padding-top: 10px;
+    font-style: italic;
     display: block;
 }
