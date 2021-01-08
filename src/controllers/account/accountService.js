@@ -18,16 +18,12 @@ module.exports = {
         return User.find({email: email})
         .exec()
         .then((data)=> {
-            //console.log(data);
             if (data.length > 0 ){
-                return data[0];
+                return data[0]; //user object
             }
             return null;
-            
         })
-        .catch(err => {
-            return 'err'
-        })
+        .catch(err => err)
     },
 
     findUserByEmail: (email) => {

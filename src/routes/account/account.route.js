@@ -13,5 +13,4 @@ router.post('/confirm', accountController.postConfirmRegister);
 router.get('/forgotpassword', accountController.forgotPassword);
 router.get('/resetpassword', accountController.resetPassword);
 
-
 module.exports = router;

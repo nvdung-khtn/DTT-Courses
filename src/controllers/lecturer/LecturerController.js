@@ -93,14 +93,14 @@ class LecturerController {
         ])(req, res, function (err) {
             formData = {
                 ...req.body,
-                folderAddress,
+                folderName,
                 avatar,
                 introVideo,
                 rating: 0,
                 totalRating: 0,
                 view: 0,
                 students: [],
-                lecId: "fake", //lấy trong session
+                lecId: "5fdb341e913b57e9602bb627", //lấy trong session
                 nIndex: 0,
                 status: false,
             };
@@ -109,6 +109,7 @@ class LecturerController {
                 next(err);
             } else {
                 console.log('Tạo khóa học thành công.');
+                console.log("formData: ", formData);
                 const course = new Course(formData);
                 course
                     .save()

@@ -36,7 +36,7 @@
 {{!-- Validate form --}}
 <script>
     Validator({
-        form: '#frmMain',
+        form: '#frmMain1',
         formGroupSelector: '.form-group',
         errorSelector: '.form-message',
         rules: [
@@ -52,10 +52,7 @@
                     return document.querySelector("#frmMain #fieldId").value;
                 },
                 "Vui lòng chọn lĩnh vực của khóa học.")
-        ],
-        onSubmit: function (data) {
-            console.log(data);
-        }
+        ]
     })
 </script>
 {{/section}}

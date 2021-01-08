@@ -69,35 +69,35 @@ class AccountController {
     async postLogin(req, res, next){
         const user = req.body;
         const listAccount = await accountService.getUserByEmail(user.email);
-        console.log(listAccount);
         if(listAccount === null ){
-            console.log("Khong tim thay tai khoan");
+            console.log("Không tìm thấy User.");
             return res.render('vwAccount/login', {
                 layout: false,
+                error: 'Email hoặc mật khẩu không đúng!'
             });
         }
-        // console.log(listAccount);
+
         const ret = bcrypt.compareSync(user.password, listAccount.password);
-        if(ret === false){
+        if(ret === false) {
             console.log("Invalid username or password");
             return res.render('vwAccount/login', {
                 layout: false,
+                error: 'Email hoặc mật khẩu không đúng!'
             });
-        }else{
+        } else{
             req.session.isAuth = true;
             req.session.authUser = listAccount;
-            console.log("Login success");
+
             if(listAccount.permission === 0){
-                let url = '/';
+                let url = req.session.retUrl || '/admin';
                 res.redirect(url);
             }else if(listAccount.permission === 1){
-                let url = '/lecturer';
+                let url = req.session.retUrl || '/lecturer';
                 res.redirect(url)
             }else{
-                let url = '/admin';
+                let url =  req.session.retUrl ||'/';
                 res.redirect(url)
             }
-            
         }
     }
 
@@ -105,8 +105,9 @@ class AccountController {
         req.session.isAuth = false;
         req.session.authUser = null;
 
-        let url = '/'
-        res.redirect(url);
+        // let url = '/'
+        // res.redirect(url);
+        res.redirect(req.headers.referer);
     }
 
     // [GET] account/register
