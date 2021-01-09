@@ -100,7 +100,7 @@ class LecturerController {
                 totalRating: 0,
                 view: 0,
                 students: [],
-                lecId: "5fdb341e913b57e9602bb627", //lấy trong session
+                lecId: req.session.authUser._id,
                 nIndex: 0,
                 status: false,
             };

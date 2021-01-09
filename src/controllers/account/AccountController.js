@@ -103,8 +103,6 @@ class AccountController {
     postLogout(req, res){
         req.session.isAuth = false;
         req.session.authUser = null;
-
-        
         res.redirect(req.headers.referer);
     }
 
