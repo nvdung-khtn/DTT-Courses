@@ -1,11 +1,33 @@
 {{#section 'css'}}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.1.3/css/fileinput.min.css">
 <link rel="stylesheet" href="/css/lecturer/updateCourse.css">
 <link rel="stylesheet" href="/css/home.css">
+{{/section}}
+{{#section 'js'}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.1.3/js/fileinput.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.1.3/themes/fa/theme.min.js"></script>
+<script>
+    $('#video').fileinput({
+        theme: 'fa',
+        dropZoneEnabled: false,
+        allowedFileExtensions: ['mp4']  //chỉ cho phép upload các định dạng sau
+    });
+</script>
+
+<script>
+    //Binding index for lesson
+    const num = +$('#quantity').text();
+    let html = "";
+    for (let i = 1; i <= num; i++) {
+        html += `<option value="${i}">${i}</option>`
+    }
+    document.getElementById('indexLesson').innerHTML = html;
+</script>
 {{/section}}
 <div class="content">
     <div class="page-title">
         <h1 class="course-name">
-            Lập trình web cơ bản với JavaScript
+            {{course.name}}
             <span class="badge badge-pill badge-warning badge-custom">Chưa hoàn thành</span>
         </h1>
         <a href="#" class="course-completed"><i class="far fa-check-square"></i></a>
@@ -14,7 +36,7 @@
         <div class="header-update-course">
             <div class="info-status">
                 <div class="quantity">
-                    Số lượng bài giảng: <span class="amount">12</span>
+                    Số lượng bài giảng: <span id="quantity" class="amount">{{course.quantity}}</span>
                 </div>
                 <div class="updated">
                     Đã hoàn thành: <span class="amount">5</span>
@@ -34,19 +56,18 @@
             <!-- Modal add new lesson -->
             <div class="modal fade" id="addLesson" data-backdrop="static" data-keyboard="false" tabindex="-1"
                 aria-labelledby="addLessonLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="addLessonLabel"><i>Thêm bài giảng</i></h5>
-                        </div>
-                        <div class="modal-body">
-                            <form id="frmAddLesson" method="POST" action="/lecturer/courses/store" enctype="multipart/form-data">
+                <form id="frmAddLesson" method="POST" action="/lecturer/courses/lesson/add"
+                    enctype="multipart/form-data">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="addLessonLabel"><i>Thêm bài giảng</i></h5>
+                            </div>
+                            <div class="modal-body">
+
                                 <div class="form-group">
                                     <label for="indexLesson">Bài giảng số </label>
-                                    <select class="form-control" id="indexLesson" name="indexLesson">
-                                        <option value="volvo">1</option>
-                                        <option value="volvo">2</option>
-                                        <option value="volvo">3</option>
+                                    <select class="form-control" id="indexLesson" name="index">
                                     </select>
                                     <span class="form-message"></span>
                                 </div>
@@ -59,19 +80,20 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="video">Video giới thiệu khóa học</label>
-                                    <input type="file" class="file" id="video" name="video"
-                                        placeholder="Chọn video">
+                                    <label for="video">Video bài giảng</label>
+                                    <input type="file" class="file" id="video" name="video" placeholder="Chọn video">
                                     <span class="form-message"></span>
                                 </div>
-                            </form>
-                        </div>
-                        <div class="modal-footer modal-footer-lesson">
-                            <button type="button" class="btn btn-secondary mr-2" data-dismiss="modal">Hủy bỏ</button>
-                            <button type="button" class="btn btn-primary">Thêm mới</button>
+
+                            </div>
+                            <div class="modal-footer modal-footer-lesson">
+                                <button type="button" class="btn btn-secondary mr-2" data-dismiss="modal">Hủy
+                                    bỏ</button>
+                                <button type="submit" class="btn btn-primary">Thêm mới</button>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </form>
             </div>
 
         </div>
@@ -89,15 +111,13 @@
                     </tr>
                 </thead>
                 <tbody>
+                    {{#each lessons}}  
                     <tr>
-                        <th scope="row">1</th>
-                        <td>Khai báo biến Lorem, ipsum dolor sit amet consectetur adipisicing elit. Non, consequatur
-                            id.
-                            Sed, odit. Autem, cupiditate enim. Ducimus id repellat nemo eaque, obcaecati expedita
-                            cupiditate similique iste officiis, eos vero et!</td>
-                        <td>Chưa cập nhập</td>
-                        <td>Chưa cập nhập</td>
-                        <td>Chưa hoàn thành</td>
+                        <th scope="row">{{index}}</th>
+                        <td>{{name}}</td>
+                        <td>{{video}}</td>
+                        <td>{{updatedAt}}</td>
+                        <td>{{status}}</td>
                         <td class="d-flex justify-content-end icon-update-course">
                             <a data-toggle="modal" data-target="#editLesson" href=""
                                 class="edit-icon d-inline-block mr-4">
@@ -108,54 +128,7 @@
                             </a>
                         </td>
                     </tr>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Khai báo biến Lorem, ipsum dolor sit amet consectetur adipisicing elit. Non, consequatur
-                            id.
-                            Sed, odit. Autem, cupiditate enim. Ducimus id repellat nemo eaque, obcaecati expedita
-                            cupiditate similique iste officiis, eos vero et!</td>
-                        <td>Chưa cập nhập</td>
-                        <td>Chưa cập nhập</td>
-                        <td>Chưa hoàn thành</td>
-                        <td class="d-flex justify-content-end icon-update-course">
-                            <a href="#" class="edit-icon d-inline-block mr-4">
-                                <i class="fas fa-pencil-alt"></i>
-                            </a>
-                            <a href="#" class="delete-icon mr-2">
-                                <i class="fas fa-trash"></i>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Khai báo biến Lorem, </td>
-                        <td>Chưa cập nhập</td>
-                        <td>Chưa cập nhập</td>
-                        <td>Chưa hoàn thành</td>
-                        <td class="d-flex justify-content-end icon-update-course">
-                            <a href="#" class="edit-icon d-inline-block mr-4">
-                                <i class="fas fa-pencil-alt"></i>
-                            </a>
-                            <a href="#" class="delete-icon mr-2">
-                                <i class="fas fa-trash"></i>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Khai báo biến Lorem, </td>
-                        <td>Chưa cập nhập</td>
-                        <td>Chưa cập nhập</td>
-                        <td>Chưa hoàn thành</td>
-                        <td class="d-flex justify-content-end icon-update-course">
-                            <a href="#" class="edit-icon d-inline-block mr-4">
-                                <i class="fas fa-pencil-alt"></i>
-                            </a>
-                            <a href="#" class="delete-icon mr-2">
-                                <i class="fas fa-trash"></i>
-                            </a>
-                        </td>
-                    </tr>
+                    {{/each}}
                 </tbody>
             </table>
 
@@ -168,7 +141,8 @@
                             <h5 class="modal-title" id="editLessonLabel"><i>Cập nhập bài giảng</i></h5>
                         </div>
                         <div class="modal-body">
-                            <form id="frmAddLesson" method="POST" action="/lecturer/courses/store" enctype="multipart/form-data">
+                            <form id="frmAddLesson" method="POST" action="/lecturer/courses/store"
+                                enctype="multipart/form-data">
                                 <div class="form-group">
                                     <label for="indexLesson">Bài giảng số </label>
                                     <select class="form-control" id="indexLesson" name="indexLesson">
@@ -188,8 +162,7 @@
 
                                 <div class="form-group">
                                     <label for="video">Video giới thiệu khóa học</label>
-                                    <input type="file" class="file" id="video" name="video"
-                                        placeholder="Chọn video">
+                                    <input type="file" class="file" id="video" name="video" placeholder="Chọn video">
                                     <span class="form-message"></span>
                                 </div>
                             </form>
