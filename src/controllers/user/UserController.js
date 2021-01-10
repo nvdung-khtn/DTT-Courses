@@ -56,7 +56,6 @@ const sendMail = (email) => {
     });
 }
 
-
 class UserController {
 
     manage(req, res){
@@ -157,6 +156,18 @@ class UserController {
 
         }
         return res.redirect('/user/confirm');
+    }
+
+    listcoursebookmark(req, res){
+        res.render('vwUser/bookmark', {
+            layout: 'user'
+        })
+    }
+
+    mycourse(req, res){
+        res.render('vwUser/mycourses', {
+            layout: 'user'
+        })
     }
 }
 

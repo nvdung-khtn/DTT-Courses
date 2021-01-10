@@ -18,17 +18,26 @@ module.exports = {
         next();
     },
 
-    authUser(req, res, next){
-      if (req.session.isAuth === false ) {
-        req.session.retUrl = req.originalUrl;
-        return res.redirect('/account/login');
+    authLecturer(req, res, next) {
+      const { permission } = req.session.authUser;
+      if(permission !== 1) {
+          return res.redirect('/');
       }
-      if( req.session.authUser.permission !== 2){
-        req.session.retUrl = req.originalUrl;
-        return res.redirect('/account/login');
-      }
-    
+
       next();
+  },
+
+    authUser(req, res, next){
+        if (req.session.isAuth === false) {
+            req.session.retUrl = req.originalUrl;
+            return res.redirect('/account/login');
+        }
+        if( req.session.authUser.permission !== 2){
+            req.session.retUrl = req.originalUrl;
+            return res.redirect('/account/login');
+        }
+    
+        next();
     },
 
 };

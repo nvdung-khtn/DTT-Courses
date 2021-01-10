@@ -158,7 +158,7 @@ class AccountController {
         req.session.isAuth = false;
         req.session.authUser = null;
         const url = req.session.retUrl || '/'
-        res.redirect(url);
+        return res.redirect(url); 
     }
 
     // [GET] account/register

@@ -126,8 +126,8 @@
                             <b>{{authUser.name}}</b>
                             <ul class="subuser">
                                 <li class="sub-menu-choose"><a href="/user/manage/{{authUser._id}}" class="link"><i class="fas fa-cog mr-2"></i>Quản lý tài khoản</a></li>
-                                <li class="sub-menu-choose"><a href="./mycourse.html" class="link"><i class="fas fa-list mr-2"></i>Khóa học của tôi</a></li>
-                                <li class="sub-menu-choose"><a href="./favorcourse.html" class="link"><i class="fas fa-clipboard-list mr-2"></i>Khóa học yêu thích</a></li>
+                                <li class="sub-menu-choose"><a href="/user/listbookmark/{{authUser._id}}" class="link"><i class="fas fa-list mr-2"></i>Khóa học của tôi</a></li>
+                                <li class="sub-menu-choose"><a href="/user/mycourses/{{authUser._id}}" class="link"><i class="fas fa-clipboard-list mr-2"></i>Khóa học yêu thích</a></li>
                                 <li class="sub-menu-choose"><a href="/user/changepassword/{{authUser._id}}" class="link"><i class="fas fa-key mr-2"></i></i>Đổi mật khẩu</a></li>
                                 <li class="sub-menu-choose"><span class="link" onclick="resetOtp()">
                                     <i class="fas fa-sign-out-alt mr-2"></i>Đăng xuất</span>
