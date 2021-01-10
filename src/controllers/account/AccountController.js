@@ -157,11 +157,8 @@ class AccountController {
     postLogout(req, res){
         req.session.isAuth = false;
         req.session.authUser = null;
-
         const url = req.session.retUrl || '/'
-        
         res.redirect(url);
-
     }
 
     // [GET] account/register
