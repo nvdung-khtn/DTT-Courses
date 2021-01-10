@@ -4,7 +4,8 @@ const courseRouter = require('./course/course.route');
 const adminRouter = require('./admin/admin.route');
 const lecturerRouter = require('./lecturer/lecturer.route');
 const homeRouter = require('./home.route');
-const { auth, authAdmin } = require('../middleWares/auth.mdw');
+const userRouter = require('./user/user.route');
+const { auth, authAdmin, authUser, authLecturer} = require('../middleWares/auth.mdw');
 
 function route(app) {
     /** Route of Guest */
@@ -12,11 +13,12 @@ function route(app) {
     /** Route of Admin */
     app.use('/admin', auth, authAdmin, adminRouter);
     /** Route of Lecturer */
-    //app.use('/lecturer', auth, lecturerRouter);
-    app.use('/lecturer', lecturerRouter);
+    app.use('/lecturer', auth, authLecturer, lecturerRouter);
     /** Route of User */
     app.use('/courses', courseRouter);
-    
+    /** Route of manage user */
+    app.use('/user', userRouter);
+
     /** Route Home page */
     app.use('/', homeRouter);
 }

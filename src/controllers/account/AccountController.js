@@ -3,7 +3,6 @@ const User = require('../../models/User');
 const nodemailer =  require('nodemailer');
 const accountService = require('./accountService');
 const Otp = require('../../models/Otp');
-const swal = require('sweetalert2');
 
 const SALT = 10;
 
@@ -28,7 +27,7 @@ const sendMail = (email) => {
         secure: true,
         auth: {
             user: 'ddtcourses@gmail.com', //Tài khoản admin
-            pass: 'ddt_123456' //Mật khẩu admin
+            pass: 'tuando24101997' //Mật khẩu admin
         },
         tls: {
             rejectUnauthorized: false
@@ -57,9 +56,63 @@ const sendMail = (email) => {
     });
 }
 
+const sendMailForgotPassword = (email) => {
+    
+    // Tạo otp và thêm vào database
+    var otp = Math.floor(Math.random() * 899999) + 100000;
+    const otpData = {
+        content: otp,
+        time: Date.now(),
+        email
+    }
+    Otp.create(otpData).then(()=>{
+        //console.log("Tạo otp thành công");
+    }).catch(()=>{
+        console.log("Error");
+    })
+
+    // Gửi mail
+    var transporter =  nodemailer.createTransport({ // config mail server
+        host: 'smtp.gmail.com',
+        port: 465,
+        secure: true,
+        auth: {
+            user: 'ddtcourses@gmail.com', //Tài khoản admin
+            pass: 'tuando24101997' //Mật khẩu admin
+        },
+        tls: {
+            rejectUnauthorized: false
+        }
+    });
+    var content = '';
+    content += `
+        <div>
+            <div>
+                <span style="color: black">Mã xác nhận email của bạn là: <b>${otp}</b> </span>
+            </div>
+        </div>
+    `;
+    var mainOptions = { // thiết lập đối tượng, nội dung gửi mail
+        from: 'DDT Courses',
+        to: email,
+        subject: 'Xác nhận email - Đổi mật khẩu',
+        html: content //Nội dung html mình đã tạo trên kia :))
+    }
+    transporter.sendMail(mainOptions, function(err, info){
+        if (err) {
+            console.log(err);
+        } else {
+            //console.log("Gửi mail thành công");
+        }
+    });
+}
+
 class AccountController {
     // [GET] account/login
     getLogin(req, res) {
+        if (req.headers.referer) {
+            req.session.retUrl = req.headers.referer;
+        }
         res.render('vwAccount/login', {
             layout: false,
         });
@@ -77,6 +130,8 @@ class AccountController {
         }
 
         const ret = bcrypt.compareSync(user.password, listAccount.password);
+        // console.log(user.password);
+        // console.log(listAccount.password);
         if(ret === false) {
             
             return res.render('vwAccount/login', {
@@ -86,7 +141,6 @@ class AccountController {
         } else{
             req.session.isAuth = true;
             req.session.authUser = listAccount;
-
             if(listAccount.permission === 0){
                 let url = req.session.retUrl || '/admin';
                 res.redirect(url);
@@ -103,7 +157,8 @@ class AccountController {
     postLogout(req, res){
         req.session.isAuth = false;
         req.session.authUser = null;
-        res.redirect(req.headers.referer);
+        const url = req.session.retUrl || '/'
+        return res.redirect(url); 
     }
 
     // [GET] account/register
@@ -164,6 +219,8 @@ class AccountController {
                 name: user.name,
                 email: user.email,
                 password: hash,
+                address: '',
+                phone: '',
                 permission: 2,
             };
 
@@ -208,11 +265,74 @@ class AccountController {
         });
     }
 
+    async postforgotPassword(req,res, next){
+        //console.log(req.body);
+        const checkEmail = await accountService.getUserByEmail(req.body.email);
+        if (checkEmail === null ){
+            console.log("email chưa được đăng kí tài khoản");
+            return res.redirect('/account/forgotpassword');
+        }
+
+        await accountService.deleteOtpByEmail(req.body.email);
+
+        sendMailForgotPassword(req.body.email);
+
+
+        req.session.isForgotPassword = true;
+        req.session.emailForgotPassword = req.body.email;
+        return res.redirect('/account/confirmforgotpassword');
+    }
+
     // [GET] account/resetpassword
     resetPassword(req, res) {
+        if (req.session.isOTPForgotPassword !== true && req.session.isForgotPassword === true ){
+            return res.redirect('/account/confirmforgotpassword');
+        }
+        else if(req.session.isOTPForgotPassword !== true && req.session.isForgotPassword === true){
+            return res.redirect('/account/forgotpassword');
+        }
         res.render('vwAccount/resetpassword', {
             layout: false,
         });
+    }
+
+    async postResetPassword(req, res){
+        const data = req.body;
+        if (data.password !== data.repeatpassword){
+            console.log("Mật khẩu không trùng khớp");
+            return res.redirect('/account/resetpassword');
+        }
+        const pwHash = bcrypt.hashSync(data.password, SALT);
+        await accountService.updatePasswordByEmail(req.session.emailForgotPassword, pwHash);
+        await accountService.deleteOtpByEmail(req.session.emailForgotPassword);
+        req.session.emailForgotPassword = null;
+        req.session.isOTPForgotPassword = false;
+        req.session.isForgotPassword = false;
+        return res.redirect('/account/login');
+    }
+
+    confirmForgotPassword(req, res){
+        if (req.session.isForgotPassword !== true ){
+            return res.redirect('/account/forgotpassword');
+        }
+        res.render('vwAccount/confirmforgotpassword', {
+            layout: false,
+        });
+    }
+
+    async postConfirmForgotPassword(req, res){
+        const data = req.body;
+        const otp = await accountService.getOtpByEmail(req.session.emailForgotPassword);
+        const checkOtp = data.zero + data.first + data.second + data.third + data.four + data.fifth; 
+       
+        if (otp === checkOtp){
+            req.session.isOTPForgotPassword = true;
+            return res.redirect('/account/resetpassword');
+        }else{
+            console.log("OTP không chính xác");
+            return res.redirect('/account/confirmforgotpassword');
+        }
+        
     }
 }
 
