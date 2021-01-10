@@ -1,0 +1,63 @@
+
+{{#section 'css'}}
+    <link rel="stylesheet" href="/css/user/manage.css">
+{{/section}}
+
+<div class="container">
+        <h1 class="big-title">Thông tin tài khoản</h1>
+        <div class="content">
+            <form method="POST" action="/user/manage">
+
+                <div class="row mt-3 mb-3">
+                    <div class="col-3 title">
+                        Họ và tên
+                    </div>
+                    <div class="col-9">
+                        <input type="text" name="name" class="input-value unactive" value="{{authUser.name}}">
+                    </div>
+                    
+                    
+                </div>
+
+                <div class="row content-small">
+                    <div class="col-3 title">
+                        Email
+                    </div>
+                    <div class="col-9">
+                        <input type="email" name="email" class="input-value unactive" value="{{authUser.email}}">
+                    </div>
+                   
+                </div>
+
+                <div class="row content-small">
+                    <div class="col-3 title">
+                        Địa chỉ
+                    </div>
+                    <div class="col-9">
+                        <input type="text" name="address" class="input-value unactive" value="{{authUser.address}}">
+                    </div>
+                   
+                </div>
+
+                <div class="row content-small">
+                    <div class="col-3 title">
+                        Số điện thoại
+                    </div>
+                    <div class="col-9">
+                        <input type="text" name="phone" class="input-value unactive" value="{{authUser.phone}}">
+                    </div>
+                   
+                </div>
+
+            
+                <div class="text-center content-small">
+                    
+                    <button class="btn btn-success button-change" type="submit" id="btnChange" type="button">
+                        <i class="fas fa-pen mr-2"></i>
+                        Lưu Thay đổi
+                    </button>
+                    
+                </div>
+            </form>
+        </div>
+    </div>

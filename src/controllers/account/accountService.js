@@ -50,4 +50,15 @@ module.exports = {
             return 'err'
         })
     },
+
+    updatePasswordByEmail: (email, password ) => {
+        return User.updateOne({email: email }, {$set: {email, password: password}})
+        .exec()
+        .then(()=> {
+            console.log("Update success");
+        })
+        .catch(err => {
+            return 'err'
+        })
+    }
 }

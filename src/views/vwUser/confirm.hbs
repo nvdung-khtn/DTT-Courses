@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10.8.1/dist/sweetalert2.min.css">
+
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="/css/confirmregister.css">
+  <title>Xác nhận OTP</title>
+</head>
+<body>
+  <div class="container shadow">
+   
+        <div class="warraper mb-2">
+
+       
+          <div class="header">
+            <p class="title">Vui lòng nhập mã xác minh gồm 6 chữ số đã được gửi qua Email:</p>
+            <p class="decrip">(Chúng tôi muốn xác minh rằng địa chỉ email đã đăng ký là của bạn)</p>
+          </div>
+          <form action="/user/confirm" method="POST" id="formOtp">
+            <div class="userInput">
+              <input type="text" id="zero" name="zero" onfocus="this.value=''" maxlength="1" onkeyup="InputOTP(this, 'first')" autofocus>
+              <input type="text" id="first" name="first" onfocus="this.value=''" maxlength="1" onkeyup="InputOTP(this, 'second')">
+              <input type="text" id="second" name="second" onfocus="this.value=''" maxlength="1" onkeyup="InputOTP(this, 'third')">
+              <input type="text" id="third" name="third" onfocus="this.value=''" maxlength="1" onkeyup="InputOTP(this, 'four')">
+              <input type="text" id="four" name="four" onfocus="this.value=''" maxlength="1" onkeyup="InputOTP(this, 'fifth')">
+              <input type="text" id="fifth" name="fifth" onfocus="this.value=''" maxlength="1" onkeyup="checkOTP()">
+            </div>
+            <div class="timer">
+              <p class="txtTimer">Mã OTP sẽ hết hạn sau <span class="spTimer">00:15</span> giây </p>
+            </div>
+          </form>
+          
+          <form action="/user/resetconfirm" method="POST" id="frmResetOtp"></form>
+
+          <div class="btnfooter">
+            <p class="txtResendOTP">Bạn chưa nhận được OTP?</p>
+            <span onclick="resetOTP()" class="linkResendOTP">Gửi lại OTP</span>
+          </div>
+        </div>
+      </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+  <script type="text/javascript">
+    function InputOTP (first, last){
+      if(first.value.length){
+        document.getElementById(last).focus();
+      }
+    }
+    
+    function checkOTP(){
+      
+      document.getElementById('formOtp').submit();
+      document.getElementById('zero').focus();
+    }
+
+    function resetOTP(){
+
+      document.getElementById('frmResetOtp').submit();
+    }
+  </script>
+</body>
+</html>
