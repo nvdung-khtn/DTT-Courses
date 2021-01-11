@@ -34,8 +34,7 @@
 }
 
 .form-group:active {
-    outline: none;
-    
+    outline: none;  
 }
 
 .form-control:hover {

@@ -18,16 +18,12 @@ module.exports = {
         return User.find({email: email})
         .exec()
         .then((data)=> {
-            //console.log(data);
             if (data.length > 0 ){
-                return data[0];
+                return data[0]; //user object
             }
             return null;
-            
         })
-        .catch(err => {
-            return 'err'
-        })
+        .catch(err => err)
     },
 
     findUserByEmail: (email) => {
@@ -54,4 +50,15 @@ module.exports = {
             return 'err'
         })
     },
+
+    updatePasswordByEmail: (email, password ) => {
+        return User.updateOne({email: email }, {$set: {email, password: password}})
+        .exec()
+        .then(()=> {
+            console.log("Update success");
+        })
+        .catch(err => {
+            return 'err'
+        })
+    }
 }

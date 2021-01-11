@@ -18,8 +18,7 @@ class SiteController {
                 const hightLightCourse = homeService.getHighLightCourse(courses, 4);
                 const mostViewedCourses = homeService.getMostViewedCourse(courses, 4);
                 const newCourses = homeService.getNewCourse(courses,5);
-                console.log(req.session.isAuth);
-                console.log(req.session.authUser);
+                
                 res.render('home', { 
                     hightLightCourse,
                     mostViewedCourses,

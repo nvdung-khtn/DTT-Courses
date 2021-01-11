@@ -223,7 +223,7 @@
 							</a>
 						</li>
 						<li  class="dropdown-menu-item">
-							<a href="#" class="dropdown-menu-link">
+							<a href="javascript: $('#frmLogout').submit();" class="dropdown-menu-link">
 								<div>
 									<i class="fas fa-sign-out-alt"></i>
 								</div>
@@ -234,6 +234,7 @@
 				</div>
 			</li>
 		</ul>
+		<form id="frmLogout" method="POST" action="/account/logout"></form>
 		<!-- end nav right -->
 	</div>
 	<!-- end navbar -->

@@ -49,16 +49,16 @@
                 formGroupSelector: ".form-group",
                 errorSelector: ".form-message",
                 rules: [
-                    Validator.isRequired("#username", "Your name invalid"),
-                    Validator.isEmail("#email", "Email invalid"),
-                    Validator.minLength("#password", 6, "Password must be longer than 6 characters"),
-                    Validator.isRequired("#repeatpassword", "Repeat password invalid"),
+                    Validator.isRequired("#username", "Xin vui lòng nhập tên"),
+                    Validator.isEmail("#email", "Email không hợp lệ"),
+                    Validator.minLength("#password", 6, "Mật khẩu phải dài hơn 6 kí tự"),
+                    Validator.isRequired("#repeatpassword", "Mật khẩu không trùng khớp"),
                     Validator.isConfirmed(
                         "#repeatpassword",
                         function () {
                             return document.querySelector("#formRegister #password").value;
                         },
-                        "Repeat password invalid"
+                        "Mật khẩu không trùng khớp"
                     ),
                 ]
             });

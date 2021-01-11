@@ -1,0 +1,136 @@
+.page-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #ddd;
+}
+
+.course-name {
+    position: relative;
+}
+
+.badge-custom {
+    position: absolute;
+    right: -125px;
+    top: 12px;
+    font-size: 35%;
+}
+
+.course-completed {
+    display: inline-block;
+    font-size: 3.6rem;
+    padding: 2px 0 0 4px;
+    line-height: 3.6rem;
+    color: var(--primary-color);
+}
+
+.course-completed:hover {
+    color: var(--primary-color-hover);
+}
+
+.header-update-course {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.6rem;
+    align-items: center;
+    margin-top: 5px;
+}
+
+.info-status {
+    margin-right: 50px;
+
+}
+
+span.amount {
+    font-size: 2rem;
+    color: rgb(243, 126, 17);
+    font-weight: 700;
+}
+
+.search-bar {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+    margin-right: 60px;
+}
+
+.search-bar__input {
+    width: 100%;
+    padding: 6px 40px 6px 20px;
+    border-radius: 20px;
+    outline: none;
+    border: 1px solid #CCC;
+}
+
+.search-bar__input:focus {
+    overflow: hidden;
+    outline: none;
+    border: 1px solid var(--primary-color);
+}
+
+.search-bar__icon {
+    position: absolute;
+    right: 12px;
+    top: 2px;
+    color: #999;
+    padding: 2px 4px;
+}
+
+.search-bar__icon:active, .search-bar__icon:hover {
+    color: var(--primary-color);
+}
+
+.add-lesson {
+    font-size: 3rem;
+    margin-left: 50px;
+}
+
+.lesson-table {
+    font-size: 1.4rem;
+    margin-top: 30px;
+}
+
+.lesson-name {
+    width: 350px;
+}
+
+.icon-update-course {
+    font-size: 1.8rem;
+    border-bottom: none !important;
+}
+
+.delete-icon {
+    color: rgb(219, 78, 78);
+}
+
+.delete-icon:hover {
+    color: rgb(231, 22, 22);
+}
+
+.edit-icon {
+    color: #6c757d
+}
+
+.edit-icon:hover {
+    color: #545557
+}
+
+/* Add lesson*/
+#addLesson, #editLesson {
+    font-size: 1.6rem;
+    font-weight: 500;
+}
+
+.modal-body .form-group {
+    width: 100%;
+}
+
+.modal-body .form-control {
+    font-size: 1.6rem;
+}
+
+.modal-footer-lesson .btn {
+    font-size: 1.6rem;
+    width: 90px;
+    height: 33px;
+}
