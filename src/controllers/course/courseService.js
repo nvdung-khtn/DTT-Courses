@@ -84,11 +84,11 @@ module.exports = {
 
 
     async getInforCourse(course) {
-        return {
-            ...course,
-            lecName: 'lecturer.name',
-            fieldName: 'field.name',
-        };
+        // return {
+        //     ...course,
+        //     lecName: 'lecturer.name',
+        //     fieldName: 'field.name',
+        // };
         const lecturer = await User.findById(course.lecId, 'name');
         const field = await Field.findById(course.fieldId, 'name');
         return {
@@ -105,5 +105,25 @@ module.exports = {
         }
         
         return ret;
-    }
+    },
+
+    modifyCoursesByLecturer(courses) {
+        return courses.map(course => {
+            return {
+                ...course,
+                active: course.status ? "active" : "",
+                statusString: course.status ? "Đã hoàn thành" : "Chưa hoàn thành"
+            }
+        });
+    },
+
+    countcompletedLesson(lessons) {
+        let count = 0;
+        lessons.forEach(lesson => {
+            if(lesson.status) {
+                count += 1;
+            }
+        })
+        return count;
+    }   
 }

@@ -18,9 +18,10 @@ class LecturerController {
                 const courses = await courseService.getInforCourses(
                     multipleMongooseToObject(coursesDB),
                 );
-
+                
+                
                 res.render('vwLecturer/manageCourses', {
-                    courses,
+                    courses: courseService.modifyCoursesByLecturer(courses),
                     layout: 'lecturer',
                 });
             })
@@ -131,8 +132,10 @@ class LecturerController {
         // bad ways
         req.session.slug = slug;
         const course = await Course.findOne({ slug: slug }).lean();
+        course.completed = courseService.countcompletedLesson(course.lessons);
         const lessons = course.lessons.map(lesson => {
             return {
+                _id: lesson._id,
                 index: lesson.index,
                 name: lesson.lessonName,
                 updatedAt: moment(lesson.updatedAt).format('DD/MM/YYYY HH:mm'),
@@ -192,6 +195,32 @@ class LecturerController {
             }
         });
     }
+
+    //[POST] lecturer/courses/lesson/del/:id
+    async deleteLesson(req, res, next) {
+        const id = req.params.id;
+        const slug = req.session.slug;
+        const course = await Course.findOne({ slug: slug })
+        .then(course => {
+            course.lessons.id(id).remove();
+            //course.child.remove();
+            course.save()
+            .then(() => res.redirect('back'))
+        })
+    }
+
+        //[POST] lecturer/courses/lesson/edit/:id
+        async editLesson(req, res, next) {
+            const id = req.params.id;
+            const slug = req.session.slug;
+            const course = await Course.findOne({ slug: slug })
+            .then(course => {
+                course.lessons.id(id);
+                //course.child.remove();
+                course.save()
+                .then(() => res.redirect('back'))
+            })
+        }
 }
 
 module.exports = new LecturerController();

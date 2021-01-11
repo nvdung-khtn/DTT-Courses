@@ -22,6 +22,36 @@
         html += `<option value="${i}">${i}</option>`
     }
     document.getElementById('indexLesson').innerHTML = html;
+    // handle delete action
+    document.addEventListener('DOMContentLoaded', function () {
+        var lessonId;
+        const deleteForm = document.querySelector('#frmDelete');
+
+        // When dialog confirm clicked
+        $('#delete-lesson-modal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget);
+            lessonId = button.data('id');
+        });
+
+        // When delete course btn clicked
+        $('#btn-delete-lesson').click(function () {
+            deleteForm.action = '/lecturer/courses/lesson/del/' + lessonId;
+            deleteForm.submit();
+        });
+
+
+    });
+</script>
+<script>
+    const frmEditLesson = $('#frmEditLesson');
+    console.log(frmEditLesson);
+    $('#editLesson').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget);
+        const id = button.data('id');
+        $('#frmEditLesson')[0].indexLesson.value = button.data('index');
+        $('#frmEditLesson')[0].lessonName.value = button.data('name');
+        $('#frmEditLesson')[0].action = "/lecturer/courses/lesson/edit/" + id;
+    });
 </script>
 {{/section}}
 <div class="content">
@@ -39,7 +69,7 @@
                     Số lượng bài giảng: <span id="quantity" class="amount">{{course.quantity}}</span>
                 </div>
                 <div class="updated">
-                    Đã hoàn thành: <span class="amount">5</span>
+                    Đã hoàn thành: <span class="amount">{{course.completed}}</span>
                 </div>
             </div>
 
@@ -53,51 +83,117 @@
             <a href="#" class="add-lesson" data-toggle="modal" data-target="#addLesson">
                 <i class="fas fa-plus"></i>
             </a>
-            <!-- Modal add new lesson -->
-            <div class="modal fade" id="addLesson" data-backdrop="static" data-keyboard="false" tabindex="-1"
-                aria-labelledby="addLessonLabel" aria-hidden="true">
-                <form id="frmAddLesson" method="POST" action="/lecturer/courses/lesson/add"
-                    enctype="multipart/form-data">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="addLessonLabel"><i>Thêm bài giảng</i></h5>
-                            </div>
-                            <div class="modal-body">
 
-                                <div class="form-group">
-                                    <label for="indexLesson">Bài giảng số </label>
-                                    <select class="form-control" id="indexLesson" name="index">
-                                    </select>
-                                    <span class="form-message"></span>
-                                </div>
 
-                                <div class="form-group">
-                                    <label for="lessonName">Tên bài giảng</label>
-                                    <input type="text" class="form-control" id="lessonName" name="lessonName"
-                                        placeholder="Vd: Lập trình web với PHP">
-                                    <span class="form-message"></span>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="video">Video bài giảng</label>
-                                    <input type="file" class="file" id="video" name="video" placeholder="Chọn video">
-                                    <span class="form-message"></span>
-                                </div>
-
-                            </div>
-                            <div class="modal-footer modal-footer-lesson">
-                                <button type="button" class="btn btn-secondary mr-2" data-dismiss="modal">Hủy
-                                    bỏ</button>
-                                <button type="submit" class="btn btn-primary">Thêm mới</button>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
 
         </div>
+        {{!----------------------------------------------------------------------------}}
+        <!-- Modal add new lesson -->
+        <div class="modal fade" id="addLesson" data-backdrop="static" data-keyboard="false" tabindex="-1"
+            aria-labelledby="addLessonLabel" aria-hidden="true">
+            <form id="frmAddLesson" method="POST" action="/lecturer/courses/lesson/add" enctype="multipart/form-data">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="addLessonLabel"><i>Thêm bài giảng</i></h5>
+                        </div>
+                        <div class="modal-body">
 
+                            <div class="form-group">
+                                <label for="indexLesson">Bài giảng số </label>
+                                <select class="form-control" id="indexLesson" name="index">
+                                </select>
+                                <span class="form-message"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="lessonName">Tên bài giảng</label>
+                                <input type="text" class="form-control" id="lessonName" name="lessonName"
+                                    placeholder="Vd: Lập trình web với PHP">
+                                <span class="form-message"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="video">Video bài giảng</label>
+                                <input type="file" class="file" id="video" name="video" placeholder="Chọn video">
+                                <span class="form-message"></span>
+                            </div>
+
+                        </div>
+                        <div class="modal-footer modal-footer-lesson">
+                            <button type="button" class="btn btn-secondary mr-2" data-dismiss="modal">Hủy
+                                bỏ</button>
+                            <button type="submit" class="btn btn-primary">Thêm mới</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <!-- Modal edit lesson -->
+        <div class="modal fade" id="editLesson" data-backdrop="static" data-keyboard="false" tabindex="-1"
+            aria-labelledby="editLessonLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editLessonLabel"><i>Cập nhập bài giảng</i></h5>
+                    </div>
+                    <div class="modal-body">
+                        <form id="frmEditLesson" method="POST" action="" enctype="multipart/form-data">
+                            <div class="form-group">
+                                <label for="indexLesson">Bài giảng số </label>
+                                <input type="text" class="form-control" id="indexLesson" name="indexLesson" value="1"
+                                    readonly>
+                                <span class="form-message"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="lessonName">Tên bài giảng</label>
+                                <input type="text" class="form-control" id="lessonName" name="lessonName"
+                                    placeholder="Vd: Lập trình web với PHP">
+                                <span class="form-message"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="video">Video giới thiệu khóa học</label>
+                                <input type="file" class="file" id="video" name="video" placeholder="Chọn video">
+                                <span class="form-message"></span>
+                            </div>
+
+                    </div>
+                    <div class="modal-footer modal-footer-lesson">
+                        <button type="button" class="btn btn-secondary mr-2" data-dismiss="modal">Hủy bỏ</button>
+                        <button type="submit" class="btn btn-primary">Cập nhập</button>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Confirm delete lesson -->
+        <div id="delete-lesson-modal" class="modal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Xóa bài giảng?</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Bạn chắc chắn muốn xóa bài giảng này?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                        <button id="btn-delete-lesson" type="button" class="btn btn-danger">Xóa bỏ</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{!----------------------------------------------------------------------------}}
+        <!-- Delete hidden form -->
+        <form id="frmDelete" method="POST"></form>
+        {{!----------------------------------------------------------------------------}}
         <div class="lesson-table mb-5">
             <table class="table table-hover table-bordered">
                 <thead class="thead-dark">
@@ -111,7 +207,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {{#each lessons}}  
+                    {{#each lessons}}
                     <tr>
                         <th scope="row">{{index}}</th>
                         <td>{{name}}</td>
@@ -119,11 +215,12 @@
                         <td>{{updatedAt}}</td>
                         <td>{{status}}</td>
                         <td class="d-flex justify-content-end icon-update-course">
-                            <a data-toggle="modal" data-target="#editLesson" href=""
-                                class="edit-icon d-inline-block mr-4">
+                            <a data-toggle="modal" data-target="#editLesson" href="" data-id="{{_id}}"
+                                data-index="{{index}}" data-name={{name}} class="edit-icon d-inline-block mr-4">
                                 <i class="fas fa-pencil-alt"></i>
                             </a>
-                            <a href="#" class="delete-icon mr-2">
+                            <a href="" class="delete-icon mr-2" data-toggle="modal" data-id="{{_id}}"
+                                data-target="#delete-lesson-modal">
                                 <i class="fas fa-trash"></i>
                             </a>
                         </td>
@@ -131,51 +228,7 @@
                     {{/each}}
                 </tbody>
             </table>
-
-            <!-- Modal edit lesson -->
-            <div class="modal fade" id="editLesson" data-backdrop="static" data-keyboard="false" tabindex="-1"
-                aria-labelledby="editLessonLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="editLessonLabel"><i>Cập nhập bài giảng</i></h5>
-                        </div>
-                        <div class="modal-body">
-                            <form id="frmAddLesson" method="POST" action="/lecturer/courses/store"
-                                enctype="multipart/form-data">
-                                <div class="form-group">
-                                    <label for="indexLesson">Bài giảng số </label>
-                                    <select class="form-control" id="indexLesson" name="indexLesson">
-                                        <option value="volvo">1</option>
-                                        <option value="volvo">2</option>
-                                        <option value="volvo">3</option>
-                                    </select>
-                                    <span class="form-message"></span>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="lessonName">Tên bài giảng</label>
-                                    <input type="text" class="form-control" id="lessonName" name="lessonName"
-                                        placeholder="Vd: Lập trình web với PHP">
-                                    <span class="form-message"></span>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="video">Video giới thiệu khóa học</label>
-                                    <input type="file" class="file" id="video" name="video" placeholder="Chọn video">
-                                    <span class="form-message"></span>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="modal-footer modal-footer-lesson">
-                            <button type="button" class="btn btn-secondary mr-2" data-dismiss="modal">Hủy bỏ</button>
-                            <button type="button" class="btn btn-primary">Cập nhập</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
-
         <div class="row d-flex justify-content-center mt-4">
             <ul class="pagination home-product__pagination">
                 <li class="pagination-item">

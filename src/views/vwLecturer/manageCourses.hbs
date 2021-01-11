@@ -27,12 +27,11 @@
         <div class="row">
             {{#each courses}}
             <div class="col-sm-4">
-                <a href="/course/{{slug}}" class="product-item">
+                <a href="/lecturer/courses/{{slug}}" class="product-item">
                     <div class="card card-item">
                         <img src="/products/{{folderName}}/images/{{avatar}}" class="product-item__img card-img-top" alt="avatar" title="avatar of course">
                         <div class="card-body">
                             <h5 class="card-title product-item__title">{{name}}</h5>
-                            <h4 class="card-subtitle mb-2 text-muted">{{lecName}}</h4>
                             <span class="card-text product-item__category">Lĩnh vực: {{fieldName}}</span>
                             <div class="product-item__rating">
                                 <span class="product-item__total-star">{{rating}}</span>
@@ -47,15 +46,16 @@
                                 <span class="product-item__price-old">{{initialPrice}}</span>
                                 <span class="product-item__price-current">{{currentPrice}}</span>
                             </div>
+                            <h5 class="card-title product-item__status">Trạng thái: <span class="text-secondary {{active}}">{{statusString}}</span></h5>
                         </div>
-                        <div class="card-footer  product-item__footer">
-                            <a class="btn btn-outline-danger mr-3" href="/lecturer/courses/{{slug}}" role="button">
-                                <i class="fas fa-heart"></i>
+                        <div class="card-footer product-item__footer">
+                            <a class="btn btn-outline-primary mr-2 myBtn" href="/lecturer/courses/{{slug}}" role="button">
+                                <i class="fas fa-edit"></i>
                                 Cập nhập
                             </a>
-                            <a class="btn btn-outline-success" href="#" role="button">
-                                <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                                Thêm Giỏ Hàng
+                            <a class="btn btn-outline-danger myBtn" href="#" role="button">
+                                <i class="fas fa-trash"></i>
+                                Xóa khóa học
                             </a>
                         </div>
                     </div>

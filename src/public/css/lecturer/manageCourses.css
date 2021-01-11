@@ -2,3 +2,24 @@
     margin-bottom: 30px;
 }
 
+.btn.myBtn {
+    width: 120px;
+}
+
+.product-item__status {
+    font-size: 1.4rem;
+    margin-bottom: 0;
+}
+
+.product-item__status .active {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--primary-color) !important;
+}
+
+.product-item__status span {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
