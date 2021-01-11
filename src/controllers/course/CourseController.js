@@ -27,6 +27,13 @@ class CourseController {
             })
             .catch(next);
     }
+
+    videoCourse(req, res) {
+        res.render('vwCourse/videoCourse', {
+            layout: false
+        })
+        
+    }
 }
 
 module.exports = new CourseController();

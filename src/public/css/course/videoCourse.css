@@ -1,0 +1,134 @@
+:root {
+    --white-color: #FFF;
+    --primary-color: rgb(81, 190, 120);
+    --text-color: #333;
+}
+
+.main {
+
+}
+
+.body {
+    margin-top: 150px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 75%;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.sidebar {
+    margin-top: 150px;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 25%;
+}
+
+.sidebar-wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-header {
+    padding: 12px 16px;
+    position: relative;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6); 
+}
+
+.sidebar-header h2 {
+    font-size: 28px;
+}
+
+.sidebar-body {
+    overflow-x: hidden;
+    overflow-y: auto;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6); 
+
+
+}
+
+.playlist-item {
+    display: flex;
+    flex-direction: row;
+    padding: 10px 2px 10px 20px;
+    transition: all ease-in-out .3s;
+    position: relative;
+}
+
+.playlist-item:hover {
+    background-color: rgb(255, 233, 217);
+}
+.check-item {
+    width: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--primary-color);
+}
+
+.info-item {
+    position: relative;
+}
+
+.info-item h3 {
+    font-weight: 400;
+    font-size: 20px;
+}
+
+.body-header {
+    position: relative;
+    padding: 16px 20px;
+    display: flex;
+    border-radius: 3px;
+    margin: 0;
+    align-items: center;
+    font-size: 26px;
+    background-color: rgb(209, 255, 241);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6); 
+
+}
+.body-video {
+    position: relative;
+    padding: 0 8.5%;
+    background-color: #333
+}
+
+.video-wrapper {
+}
+
+
+
+/* ----------------NAVBAR-------------- */
+.tab-control{
+    padding: 20px;
+    display: flex;
+}
+.nav-link {
+    font-size: 20px;
+    font-weight: 300;
+    font-weight: bold;
+    color: #363636;
+    padding: 10px 30px;
+  }
+
+  .nav-tabs {
+      margin-bottom: 10px;
+  }
+
+  .nav-tabs .nav-link:focus, .nav-tabs .nav-link:hover, .active-item {
+    color: rgb(81, 190, 120);
+   border-bottom: 2px solid rgb(81, 190, 120) !important;
+ }
+ 
+
+ .body-description {
+     padding: 0px 20px;
+     margin-bottom: 50px;
+     font-size: 15px;
+ }
