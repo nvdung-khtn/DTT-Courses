@@ -59,6 +59,24 @@ class CourseController {
         })
         
     }
+
+    // exits index => true
+    hasIndexLesson(req, res) {
+        const data = req.body;
+
+        Course.findOne({slug: data.slug})
+            .then( course => course.lessons )
+            .then (lessons => {
+                let status = false;
+                lessons.forEach(element => {
+                    if(element.index == data.index) {
+                        status = true;
+                    }
+                });
+                console.log('status', status);
+                res.json({status});
+            })
+    }
 }
 
 module.exports = new CourseController();

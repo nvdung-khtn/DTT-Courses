@@ -23,3 +23,17 @@
     color: var(--primary-color);
 }
 
+.empty-data {
+   font-size: 2rem;
+   font-weight: 600;
+}
+
+.empty-data ~ p {
+    font-size: 1.4rem;
+}
+
+.empty-data ~ p a {
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+

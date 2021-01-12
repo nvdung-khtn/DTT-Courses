@@ -38,7 +38,7 @@ class AdminController {
 
     async manageStudent(req, res) {
         page = req.query.page;
-        var stringSearch = req.query.search;
+        var stringSearch = req.query.search; 
         if (page) {
             page = parseInt(page);
             if (page<1) {

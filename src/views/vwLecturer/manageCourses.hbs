@@ -1,9 +1,35 @@
-
 {{#section 'css'}}
 <link rel="stylesheet" href="/css/lecturer/manageCourses.css">
+<link rel="stylesheet" href="/css/myAlert.css">
 {{/section}}
 
 {{#section 'js'}}
+<script>
+    $(document).ready(function () {
+        $('.my-course').addClass('active-item');
+        $('.menu-advanced .edit-info').removeClass('active');
+        $('.menu-advanced .course-management').addClass('active');
+    });
+</script>
+<script>
+    // handle lesson delete action (hành động hỏi trước khi xóa khóa học)
+    $(document).ready(function () {
+        var courseId;
+        const deleteForm = document.querySelector('#frmDelete');
+
+        // When dialog confirm clicked
+        $('#delete-course-modal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget);
+            courseId = button.data('id');
+        });
+
+        // When delete course btn clicked
+        $('#btn-delete-course').click(function () {
+            deleteForm.action = '/lecturer/courses/delete/' + courseId;
+            deleteForm.submit();
+        });
+    });
+</script>
 {{/section}}
 
 <div class="content">
@@ -17,19 +43,23 @@
                 <a class="nav-link my-course" href="/lecturer/courses">Khóa học của tôi</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link up-course" href="/lecturer/courses/create">Đăng khóa học</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link edit-course" href="#">Bổ sung khóa học</a>
+                <a class="nav-link up-course" href="/lecturer/courses/create">Tạo mới khóa học</a>
             </li>
         </ul>
 
         <div class="row">
+            {{#if this.empty}}
+            <div class="col-sm-12 text-center">
+                <span class="empty-data">Bạn chưa có tạo mới khóa học nào.</span>
+                <p>Tạo mới ngay tại <a href="/lecturer/courses/create">Tạo khóa học</a></p>
+            </div>
+            {{/if}}
             {{#each courses}}
             <div class="col-sm-4">
                 <a href="/lecturer/courses/{{slug}}" class="product-item">
                     <div class="card card-item">
-                        <img src="/products/{{folderName}}/images/{{avatar}}" class="product-item__img card-img-top" alt="avatar" title="avatar of course">
+                        <img src="/products/{{folderName}}/images/{{avatar}}" class="product-item__img card-img-top"
+                            alt="avatar" title="avatar of course">
                         <div class="card-body">
                             <h5 class="card-title product-item__title">{{name}}</h5>
                             <span class="card-text product-item__category">Lĩnh vực: {{fieldName}}</span>
@@ -46,14 +76,17 @@
                                 <span class="product-item__price-old">{{initialPrice}}</span>
                                 <span class="product-item__price-current">{{currentPrice}}</span>
                             </div>
-                            <h5 class="card-title product-item__status">Trạng thái: <span class="text-secondary {{active}}">{{statusString}}</span></h5>
+                            <h5 class="card-title product-item__status">Trạng thái: <span
+                                    class="text-secondary {{active}}">{{statusString}}</span></h5>
                         </div>
                         <div class="card-footer product-item__footer">
-                            <a class="btn btn-outline-primary mr-2 myBtn" href="/lecturer/courses/{{slug}}" role="button">
+                            <a class="btn btn-outline-primary mr-2 myBtn" href="/lecturer/courses/{{slug}}"
+                                role="button">
                                 <i class="fas fa-edit"></i>
                                 Cập nhập
                             </a>
-                            <a class="btn btn-outline-danger myBtn" href="#" role="button">
+                            <a class="btn btn-outline-danger myBtn" href="#" role="button" data-toggle="modal"
+                                data-id="{{_id}}" data-target="#delete-course-modal">
                                 <i class="fas fa-trash"></i>
                                 Xóa khóa học
                             </a>
@@ -62,16 +95,33 @@
                 </a>
             </div>
             {{/each}}
-            
+            {{!----------------------------------------------------------------------------}}
+            <!-- Delete hidden form -->
+            <form id="frmDelete" method="POST"></form>
+            {{!----------------------------------------------------------------------------}}
+            <!-- Confirm delete course -->
+            <div id="delete-course-modal" class="modal" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Xóa khóa học?</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p class="alert-message">Bạn chắc chắn muốn xóa khóa học này?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary btn-modal" data-dismiss="modal">Hủy</button>
+                            <button id="btn-delete-course" type="button" class="btn btn-danger btn-modal">
+                                Xóa bỏ
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
 </div><!-- /.content -->
-
-<script>
-    $(document).ready(function () {
-        $('.my-course').addClass('active-item');
-        $('.menu-advanced .edit-info').removeClass('active');
-        $('.menu-advanced .course-management').addClass('active');
-    });
-</script>

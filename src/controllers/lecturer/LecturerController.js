@@ -5,7 +5,6 @@ const moment = require('moment');
 const mongoose = require('mongoose');
 const Course = require('../../models/Course');
 const Field = require('../../models/Field');
-const Lesson = require('../../models/Lesson');
 const courseService = require('../course/courseService');
 const { mongooseToObject, multipleMongooseToObject } = require('../../utils/mongoose');
 
@@ -18,11 +17,11 @@ class LecturerController {
                 const courses = await courseService.getInforCourses(
                     multipleMongooseToObject(coursesDB),
                 );
-                
-                
+
                 res.render('vwLecturer/manageCourses', {
                     courses: courseService.modifyCoursesByLecturer(courses),
                     layout: 'lecturer',
+                    empty: courses.length === 0,
                 });
             })
             .catch(next);
@@ -126,30 +125,38 @@ class LecturerController {
         });
     }
 
-    // [GET] lecturer/courses/update
+    // [GET] lecturer/courses/:slug
     async updateCourse(req, res, next) {
         const slug = req.params.slug;
+        let key = req.query.key;
         // bad ways
         req.session.slug = slug;
         const course = await Course.findOne({ slug: slug }).lean();
-        course.completed = courseService.countcompletedLesson(course.lessons);
-        const lessons = course.lessons.map(lesson => {
+        course.completed = courseService.countCompletedLesson(course.lessons);
+        let lessons = course.lessons.map(lesson => {
             return {
                 _id: lesson._id,
                 index: lesson.index,
-                name: lesson.lessonName,
+                lessonName: lesson.lessonName,
                 updatedAt: moment(lesson.updatedAt).format('DD/MM/YYYY HH:mm'),
-                video: lesson.video ? "Đã cập nhập" : "Chưa cập nhập",
-                status: lesson.status ? "Hoàn thành" : "Chưa hoàn thành"
+                video: lesson.video ? 'Đã cập nhập' : 'Chưa cập nhập',
+                status: lesson.status ? 'Hoàn thành' : 'Chưa hoàn thành',
             };
         });
-       
 
-        console.log('course: ', lessons);
+        //check key !== undefined
+        if(key) {
+            key = key.toLowerCase();
+            lessons = lessons.filter(lesson => {
+                return lesson.lessonName.toLowerCase().includes(key)
+            });
+        }
+        
         res.render('vwLecturer/updateCourse', {
             layout: 'lecturer',
             course,
-            lessons
+            lessons: courseService.sortByIndex(lessons),
+            empty: lessons.length === 0,
         });
     }
 
@@ -178,7 +185,7 @@ class LecturerController {
             formData = {
                 ...req.body,
                 video,
-                status: true,
+                status: video === undefined ? false : true,
             };
 
             if (err) {
@@ -200,27 +207,84 @@ class LecturerController {
     async deleteLesson(req, res, next) {
         const id = req.params.id;
         const slug = req.session.slug;
-        const course = await Course.findOne({ slug: slug })
-        .then(course => {
+        const course = await Course.findOne({ slug: slug }).then(course => {
             course.lessons.id(id).remove();
             //course.child.remove();
-            course.save()
-            .then(() => res.redirect('back'))
-        })
+            course.status = false;
+            course.save().then(() => res.redirect('back'));
+        });
     }
 
-        //[POST] lecturer/courses/lesson/edit/:id
-        async editLesson(req, res, next) {
-            const id = req.params.id;
-            const slug = req.session.slug;
-            const course = await Course.findOne({ slug: slug })
+    //[POST] lecturer/courses/lesson/edit/:id
+    async editLesson(req, res, next) {
+        const id = req.params.id;
+        const slug = req.session.slug;
+        let video, formData;
+        const course = await Course.findOne({ slug: slug });
+        const folderAddress = `./src/public/products/${
+            mongooseToObject(course).folderName
+        }`;
+
+        // Handle upload file
+        const storage = multer.diskStorage({
+            destination: function (req, file, callback) {
+                callback(null, `${folderAddress}/videos`);
+            },
+            filename: function (req, file, callback) {
+                video = file.originalname;
+                callback(null, file.originalname);
+            },
+        });
+
+        const upload = multer({ storage });
+        upload.single('video')(req, res, function (err) {
+            formData = {
+                ...req.body,
+                video,
+                status: video === undefined ? false : true,
+            };
+
+            if (err) {
+                next(err);
+            } else {
+                let lesson = course.lessons.id(id);
+                lesson.lessonName = formData.lessonName;
+                lesson.video = formData.video;
+                lesson.status = formData.status;
+                course
+                    .save()
+                    .then(() => {
+                        console.log('Cập nhập bài giảng thành công');
+                        res.redirect('back');
+                    })
+                    .catch(next);
+            }
+        });
+    }
+
+    //[POST] lecturer/courses/:slug/verify
+    verify(req, res, next) {
+        const courseId = req.params.slug;
+        Course.findOne({_id: courseId})
             .then(course => {
-                course.lessons.id(id);
-                //course.child.remove();
-                course.save()
-                .then(() => res.redirect('back'))
+                const completedLesson = courseService.countCompletedLesson(course.lessons);
+                if(course.quantity == completedLesson) {
+                    course.status = true;
+                    course.save();
+                    return res.json({ status: true });
+                }
+
+                res.json({ status: false });
             })
-        }
+    }
+
+    //[POST] lecturer/courses/delete/:id
+    deleteCourse(req, res, next) {
+        const courseId = req.params.id;
+        Course.deleteOne({_id: courseId})
+            .then(() => res.redirect('back'))
+            .catch(next)
+    }
 }
 
 module.exports = new LecturerController();

@@ -117,7 +117,7 @@ module.exports = {
         });
     },
 
-    countcompletedLesson(lessons) {
+    countCompletedLesson(lessons) {
         let count = 0;
         lessons.forEach(lesson => {
             if(lesson.status) {
@@ -125,5 +125,9 @@ module.exports = {
             }
         })
         return count;
-    }   
+    },
+
+    sortByIndex(lessons) {
+        return lessons.sort((lessonA, lessonB) => lessonA.index - lessonB.index);
+    }
 }
