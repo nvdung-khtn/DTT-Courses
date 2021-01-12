@@ -70,11 +70,12 @@
                                         </a>
                                     </li>
                                     <li class="log-out menu-item">
-                                        <a href="/lecturer/logout">
+                                        <a href="javascript: $('#frmLogout').submit();">
                                            <i class="fas fa-sign-out-alt mr-3"></i>
                                             Đăng xuất
                                         </a>
                                     </li>
+                                    <form id="frmLogout" method="POST" action="/account/logout"></form>
                                 </ul>
                             </div><!-- /.widget -->
                         </div><!-- /.sidebar -->

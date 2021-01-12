@@ -21,6 +21,7 @@ class LecturerController {
                 res.render('vwLecturer/manageCourses', {
                     courses: courseService.modifyCoursesByLecturer(courses),
                     layout: 'lecturer',
+                    empty: courses.length === 0,
                 });
             })
             .catch(next);
@@ -275,6 +276,14 @@ class LecturerController {
 
                 res.json({ status: false });
             })
+    }
+
+    //[POST] lecturer/courses/delete/:id
+    deleteCourse(req, res, next) {
+        const courseId = req.params.id;
+        Course.deleteOne({_id: courseId})
+            .then(() => res.redirect('back'))
+            .catch(next)
     }
 }
 
