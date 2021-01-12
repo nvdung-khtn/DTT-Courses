@@ -9,12 +9,23 @@
     position: relative;
 }
 
-.badge-custom {
+.badge-uncompleted {
     position: absolute;
     right: -125px;
     top: 12px;
     font-size: 35%;
+    background-color: #ffc107;
 }
+
+.badge-completed {
+    position: absolute;
+    right: -107px;
+    top: 12px;
+    font-size: 35%;
+    background-color: var(--primary-color);
+    color: #FFF;
+}
+
 
 .course-completed {
     display: inline-block;

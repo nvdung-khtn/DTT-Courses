@@ -19,16 +19,19 @@
         ],
     });
 
-    $('#avatar').fileinput({
+    $('#frmMain #avatar').fileinput({
         theme: 'fa',
         dropZoneEnabled: false,  //Khung để kéo thả bự bự
-        allowedFileExtensions: ['png', 'jpg', 'gif']
+        allowedFileExtensions: ['png', 'jpg', 'gif'],
+        showUpload: false,
     });
 
-    $('#introVideo').fileinput({
+    $('#frmMain #introVideo').fileinput({
         theme: 'fa',
         dropZoneEnabled: false,
-        allowedFileExtensions: ['mp4']  //chỉ cho phép upload các định dạng sau
+        allowedFileExtensions: ['mp4'],
+        showUpload: false,
+        showPreview: false,
     });
 
 </script>

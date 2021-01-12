@@ -5,7 +5,6 @@ const moment = require('moment');
 const mongoose = require('mongoose');
 const Course = require('../../models/Course');
 const Field = require('../../models/Field');
-const Lesson = require('../../models/Lesson');
 const courseService = require('../course/courseService');
 const { mongooseToObject, multipleMongooseToObject } = require('../../utils/mongoose');
 
@@ -125,24 +124,33 @@ class LecturerController {
         });
     }
 
-    // [GET] lecturer/courses/update
+    // [GET] lecturer/courses/:slug
     async updateCourse(req, res, next) {
         const slug = req.params.slug;
+        let key = req.query.key;
         // bad ways
         req.session.slug = slug;
         const course = await Course.findOne({ slug: slug }).lean();
-        course.completed = courseService.countcompletedLesson(course.lessons);
-        const lessons = course.lessons.map(lesson => {
+        course.completed = courseService.countCompletedLesson(course.lessons);
+        let lessons = course.lessons.map(lesson => {
             return {
                 _id: lesson._id,
                 index: lesson.index,
-                name: lesson.lessonName,
+                lessonName: lesson.lessonName,
                 updatedAt: moment(lesson.updatedAt).format('DD/MM/YYYY HH:mm'),
                 video: lesson.video ? 'Đã cập nhập' : 'Chưa cập nhập',
                 status: lesson.status ? 'Hoàn thành' : 'Chưa hoàn thành',
             };
         });
 
+        //check key !== undefined
+        if(key) {
+            key = key.toLowerCase();
+            lessons = lessons.filter(lesson => {
+                return lesson.lessonName.toLowerCase().includes(key)
+            });
+        }
+        
         res.render('vwLecturer/updateCourse', {
             layout: 'lecturer',
             course,
@@ -201,6 +209,7 @@ class LecturerController {
         const course = await Course.findOne({ slug: slug }).then(course => {
             course.lessons.id(id).remove();
             //course.child.remove();
+            course.status = false;
             course.save().then(() => res.redirect('back'));
         });
     }
@@ -250,6 +259,22 @@ class LecturerController {
                     .catch(next);
             }
         });
+    }
+
+    //[POST] lecturer/courses/:slug/verify
+    verify(req, res, next) {
+        const courseId = req.params.slug;
+        Course.findOne({_id: courseId})
+            .then(course => {
+                const completedLesson = courseService.countCompletedLesson(course.lessons);
+                if(course.quantity == completedLesson) {
+                    course.status = true;
+                    course.save();
+                    return res.json({ status: true });
+                }
+
+                res.json({ status: false });
+            })
     }
 }
 

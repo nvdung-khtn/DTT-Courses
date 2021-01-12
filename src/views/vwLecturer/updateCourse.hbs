@@ -24,7 +24,11 @@
         showPreview: false,
     });
 </script>
-
+<script>
+    $('#flagLink').removeClass('hidden');
+    $('#flagLink + a').removeClass('hidden');
+    $('#flagLink + a').attr('href', '/lecturer/courses/'+ '{{course.slug}}');
+</script>
 <script>
     $('#frmAddLesson #lessonName').on('input', removeError)
 
@@ -74,9 +78,55 @@
             deleteForm.action = '/lecturer/courses/lesson/del/' + lessonId;
             deleteForm.submit();
         });
-
-
     });
+
+    /*------------------------------------------------------------------*/
+    // search a lesson by lesson name
+    $('#lessonSearchInput').keypress(function (event) {
+        if (event.keyCode == 13) {
+            searchLesson();
+            window.location.href = $('#searchIcon').attr('href');
+        }
+    })
+    // active behaviour tag a
+    $('#searchIcon').on('click', searchLesson)
+
+    function searchLesson() {
+        const key = $('input#lessonSearchInput').val();
+        const slug = '{{course.slug}}';
+        $('#searchIcon').attr("href", `/lecturer/courses/${slug}?key=${key}`);
+    }
+
+    //*------------------------------------------------------------------*/
+    // verify course completed
+    $('#verifyCourse').on('click', function() {
+        const courseId = '{{course._id}}';
+        axios.get(`/lecturer/courses/${courseId}/verify`)
+            .then(response => response.data)
+            .then(data => {
+                if(data.status) {
+                    // Update lại giao diện
+                    const myBadge = $('#badge-course');
+                    myBadge.text('Đã hoàn thành');
+                    myBadge.removeClass("badge-uncompleted");
+                    myBadge.addClass("badge-completed");
+                    // fire notify
+                    Swal.fire(
+                        `Khóa học đã được xác thực là HOÀN THÀNH`,
+                        '',
+                        'success'
+                    );
+                }
+                else {
+                    Swal.fire(
+                        `Khóa học chưa cập nhập đầy đủ nội dung, vui lòng kiểm tra lại!`,
+                        '',
+                        'error'
+                    );
+                }
+            })
+    })
+
 </script>
 <script>
     // handle edit lesson
@@ -94,9 +144,14 @@
     <div class="page-title">
         <h1 class="course-name">
             {{course.name}}
-            <span class="badge badge-pill badge-warning badge-custom">Chưa hoàn thành</span>
+            {{#if course.status}}
+            <span id="badge-course" class="badge badge-pill badge-completed">Đã hoàn thành</span>
+            {{else}}
+            <span id="badge-course" class="badge badge-pill badge-uncompleted">Chưa hoàn thành</span>
+            {{/if}}
+            
         </h1>
-        <a href="#" class="course-completed"><i class="far fa-check-square"></i></a>
+        <a id="verifyCourse" href="javascript:;" class="course-completed"><i class="far fa-check-square"></i></a>
     </div>
     <div class="main-container">
         <div class="header-update-course">
@@ -110,8 +165,8 @@
             </div>
 
             <div class="search-bar">
-                <input type="text" class="search-bar__input" placeholder="Tìm kiếm bài giảng...">
-                <a href="" class="search-bar__icon">
+                <input id="lessonSearchInput" type="text" class="search-bar__input" placeholder="Tìm kiếm bài giảng...">
+                <a id="searchIcon" href="/lecturer/courses/xay-dung-web-voi-nodejs-and-expressjs-new?key=test1" class="search-bar__icon">
                     <i class="fa fa-search" aria-hidden="true"></i>
                 </a>
             </div>
@@ -170,7 +225,8 @@
 
                         </div>
                         <div class="modal-footer modal-footer-lesson">
-                            <button type="button" class="btn btn-secondary mr-2" data-dismiss="modal" onclick="removeError()">Hủy
+                            <button type="button" class="btn btn-secondary mr-2" data-dismiss="modal"
+                                onclick="removeError()">Hủy
                                 bỏ</button>
                             <button id="btnSubmit" type="button" class="btn btn-primary">Thêm mới</button>
                         </div>
@@ -264,13 +320,13 @@
                     {{#each lessons}}
                     <tr>
                         <th scope="row">{{index}}</th>
-                        <td>{{name}}</td>
+                        <td>{{lessonName}}</td>
                         <td>{{video}}</td>
                         <td>{{updatedAt}}</td>
                         <td>{{status}}</td>
                         <td class="d-flex justify-content-end icon-update-course">
                             <a data-toggle="modal" data-target="#editLesson" href="" data-id="{{_id}}"
-                                data-index="{{index}}" data-name={{name}} class="edit-icon d-inline-block mr-4">
+                                data-index="{{index}}" data-name={{lessonName}} class="edit-icon d-inline-block mr-4">
                                 <i class="fas fa-pencil-alt"></i>
                             </a>
                             <a href="" class="delete-icon mr-2" data-toggle="modal" data-id="{{_id}}"

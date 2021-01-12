@@ -117,7 +117,7 @@ module.exports = {
         });
     },
 
-    countcompletedLesson(lessons) {
+    countCompletedLesson(lessons) {
         let count = 0;
         lessons.forEach(lesson => {
             if(lesson.status) {
