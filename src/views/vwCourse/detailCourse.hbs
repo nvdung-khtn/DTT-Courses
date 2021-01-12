@@ -38,54 +38,12 @@
             <div class="mb-3 bt-1">
                 <p class="title"> Nội dung khóa học </p>
                 <div class="list-course ">
-                    <a href="#" class="course mt-1">
-                        <div class="title-course"><i class="fas fa-plus mr-2"></i> Phần 1: Giới thiệu</div>
+                    {{#each lessons}}
+                    <a href="/courses/video/{{../course.slug}}>{{_id}}" class="course mt-1">
+                        <div class="title-course"><i class="fas fa-plus mr-2"></i> Bài {{index}}: {{name}}</div>
                         <div class="time-course">05:44</div>
                     </a>
-                    <a href="#" class="course mt-1">
-                        <div class="title-course"><i class="fas fa-plus mr-2"></i> Phần 2: Làm quen công cụ</div>
-                        <div class="time-course">05:44</div>
-                    </a>
-                    <a href="#" class="course mt-1">
-                        <div class="title-course mt-1"><i class="fas fa-plus mr-2"></i> Phần 3: Làm quen với HTML</div>
-                        <div class="time-course">05:44</div>
-                    </a>
-                    <a href="#" class="course mt-1">
-                        <div class="title-course"><i class="fas fa-plus mr-2"></i> Phần 4: Làm quen với CSS</div>
-                        <div class="time-course">05:44</div>
-                    </a>
-                    <a href="#" class="course mt-1">
-                        <div class="title-course"><i class="fas fa-plus mr-2"></i> Phần 5: Đệm viền và khoảng lề</div>
-                        <div class="time-course">05:44</div>
-                    </a>
-                    <a href="#" class="course mt-1">
-                        <div class="title-course"><i class="fas fa-plus mr-2"></i> Phần 6: Thuộc tính tạo nền</div>
-                        <div class="time-course">05:44</div>
-                    </a>
-                    <a href="#" class="course mt-1">
-                        <div class="title-course"><i class="fas fa-plus mr-2"></i> Phần 7: Thuộc tính vị trí</div>
-                        <div class="time-course">05:44</div>
-                    </a>
-                    <a href="#" class="course mt-1">
-                        <div class="title-course"><i class="fas fa-plus mr-2"></i> Phần 8: Xây dựng web the bank</div>
-                        <div class="time-course">05:44</div>
-                    </a>
-                    <a href="#" class="course mt-1">
-                        <div class="title-course"><i class="fas fa-plus mr-2"></i> Phần 9: Responsive web the bank</div>
-                        <div class="time-course">05:44</div>
-                    </a>
-                    <a href="#" class="course mt-1">
-                        <div class="title-course"><i class="fas fa-plus mr-2"></i> Phần 10: Dựng bố cục web với flexbox</div>
-                        <div class="time-course">05:44</div>
-                    </a>
-                    <a href="#" class="course mt-1">
-                        <div class="title-course"><i class="fas fa-plus mr-2"></i> Phần 11: Quy ước đặt tên class BEM</div>
-                        <div class="time-course">05:44</div>
-                    </a>
-                    <a href="#" class="course mt-1">
-                        <div class="title-course"><i class="fas fa-plus mr-2"></i> Phần 12: Xây dựng web Shopee</div>
-                        <div class="time-course">05:44</div>
-                    </a>
+                    {{/each}}
                 </div>
             </div>
 

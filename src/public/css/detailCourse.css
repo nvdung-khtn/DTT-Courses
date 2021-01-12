@@ -111,3 +111,7 @@ p{
 .time-course {
     margin-right: 1rem;
 }
+
+.list-course a:hover {
+    background-color: rgb(255, 233, 217);
+}

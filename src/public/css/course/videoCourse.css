@@ -8,8 +8,20 @@
 
 }
 
+.main__url {
+    font-size: 1.6rem;
+    color: var(--text-color);
+    font-weight: 600;
+    padding: 30px 95px;
+}
+
+.main__url a{
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
 .body {
-    margin-top: 150px;
+    margin-top: 190px;
     position: fixed;
     top: 0;
     left: 0;
@@ -20,7 +32,7 @@
 }
 
 .sidebar {
-    margin-top: 150px;
+    margin-top: 190px;
     position: fixed;
     top: 0;
     right: 0;
@@ -64,11 +76,24 @@
 .playlist-item:hover {
     background-color: rgb(255, 233, 217);
 }
+
+.playlist-description {
+    font-size: 15px;
+    color: #666;
+}
+
+.playlist-icon {
+    color: rgba(240,81,35,.8);
+}
+
+.active {
+    background-color: rgb(255, 233, 217);
+}
+
 .check-item {
     width: 50px;
     display: flex;
     justify-content: center;
-    align-items: center;
     color: var(--primary-color);
 }
 

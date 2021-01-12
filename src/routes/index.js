@@ -13,8 +13,8 @@ function route(app) {
     /** Route of Admin */
     app.use('/admin', auth, authAdmin, adminRouter);
     /** Route of Lecturer */
-    //app.use('/lecturer', auth, authLecturer, lecturerRouter);
-    app.use('/lecturer', lecturerRouter);
+    app.use('/lecturer', auth, authLecturer, lecturerRouter);
+    //app.use('/lecturer', lecturerRouter);
     /** Route of User */
     app.use('/courses', courseRouter);
     /** Route of manage user */

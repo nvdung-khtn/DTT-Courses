@@ -4,7 +4,7 @@ const { multipleMongooseToObject, mongooseToObject } = require('../../utils/mong
 
 class CourseController {
     // [GET] /courses
-    index(req, res, next) {
+    index(req, res, next) {      
         Course.find({})
             .then(async coursesDB => {
                 // convert Mongoose Object to Object Literals
@@ -17,20 +17,45 @@ class CourseController {
     }
 
     // [GET] /courses/:slug
-    show(req, res, next) {
-        Course.findOne({ slug: req.params.slug })
-            .then(course => {
-                res.render('vwCourse/detailCourse', {
-                    course: mongooseToObject(course),
-                    layout: 'course',
-                })
-            })
-            .catch(next);
+    async show(req, res, next) {
+        req.session.slug = req.params.slug;
+        const course = await Course.findOne({ slug: req.params.slug }).lean();
+        const lessons = course.lessons.map(lesson => {
+            return {
+                _id: lesson._id,
+                index: lesson.index,
+                name: lesson.lessonName,
+                video: lesson.video,
+            };
+        });
+        res.render('vwCourse/detailCourse', {
+            layout: 'course',
+            course,
+            lessons
+
+        })
+
     }
 
-    videoCourse(req, res) {
+    async videoCourse(req, res) {
+        const slug = req.params.id.slice(0,req.params.id.indexOf('>'));
+        const id = req.params.id.slice(req.params.id.indexOf('>')+1, req.params.id.length)
+
+        const course = await Course.findOne({slug});
+        const lesson = course.lessons.id(id);
+        const lessons = course.lessons.map(lesson => {
+            return {
+                _id: lesson._id,
+                index: lesson.index,
+                name: lesson.lessonName,
+                video: lesson.video,
+            };
+        });
         res.render('vwCourse/videoCourse', {
-            layout: false
+            layout: false,
+            course: mongooseToObject(course),
+            lessons,
+            lesson: mongooseToObject(lesson)
         })
         
     }
