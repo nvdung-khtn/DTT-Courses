@@ -115,6 +115,16 @@ span.amount {
     color: #545557
 }
 
+.lesson-table__icon {
+    width: 94px;
+}
+
+.empty-data {
+    text-align: center;
+    font-size: 1.6rem;
+    font-weight: 600;
+}
+
 /* Add lesson*/
 #addLesson, #editLesson {
     font-size: 1.6rem;
@@ -133,4 +143,13 @@ span.amount {
     font-size: 1.6rem;
     width: 90px;
     height: 33px;
+}
+
+.form-message {
+    font-size: 1.4rem;
+    color: var(--error-color);
+}
+
+.inValid {
+    border-color: var(--error-color);
 }

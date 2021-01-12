@@ -125,5 +125,9 @@ module.exports = {
             }
         })
         return count;
-    }   
+    },
+
+    sortByIndex(lessons) {
+        return lessons.sort((lessonA, lessonB) => lessonA.index - lessonB.index);
+    }
 }

@@ -18,8 +18,7 @@ class LecturerController {
                 const courses = await courseService.getInforCourses(
                     multipleMongooseToObject(coursesDB),
                 );
-                
-                
+
                 res.render('vwLecturer/manageCourses', {
                     courses: courseService.modifyCoursesByLecturer(courses),
                     layout: 'lecturer',
@@ -139,17 +138,16 @@ class LecturerController {
                 index: lesson.index,
                 name: lesson.lessonName,
                 updatedAt: moment(lesson.updatedAt).format('DD/MM/YYYY HH:mm'),
-                video: lesson.video ? "Đã cập nhập" : "Chưa cập nhập",
-                status: lesson.status ? "Hoàn thành" : "Chưa hoàn thành"
+                video: lesson.video ? 'Đã cập nhập' : 'Chưa cập nhập',
+                status: lesson.status ? 'Hoàn thành' : 'Chưa hoàn thành',
             };
         });
-       
 
-        console.log('course: ', lessons);
         res.render('vwLecturer/updateCourse', {
             layout: 'lecturer',
             course,
-            lessons
+            lessons: courseService.sortByIndex(lessons),
+            empty: lessons.length === 0,
         });
     }
 
@@ -178,7 +176,7 @@ class LecturerController {
             formData = {
                 ...req.body,
                 video,
-                status: true,
+                status: video === undefined ? false : true,
             };
 
             if (err) {
@@ -200,27 +198,59 @@ class LecturerController {
     async deleteLesson(req, res, next) {
         const id = req.params.id;
         const slug = req.session.slug;
-        const course = await Course.findOne({ slug: slug })
-        .then(course => {
+        const course = await Course.findOne({ slug: slug }).then(course => {
             course.lessons.id(id).remove();
             //course.child.remove();
-            course.save()
-            .then(() => res.redirect('back'))
-        })
+            course.save().then(() => res.redirect('back'));
+        });
     }
 
-        //[POST] lecturer/courses/lesson/edit/:id
-        async editLesson(req, res, next) {
-            const id = req.params.id;
-            const slug = req.session.slug;
-            const course = await Course.findOne({ slug: slug })
-            .then(course => {
-                course.lessons.id(id);
-                //course.child.remove();
-                course.save()
-                .then(() => res.redirect('back'))
-            })
-        }
+    //[POST] lecturer/courses/lesson/edit/:id
+    async editLesson(req, res, next) {
+        const id = req.params.id;
+        const slug = req.session.slug;
+        let video, formData;
+        const course = await Course.findOne({ slug: slug });
+        const folderAddress = `./src/public/products/${
+            mongooseToObject(course).folderName
+        }`;
+
+        // Handle upload file
+        const storage = multer.diskStorage({
+            destination: function (req, file, callback) {
+                callback(null, `${folderAddress}/videos`);
+            },
+            filename: function (req, file, callback) {
+                video = file.originalname;
+                callback(null, file.originalname);
+            },
+        });
+
+        const upload = multer({ storage });
+        upload.single('video')(req, res, function (err) {
+            formData = {
+                ...req.body,
+                video,
+                status: video === undefined ? false : true,
+            };
+
+            if (err) {
+                next(err);
+            } else {
+                let lesson = course.lessons.id(id);
+                lesson.lessonName = formData.lessonName;
+                lesson.video = formData.video;
+                lesson.status = formData.status;
+                course
+                    .save()
+                    .then(() => {
+                        console.log('Cập nhập bài giảng thành công');
+                        res.redirect('back');
+                    })
+                    .catch(next);
+            }
+        });
+    }
 }
 
 module.exports = new LecturerController();
