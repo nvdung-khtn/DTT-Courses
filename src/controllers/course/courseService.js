@@ -32,6 +32,7 @@ module.exports = {
     },
 
     async getCatNameForFields(fields) {
+        const courses = await Course.find().lean();
         const categories = await Category.find().lean();
         fields.forEach(field => {
             categories.forEach(category => {
@@ -40,22 +41,20 @@ module.exports = {
                 }
             })
 
-            if (field.courses) {
-                field.totalCourse = field.courses.length;
-            } else {
-                field.totalCourse = 0;
-            }
+            field.totalCourse = 0;
+            courses.forEach(course => {
+                if (course.fieldId.equals(field._id)) {
+                    field.totalCourse += 1;
+                }
+            })
         })
     },
 
     async getCatNameForField(field) {
         const category = await Category.findOne({_id: field.catId}).lean();
         field.catName = category.name;
-        if (field.courses) {
-            field.totalCourse = field.courses.length;
-        } else {
-            field.totalCourse = 0;
-        }
+        const courses = await Course.find({fieldId: field._id}).lean();
+        field.totalCourse = courses.length;
     },
 
     

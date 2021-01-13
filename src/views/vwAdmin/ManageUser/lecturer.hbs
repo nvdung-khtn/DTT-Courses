@@ -11,6 +11,12 @@
 		var page = parseInt($('#page').text()) + 1;
 		$('.pager__item').eq(`${page}`).addClass('active')
 
+		$('#text-search').keypress(function (event) {
+			if (event.keyCode == 13) {
+				var stringSearch = $('#text-search').val();
+				window.location.assign(`/admin/field?search=${stringSearch}`);
+			}
+		})
 		$('#text-search').change(function() {
 			var stringSearch = $('#text-search').val();
 			$('#link-search').attr('href',`/admin/lecturer?search=${stringSearch}`)
@@ -29,7 +35,7 @@
 						</h3>
 							
 						<div class="header-search__input-wrap">
-							<input id="text-search" type="text" class="header-search__input" placeholder="{{#if disable_page}}Kết quả tìm kiếm '{{stringSearch}}'{{else}}Tìm kiếm học viên...{{/if}}">
+							<input id="text-search" type="text" class="header-search__input" placeholder="{{#if disable_page}}Kết quả tìm kiếm '{{stringSearch}}'{{else}}Tìm kiếm Giảng viên...{{/if}}">
 								<a id="link-search" href="" class="header-search__icon">
 									<i class="fa fa-search" aria-hidden="true"></i>
 								</a>

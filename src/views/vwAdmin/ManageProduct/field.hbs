@@ -8,6 +8,13 @@
 		$('.sidebar-nav-item .dashboard').removeClass('active');
 		$('.sidebar-nav-item .categories-management').addClass('active');
 
+		$('#text-search').keypress(function (event) {
+        if (event.keyCode == 13) {
+			var stringSearch = $('#text-search').val();
+            window.location.assign(`/admin/field?search=${stringSearch}`);
+        }
+    })
+
 		var page = parseInt($('#page').text()) + 1;
 		$('.pager__item').eq(`${page}`).addClass('active')
 
@@ -26,7 +33,7 @@
 					<div class="card-header">
               			<h3>Quản lý Lĩnh vực Sản phẩm</h3>
 						<div class="header-search__input-wrap">
-							<input id="text-search" type="text" class="header-search__input" placeholder="{{#if disable_page}}Kết quả tìm kiếm '{{stringSearch}}'{{else}}Tìm kiếm học viên...{{/if}}">
+							<input id="text-search" type="text" class="header-search__input" placeholder="{{#if disable_page}}Kết quả tìm kiếm '{{stringSearch}}'{{else}}Tìm kiếm Lĩnh vực...{{/if}}">
 							<a id="link-search" href="" class="header-search__icon">
 								<i class="fa fa-search" aria-hidden="true"></i>
 							</a>
@@ -52,8 +59,8 @@
 									<td>{{catName}}</td>
 									<td>{{totalCourse}}</td>
 									<td>
-										<a href="" class="edit" data-toggle="modal"><i class="material-icons" title="Edit">&#xE254;</i></a>
-										<a href="/admin/category?page=1" class="delete" data-toggle="modal"><i class="material-icons" title="Delete">&#xE872;</i></a>
+										<a href="/admin/field/edit/{{_id}}" class="edit"><i class="material-icons" title="Edit">&#xE254;</i></a>
+										<a href="/admin/field/delete/{{_id}}" class="delete"><i class="material-icons" title="Delete">&#xE872;</i></a>
 									</td>
 								</tr>
 								{{/each}}

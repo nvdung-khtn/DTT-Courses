@@ -525,10 +525,15 @@ table td {
 }
 
 table th {
-	border-top: 1px solid var(--second-bg-color);
-	border-bottom: 1px solid var(--second-bg-color);
+	border: 1px solid #454d55;
 	padding: 15px 12px;
 	text-align: left;
+	background-color: #343a40;
+	color: #fff;
+}
+
+table tbody tr:hover {
+	background-color: #eee;
 }
 
 table td a i{
@@ -562,9 +567,15 @@ table td .edit i:hover {
 	border-radius: .25rem;
 	transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
+
+.btn-add:hover {
+	opacity: 0.8;
+}
+
 .add {
 	color: #fff;
 }
+
 
 .material-icons {
 	text-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
