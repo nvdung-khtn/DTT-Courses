@@ -3,7 +3,7 @@
     margin: 0;
     font-size: 1.5rem;
 }
-
+/*
 textarea:focus, input:focus{
     outline: none;
 }
@@ -18,7 +18,7 @@ textarea:focus, input:focus{
 
 li{
     list-style: none;
-}
+} */
 
 .user-login{
     margin-right: 3rem;
@@ -82,7 +82,7 @@ li{
 }
 
 
-.content{
+/* .content-1{
     width: 600px;
     margin-left: auto;
     margin-right: auto;
@@ -142,4 +142,4 @@ li{
 
 .button-change{
    font-size: 1.8rem;
-}
+} */

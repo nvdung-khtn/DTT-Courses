@@ -14,15 +14,26 @@ module.exports = {
         if(permission !== 0) {
             return res.redirect('/');
         }
-
         next();
     },
 
     authLecturer(req, res, next) {
-      const { permission } = req.session.authUser;
-      if(permission !== 1) {
-          return res.redirect('/');
-      }
+        // if(req.session.authUser){
+        //     const { permission } = req.session.authUser;
+        //     if(permission !== 1) {
+        //         return res.redirect('/');
+        //     }
+        // }
+        // return res.redirect('/account/login')
+        if (req.session.authUser === undefined){
+            return res.redirect('/account/login')
+        }
+        const { permission } = req.session.authUser;
+        
+        if(permission !== 1) {
+            return res.redirect('/');
+        }
+      
 
       next();
   },
