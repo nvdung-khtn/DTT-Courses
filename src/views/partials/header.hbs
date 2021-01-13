@@ -119,7 +119,10 @@
                 </div>
                 <form action="/account/logout" method="POST" id="frmLogout"></form>
                 {{#if isAuth}}
-
+                    <a href="/cart" class="cart">
+                        <i class="fas fa-cart-plus"></i>
+                        <span class="badge badge-pill badge-danger">5</span>
+                    </a>
                     <ul class="user-login">
                         <li class="user">
                             <img src="/image/login/avt.jpg" alt="avatar" class="avt">

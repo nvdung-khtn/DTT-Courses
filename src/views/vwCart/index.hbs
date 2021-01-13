@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css">
+    <!-- Thư viện reset CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <!-- Thư viện font của GG -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <!-- Thư viện Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
+    <!-- Thư viện Slick -->
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
+    <!-- Thư viện Sweetalert2 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10.8.1/dist/sweetalert2.min.css" />
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/account/userlogin.css">
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/banner.css">
+    <link rel="stylesheet" href="/css/home.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="/css/cart.css">
+
+    {{{_sections.css}}}
+    <title>DTT Courses</title>
+</head>
+
+<body>
+    <div class="app">
+        {{>header}}
+        <div class="container">
+            <div class="cart-header">
+                <div class="cart-header__url">
+                    <a class="cart-header__url-item" href="/">Trang chủ <span>/</span></a>
+                    <a class="cart-header__url-item" href="/cart">&nbsp;Giỏ hàng</a>
+                </div>
+                <div class="cart-header__title">Giỏ Hàng</div>
+            </div>
+
+            <div class="cart-body">
+                <div class="row">
+                    <div class="col-sm-8 cart-body__product">
+                        <h3 class="cart-body__product-status">Bạn có 2 khóa học trong giỏ</h3>
+                        <div class="cart-body__product-list">
+                            <a class="cart-body__product-item">
+                                <div class="card mb-3 card-container">
+                                    <div class="row no-gutters">
+                                        <div class="col-sm-3 card-img-course">
+                                            <img src="/image/main_thumbs.jpg" class="card-img" alt="...">
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="card-body">
+                                                <h4 class="card-title cart-item-name">HTML, CSS từ Zero tới Hero</h4>
+                                                <h4 class="card-subtitle mb-2 text-muted cart-item-author">Tác giả:
+                                                    Nguyễn Văn Dũng</h4>
+                                                <p class="card-text cart-item-field">Lĩnh vực: HTML-CSS</p>
+                                                <div class="badge-group">
+                                                    <span class="badge badge-pill badge-success">Bán chạy</span>
+                                                    <span class="badge badge-pill badge-danger">Nổi bật</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3 cart-body__product-right">
+                                            <div class="cart-action">
+                                                <h4 class="cart-action__delete">Xóa </h4>
+                                                <h4 class="cart-action__buy-late">Mua sau</h4>
+                                            </div>
+                                            <div class="price-text-container">
+                                                <span class="current-price">1.000.000đ</span>
+                                                <span class="initial-price">1.500.000đ</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+
+                            <a class="cart-body__product-item">
+                                <div class="card mb-3 card-container">
+                                    <div class="row no-gutters">
+                                        <div class="col-sm-3 card-img-course">
+                                            <img src="/image/main_thumbs.jpg" class="card-img" alt="...">
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="card-body">
+                                                <h4 class="card-title cart-item-name">HTML, CSS từ Zero tới Hero</h4>
+                                                <h4 class="card-subtitle mb-2 text-muted cart-item-author">Tác giả:
+                                                    Nguyễn Văn Dũng</h4>
+                                                <p class="card-text cart-item-field">Lĩnh vực: HTML-CSS</p>
+                                                <div class="badge-group">
+                                                    <span class="badge badge-pill badge-success">Bán chạy</span>
+                                                    <span class="badge badge-pill badge-danger">Nổi bật</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3 cart-body__product-right">
+                                            <div class="cart-action">
+                                                <h4 class="cart-action__delete">Xóa </h4>
+                                                <h4 class="cart-action__buy-late">Mua sau</h4>
+                                            </div>
+                                            <div class="price-text-container">
+                                                <span class="current-price">1.000.000đ</span>
+                                                <span class="initial-price">1.500.000đ</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                            <a class="cart-body__product-item">
+                                <div class="card mb-3 card-container">
+                                    <div class="row no-gutters">
+                                        <div class="col-sm-3 card-img-course">
+                                            <img src="/image/main_thumbs.jpg" class="card-img" alt="...">
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="card-body">
+                                                <h4 class="card-title cart-item-name">HTML, CSS từ Zero tới Hero</h4>
+                                                <h4 class="card-subtitle mb-2 text-muted cart-item-author">Tác giả:
+                                                    Nguyễn Văn Dũng</h4>
+                                                <p class="card-text cart-item-field">Lĩnh vực: HTML-CSS</p>
+                                                <div class="badge-group">
+                                                    <span class="badge badge-pill badge-success">Bán chạy</span>
+                                                    <span class="badge badge-pill badge-danger">Nổi bật</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3 cart-body__product-right">
+                                            <div class="cart-action">
+                                                <h4 class="cart-action__delete">Xóa </h4>
+                                                <h4 class="cart-action__buy-late">Mua sau</h4>
+                                            </div>
+                                            <div class="price-text-container">
+                                                <span class="current-price">1.000.000đ</span>
+                                                <span class="initial-price">1.500.000đ</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+
+                        </div>
+                    </div>
+                    <div class="col-sm-3 cart-body__checkout">
+                        <div class="checkout__price">
+                            <b>Tổng cộng:</b>
+                            <span class="price-current">2.000.000đ</span>
+                            <span class="price-initial">4.500.000đ</span>
+                        </div>
+                        <a name="" id="" class="btn btn-danger btn-checkout mt-4" href="#" role="button">Thanh Toán</a>
+                        <div class="checkout_voucher">
+                            <div class="input-group mt-4">
+                                <input type="text" class="form-control" placeholder="Nhập mã voucher">
+                                <div class="input-group-append">
+                                    <button class="btn btn-danger" type="button">Áp dụng</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{>footer}}
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.8.1/dist/sweetalert2.min.js"></script>
+    {{{_sections.js}}}
+</body>
+
+</html>

@@ -1,0 +1,146 @@
+.cart-header {
+    margin: 10px 0 20px;
+}
+
+.cart-header__url {
+    display: flex;
+    align-items: center;
+}
+
+.cart-header__url-item {
+    color: var(--primary-color);
+    font-size: 1.6rem;
+}
+
+.cart-header__url-item:hover {
+    text-decoration: none;
+    color: var(--primary-color-hover);
+}
+
+.cart-header__title {
+    font-size: 4rem;
+    font-weight: 700;
+    color: var(--second-text-color);
+}
+
+.cart-body__product {
+
+}
+
+.cart-body__product-status {
+    font-weight: 500;
+    color: #888;
+    margin-bottom: 15px;
+}
+
+.cart-body__product-list {
+
+}
+
+.cart-body__product-item  {
+    cursor: pointer;
+}
+
+.cart-body__product-item:hover {
+    text-decoration: none;
+}
+
+.cart-body__product-right {
+    display: flex;
+    justify-content:space-between;
+}
+
+.card-container {
+    height: 135px;
+    border-bottom: 1px solid #ccc;
+}
+
+.cart-action {
+    height: 50%;
+    margin-top: 19px;
+}
+
+.price-text-container {
+    height: 50%;
+    margin-top: 14px;
+    margin-right: 10px;
+}
+
+.current-price {
+    display: block;
+    font-size: 1.6rem;
+    color: red;
+}
+
+.initial-price {
+    display: block;
+    font-size: 1.8rem;
+    text-decoration: line-through;
+    color: #666;
+}
+
+.card-img-course {
+    height: 135px;
+}
+
+.card-img-course img {
+    background-size: cover;
+    background-position: center;
+}
+
+.cart-item-field {
+    color: #333;
+}
+
+.cart-item-author {
+    font-weight: 500;
+}
+
+.cart-item-name {
+    cursor: pointer;
+    color: var(--text-color);
+    font-weight: 700;
+    font-size: 1.8rem;
+}
+
+.cart-body__checkout {
+    display: flex;
+    flex-direction: column;
+    padding: 8px 15px 8px 30px;
+}
+
+.checkout__price {
+    display: flex;
+    flex-direction: column;
+}
+
+.checkout__price b {
+    font-size: 2rem;
+    color: #666
+}
+
+.checkout__price .price-current {
+    font-size: 4rem;
+    font-weight: 700;
+    color: #333;
+}
+
+.checkout__price .price-initial {
+    font-size: 2rem;
+    font-weight: 500;
+    color: #888;
+    text-decoration: line-through;
+}
+
+.btn-checkout {
+    font-size: 1.6rem;
+    padding: 6px 10px;
+}
+
+.checkout_voucher input {
+    font-size: 1.4rem;
+}
+
+.checkout_voucher button {
+    font-size: 1.4rem;
+}

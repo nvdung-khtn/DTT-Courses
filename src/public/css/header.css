@@ -283,3 +283,26 @@
     display: block;
     width: 100%;
 }
+
+/** Shopping Cart */
+.cart {
+    color: #888;
+    position: relative;
+    margin-left: 3rem;
+}
+
+.cart:hover {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.cart i {
+    font-size: 2.5rem;
+    margin-top: 4px;
+}
+
+.cart span {
+    position: absolute;
+    top: -6px;
+    right: -10px;
+}
