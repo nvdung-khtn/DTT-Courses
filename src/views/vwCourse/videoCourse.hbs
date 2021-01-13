@@ -68,10 +68,10 @@
                         <div class="material-icons check-item">check_circle</div>
                         <div class="info-item">
                             <h3>{{index}}. {{name}}</h3>
-                            <p class="playlist-description">
+                            {{!-- <p class="playlist-description">
                                 <i class="fas fa-compact-disc playlist-icon"></i>
-                                03:15
-                            </p>
+                                <span id="video-time"></span>
+                            </p> --}}
                         </div>
                     </div>
 
@@ -87,13 +87,20 @@
     <script src="https://vjs.zencdn.net/7.10.2/video.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script>
-        
+
         const lesson_active = $('.sidebar-body').data('lesson');
         $(`#${lesson_active}`).addClass('active');
 
 
+        const myPlayer = videojs('video-player');
+        /*const myPlayer = videojs('video-player'); 
+        myPlayer.one('loadedmetadata', () => {
+            $('#video-time').text(myPlayer.duration().toString());
+        }) */
+        
 
         $('.playlist-item').on('click', function () {
+            //console.log(myPlayer.currentTime())
             const slug = $('#slug').text();
             const video_id = $(this).data('video');
             window.location.assign(`/courses/video/${slug}>${video_id}`)

@@ -1,7 +1,7 @@
 
 module.exports = {
     auth(req, res, next) {
-        if (req.session.isAuth === false) {
+        if (req.session.isAuth === false && req.session.isAuthLeturer === false) {
             req.session.retUrl = req.originalUrl;
             return res.redirect('/account/login');
         }
@@ -28,14 +28,14 @@ module.exports = {
   },
 
     authUser(req, res, next){
-        if (req.session.isAuth === false) {
-            req.session.retUrl = req.originalUrl;
-            return res.redirect('/account/login');
-        }
-        if( req.session.authUser.permission !== 2){
-            req.session.retUrl = req.originalUrl;
-            return res.redirect('/account/login');
-        }
+        // if (req.session.isAuth === false) {
+        //     req.session.retUrl = req.originalUrl;
+        //     return res.redirect('/account/login');
+        // }
+        // if( req.session.authUser.permission !== 2){
+        //     req.session.retUrl = req.originalUrl;
+        //     return res.redirect('/account/login');
+        // }
     
         next();
     },
