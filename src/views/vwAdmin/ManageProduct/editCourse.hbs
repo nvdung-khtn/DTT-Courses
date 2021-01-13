@@ -21,19 +21,14 @@
 
     document.addEventListener("DOMContentLoaded", function () {
             Validator({
-                form: "#editProduct",
+                form: "#edit-course",
                 formGroupSelector: ".form-group",
                 errorSelector: ".form-message",
                 rules: [
                     Validator.isRequired("#name", "Tên sản phẩm còn trống"),
-					Validator.isRequired("#category", "Danh mục sản phẩm còn trống"),
-                    Validator.isRequired("#tinyDes", "Product name invalid"),
-					Validator.isRequired("#price", "Price invalid"),
-					Validator.isRequired("#lecturer", "Lecturer invalid"), ],
-                    onSubmit: function (data) {
-                    // Call API
-                    console.log(data);
-                },
+                    Validator.isRequired("#tinyDes", "Mô tả khóa học còn trống"),
+					Validator.isRequired("#price", "Giá còn trống"),
+                    ],
             });
         });
 
@@ -123,7 +118,7 @@
 
                         </div>
                         <div class="modal-footer">
-                            <a href="/admin/product?page=1"><input type="button" class="btn back" value="Quay lại"></a>
+                            <a href="/admin/course?page={{page}}"><input type="button" class="btn back" value="Quay lại"></a>
                             <input type="submit" class="btn update" value="Cập nhật">
                         </div>
                     </form>

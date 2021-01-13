@@ -12,6 +12,8 @@ const bcrypt = require('bcryptjs');
 
 const SALT = 10;
 const PAGE_SIZE = 2;
+var page;
+var status;
 
 
 class AdminController {
@@ -35,8 +37,8 @@ class AdminController {
     // ---------------MANAGE STUDENT-----------------------
 
     async manageStudent(req, res) {
-        var page = req.query.page;
-        var stringSearch = req.query.search;
+        page = req.query.page;
+        var stringSearch = req.query.search; 
         if (page) {
             page = parseInt(page);
             if (page<1) {
@@ -96,7 +98,7 @@ class AdminController {
         };
         User.findOneAndUpdate({_id : req.body.id}, userData)
             .then(() => {    
-                res.redirect('/admin/student?page=1');
+                res.redirect(`/admin/student?page=${page}`);
             })
             .catch(next);
     }
@@ -104,7 +106,7 @@ class AdminController {
     deleteStudent(req, res, next) {
         User.findByIdAndRemove(req.params.id)
         .then(() => {
-            res.redirect('/admin/student?page=1');
+            res.redirect(`/admin/student?page=${page}`);
         })
         .catch(next);
     }
@@ -118,13 +120,14 @@ class AdminController {
         res.render('vwAdmin/ManageUser/editUser', {
             layout: "admin",
             student,
+            page
         });
     }
 
 
     // ---------------MANAGE LECTURER-----------------------
     async manageLecturer(req, res) {
-        var page = req.query.page;
+        page = req.query.page;
         var stringSearch = req.query.search;
         if (page) {
             page = parseInt(page);
@@ -186,6 +189,7 @@ class AdminController {
         res.render('vwAdmin/ManageUser/editLecturer', {
             layout: "admin",
             lecturer,
+            page
         });
     }
 
@@ -202,7 +206,7 @@ class AdminController {
         console.log(userData);
         User.findOneAndUpdate({_id : req.body.id}, userData)
             .then(() => {    
-                res.redirect('/admin/lecturer?page=1');
+                res.redirect(`/admin/lecturer?page=${page}`);
             })
             .catch(next);
     }
@@ -210,7 +214,7 @@ class AdminController {
     deleteLecturer(req, res, next) {
         User.findByIdAndRemove(req.params.id)
         .then(() => {
-            res.redirect('/admin/lecturer?page=1');
+            res.redirect(`/admin/lecturer?page=${page}`);
         })
         .catch(next);
     }
@@ -224,7 +228,12 @@ class AdminController {
     async addLecturer (req, res, next) {
         const checkEmail = await User.exists({email: req.body.email})
         if (checkEmail) {
-            Swal.fire('Oops...', 'Something went wrong!', 'error');
+            Swal.fire({
+                title: 'SUCCESS!',
+                text: 'Thank you for your information!',
+                icon: 'success',
+                confirmButtonText: 'Close'
+              })
             res.redirect('/admin/lecturer/add');
         } else {
 
@@ -244,7 +253,7 @@ class AdminController {
             };
             User.create(userData)
                 .then(() => {
-                    res.redirect('/admin/lecturer?page=1');
+                    res.redirect(`/admin/lecturer?page=${page}`);
                 })
                 .catch(next);
         }
@@ -254,7 +263,7 @@ class AdminController {
 // ---------------MANAGE COURSES-----------------------
 
     async manageCourse(req, res) {
-        var page = req.query.page;
+        page = req.query.page;
         var stringSearch = req.query.search;
         if (page) {
             page = parseInt(page);
@@ -313,7 +322,8 @@ class AdminController {
             layout: "admin",
             course,
             fields,
-            lecturers
+            lecturers,
+            page
         });
     }
 
@@ -329,7 +339,7 @@ class AdminController {
         };
         Course.findOneAndUpdate({_id : req.body.id}, userData)
             .then(() => {    
-                res.redirect('/admin/course?page=1');
+                res.redirect(`/admin/course?page=${page}`);
             })
             .catch(next);
     }
@@ -337,7 +347,7 @@ class AdminController {
     deleteCourse(req, res, next) {
         Course.findByIdAndRemove(req.params.id)
         .then(() => {
-            res.redirect('/admin/course?page=1');
+            res.redirect(`/admin/course?page=${page}`);
         })
         .catch(next);
     }
@@ -346,7 +356,7 @@ class AdminController {
 // ---------------MANAGE CATEGORY-----------------------
 
     async manageField(req, res) {
-        var page = req.query.page;
+        page = req.query.page;
         var stringSearch = req.query.search;
         if (page) {
             page = parseInt(page);
@@ -382,7 +392,7 @@ class AdminController {
             })
         }
         if (stringSearch) {
-            const fields = await Course.find({name:{$regex:`${stringSearch}`}}).lean();
+            const fields = await Field.find({$text: {$search: stringSearch}}).lean();
             courseService.convertStatusToStatusStringCourses(fields); 
             return res.render('vwAdmin/ManageProduct/category', {
                 layout: "admin",

@@ -9,12 +9,23 @@
     position: relative;
 }
 
-.badge-custom {
+.badge-uncompleted {
     position: absolute;
     right: -125px;
     top: 12px;
     font-size: 35%;
+    background-color: #ffc107;
 }
+
+.badge-completed {
+    position: absolute;
+    right: -107px;
+    top: 12px;
+    font-size: 35%;
+    background-color: var(--primary-color);
+    color: #FFF;
+}
+
 
 .course-completed {
     display: inline-block;
@@ -115,6 +126,16 @@ span.amount {
     color: #545557
 }
 
+.lesson-table__icon {
+    width: 94px;
+}
+
+.empty-data {
+    text-align: center;
+    font-size: 1.6rem;
+    font-weight: 600;
+}
+
 /* Add lesson*/
 #addLesson, #editLesson {
     font-size: 1.6rem;
@@ -133,4 +154,13 @@ span.amount {
     font-size: 1.6rem;
     width: 90px;
     height: 33px;
+}
+
+.form-message {
+    font-size: 1.4rem;
+    color: var(--error-color);
+}
+
+.inValid {
+    border-color: var(--error-color);
 }

@@ -19,16 +19,19 @@
         ],
     });
 
-    $('#avatar').fileinput({
+    $('#frmMain #avatar').fileinput({
         theme: 'fa',
         dropZoneEnabled: false,  //Khung để kéo thả bự bự
-        allowedFileExtensions: ['png', 'jpg', 'gif']
+        allowedFileExtensions: ['png', 'jpg', 'gif'],
+        showUpload: false,
     });
 
-    $('#introVideo').fileinput({
+    $('#frmMain #introVideo').fileinput({
         theme: 'fa',
         dropZoneEnabled: false,
-        allowedFileExtensions: ['mp4']  //chỉ cho phép upload các định dạng sau
+        allowedFileExtensions: ['mp4'],
+        showUpload: false,
+        showPreview: false,
     });
 
 </script>
@@ -69,10 +72,7 @@
                 <a class="nav-link my-course" href="/lecturer/courses">Khóa học của tôi</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link up-course" href="/lecturer/courses/create">Đăng khóa học</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link edit-course" href="#">Bổ sung khóa học</a>
+                <a class="nav-link up-course" href="/lecturer/courses/create">Tạo mới khóa học</a>
             </li>
         </ul>
 

@@ -4,6 +4,14 @@ const ObjectId = Schema.ObjectId;
 const slug = require('mongoose-slug-generator');
 
 mongoose.plugin(slug);
+const Lesson = new Schema({
+    index: Number,
+    lessonName: String,
+    video: String,
+    status: Boolean
+}, {
+    timestamps: true
+});
 const Course = new Schema({
     name: String,
     slug: { type: String, slug: "name", unique: true },
@@ -23,6 +31,7 @@ const Course = new Schema({
     fullDes: String,
     nIndex: Number,
     quantity: Number,
+    lessons: [Lesson]
 }, {
     timestamps: true,
 });
