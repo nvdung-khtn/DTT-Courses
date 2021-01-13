@@ -31,7 +31,8 @@ class CourseController {
         res.render('vwCourse/detailCourse', {
             layout: 'course',
             course,
-            lessons
+            lessons,
+            lesson: lessons[0],
 
         })
 
