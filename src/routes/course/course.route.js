@@ -3,10 +3,11 @@ const router = express.Router();
 
 const courseController = require('../../controllers/course/CourseController');
 const { route } = require('../user/user.route');
+const {auth} = require('../../middlewares/auth.mdw');
 
 router.get('/:slug', courseController.show);
 router.get('/', courseController.index);
-router.post('/:slug', courseController.postComment)
+router.post('/:slug', auth, courseController.postComment)
 
 router.get('/video/:id',courseController.videoCourse);
 

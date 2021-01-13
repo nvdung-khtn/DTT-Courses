@@ -101,7 +101,8 @@
 }
 
 .header__category-dropdown:hover .header__category-dropdown-list {
-    display: block;
+    opacity: 1;
+    visibility: visible;
 }
 
 .header__category-dropdown-list {
@@ -109,15 +110,15 @@
     position: absolute;
     left: 0;
     top: calc(100% + 11px);
-    box-shadow: 0 1px 3px #666;
+    border: 1px solid #dedede;
     background-color: var(--white-color);
-    border-radius: 3px;
-    display: none;
+    border-radius: 1px;
+    
+    opacity: 0;
+    visibility: hidden;
     z-index: 3;
     list-style: none;
     padding-left: 0;
-    padding-bottom: 12px;
-    margin: 0;
 }
 
 /* Kỹ thuật bắc cầu */ /* Chỉ dùng đc cho quan hệ cha-con*/
@@ -134,8 +135,45 @@
 
 .header__category-dropdown-item {
     padding: 0;
-    height: 35px;
+    height: 40px;
+    position: relative;
+    border-bottom: 1px solid #eee;
 }
+
+
+.header__category-dropdown-item:hover .header__category-dropdown-item__submenu{
+    opacity: 1;
+    visibility:visible;
+    top: 0;
+    margin-top: 0;
+}
+
+.header__category-dropdown-item__submenu{
+    position: absolute;
+    top: calc(100% + 15px);
+    left: 100%;
+    width: calc(120% + 25px);
+    border: 1px solid #dedede;
+    background-color: var(--white-color);
+    border-radius: 1px;
+    opacity: 0;
+    visibility: hidden;
+    z-index: 3;
+    list-style: none;
+    padding-left: 0;
+    
+    margin: 0;
+    transition: .4s;
+    margin-left: 0px;
+}
+
+.header__category-dropdown-item__submenu--item{
+    padding: 0;
+    height: 40px;
+    border-bottom: 1px solid #eee;
+
+}
+
 
 .header__category-dropdown-item a:hover {
     color: var(--primary-color);
@@ -153,8 +191,8 @@
     font-weight: 600;
     display: block;
     width: 100%;
-    padding: 2px 8px 2px 18px;
-    line-height: 35px;
+    padding: 0px 8px 0px 18px;
+    line-height: 40px;
 }
 
 .header-search__input-wrap {
