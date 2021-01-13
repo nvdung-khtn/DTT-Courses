@@ -114,6 +114,7 @@ class CourseController {
             layout: 'course',
             course,
             lessons,
+            lesson: lessons[0],
             listComment
         })
 
