@@ -4,56 +4,21 @@
     <link rel="stylesheet" href="/css/account/userlogin.css">
 {{/section}}
 
-<div class="container" style="margin-top: 4rem;">
-    <div>
-        <p class="mb-2 mt-3">
-            <a href="/" class="cat">Khóa học</a>
-            
-            <span class="ml-1 mr-1">></span>
-        
-            <a href="/courses/{{course.slug}}" class="cat">{{course.name}}</a>
-        </p>
-        <p class="big-title">{{course.name}}</p> 
-        <p class="decrip">{{course.fullDes}}</p>    
+<div class="container" style="margin-top: 10px;">
+    <div class="main__url" data-folder="{{course.folderName}}">
+        <a href="/">Trang chủ</a>
+        <span> &gt; <span/>
+        <a href="/courses/{{course.slug}}" id="slug">{{course.slug}}</a>
     </div>
-
+</div>
+<div class="container">
     <div class="row">
+
+        {{!-- ----------CONT LEFT---------- --}}
         <div class="col-lg-8 cont-left">
-            <div>
-                <p class="mb-2 mt-3">
-                    <a href="#" class="cat">Khóa học</a>
-                    
-                    <span class="ml-1 mr-1">></span>
-                
-                    <a href="#" class="cat">{{course.slug}}</a>
-                </p>
-                <p class="big-title">{{course.name}}</p> 
-                <p class="decrip">{{{course.fullDes}}}</p>    
-            
-            <div class="mb-3">
-                <p class="title">Bạn sẽ học được gì?</p>
-                <div class="row">
-                    <div class="col-6 mt-1 mb-1">
-                        <i class="fas fa-check mr-1"></i>
-                        Biết cách xây dựng giao diện website
-                    </div>
-                    <div class="col-6 mb-1 mt-1">
-                        <i class="fas fa-check mr-1"></i>
-                        Biết cách phân tích giao diện website
-                    </div>
-                    <div class="col-6 mb-1 mt-1">
-                        <i class="fas fa-check mr-1"></i>
-                        Biết cách đặt tên class CSS theo chuẩn BEM
-                    </div>
-                    <div class="col-6 mb-1 mt-1">
-                        <i class="fas fa-check mr-1"></i>
-                        Biết cách làm giao diện Responsive
-                    </div>
-                </div>
-            </div>
 
 
-            <div class="mb-3 bt-1">
+            <div class="mb-3 mt-1">
                 <p class="title"> Nội dung khóa học </p>
                 <div class="list-course ">
                     {{#each lessons}}
@@ -65,6 +30,31 @@
                 </div>
             </div>
 
+            <div class="mb-3 mt-1">
+                <p class="title"> Yêu cầu </p>
+                <div>
+                    <p>
+                        <i class="fas fa-check mr-1"></i>
+                        Máy vi tính kết nối internet (Windows, Ubuntu hoặc MacOS)
+                    </p>
+                    <p>
+                        <i class="fas fa-check mr-1"></i>
+                        Ý thức tự học cao, trách nhiệm cao, kiên trì bền bỉ không ngại cái khó
+                    </p>
+                    <p>
+                        <i class="fas fa-check mr-1"></i>
+                        Không được nóng vội, bình tĩnh học, làm bài tập sau mỗi bài học
+                    </p>
+                    <p>
+                        <i class="fas fa-check mr-1"></i>
+                        Khi học nếu có khúc mắc hãy bạn Dũng gánh team
+                    </p>
+                    <p>
+                        <i class="fas fa-check mr-1"></i>
+                        Bạn không cần biết gì hơn nữa, trong khóa học tôi sẽ chỉ cho bạn những gì bạn cần phải biết
+                    </p>
+                </div>
+            </div>
 
             <div class="mb-3 mt-1">
                 <p class="title-danhgia">Đánh giá </p>
@@ -150,11 +140,15 @@
                     </div>
                     {{/each}}
                 </div>
+                
             </div>
         </div>
+
+        {{!-- --------CONT RIGHT----------- --}}
+
         <div class="cont-right">
             <div class="courseDetail_vdPreview">
-                 <video width="370px" class="video-js vjs-big-play-centered" muted controls
+                <video width="370px" class="video-js vjs-big-play-centered" muted controls
                     poster="" data-setup="{}">
                     <source src="/products/{{course.folderName}}/videos/{{course.introVideo}}" type="video/mp4" />
                 </video>
@@ -178,6 +172,10 @@
                     </li>
                 </ul>
             </div>
+        </div>
+
+        {{!-- -----------END----------- --}}
+            
         </div>
     </div>
 </div>
