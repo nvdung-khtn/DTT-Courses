@@ -110,9 +110,12 @@ const sendMailForgotPassword = (email) => {
 class AccountController {
     // [GET] account/login
     getLogin(req, res) {
-        if (req.headers.referer) {
-            req.session.retUrl = req.headers.referer;
-        }
+        // if (req.headers.referer) {
+        //     req.session.retUrl = req.headers.referer;
+        // }
+        // popupS.alert({
+        //     content: 'Hello World!'
+        // });
         res.render('vwAccount/login', {
             layout: false,
         });
@@ -139,13 +142,19 @@ class AccountController {
                 error2: 'Mật khẩu không đúng'
             });
         } else{
-            req.session.isAuth = true;
+            
+            if(listAccount.permission === 2){
+                req.session.isAuth = true;
+            }
+            if(listAccount.permission === 1){
+                req.session.isAuthLecturer = true;
+            }
             req.session.authUser = listAccount;
             if(listAccount.permission === 0){
                 let url = req.session.retUrl || '/admin';
                 res.redirect(url);
             }else if(listAccount.permission === 1){
-                let url = req.session.retUrl || '/lecturer';
+                let url = req.session.retUrl || '/';
                 res.redirect(url)
             }else{
                 let url =  req.session.retUrl ||'/';
@@ -156,6 +165,7 @@ class AccountController {
 
     postLogout(req, res){
         req.session.isAuth = false;
+        req.session.isAuthLecturer = false;
         req.session.authUser = null;
         const url = req.session.retUrl || '/'
         return res.redirect(url); 

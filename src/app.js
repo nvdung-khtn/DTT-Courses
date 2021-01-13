@@ -4,7 +4,6 @@ const handlebars = require('express-handlebars');
 const path = require('path');
 const numeral = require('numeral');
 const hbs_sections = require('express-handlebars-sections');
-const session = require('express-session');
 const db = require('./config/db');
 require('express-async-errors');
 

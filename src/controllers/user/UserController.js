@@ -70,6 +70,7 @@ class UserController {
         const idUser = req.session.authUser._id;
         data.id = idUser;
         const oldEmail = req.session.authUser.email;
+
         if(oldEmail === data.email){
             await userService.updateUserById(idUser, data);
             // cập nhật lại authUser;
@@ -86,6 +87,7 @@ class UserController {
             const url = '/user/manage/' + idUser || '/'
             return res.redirect(url); 
         }
+
         await userService.deleteOtpByEmail(data.email);
         sendMail(data.email);
         req.session.isUpdateAccount = true;
@@ -123,7 +125,7 @@ class UserController {
 
         const newpwHash = bcrypt.hashSync(data.newpassword, SALT);
         await userService.updatePasswordById(user._id, newpwHash);
-        return res.redirect('/account/login');
+        return res.redirect('/');
     }
 
     confirm(req, res){
@@ -152,7 +154,8 @@ class UserController {
             req.session.accountUpdate = null;
             return res.redirect('/');
 
-            //reset lại dữ liệu trong session
+            // Xóa otp vừa nhập thành công
+            // ....
 
         }
         return res.redirect('/user/confirm');
