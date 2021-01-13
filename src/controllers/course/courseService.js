@@ -3,6 +3,7 @@ const User = require('../../models/User');
 const Category = require('../../models/Category');
 const Field = require('../../models/Field');
 const userService = require('../user/userService');
+const Comment = require('../../models/Comment');
 const { multipleMongooseToObject, mongooseToObject } = require('../../utils/mongoose');
 
 module.exports = {
@@ -105,5 +106,5 @@ module.exports = {
         }
         
         return ret;
-    }
+    },
 }

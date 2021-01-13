@@ -136,12 +136,29 @@
                         </li>
                     </ul>
                 {{else}}
-                    <div class="header__button-group">
-                        <button type="button" class="btn btn-light btn-type-one myBtn">Blog</button>
-                        <button type="button" class="btn btn-light btn-type-one myBtn">Liên hệ</button>
-                        <a name="" id="" class="btn btn-warning btn-type-two myBtn" href="/account/login" role="button">Đăng nhập</a>
-                        <a name="" id="" class="btn btn-success btn-type-two myBtn" href="/account/register" role="button">Đăng ký</a>
-                    </div>
+                    {{#if isAuthLecturer}}
+                        <ul class="user-login">
+                            <li class="user">
+                                <img src="/image/login/avt.jpg" alt="avatar" class="avt">
+                                <b>GV. {{authUser.name}}</b>
+                                <ul class="subuser">
+                                    <li class="sub-menu-choose"><a href="/user/listbookmark/{{authUser._id}}" class="link"><i class="fas fa-list mr-2"></i>Quản lý khóa học</a></li>
+                                    <li class="sub-menu-choose"><a href="/user/manage/{{authUser._id}}" class="link"><i class="fas fa-cog mr-2"></i>Quản lý tài khoản</a></li>
+                                    <li class="sub-menu-choose"><a href="/user/changepassword/{{authUser._id}}" class="link"><i class="fas fa-key mr-2"></i></i>Đổi mật khẩu</a></li>
+                                    <li class="sub-menu-choose"><span class="link" onclick="resetOtp()">
+                                        <i class="fas fa-sign-out-alt mr-2"></i>Đăng xuất</span>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    {{else}}
+                        <div class="header__button-group">
+                            <button type="button" class="btn btn-light btn-type-one myBtn">Blog</button>
+                            <button type="button" class="btn btn-light btn-type-one myBtn">Liên hệ</button>
+                            <a name="" id="" class="btn btn-warning btn-type-two myBtn" href="/account/login" role="button">Đăng nhập</a>
+                            <a name="" id="" class="btn btn-success btn-type-two myBtn" href="/account/register" role="button">Đăng ký</a>
+                        </div>
+                    {{/if}}
                 {{/if}}
                 
             </div>
