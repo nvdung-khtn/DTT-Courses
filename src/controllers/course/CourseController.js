@@ -3,6 +3,7 @@ const courseService = require('./courseService');
 const { multipleMongooseToObject, mongooseToObject } = require('../../utils/mongoose');
 const Comment = require('../../models/Comment');
 const { getCommentBySlug } = require('./courseService');
+const User = require('../../models/User');
 
 class CourseController {
     // [GET] /courses
@@ -68,6 +69,16 @@ class CourseController {
     async show(req, res, next) {
         req.session.slug = req.params.slug;
         const course = await Course.findOne({ slug: req.params.slug }).lean();
+        const lecturer = await User.findOne({_id: course.lecId}).lean();
+        const courses_lec = await Course.find({lecId: lecturer._id}).lean();
+        lecturer.totalCourse = courses_lec.length;
+        lecturer.totalStudent = 0;
+        courses_lec.forEach(course_item => {
+            if (course_item.students){
+                lecturer.totalStudent += course_item.students.length;
+            }
+            
+        })
         const lessons = course.lessons.map(lesson => {
             return {
                 _id: lesson._id,
@@ -115,6 +126,7 @@ class CourseController {
             course,
             lessons,
             lesson: lessons[0],
+            lecturer,
             listComment
         })
 

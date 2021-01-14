@@ -60,6 +60,33 @@
             </div>
 
             <div class="mb-3 mt-1">
+                <p class="title"> Thông tin Giảng viên </p>
+                <div class="info-lecturer">
+                    <div class="lecturer-name">
+                        <div>Giảng viên</div>
+                        <div>
+                            <h3>{{lecturer.name}}</h3>
+                        </div>
+                    </div>
+                    <div class="lecturer-description">
+                        <div class="lecturer-description-items">
+                            <i class="fas fa-envelope items-icon"></i>
+                            <span> {{lecturer.email}} </span>
+                        </div>
+                        <div class="lecturer-description-items">
+                            <i class="fas fa-book-open items-icon"></i>
+                            <span>Sở hữu <b>{{lecturer.totalCourse}}</b> khóa học</span>
+                        </div>
+                        <div class="lecturer-description-items">
+                            <i class="fas fa-user-graduate items-icon"></i>
+                            <span>Số lượng học viên <b>{{lecturer.totalStudent}}</b></span>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="mb-3 mt-1">
                 <p class="title-danhgia">Đánh giá </p>
                 <form action="" method="POST" id="frmComment">
                     <div style="display: flex;">
