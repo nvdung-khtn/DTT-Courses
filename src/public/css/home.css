@@ -101,49 +101,83 @@
 }
 
 /* Phân trang */
-.pagination {
-    list-style: none;
+.pager {
+    font-size: 0;
+    text-align: center;
+    margin-top: 10px;
+    padding-bottom: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
-}
 
-.pagination-item {
-    margin: 0 14px;
-}
-
-.pagination-item--active .pagination-item-link {
-    background-color: var(--primary-color);
-    color: var(--white-color);
-}
-
-.pagination-item--active .pagination-item-link:hover {
-    background-color: #449985;
-}
-
-.pagination-item-link {
-    --height: 30px;
-    color: #939393;
+  }
+  .pager__item {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-content: center;
+    vertical-align: top;
+    font-weight: bold;
+    margin: 0 5px;
+  }
+  .pager__item.active .pager__link {
+    background-color: #ffb74d;
+    border-color: #ffb74d;
+    color: #fff;
     text-decoration: none;
-    font-size: 2rem;
-    height: var(--height);
-    min-width: 40px;
-    display: inline-block;
-    text-align: center;
-    line-height: var(--height);
-    border-radius: 3px;
-}
-
-.pagination-item-link:hover {
+  }
+  .pager__item--prev svg, .pager__item--next svg {
+    width: 8px;
+    height: 12px;
+  }
+  .pager__item--next .pager__link svg {
+    transform: rotate(180deg);
+    transform-origin: center center;
+  }
+  .pager__link {
+    position: relative;
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    width: 100%;
+    line-height: 2.625rem;
+    margin-left: -1px;
+    color: #2f3640;
     text-decoration: none;
-    color: var(--primary-color);
-}
-
-.viewAllBtn {
-    font-size: 1.5rem;
-    background-color: var(--primary-color);
-    border-radius: 1.6rem;
-}
+    transition: 0.3s;
+  }
+  .pager__link:hover, .pager__link:focus, .pager__link:active {
+    background-color: #ffb74d;
+    border-color: #ffb74d;
+    color: #fff;
+    text-decoration: none;
+  }
+  .pager__link:hover svg path, .pager__link:focus svg path, .pager__link:active svg path {
+    fill: #fff;
+  }
+  .pager .pager__item.active + .pager__item .pager__link, .pager .pager__item:hover + .pager__item .pager__link {
+    border-left-color: #ffb74d;
+  }
+  
+  @media screen and (max-width: 576px) {
+    .pager__item {
+      position: absolute;
+      top: -9999px;
+      left: -9999px;
+    }
+    .pager__item.active, .pager__item:first-of-type, .pager__item:last-of-type, .pager__item:nth-of-type(2), .pager__item:nth-last-of-type(2) {
+      position: initial;
+      top: initial;
+      left: initial;
+    }
+    .pager__item.active + li {
+      position: initial;
+      top: initial;
+      left: initial;
+    }
+  }
 
 /* Loại bỏ outline thừa khi tạo Carousel*/
 .mySlickShow .product-item {

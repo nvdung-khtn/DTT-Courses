@@ -10,23 +10,19 @@ const cartRouter = require('./cart/cart.route');
 const { auth, authAdmin, authLecturer} = require('../middleWares/auth.mdw');
 
 function route(app) {
-   
     /** Route of Admin */
-    app.use('/admin', /*authAdmin,*/ adminRouter);
+    app.use('/admin', authAdmin, adminRouter);
     
     /** Route of Lecturer */
-    app.use('/lecturer',/*authLecturer,*/ lecturerRouter);
+    app.use('/lecturer', authLecturer, lecturerRouter);
     
     /** Route of User */
-    app.use('/user', /*auth, */  userRouter);
+    app.use('/user', auth, userRouter);
 
-    /** Route of Account */
+    /** Route of Guest */
     app.use('/account', accountRouter);
-
-     /** Route of Guest */
     app.use('/', homeRouter);
 
-    
 }
 
 module.exports = route;

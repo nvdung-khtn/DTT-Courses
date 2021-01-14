@@ -33,7 +33,7 @@
         dropZoneEnabled: false,
         allowedFileExtensions: ['mp4'],
         showUpload: false,
-        showPreview: false,
+        //showPreview: false,
     });
 
 </script>
@@ -41,7 +41,7 @@
 {{!-- Validate form --}}
 <script>
     Validator({
-        form: '#frmMain1',
+        form: '#frmMain',
         formGroupSelector: '.form-group',
         errorSelector: '.form-message',
         rules: [
@@ -57,7 +57,11 @@
                     return document.querySelector("#frmMain #fieldId").value;
                 },
                 "Vui lòng chọn lĩnh vực của khóa học.")
-        ]
+        ],
+        /*onSubmit: function() {
+            alert("submit");
+            $('#frmMain').submit();
+        }*/
     })
 </script>
 {{/section}}
@@ -90,7 +94,6 @@
                 <div class="form-group col-sm-6">
                     <label for="fieldId">Lĩnh vực</label>
                     <select name="fieldId" id="fieldId" class="form-control">
-                        <option value="0">Chọn lĩnh vực</option>
                         {{#each fields}}
                         <option value="{{_id}}">{{name}}</option>
                         {{/each}}

@@ -41,6 +41,21 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.8.1/dist/sweetalert2.min.js"></script>
     {{{_sections.js}}}
+
+    {{!-- -----------SEARCH------------ --}}
+    <script>
+        $('#text-search').keypress(function (event) {
+            if (event.keyCode == 13) {
+                var stringSearch = $('#text-search').val();
+                window.location.assign(`/courses/?page=1&search=${stringSearch}`);
+            }
+        })
+        $('#text-search').change(function () {
+            var stringSearch = $('#text-search').val();
+            $('#link-search').attr('href', `/courses/?page=1${stringSearch}`)
+        })
+
+    </script>
 </body>
 
 </html>

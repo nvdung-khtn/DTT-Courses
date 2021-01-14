@@ -1,5 +1,11 @@
+{{#section 'js'}}
+    <script>
+        var page = parseInt($('#page').text()) + 1;
+		$('.pager__item').eq(`${page}`).addClass('active')
+    </script>
+{{/section}}
 <div class="container mt-5">
-    <div class="row">
+    <div class="row" style="margin-top: 40px;">
         <div class="col-sm-7 offset-sm-3 category-btn-group px-1">
             <a name="" id="" class="btn btn-success btn-lg category-btn category-btn--active mr-2" href="#"
                 role="button">
@@ -59,7 +65,34 @@
             {{/each}}
         </div>
 
-        <div class="row d-flex justify-content-center mt-4">
+        {{#unless empty}}
+        <nav>
+            <span id="page" style="display: none;">{{prev_page}}</span>
+            <ul class="pager">
+                <li class="pager__item pager__item--prev" {{#if can_go_prev }}style="pointer-events: none;"{{/if}}>
+                    <a class="pager__link" href="/courses?page={{prev_page}}&search={{stringSearch}}">
+                    <svg xmlns="" width="8" height="12" viewbox="0 0 8 12">
+                        <g fill="none" fill-rule="evenodd">
+                        <path fill="#33313C" d="M7.41 1.41L6 0 0 6l6 6 1.41-1.41L2.83 6z"></path>
+                        </g>
+                    </svg></a></li>
+                {{#each page_items}}
+                    <li class="pager__item"><a class="pager__link" href="/courses?page={{value}}&search={{stringSearch}}">{{value}}</a></li>
+                {{/each}}
+                <li class="pager__item pager__item--next" {{#if can_go_next }}style="pointer-events: none;"{{/if}} >
+                    <a class="pager__link" href="/courses?page={{next_page}}&search={{stringSearch}}">
+                        <svg xmlns="" width="8" height="12" viewbox="0 0 8 12">
+                            <g fill="none" fill-rule="evenodd">
+                            <path fill="#33313C" d="M7.41 1.41L6 0 0 6l6 6 1.41-1.41L2.83 6z"></path>
+                            </g>
+                        </svg>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        {{/unless}}
+        {{!-- <div class="row d-flex justify-content-center mt-4">
             <ul class="pagination home-product__pagination">
                 <li class="pagination-item">
                     <a href="" class="pagination-item-link">
@@ -95,6 +128,11 @@
                     </a>
                 </li>
             </ul>
-        </div>
+        </div> --}}
     </div>
 </div>
+
+<script>
+    var page = parseInt($('#page').text()) + 1;
+	$('.pager__item').eq(`${page}`).addClass('active')
+</script>
