@@ -13,6 +13,9 @@ router.post('/courses/lesson/add', lecturerController.addLesson);
 router.post('/courses/lesson/del/:id', lecturerController.deleteLesson);
 router.post('/courses/lesson/edit/:id', lecturerController.editLesson);
 router.post('/profile', lecturerController.updateProfile);
+
+router.get('/changepassword', lecturerController.changepassword);
+router.post('/changepassword', lecturerController.postChangePassword);
 router.get('/courses', lecturerController.index); /* /lecturer/courses: địa chỉ đầu tiên. */
 
 module.exports = router;
