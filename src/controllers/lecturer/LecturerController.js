@@ -6,7 +6,11 @@ const mongoose = require('mongoose');
 const Course = require('../../models/Course');
 const Field = require('../../models/Field');
 const courseService = require('../course/courseService');
+const bcrypt = require('bcryptjs');
+const userService = require('../../controllers/user/userService');
 const { mongooseToObject, multipleMongooseToObject } = require('../../utils/mongoose');
+
+const SALT = 10;
 
 class LecturerController {
     // [GET] /
@@ -219,7 +223,7 @@ class LecturerController {
     async editLesson(req, res, next) {
         const id = req.params.id;
         const slug = req.session.slug;
-        let video, formData;
+        let video, formData
         const course = await Course.findOne({ slug: slug });
         const folderAddress = `./src/public/products/${
             mongooseToObject(course).folderName
@@ -233,11 +237,21 @@ class LecturerController {
             filename: function (req, file, callback) {
                 video = file.originalname;
                 callback(null, file.originalname);
+                //Xử lý đoạn đã upload video, chỉ sửa tên bài giảng
+                if(!video) {
+                    console.log('video', video);
+                    video = oldVideo;
+                }
             },
         });
 
         const upload = multer({ storage });
         upload.single('video')(req, res, function (err) {
+            let lesson = course.lessons.id(id);
+            console.log("lesson", lesson);
+            if(!video) {
+                video = lesson.video;
+            }
             formData = {
                 ...req.body,
                 video,
@@ -247,7 +261,7 @@ class LecturerController {
             if (err) {
                 next(err);
             } else {
-                let lesson = course.lessons.id(id);
+                // let lesson = course.lessons.id(id);
                 lesson.lessonName = formData.lessonName;
                 lesson.video = formData.video;
                 lesson.status = formData.status;
@@ -262,7 +276,7 @@ class LecturerController {
         });
     }
 
-    //[POST] lecturer/courses/:slug/verify
+    //[GET] lecturer/courses/:slug/verify
     verify(req, res, next) {
         const courseId = req.params.slug;
         Course.findOne({_id: courseId})
@@ -284,6 +298,62 @@ class LecturerController {
         Course.deleteOne({_id: courseId})
             .then(() => res.redirect('back'))
             .catch(next)
+    }
+
+    changePassword(req, res) {
+        res.render('vwLecturer/changePassword', {
+            layout: 'lecturer'
+        });
+    }
+    async updateProfile(req, res, next ){
+        
+        const data = req.body;
+        //console.log(data);
+        const idUser = req.session.authUser._id;
+        data.id = idUser;
+
+        await courseService.updateUserById(data.id, data);
+            // cập nhật lại authUser;
+        const newUser = await courseService.getUserById(data.id);
+        if(newUser === null){
+            console.log("Lỗi không thể lấy user_id");
+            return res.redirect('/lecturer/profile');
+        }   
+        req.session.authUser = newUser;
+        res.redirect('/lecturer/profile');
+
+    }
+
+    changepassword(req, res){
+        res.render('vwLecturer/changePassword', {
+            layout: 'lecturer',
+        });
+    }
+
+    async postChangePassword(req, res){
+        const data = req.body;
+        const user = req.session.authUser;
+       
+        const ret = bcrypt.compareSync(data.oldpassword, user.password);
+        //console.log(ret);
+        if(ret === false) {
+            console.log("Mật khẩu cũ không chính xác");
+            const url = '/lecturer/changepassword/';
+            return res.redirect(url)
+        }
+        if (data.newpassword.length < 6){
+            console.log("Mật khẩu phải lớn hơn 6 kí tự");
+            const url = '/lecturer/changepassword/';
+            return res.redirect(url);
+        }else if (data.newpassword !== data.confirmpassword){
+            console.log("Mật khẩu không trùng khớp");
+            const url = '/lecturer/changepassword/';
+            return res.redirect(url);
+        }
+
+        const newpwHash = bcrypt.hashSync(data.newpassword, SALT);
+        await userService.updatePasswordById(user._id, newpwHash);
+        return res.redirect('/lecturer/profile');
     }
 }
 

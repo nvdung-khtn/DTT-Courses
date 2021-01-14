@@ -224,20 +224,23 @@ class CourseController {
     }
 
     postComment(req, res, next){
-        if (!req.params.slug){
-            return res.redirect('/');
-        }
-        const user = req.session.authUser;
-        if(!user){
-            return res.redirect('/account/login');
-        }
+        // if (!req.params.slug){
+        //     return res.redirect('/');
+        // }
+        // const user = req.session.authUser;
+        // if(!user){
+        //     return res.redirect('/account/login');
+        // }
         const data = req.body;
         //console.log(data);
         if(data.rating === undefined ){
             const url = '/courses/' + req.params.slug;
             return res.redirect(url);
         }
-        
+        const user = req.session.authUser;
+        if(!user){
+            return res.redirect('/account/login');
+        }
         const newdata = {
             email_user: user.email,
             name_user: user.name,
@@ -246,45 +249,13 @@ class CourseController {
             cmt: data.comment,
             rate: parseInt(data.rating, 10), 
         }
-        console.log(newdata);
+        
         Comment.create(newdata)
             .then(() => {
                 const url = '/courses/' + req.params.slug;
                 return res.redirect(url);
             })
             .catch(next);
-        // if(data.rate1 === 'on'){
-        //     rate = 1;
-        // }else if (data.rate2 === 'on'){
-        //     rate = 2;
-        // }else if(data.rate3 === 'on'){
-        //     rate = 3;
-        // }else if(data.rate4 === 'on'){
-        //     rate = 4;
-        // }else if(data.rate5 === 'on'){
-        //     rate = 5;
-        // }
-        // if(rate === 0){
-        //     const url = '/courses/' + req.params.slug;
-        //     return res.redirect(url);
-        // }
-        // const newdata = {
-        //     email_user: user.email,
-        //     name_user: user.name,
-        //     date: Date.now(),
-        //     slug: req.params.slug,
-        //     cmt: data.comment,
-        //     rate, 
-        // }
-        // //console.log(rate);
-        // Comment.create(newdata)
-        //     .then( async () => {
-        //         const url = '/courses/' + req.params.slug;
-        //         return res.redirect(url);
-        //     })
-        //     .catch(next);
-        const url = '/courses/' + req.params.slug;
-        return res.redirect(url);
     }
 }
 

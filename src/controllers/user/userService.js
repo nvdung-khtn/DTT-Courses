@@ -37,7 +37,7 @@ module.exports = {
         return User.updateOne({_id: id }, {$set: {password: password}})
         .exec()
         .then(()=> {
-            console.log("Update success");
+            console.log("Đổi mật khẩu thành công");
         })
         .catch(err => {
             return 'err'
