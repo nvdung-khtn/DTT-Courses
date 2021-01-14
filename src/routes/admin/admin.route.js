@@ -13,6 +13,8 @@ router.get('/course/delete/:id',adminController.deleteCourse)
 
 
 router.get('/field',adminController.manageField)
+router.get('/field/edit/:id',adminController.editField)
+router.post('/field/edit/:id',adminController.updateField)
 router.get('/field/delete/:id',adminController.deleteField)
 
 

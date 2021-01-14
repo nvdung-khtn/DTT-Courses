@@ -251,6 +251,10 @@ p{
 
 }
 
+.cont-left {
+    margin-top: 30px;
+}
+
 .courseDetail_vdPreview {
     border-radius: 10px;
 }

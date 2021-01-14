@@ -19,6 +19,7 @@ var status;
 class AdminController {
     // [GET] /home
     async index(req, res) {
+
         const students = await User.find({permission:2}).lean();
         const lecturers = await User.find({permission:1}).lean();
         const courses = await Course.find().lean();
@@ -353,7 +354,7 @@ class AdminController {
     }
 
 
-// ---------------MANAGE CATEGORY-----------------------
+// ---------------MANAGE FIELD-----------------------
 
     async manageField(req, res) {
         page = req.query.page;
@@ -380,7 +381,7 @@ class AdminController {
                 .skip(skip)
                 .limit(PAGE_SIZE).lean();
             await courseService.getCatNameForFields(fields);
-            return res.render('vwAdmin/ManageProduct/category', {
+            return res.render('vwAdmin/ManageProduct/field', {
                 layout: "admin",
                 fields,
                 page_items,
@@ -394,7 +395,8 @@ class AdminController {
         if (stringSearch) {
             const fields = await Field.find({$text: {$search: stringSearch}}).lean();
             courseService.convertStatusToStatusStringCourses(fields); 
-            return res.render('vwAdmin/ManageProduct/category', {
+            await courseService.getCatNameForFields(fields);
+            return res.render('vwAdmin/ManageProduct/field', {
                 layout: "admin",
                 fields,
                 empty: fields.length === 0,
@@ -404,12 +406,43 @@ class AdminController {
         }
     }
 
-    deleteField( req, res, next) {
-            Field.findByIdAndRemove(req.params.id)
-            .then(() => {
-                res.redirect('/admin/category?page=1');
+    async editField(req, res) {
+        const field = await Field.findOne({_id: req.params.id}).lean();
+        const category = await Category.find({_id : {$ne: field.catId}}).lean();
+        await courseService.getCatNameForField(field);
+        return res.render('vwAdmin/ManageProduct/editField', {
+            layout: "admin",
+            field,
+            category,
+            page
+        })
+    }
+
+    updateField(req, res, next) {
+        const fieldData = {
+            name: req.body.name,
+            catId: req.body.catId
+        };
+        Field.findOneAndUpdate({_id : req.body.id}, fieldData)
+            .then(() => {    
+                res.redirect(`/admin/field?page=${page}`);
             })
             .catch(next);
+    }
+
+    async deleteField( req, res, next) {
+        const course = await Course.find({fieldId: req.params.id}).lean();
+            if (course.length === 0) {
+                Field.findByIdAndRemove(req.params.id)
+                    .then(() => {
+                        res.redirect(`/admin/field?page=${page}`);
+                    })
+                    .catch(next);
+            }
+            else {
+                res.redirect(`/admin/field?page=${page}`);
+            }
+            
     }
 
     

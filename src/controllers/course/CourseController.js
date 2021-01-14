@@ -162,14 +162,13 @@ class CourseController {
     }
 
     postComment(req, res, next){
-        if(req.session.isAuth === false){
-            return res.redirect('/account/login')
-        }
         if (!req.params.slug){
             return res.redirect('/');
         }
         const user = req.session.authUser;
-        
+        if(!user){
+            return res.redirect('/account/login');
+        }
         const data = req.body;
         //console.log(data);
         if(data.rating === undefined ){
