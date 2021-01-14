@@ -112,6 +112,7 @@ class AccountController {
     getLogin(req, res) {
         if (req.headers.referer) {
             req.session.retUrl = req.headers.referer;
+            console.log("địa chỉ trang trc đó:", req.session.retUrl); //account/login
         }
         res.render('vwAccount/login', {
             layout: false,
@@ -130,8 +131,6 @@ class AccountController {
         }
 
         const ret = bcrypt.compareSync(user.password, listAccount.password);
-        // console.log(user.password);
-        // console.log(listAccount.password);
         if(ret === false) {
             
             return res.render('vwAccount/login', {
@@ -152,37 +151,42 @@ class AccountController {
             req.session.authUser = listAccount;
             if(listAccount.permission === 2){
                 req.session.isAuth = true;
-                url =  req.session.retUrl || '/';
+
+                //Nếu req.referen chứa (/admin  || /lecturer) trả về home.
+                let retUrl = req.session.retUrl;  //**** */
+                const flag = retUrl.includes("/admin") || retUrl.includes("/lecturer");
+                if(flag) {
+                    retUrl = "/";
+                }
+                url =  retUrl || '/';
+
                 res.redirect(url)
             } else if (listAccount.permission === 1){
                 req.session.isAuthLecturer = true;
-                console.log("abc",req.session.retUrl);
-                url = req.session.retUrl || '/lecturer/courses';
-                res.redirect(url)
+                res.redirect('/lecturer/courses');
             } else {
                 req.session.isAuthAdmin = true;
-                url = req.session.retUrl || '/admin';
-                res.redirect(url);
-            }
-            
-            
-            if(listAccount.permission === 0){
-                
-            }else if(listAccount.permission === 1){
-                
-            }else{
-              
+                res.redirect('/admin');
             }
         }
     }
 
     postLogout(req, res){
-        req.session.isAuth = false;
-        req.session.isAuthLecturer = false;
-        req.session.isAuthAdmin = false;
-        req.session.cart = [];
-        const url = req.session.retUrl || '/'
-        return res.redirect(url); 
+        req.session.authUser = null;
+        if(req.session.isAuthLecturer || req.session.isAuthAdmin) {
+            console.log("logout");
+            req.session.isAuthLecturer = false;
+            req.session.isAuthAdmin = false;
+            res.redirect('/account/login');
+        } else {  //Student
+            req.session.cart = [];
+            req.session.isAuth = false;
+            console.log("retUrl:", req.headers.referer);
+            //Về lại trang trc đó hoặc là home
+            const url = req.headers.referer || '/'
+            console.log("url of student:", url);
+            return res.redirect(url); 
+        }
     }
 
     // [GET] account/register
@@ -258,7 +262,11 @@ class AccountController {
                 .catch(next);
         }else{
             console.log("OTP không chính xác");
-            res.redirect('/account/confirm');
+            //return res.json({status: false})
+            res.render('vwAccount/confirmregister', {
+                layout: false,
+                alert: false
+            });
         }
         
     }

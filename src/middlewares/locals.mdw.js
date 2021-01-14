@@ -8,7 +8,6 @@ module.exports = function (app) {
         }
 
         res.locals.isAuth = req.session.isAuth;
-        //res.locals.isAuth = true; ==> dành để testing
         res.locals.isAuthLecturer = req.session.isAuthLecturer;
         res.locals.isAuthAdmin = req.session.isAuthAdmin;
         // Số lượng khóa học trong giỏ hàng
