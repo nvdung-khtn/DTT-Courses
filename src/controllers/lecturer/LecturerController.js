@@ -219,7 +219,7 @@ class LecturerController {
     async editLesson(req, res, next) {
         const id = req.params.id;
         const slug = req.session.slug;
-        let video, formData;
+        let video, formData
         const course = await Course.findOne({ slug: slug });
         const folderAddress = `./src/public/products/${
             mongooseToObject(course).folderName
@@ -233,11 +233,21 @@ class LecturerController {
             filename: function (req, file, callback) {
                 video = file.originalname;
                 callback(null, file.originalname);
+                //Xử lý đoạn đã upload video, chỉ sửa tên bài giảng
+                if(!video) {
+                    console.log('video', video);
+                    video = oldVideo;
+                }
             },
         });
 
         const upload = multer({ storage });
         upload.single('video')(req, res, function (err) {
+            let lesson = course.lessons.id(id);
+            console.log("lesson", lesson);
+            if(!video) {
+                video = lesson.video;
+            }
             formData = {
                 ...req.body,
                 video,
@@ -247,7 +257,7 @@ class LecturerController {
             if (err) {
                 next(err);
             } else {
-                let lesson = course.lessons.id(id);
+                // let lesson = course.lessons.id(id);
                 lesson.lessonName = formData.lessonName;
                 lesson.video = formData.video;
                 lesson.status = formData.status;
@@ -262,7 +272,7 @@ class LecturerController {
         });
     }
 
-    //[POST] lecturer/courses/:slug/verify
+    //[GET] lecturer/courses/:slug/verify
     verify(req, res, next) {
         const courseId = req.params.slug;
         Course.findOne({_id: courseId})
@@ -284,6 +294,12 @@ class LecturerController {
         Course.deleteOne({_id: courseId})
             .then(() => res.redirect('back'))
             .catch(next)
+    }
+
+    changePassword(req, res) {
+        res.render('vwLecturer/changePassword', {
+            layout: 'lecturer'
+        });
     }
 }
 

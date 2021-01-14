@@ -12,14 +12,15 @@ function route(app) {
    
     /** Route of Admin */
     app.use('/admin', authAdmin, adminRouter);
-    
+
     /** Route of Lecturer */
-    app.use('/lecturer', authLecturer, lecturerRouter);
+    app.use('/lecturer', lecturerRouter);
     
     /** Route of User */
     app.use('/user', auth, userRouter);
 
      /** Route of Guest */
+    app.use('/account', accountRouter);
     app.use('/', homeRouter);
 }
 
