@@ -5,19 +5,69 @@ const Comment = require('../../models/Comment');
 const { getCommentBySlug } = require('./courseService');
 const User = require('../../models/User');
 
+
+const PAGE_SIZE = 4;
+var page;
+
 class CourseController {
     // [GET] /courses
-    index(req, res, next) {      
-        Course.find({})
-            .then(async coursesDB => {
-                // convert Mongoose Object to Object Literals
-                const courses = await courseService.getInforCourses(multipleMongooseToObject(coursesDB));
-                res.render('home_fullCourse', {
-                    courses
-                });
+    async index(req, res, next) {  
+        page = req.query.page;
+        const stringSearch = req.query.search;
+            page = parseInt(page);
+            if (page<1) {
+                page = 1;
+            }
+
+            var totalCourse = 0;
+            if (!stringSearch || stringSearch === "0") {
+                totalCourse = await Course.countDocuments();
+            } else {
+                const courses_search = await Course.find({$text: {$search: stringSearch}}).lean();
+                totalCourse = courses_search.length;
+            }
+            
+            const totalPage = Math.ceil(totalCourse/PAGE_SIZE);
+
+            if (page > totalPage) {
+                page = totalPage;
+            }
+            const page_items = [];
+            for ( var i = 1; i <= totalPage; i++) {
+                const item = {
+                    value : i
+                }
+                page_items.push(item);
+            }
+            var skip = (page - 1)*PAGE_SIZE;
+            
+            var courses = [];
+            
+            if (!stringSearch || stringSearch === "0") {
+                courses = await Course.find()
+                .skip(skip)
+                .limit(PAGE_SIZE).lean();
+            } else if (totalPage !== 0) {
+                courses = await Course.find({$text: {$search: stringSearch}})
+                .skip(skip)
+                .limit(PAGE_SIZE).lean();
+            }
+            
+            await courseService.getInforCourses(courses);
+            return res.render('home_fullCourse', {
+                courses,
+                page_items,
+                prev_page : page - 1,
+                next_page : page + 1,
+                can_go_prev : (page <= 1),
+                can_go_next : (page >= totalPage),
+                disable_page : false,
+                stringSearch,
+                empty: courses.length === 0,
             })
-            .catch(next);
+        
     }
+
 
     // [GET] /courses/:slug
     /*show(req, res, next) {
