@@ -6,7 +6,11 @@ const mongoose = require('mongoose');
 const Course = require('../../models/Course');
 const Field = require('../../models/Field');
 const courseService = require('../course/courseService');
+const bcrypt = require('bcryptjs');
+const userService = require('../../controllers/user/userService');
 const { mongooseToObject, multipleMongooseToObject } = require('../../utils/mongoose');
+
+const SALT = 10;
 
 class LecturerController {
     // [GET] /
@@ -300,6 +304,56 @@ class LecturerController {
         res.render('vwLecturer/changePassword', {
             layout: 'lecturer'
         });
+    }
+    async updateProfile(req, res, next ){
+        
+        const data = req.body;
+        //console.log(data);
+        const idUser = req.session.authUser._id;
+        data.id = idUser;
+
+        await courseService.updateUserById(data.id, data);
+            // cập nhật lại authUser;
+        const newUser = await courseService.getUserById(data.id);
+        if(newUser === null){
+            console.log("Lỗi không thể lấy user_id");
+            return res.redirect('/lecturer/profile');
+        }   
+        req.session.authUser = newUser;
+        res.redirect('/lecturer/profile');
+
+    }
+
+    changepassword(req, res){
+        res.render('vwLecturer/changePassword', {
+            layout: 'lecturer',
+        });
+    }
+
+    async postChangePassword(req, res){
+        const data = req.body;
+        const user = req.session.authUser;
+       
+        const ret = bcrypt.compareSync(data.oldpassword, user.password);
+        //console.log(ret);
+        if(ret === false) {
+            console.log("Mật khẩu cũ không chính xác");
+            const url = '/lecturer/changepassword/';
+            return res.redirect(url)
+        }
+        if (data.newpassword.length < 6){
+            console.log("Mật khẩu phải lớn hơn 6 kí tự");
+            const url = '/lecturer/changepassword/';
+            return res.redirect(url);
+        }else if (data.newpassword !== data.confirmpassword){
+            console.log("Mật khẩu không trùng khớp");
+            const url = '/lecturer/changepassword/';
+            return res.redirect(url);
+        }
+
+        const newpwHash = bcrypt.hashSync(data.newpassword, SALT);
+        await userService.updatePasswordById(user._id, newpwHash);
+        return res.redirect('/lecturer/profile');
     }
 }
 

@@ -139,4 +139,27 @@ module.exports = {
         })
         .catch(err => err)
     },
+
+    getUserById(id){
+        return User.find({_id: id})
+        .exec()
+        .then((data)=> {
+            if (data.length > 0 ){
+                return data[0]; //user object
+            }
+            return null;
+        })
+        .catch(err => err)
+    },
+
+    updateUserById: (id, data ) => {
+        return User.updateOne({_id: id }, {$set: {name: data.name, address: data.address, email: data.email, phone: data.phone}})
+        .exec()
+        .then(()=> {
+            console.log("Update success");
+        })
+        .catch(err => {
+            return 'err'
+        })
+    },
 }

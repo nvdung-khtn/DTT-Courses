@@ -3,6 +3,7 @@ const courseService = require('./courseService');
 const { multipleMongooseToObject, mongooseToObject } = require('../../utils/mongoose');
 const Comment = require('../../models/Comment');
 const { getCommentBySlug } = require('./courseService');
+const User = require('../../models/User');
 
 class CourseController {
     // [GET] /courses
@@ -68,6 +69,16 @@ class CourseController {
     async show(req, res, next) {
         req.session.slug = req.params.slug;
         const course = await Course.findOne({ slug: req.params.slug }).lean();
+        const lecturer = await User.findOne({_id: course.lecId}).lean();
+        const courses_lec = await Course.find({lecId: lecturer._id}).lean();
+        lecturer.totalCourse = courses_lec.length;
+        lecturer.totalStudent = 0;
+        courses_lec.forEach(course_item => {
+            if (course_item.students){
+                lecturer.totalStudent += course_item.students.length;
+            }
+            
+        })
         const lessons = course.lessons.map(lesson => {
             return {
                 _id: lesson._id,
@@ -115,6 +126,7 @@ class CourseController {
             course,
             lessons,
             lesson: lessons[0],
+            lecturer,
             listComment
         })
 
@@ -162,20 +174,23 @@ class CourseController {
     }
 
     postComment(req, res, next){
-        if (!req.params.slug){
-            return res.redirect('/');
-        }
-        const user = req.session.authUser;
-        if(!user){
-            return res.redirect('/account/login');
-        }
+        // if (!req.params.slug){
+        //     return res.redirect('/');
+        // }
+        // const user = req.session.authUser;
+        // if(!user){
+        //     return res.redirect('/account/login');
+        // }
         const data = req.body;
         //console.log(data);
         if(data.rating === undefined ){
             const url = '/courses/' + req.params.slug;
             return res.redirect(url);
         }
-        
+        const user = req.session.authUser;
+        if(!user){
+            return res.redirect('/account/login');
+        }
         const newdata = {
             email_user: user.email,
             name_user: user.name,
@@ -184,45 +199,13 @@ class CourseController {
             cmt: data.comment,
             rate: parseInt(data.rating, 10), 
         }
-        console.log(newdata);
+        
         Comment.create(newdata)
             .then(() => {
                 const url = '/courses/' + req.params.slug;
                 return res.redirect(url);
             })
             .catch(next);
-        // if(data.rate1 === 'on'){
-        //     rate = 1;
-        // }else if (data.rate2 === 'on'){
-        //     rate = 2;
-        // }else if(data.rate3 === 'on'){
-        //     rate = 3;
-        // }else if(data.rate4 === 'on'){
-        //     rate = 4;
-        // }else if(data.rate5 === 'on'){
-        //     rate = 5;
-        // }
-        // if(rate === 0){
-        //     const url = '/courses/' + req.params.slug;
-        //     return res.redirect(url);
-        // }
-        // const newdata = {
-        //     email_user: user.email,
-        //     name_user: user.name,
-        //     date: Date.now(),
-        //     slug: req.params.slug,
-        //     cmt: data.comment,
-        //     rate, 
-        // }
-        // //console.log(rate);
-        // Comment.create(newdata)
-        //     .then( async () => {
-        //         const url = '/courses/' + req.params.slug;
-        //         return res.redirect(url);
-        //     })
-        //     .catch(next);
-        const url = '/courses/' + req.params.slug;
-        return res.redirect(url);
     }
 }
 

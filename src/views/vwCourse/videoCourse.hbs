@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="/css/base.css">
     <link rel="stylesheet" href="/css/header.css">
     <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="/css/account/userlogin.css">
 </head>
 
 <body>
@@ -101,7 +102,7 @@
             //console.log(myPlayer.currentTime())
             const slug = $('#slug').text();
             const video_id = $(this).data('video');
-            window.location.assign(`/courses/video/${slug}>${video_id}`)
+            window.location.assign(`/user/courses/${slug}>${video_id}`)
         })
     </script>
 </body>
