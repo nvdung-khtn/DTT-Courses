@@ -19,30 +19,30 @@
         </h3>
 
         <div class="row">
-            <form id="" class="form-container">
+            <form id="" action="/lecturer/profile" method="POST" class="form-container">
             <div class="form-body">
                 <div class="form-group col-sm-6">
                     <label>Họ tên</label>
-                    <input type="text" class="form-control" value="Phạm Trình">
+                    <input type="text" name="name" class="form-control" value="{{authUser.name}}">
                 </div><!-- /.form-group -->
 
-                <div class="form-group col-sm-6">
+                {{!-- <div class="form-group col-sm-6">
                     <label>Username</label>
                     <input type="text" class="form-control" value="phamtrinhisme">
-                </div><!-- /.form-group -->
+                </div><!-- /.form-group --> --}}
 
                 <div class="form-group col-sm-6">
                     <label>E-mail</label>
-                    <input type="text" class="form-control" value="trinhpham5337@example.com">
+                    <input type="text" name="email" readonly class="form-control" value="{{authUser.email}}">
                 </div><!-- /.form-group -->
 
                 <div class="form-group col-sm-6">
                     <label>Số điện thoại</label>
-                    <input type="text" class="form-control" value="0333225337">
+                    <input type="text" name="phone" class="form-control" value="{{authUser.phone}}">
                 </div><!-- /.form-group -->
                 <div class="form-group col-sm-6">
                     <label>Địa chỉ</label>
-                    <input type="text" class="form-control" value="Quận 11, TPHCM">
+                    <input type="text" name="address" class="form-control" value="{{authUser.address}}">
                 </div><!-- /.form-group -->
 
                 <span class="save">

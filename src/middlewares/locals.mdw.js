@@ -13,6 +13,7 @@ module.exports = function (app) {
         res.locals.isAuthAdmin = req.session.isAuthAdmin;
         // Số lượng khóa học trong giỏ hàng
         res.locals.cartSummary = req.session.cart.length;
+        res.locals.authUser = req.session.authUser;
         next();
     });
 };

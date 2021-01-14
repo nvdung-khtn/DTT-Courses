@@ -285,6 +285,25 @@ class LecturerController {
             .then(() => res.redirect('back'))
             .catch(next)
     }
+
+    async updateProfile(req, res, next ){
+        
+        const data = req.body;
+        //console.log(data);
+        const idUser = req.session.authUser._id;
+        data.id = idUser;
+
+        await courseService.updateUserById(data.id, data);
+            // cập nhật lại authUser;
+        const newUser = await courseService.getUserById(data.id);
+        if(newUser === null){
+            console.log("Lỗi không thể lấy user_id");
+            return res.redirect('/lecturer/profile');
+        }   
+        req.session.authUser = newUser;
+        res.redirect('/lecturer/profile');
+
+    }
 }
 
 module.exports = new LecturerController();
