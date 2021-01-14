@@ -25,7 +25,7 @@
                 <p class="title"> Nội dung khóa học </p>
                 <div class="list-course ">
                     {{#each lessons}}
-                    <a href="/courses/video/{{../course.slug}}>{{_id}}" class="course mt-1">
+                    <a href="/user/courses/{{../course.slug}}>{{_id}}" class="course mt-1">
                         <div class="title-course"><i class="fas fa-plus mr-2"></i> Bài {{index}}: {{name}}</div>
                         <div class="time-course">05:44</div>
                     </a>
@@ -184,7 +184,7 @@
                 </video>
             </div>
 
-            <a class="courseDetail_learnNow" href="/courses/video/{{course.slug}}>{{lesson._id}}">HỌC NGAY</a>
+            <a class="courseDetail_learnNow" href="/user/courses/{{course.slug}}>{{lesson._id}}">HỌC NGAY</a>
 
             <div class="courseDetail_description">
                 <ul>
