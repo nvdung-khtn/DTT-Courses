@@ -258,7 +258,11 @@ class AccountController {
                 .catch(next);
         }else{
             console.log("OTP không chính xác");
-            res.redirect('/account/confirm');
+            //return res.json({status: false})
+            res.render('vwAccount/confirmregister', {
+                layout: false,
+                alert: false
+            });
         }
         
     }
