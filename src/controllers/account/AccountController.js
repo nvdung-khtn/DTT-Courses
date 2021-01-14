@@ -110,12 +110,9 @@ const sendMailForgotPassword = (email) => {
 class AccountController {
     // [GET] account/login
     getLogin(req, res) {
-        // if (req.headers.referer) {
-        //     req.session.retUrl = req.headers.referer;
-        // }
-        // popupS.alert({
-        //     content: 'Hello World!'
-        // });
+        if (req.headers.referer) {
+            req.session.retUrl = req.headers.referer;
+        }
         res.render('vwAccount/login', {
             layout: false,
         });
@@ -143,22 +140,38 @@ class AccountController {
             });
         } else{
             
+            //Xử lý chỗ giỏ hàng của người dùng
+            if(listAccount.cart.length) {
+                req.session.cart = listAccount.cart;
+            } else{
+                req.session.cart = [];
+            }
+            
+            // gắn cờ phân quyền
+            let url;
+            req.session.authUser = listAccount;
             if(listAccount.permission === 2){
                 req.session.isAuth = true;
-            }
-            if(listAccount.permission === 1){
+                url =  req.session.retUrl || '/';
+                res.redirect(url)
+            } else if (listAccount.permission === 1){
                 req.session.isAuthLecturer = true;
-            }
-            req.session.authUser = listAccount;
-            if(listAccount.permission === 0){
-                let url = req.session.retUrl || '/admin';
+                console.log("abc",req.session.retUrl);
+                url = req.session.retUrl || '/lecturer/courses';
+                res.redirect(url)
+            } else {
+                req.session.isAuthAdmin = true;
+                url = req.session.retUrl || '/admin';
                 res.redirect(url);
+            }
+            
+            
+            if(listAccount.permission === 0){
+                
             }else if(listAccount.permission === 1){
-                let url = req.session.retUrl || '/';
-                res.redirect(url)
+                
             }else{
-                let url =  req.session.retUrl ||'/';
-                res.redirect(url)
+              
             }
         }
     }
@@ -166,7 +179,8 @@ class AccountController {
     postLogout(req, res){
         req.session.isAuth = false;
         req.session.isAuthLecturer = false;
-        req.session.authUser = null;
+        req.session.isAuthAdmin = false;
+        req.session.cart = [];
         const url = req.session.retUrl || '/'
         return res.redirect(url); 
     }

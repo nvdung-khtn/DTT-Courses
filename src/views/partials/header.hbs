@@ -161,7 +161,9 @@
                 {{#if isAuth}}
                     <a href="/cart" class="cart">
                         <i class="fas fa-cart-plus"></i>
-                        <span class="badge badge-pill badge-danger">5</span>
+                        {{#if cartSummary}}
+                        <span class="badge badge-pill badge-danger">{{cartSummary}}</span>
+                        {{/if}}
                     </a>
                     <ul class="user-login">
                         <li class="user1">

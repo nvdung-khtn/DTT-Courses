@@ -28,11 +28,6 @@ class SiteController {
             .catch(next);
     }
 
-    showCart(req, res, next) {
-        res.render('vwCart/index', {
-            layout: false,
-        });
-    }
 }
 
 module.exports = new SiteController();

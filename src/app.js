@@ -34,7 +34,7 @@ app.engine(
         helpers: { 
             section: hbs_sections(),
             format(value) {
-                return numeral(value).format('0,0') +' đ';
+                return numeral(value).format('0,0') +'đ';
             }
         }
     }),

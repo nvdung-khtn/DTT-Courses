@@ -2,18 +2,16 @@ const express = require('express');
 const router = express.Router();
 
 const courseController = require('../../controllers/course/CourseController');
-const { route } = require('../user/user.route');
-const {auth} = require('../../middlewares/auth.mdw');
+const { auth, authLecturer} = require('../../middleWares/auth.mdw');
+
+
+router.get('/video/:id', auth, courseController.videoCourse);
+
+router.post('/lesson/isExist', authLecturer, courseController.hasIndexLesson);
 
 router.get('/:slug', courseController.show);
+router.post('/:slug', courseController.postComment)
 router.get('/', courseController.index);
-router.post('/:slug', auth, courseController.postComment)
-
-router.get('/video/:id',courseController.videoCourse);
-
-router.get('/video/1',courseController.videoCourse);
-router.post('/lesson/isExist', courseController.hasIndexLesson)
-
 
 
 module.exports = router;
