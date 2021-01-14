@@ -220,3 +220,61 @@
     font-size: 1.5rem;
 
 }
+
+.filter-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15px;
+    height: 60px;
+}
+
+.filter-body {
+
+
+}
+
+.filter-button {
+    position: relative;
+    align-items: center;
+    border-radius: 4px;
+    display: inline-flex;
+    padding: 0 10px;
+    justify-content: center;
+    font-weight: 700;
+    line-height: 2.4;
+    letter-spacing: -.02rem;
+    font-size: 1.6rem;
+    color: #0f7c90;
+    background-color: transparent;
+    border: 1px solid #2896a9;
+}
+
+.filter-button:hover {
+    background-color: #e4f5f8;
+}
+
+.filter-button:checked {
+    background: #0f7c90;
+    border-color: #0f7c90;
+}
+
+
+.filter-button span {
+    padding: 0px 5px;
+}
+
+.filter-items {
+    width: auto;
+    height: 52px;
+    margin-left: 20px;
+}
+
+.filter-item__des input {
+    width: 15px;
+    height: 15px;
+}
+
+.filter-item__des span {
+    font-size: 18px;
+}
