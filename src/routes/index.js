@@ -1,5 +1,7 @@
 // File điều hướng của ứng dụng
 const courseRouter = require('./course/course.route');
+const accountRouter = require('./account/account.route');
+
 const adminRouter = require('./admin/admin.route');
 const lecturerRouter = require('./lecturer/lecturer.route');
 const homeRouter = require('./home.route');
@@ -17,6 +19,9 @@ function route(app) {
     
     /** Route of User */
     app.use('/user', /*auth, */  userRouter);
+
+    /** Route of Account */
+    app.use('/account', accountRouter);
 
      /** Route of Guest */
     app.use('/', homeRouter);

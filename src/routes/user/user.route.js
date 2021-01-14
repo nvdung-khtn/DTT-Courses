@@ -12,6 +12,9 @@ router.get('/confirm', userController.confirm);
 router.post('/confirm', userController.postconfirm);
 router.get('/listbookmark/:id', userController.listcoursebookmark);
 router.get('/mycourses/:id', userController.mycourse);
+
 router.get('/courses/:id', courseController.videoCourse);
+router.post('/courses/:slug', courseController.postComment);
+
 
 module.exports = router;
