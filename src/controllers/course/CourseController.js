@@ -53,9 +53,8 @@ class CourseController {
                 .limit(PAGE_SIZE).lean();
             }
             
-            await courseService.getInforCourses(courses);
             return res.render('home_fullCourse', {
-                courses,
+                courses: await courseService.getInforCourses(courses),
                 page_items,
                 prev_page : page - 1,
                 next_page : page + 1,

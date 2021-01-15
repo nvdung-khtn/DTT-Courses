@@ -11,7 +11,7 @@ const Swal = require('sweetalert2');
 const bcrypt = require('bcryptjs');
 
 const SALT = 10;
-const PAGE_SIZE = 2;
+const PAGE_SIZE = 5;
 var page;
 var status;
 
@@ -204,7 +204,6 @@ class AdminController {
             createdAt : moment(req.body.createAt).toDate(),
             status : req.body.status
         };
-        console.log(userData);
         User.findOneAndUpdate({_id : req.body.id}, userData)
             .then(() => {    
                 res.redirect(`/admin/lecturer?page=${page}`);
@@ -265,13 +264,32 @@ class AdminController {
 
     async manageCourse(req, res) {
         page = req.query.page;
-        var stringSearch = req.query.search;
-        if (page) {
+        const stringSearch = req.query.search;
+        const fields = await Field.find().lean();
+        const lecturers = await User.find({permission: 1}).lean();
+        const filterString_lecId = req.query.lecId;
+        const filterString_fieldId = req.query.fieldId;
             page = parseInt(page);
             if (page<1) {
                 page = 1;
             }
-            const totalCourse = await Course.countDocuments();
+            var totalCourse = 0;
+            var courseSearch = 0;
+            if (!stringSearch && !filterString_lecId && !filterString_fieldId) {
+                totalCourse = await Course.countDocuments();
+            } if (stringSearch){
+                courseSearch = await Course.find({$text: {$search: stringSearch}}).lean();
+                totalCourse = courseSearch.length;
+            } if (!stringSearch && filterString_lecId && !filterString_fieldId) {
+                courseSearch = await Course.find({lecId: filterString_lecId}).lean();
+                totalCourse = courseSearch.length;
+            } if (!stringSearch && !filterString_lecId && filterString_fieldId) {
+                courseSearch = await Course.find({fieldId: filterString_fieldId}).lean();
+                totalCourse = courseSearch.length;
+            } if (!stringSearch && filterString_lecId && filterString_fieldId) {
+                courseSearch = await Course.find({lecId: filterString_lecId, fieldId: filterString_fieldId}).lean();
+                totalCourse = courseSearch.length;
+            }
             const totalPage = Math.ceil(totalCourse/PAGE_SIZE);
             if (page > totalPage) {
                 page = totalPage;
@@ -284,32 +302,47 @@ class AdminController {
                 page_items.push(item);
             }
             var skip = (page - 1)*PAGE_SIZE;
-            const courses = await Course.find()
+
+            var courses = [];
+            if (totalCourse!==0) {
+            if (!stringSearch && !filterString_lecId && !filterString_fieldId) {
+                courses = await Course.find()
                 .skip(skip)
                 .limit(PAGE_SIZE).lean();
+            } if (stringSearch) {
+                courses = await Course.find({$text: {$search: stringSearch}})
+                .skip(skip)
+                .limit(PAGE_SIZE).lean();
+            }
+             if (!stringSearch && filterString_lecId && !filterString_fieldId) {
+                courses = await Course.find({lecId: filterString_lecId})
+                .skip(skip)
+                .limit(PAGE_SIZE).lean();
+            } if (!stringSearch && !filterString_lecId && filterString_fieldId) {
+                courses = await Course.find({fieldId: filterString_fieldId})
+                .skip(skip)
+                .limit(PAGE_SIZE).lean();
+            } if (!stringSearch && filterString_lecId && filterString_fieldId) {
+                courses = await Course.find({lecId: filterString_lecId, fieldId: filterString_fieldId})
+                .skip(skip)
+                .limit(PAGE_SIZE).lean();
+            }}
             courseService.convertStatusToStatusStringCourses(courses);
             return res.render('vwAdmin/ManageProduct/courses', {
                 layout: "admin",
-                courses,
+                courses: await courseService.getInforCourses(courses),
+                fields,
+                lecturers,
+                empty: courses.length === 0,
                 page_items,
                 prev_page : page - 1,
                 next_page : page + 1,
                 can_go_prev : (page <= 1),
                 can_go_next : (page >= totalPage),
-                disable_page : false
-            })
-        }
-        if (stringSearch) {
-            const courses = await Course.find({$text: {$search: stringSearch}}).lean();
-            courseService.convertStatusToStatusStringCourses(courses); 
-            return res.render('vwAdmin/ManageProduct/courses', {
-                layout: "admin",
-                courses,
-                empty: courses.length === 0,
                 stringSearch,
-                disable_page : true
+                filterString_fieldId,
+                filterString_lecId
             })
-        }
     }
 
     async editCourse(req, res) {

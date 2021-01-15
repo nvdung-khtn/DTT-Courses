@@ -252,6 +252,7 @@
 
 .filter-button:hover {
     background-color: #e4f5f8;
+    cursor: pointer;
 }
 
 .filter-button:checked {
