@@ -255,12 +255,6 @@
     cursor: pointer;
 }
 
-.filter-button:checked {
-    background: #0f7c90;
-    border-color: #0f7c90;
-}
-
-
 .filter-button span {
     padding: 0px 5px;
 }
@@ -268,7 +262,7 @@
 .filter-items {
     width: auto;
     height: 52px;
-    margin-left: 20px;
+    margin-left: 30px;
 }
 
 .filter-item__des input {
@@ -278,4 +272,19 @@
 
 .filter-item__des span {
     font-size: 18px;
+    margin-left: 5px;
 }
+
+.filter-item__des input[type="checkbox"]:checked {
+    background: #0f7c90;
+    border-color: #0f7c90;
+}
+
+
+.empty {
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 18px;
+  }
+  
+

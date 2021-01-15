@@ -25,25 +25,29 @@
 
     <!-- FILTER SEARCH -->
 
+    {{#if stringSearch}}
+    {{#unless empty}}
+    <span id="search-status" style="display: none;">{{stringSearch}}</span>
     <div class="filter-wrapper">
         <div class="filter-body">
-            <button type="button" class="filter-button">
+            <button type="button" class="filter-button" id="btnFilter">
                 <span><i class="fa fa-filter" aria-hidden="true"></i></span>
                 <span>Filter</span>
             </button>
         </div>
         <div class="filter-items">
             <div class="filter-item__des">
-                <input name="courseLabel" type="checkbox" value="9884">
+                <input type="radio" id="index" name="sort" value="index">
                 <span>Điểm đánh giá giảm dần</span>
             </div>
             <div class="filter-item__des">
-                <input name="courseLabel" type="checkbox" value="9884">
+                <input type="radio" id="price" name="sort" value="price">
                 <span>Giá tăng dần</span>
             </div>
         </div>
     </div>
-
+    {{/unless}}
+    {{/if}}
 
     <!-- Product item -->
     <div class="product mt-5">
@@ -88,22 +92,25 @@
             {{/each}}
         </div>
 
+        {{#if empty}}
+            <div class="empty">Không tìm thấy kết quả nào</div>
+        {{/if}}
         {{#unless empty}}
         <nav>
             <span id="page" style="display: none;">{{prev_page}}</span>
             <ul class="pager">
                 <li class="pager__item pager__item--prev" {{#if can_go_prev }}style="pointer-events: none;"{{/if}}>
-                    <a class="pager__link" href="/courses?page={{prev_page}}&search={{stringSearch}}">
+                    <a class="pager__link" href="/courses?page={{prev_page}}{{#if stringSearch}}&search={{stringSearch}}{{/if}}{{#if filter}}&sort={{filter}}{{/if}}">
                     <svg xmlns="" width="8" height="12" viewbox="0 0 8 12">
                         <g fill="none" fill-rule="evenodd">
                         <path fill="#33313C" d="M7.41 1.41L6 0 0 6l6 6 1.41-1.41L2.83 6z"></path>
                         </g>
                     </svg></a></li>
                 {{#each page_items}}
-                    <li class="pager__item"><a class="pager__link" href="/courses?page={{value}}&search={{stringSearch}}">{{value}}</a></li>
+                    <li class="pager__item"><a class="pager__link" href="/courses?page={{value}}{{#if stringSearch}}&search={{stringSearch}}{{/if}}{{#if filter}}&sort={{filter}}{{/if}}">{{value}}</a></li>
                 {{/each}}
                 <li class="pager__item pager__item--next" {{#if can_go_next }}style="pointer-events: none;"{{/if}} >
-                    <a class="pager__link" href="/courses?page={{next_page}}&search={{stringSearch}}">
+                    <a class="pager__link" href="/courses?page={{next_page}}{{#if stringSearch}}&search={{stringSearch}}{{/if}}{{#if filter}}&sort={{filter}}{{/if}}">
                         <svg xmlns="" width="8" height="12" viewbox="0 0 8 12">
                             <g fill="none" fill-rule="evenodd">
                             <path fill="#33313C" d="M7.41 1.41L6 0 0 6l6 6 1.41-1.41L2.83 6z"></path>
