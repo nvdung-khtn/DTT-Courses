@@ -98,21 +98,25 @@ class LecturerController {
                 name: 'introVideo',
                 maxCount: 1,
             },
-        ])(req, res, function (err) {
+        ])(req, res, async function (err) {
+            const fieldId = req.body.fieldId;
+            const field = await Field.findOne({_id: fieldId}).lean();
+            console.log("field:", field.name);
             formData = {
                 ...req.body,
                 folderName,
                 avatar,
                 introVideo,
-                rating: 0,
+                quantityRating: 0,
                 totalRating: 0,
                 view: 0,
                 students: [],
                 lecId: req.session.authUser._id,
                 nIndex: 0,
                 status: false,
+                fieldName: field.name,
             };
-
+            console.log(formData);
             if (err) {
                 next(err);
             } else {

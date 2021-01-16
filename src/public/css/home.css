@@ -23,6 +23,13 @@
 /* .card-body {
     min-height: 190px;
 } */
+.card.card-item {
+    min-height: 370px;
+}
+
+/* .card-footer.product-item__footer {
+    max-height: 46px;
+} */
 
 .product-item:hover {
     text-decoration: none;
@@ -279,7 +286,7 @@
 }
 
 .product-item__sale-off-percent{
-    color: #EE4D2D;
+    color: #ec5252;
     font-weight: 600;
     font-size: 1.6rem;
     line-height: 1.6rem;
@@ -292,7 +299,7 @@
     line-height: 1.3rem;
     font-weight: 600;
     position: relative;
-    top: 5px;
+    top: 3px;
     color: var(--white-color);
 }
 
