@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10.8.1/dist/sweetalert2.min.css">
   <link rel="stylesheet" href="/css/confirmregister.css">
   <title>Login</title>
 </head>
@@ -28,7 +29,9 @@
               <input type="text" id="fifth" name="fifth" onfocus="this.value=''" maxlength="1" onkeyup="checkOTP()">
             </div>
             <div class="timer">
-              <p class="txtTimer">Mã OTP sẽ hết hạn sau <span class="spTimer">00:15</span> giây </p>
+              {{#if err_message}}
+              <p style="color: red; font-size: 1.4rem">OTP không chính xác. Vui lòng nhập lại!</p>
+              {{/if}}
             </div>
           </form>
           
@@ -41,7 +44,9 @@
         </div>
       </div>
   </div>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.8.1/dist/sweetalert2.min.js"></script>
   <script type="text/javascript">
+  window.onload()
     function InputOTP (first, last){
       if(first.value.length){
         document.getElementById(last).focus();
@@ -54,7 +59,17 @@
     }
 
     function resetOTP(){
-      document.getElementById('frmResetOtp').submit();
+      Swal.fire({
+        title: 'Bạn có muốn chúng tôi gửi OTP mới?',
+        showCancelButton: true,
+        confirmButtonText: `Có`,
+        denyButtonText: `Không`,
+      }).then((result) => {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+          document.getElementById('frmResetOtp').submit();
+        }
+      })
     }
   </script>
 </body>

@@ -206,9 +206,9 @@ class AccountController {
         const checkEmail = await accountService.findUserByEmail(req.body.email);
         if (checkEmail === false){
             console.log("Email đã được sử dụng");
-            //swal.fire('Oops...', 'Something went wrong!', 'error')
             return res.render('vwAccount/register', {
                 layout: false,
+                err_message: true
             });
         }
 
@@ -225,7 +225,7 @@ class AccountController {
     }
 
     // [GET] account/confirm
-    async confirmRegister(req, res) {
+    confirmRegister(req, res) {
         if(req.session.isRegister !== true ){
             return res.redirect('/account/register');
         }
@@ -269,7 +269,7 @@ class AccountController {
             //return res.json({status: false})
             res.render('vwAccount/confirmregister', {
                 layout: false,
-                alert: false
+                err_message: true
             });
         }
         
