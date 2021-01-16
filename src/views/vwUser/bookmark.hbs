@@ -10,211 +10,56 @@
         <div class="product mt-5">
             <!-- Khóa học nổi bật -->
             <div class="row">
-               
-                <div class="col-sm-3 mb-5">
-                    <a href="#" class="product-item">
+                {{#each listcourse}}
+                <div class="col-sm-3 mb-4">
+                    <a href="/courses/{{slug}}" class="product-item">
                         <div class="card card-item">
-                            <img src="index.png" class="product-item__img card-img-top" alt="" title="">
+                            <img src="/products/{{folderName}}/images/{{avatar}}" class="product-item__img card-img-top"
+                                alt="avatar" title="avatar of course">
                             <div class="card-body">
-                                <h5 class="card-title product-item__title">Lập trình di động</h5>
-                                <h4 class="card-subtitle mb-2 text-muted">Học lập trình cơ bản vơi React Native</h4>
-                                <span class="card-text product-item__category">Lĩnh vực: Di động</span>
+                                <h5 class="card-title product-item__title">{{name}}</h5>
+                                <h4 class="card-subtitle mb-2 text-muted">Nguyễn Văn Dũng</h4>
+                                <span class="card-text product-item__category">Lĩnh vực: lập trình</span>
+                                {{#if ratingPoint}}
                                 <div class="product-item__rating">
-                                    <span class="product-item__total-star"></span>
-                                    <i class="product-item__star--gold fas fa-star"></i>
-                                    <i class="product-item__star--gold fas fa-star"></i>
-                                    <i class="product-item__star--gold fas fa-star"></i>
-                                    <i class="product-item__star--gold fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <h6 class="product-item__total-rating card-subtitle text-muted">(4.5)</h6>
+                                    <span class="product-item__total-star">{{ratingPoint}}</span>
+                                    <div id="{{_id}}" value="{{ratingPoint}}"></div>
+                                    <h6 class="product-item__total-rating card-subtitle text-muted">({{totalRating}})</h6>
                                 </div>
+                                {{/if}}
+                                {{#if currentPrice}}
                                 <div class="product-item__price mt-1">
-                                    <span class="product-item__price-old">650.000</span>
-                                    <span class="product-item__price-current">300.000</span>
+                                    <span class="product-item__price-old">{{format initialPrice}}</span>
+                                    <span class="product-item__price-current">{{format currentPrice}}</span>
                                 </div>
+                                {{else}}
+                                <div class="product-item__price mt-1">
+                                    <span class="product-item__price-current">{{format initialPrice}}</span>
+                                </div>
+                                {{/if}}
+                                
+                                {{!-- Thể hiện biểu tượng --}}
+                                {{#if saleOffPercent}}
+                                <div class="product-item__sale-off">
+                                    <span class="product-item__sale-off-percent">{{saleOffPercent}}%</span>
+                                    <span class="product-item__sale-off-label">GIẢM</span>
+                                </div>
+                                {{/if}}
                             </div>
                             <div class="card-footer  product-item__footer">
-                                <a class="btn btn-danger mr-3" href="#" role="button">
-                                    <i class="fas fa-trash"></i>
-                                    Xóa yêu thích
+                                <a class="btn btn-outline-danger mr-3" href="/user/deletebookmark/{{id}}" role="button">
+                                    <i class="fas fa-heart"></i>
+                                    Bỏ Yêu Thích
                                 </a>
-                                
+                                <a class="btn btn-outline-primary mr-3" href="/courses/{{slug}}" role="button">
+                                    <i class="fas fa-eye"></i>
+                                    Xem chi tiết
+                                </a>
                             </div>
                         </div>
                     </a>
                 </div>
-
-                <div class="col-sm-3 mb-5">
-                    <a href="#" class="product-item">
-                        <div class="card card-item">
-                            <img src="index.png" class="product-item__img card-img-top" alt="" title="">
-                            <div class="card-body">
-                                <h5 class="card-title product-item__title">Lập trình di động</h5>
-                                <h4 class="card-subtitle mb-2 text-muted">Học lập trình cơ bản vơi React Native</h4>
-                                <span class="card-text product-item__category">Lĩnh vực: Di động</span>
-                                <div class="product-item__rating">
-                                    <span class="product-item__total-star"></span>
-                                    <i class="product-item__star--gold fas fa-star"></i>
-                                    <i class="product-item__star--gold fas fa-star"></i>
-                                    <i class="product-item__star--gold fas fa-star"></i>
-                                    <i class="product-item__star--gold fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <h6 class="product-item__total-rating card-subtitle text-muted">(4.5)</h6>
-                                </div>
-                                <div class="product-item__price mt-1">
-                                    <span class="product-item__price-old">650.000</span>
-                                    <span class="product-item__price-current">300.000</span>
-                                </div>
-                            </div>
-                            <div class="card-footer  product-item__footer">
-                                <a class="btn btn-danger mr-3" href="#" role="button">
-                                    <i class="fas fa-trash"></i>
-                                    Xóa yêu thích
-                                </a>
-                                
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="col-sm-3 mb-5">
-                    <a href="#" class="product-item">
-                        <div class="card card-item">
-                            <img src="index.png" class="product-item__img card-img-top" alt="" title="">
-                            <div class="card-body">
-                                <h5 class="card-title product-item__title">Lập trình di động</h5>
-                                <h4 class="card-subtitle mb-2 text-muted">Học lập trình cơ bản vơi React Native</h4>
-                                <span class="card-text product-item__category">Lĩnh vực: Di động</span>
-                                <div class="product-item__rating">
-                                    <span class="product-item__total-star"></span>
-                                    <i class="product-item__star--gold fas fa-star"></i>
-                                    <i class="product-item__star--gold fas fa-star"></i>
-                                    <i class="product-item__star--gold fas fa-star"></i>
-                                    <i class="product-item__star--gold fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <h6 class="product-item__total-rating card-subtitle text-muted">(4.5)</h6>
-                                </div>
-                                <div class="product-item__price mt-1">
-                                    <span class="product-item__price-old">650.000</span>
-                                    <span class="product-item__price-current">300.000</span>
-                                </div>
-                            </div>
-                            <div class="card-footer  product-item__footer">
-                                <a class="btn btn-danger mr-3" href="#" role="button">
-                                    <i class="fas fa-trash"></i>
-                                    Xóa yêu thích
-                                </a>
-                                
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="col-sm-3 mb-5">
-                    <a href="#" class="product-item">
-                        <div class="card card-item">
-                            <img src="index.png" class="product-item__img card-img-top" alt="" title="">
-                            <div class="card-body">
-                                <h5 class="card-title product-item__title">Lập trình di động</h5>
-                                <h4 class="card-subtitle mb-2 text-muted">Học lập trình cơ bản vơi React Native</h4>
-                                <span class="card-text product-item__category">Lĩnh vực: Di động</span>
-                                <div class="product-item__rating">
-                                    <span class="product-item__total-star"></span>
-                                    <i class="product-item__star--gold fas fa-star"></i>
-                                    <i class="product-item__star--gold fas fa-star"></i>
-                                    <i class="product-item__star--gold fas fa-star"></i>
-                                    <i class="product-item__star--gold fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <h6 class="product-item__total-rating card-subtitle text-muted">(4.5)</h6>
-                                </div>
-                                <div class="product-item__price mt-1">
-                                    <span class="product-item__price-old">650.000</span>
-                                    <span class="product-item__price-current">300.000</span>
-                                </div>
-                            </div>
-                            <div class="card-footer  product-item__footer">
-                                <a class="btn btn-danger mr-3" href="#" role="button">
-                                    <i class="fas fa-trash"></i>
-                                    Xóa yêu thích
-                                </a>
-                                
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="col-sm-3 mb-5">
-                    <a href="#" class="product-item">
-                        <div class="card card-item">
-                            <img src="index.png" class="product-item__img card-img-top" alt="" title="">
-                            <div class="card-body">
-                                <h5 class="card-title product-item__title">Lập trình di động</h5>
-                                <h4 class="card-subtitle mb-2 text-muted">Học lập trình cơ bản vơi React Native</h4>
-                                <span class="card-text product-item__category">Lĩnh vực: Di động</span>
-                                <div class="product-item__rating">
-                                    <span class="product-item__total-star"></span>
-                                    <i class="product-item__star--gold fas fa-star"></i>
-                                    <i class="product-item__star--gold fas fa-star"></i>
-                                    <i class="product-item__star--gold fas fa-star"></i>
-                                    <i class="product-item__star--gold fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <h6 class="product-item__total-rating card-subtitle text-muted">(4.5)</h6>
-                                </div>
-                                <div class="product-item__price mt-1">
-                                    <span class="product-item__price-old">650.000</span>
-                                    <span class="product-item__price-current">300.000</span>
-                                </div>
-                            </div>
-                            <div class="card-footer  product-item__footer">
-                                <a class="btn btn-danger mr-3" href="#" role="button">
-                                    <i class="fas fa-trash"></i>
-                                    Xóa yêu thích
-                                </a>
-                                
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-                
-            </div>
-    
-            <div class="row d-flex justify-content-center mt-4">
-                <ul class="pagination home-product__pagination">
-                    <li class="pagination-item">
-                        <a href="" class="pagination-item-link">
-                            <i class="pagination-item-icon fas fa-angle-left"></i>
-                        </a>
-                    </li>
-    
-                    <li class="pagination-item pagination-item--active">
-                        <a href="" class="pagination-item-link">1</a>
-                    </li>
-                    <li class="pagination-item">
-                        <a href="" class="pagination-item-link">2</a>
-                    </li>
-                    <li class="pagination-item">
-                        <a href="" class="pagination-item-link">3</a>
-                    </li>
-                    <li class="pagination-item">
-                        <a href="" class="pagination-item-link">4</a>
-                    </li>
-                    <li class="pagination-item">
-                        <a href="" class="pagination-item-link">5</a>
-                    </li>
-                    <li class="pagination-item">
-                        <a href="" class="pagination-item-link">...</a>
-                    </li>
-                    <li class="pagination-item">
-                        <a href="" class="pagination-item-link">15</a>
-                    </li>
-    
-                    <li class="pagination-item">
-                        <a href="" class="pagination-item-link">
-                            <i class="pagination-item-icon fas fa-angle-right"></i>
-                        </a>
-                    </li>
-                </ul>
+                {{/each}}
             </div>
         </div>
     </div>

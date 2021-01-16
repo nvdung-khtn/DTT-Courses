@@ -254,6 +254,7 @@ class AccountController {
                 address: '',
                 phone: '',
                 permission: 2,
+                status: true
             };
 
             User.create(userData)
