@@ -155,7 +155,12 @@ class AdminController {
         userService.convertStatusToStatusStringUser(student)
         student.dob = moment(student.dob).format("DD/MM/YYYY");
         student.createdAt = moment(student.createdAt).format("DD/MM/YYYY");
-        student.totalCourse =  student.courseArr.length;
+        if (student.courseArr) {
+            student.totalCourse =  student.courseArr.length;
+        } else {
+            student.totalCourse =  0;
+        }
+        
         res.render('vwAdmin/ManageUser/editUser', {
             layout: "admin",
             student,

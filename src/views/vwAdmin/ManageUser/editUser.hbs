@@ -9,6 +9,7 @@
 <script>
     $('.sidebar-nav-item .dashboard').removeClass('active');
     $('.sidebar-nav-item .student-management').addClass('active');
+    flatpickr('#dob', {dateFormat: 'd-m-Y'});
 
     if ($('#status option:nth-child(1)').val() === 'false'){
         $('#status option:nth-child(2)').val('true');
