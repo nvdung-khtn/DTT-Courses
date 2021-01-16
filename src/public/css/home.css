@@ -61,6 +61,8 @@
 .product-item__rating {
     color: #d5d5d5;
     margin-left: auto;
+    display: flex;
+    align-items: center;
 }
 
 .product-item__rating i {
@@ -68,7 +70,7 @@
 }
 
 .product-item__total-star {
-    font-size: 1.7rem;
+    font-size: 1.9rem;
     color: #be5a0e;
     position: relative;
     top: 2px;
@@ -81,8 +83,11 @@
 
 .product-item__total-rating {
     display: inline-block;
-    font-size: 1.5rem;
+    font-size: 1.7rem;
     margin-left: 4px;
+    line-height: 25px;
+    position: relative;
+    top: 3px;
 }
 
 .product-item__price {
@@ -95,11 +100,11 @@
 .product-item__price-old {
     color: #666;
     text-decoration: line-through;
+    margin-right: 10px;
 }
 
 .product-item__price-current {
     color: red;
-    margin-left: 10px;
     font-size: 2rem;
 }
 

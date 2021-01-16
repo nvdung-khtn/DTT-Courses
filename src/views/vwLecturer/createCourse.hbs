@@ -41,14 +41,14 @@
 {{!-- Validate form --}}
 <script>
     Validator({
-        form: '#frmMain1',
+        form: '#frmMain',
         formGroupSelector: '.form-group',
         errorSelector: '.form-message',
         rules: [
             Validator.isRequired("#name", "Vui lòng nhập tên khóa học."),
             Validator.isRequired("#initialPrice", "Vui lòng nhập học phí."),
             Validator.isRequired("#tinyDes", "Vui lòng nhập mô tả ngắn học về khóa học"),
-            Validator.isRequired("#fullDes", "Vui lòng nhập chi tiết nội dung của khóa học."),
+            //Validator.isRequired("#fullDes", "Vui lòng nhập chi tiết nội dung của khóa học."),
             Validator.isRequired("#avatar", "Vui lòng chọn ảnh đại diện cho khóa học."),
             Validator.isRequired("#introVideo", "Vui lòng chọn video giới thiệu khóa học."),
             Validator.isRequired("#quantity", "Vui lòng nhập số lượng bài giảng."),

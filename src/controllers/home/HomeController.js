@@ -14,7 +14,9 @@ class SiteController {
         Course.find({})
             .then(async coursesDB => {
                 // convert Mongoose Object to Object Literals
-                const courses = await courseService.getInforCourses(multipleMongooseToObject(coursesDB));
+                let ids = [];
+                const courses = await courseService.getInforCourses(multipleMongooseToObject(coursesDB), ids);
+                console.log("ids: ", ids);
                 // Customize Course
                 //console.log(courses);
                 const hightLightCourse = homeService.getHighLightCourse(courses, 4);
@@ -24,7 +26,8 @@ class SiteController {
                 res.render('home', { 
                     hightLightCourse,
                     mostViewedCourses,
-                    newCourses
+                    newCourses,
+                    ids
                 })
             })
             .catch(next);

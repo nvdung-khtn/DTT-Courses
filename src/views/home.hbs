@@ -14,13 +14,22 @@
             prevArrow: "<button type='button' class='slick-next'>Previous</button>",
             draggable: false,
         });
-        $(".rateYo").rateYo({
-            starWidth: "20px",
-            readOnly: true,
-            rating: 4,
-            spacing: "5px"
-        });
+        const idsString = "{{ids}}";
+        const ids = idsString.split(",");
+        for (id of ids) {
+            let object = $(`#${id}`);
+            object.rateYo({
+                starWidth: "20px",
+                readOnly: true,
+                rating: object.attr('value'),
+                spacing: "5px"
+            });
+        }
     });
+
+
+
+
 </script>
 {{/section}}
 
@@ -47,24 +56,22 @@
                             <span class="card-text product-item__category">Lĩnh vực: {{fieldName}}</span>
                             {{#if ratingPoint}}
                             <div class="product-item__rating">
-                                <span class="product-item__total-star">{{rating}}</span>
-                                <i class="product-item__star--gold fas fa-star"></i>
-                                <i class="product-item__star--gold fas fa-star"></i>
-                                <i class="product-item__star--gold fas fa-star"></i>
-                                <i class="product-item__star--gold fas fa-star"></i>
-                                <i class="fas fa-star"></i>
+                                <span class="product-item__total-star">{{ratingPoint}}</span>
+                                <div id="{{_id}}" value="{{ratingPoint}}"></div>
                                 <h6 class="product-item__total-rating card-subtitle text-muted">({{totalRating}})</h6>
-                                <div class="rateYo1"></div>
-                                <div class="rateYo2"></div>
-                                <script>
-                                   
-                                </script>
                             </div>
                             {{/if}}
+                            {{#if currentPrice}}
                             <div class="product-item__price mt-1">
-                                <span class="product-item__price-old">{{initialPrice}}</span>
-                                <span class="product-item__price-current">{{currentPrice}}</span>
+                                <span class="product-item__price-old">{{format initialPrice}}</span>
+                                <span class="product-item__price-current">{{format currentPrice}}</span>
                             </div>
+                            {{else}}
+                            <div class="product-item__price mt-1">
+                                <span class="product-item__price-current">{{format initialPrice}}</span>
+                            </div>
+                            {{/if}}
+                            
                             {{!-- Thể hiện biểu tượng --}}
                             <div class="product-item__favourite">
                                 <i class="fas fa-check"></i>
