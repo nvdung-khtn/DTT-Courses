@@ -11,23 +11,20 @@
         <div class="row">
             {{#each courses}}
             <div class="col-sm-3 mb-5">
-                <a href="#" class="product-item">
+                <a href="/courses/{{slug}}" class="product-item">
                     <div class="card card-item">
                         <img src="/products/{{folderName}}/images/{{avatar}}" class="product-item__img card-img-top"
                             alt="avatar" title="avatar of course">
                         <div class="card-body">
                             <h5 class="card-title product-item__title">{{name}}</h5>
-                            <h4 class="card-subtitle mb-2 text-muted">{{lecName}}</h4>
+                            <h4 class="card-subtitle mb-2 text-muted">Gv: {{lecName}}</h4>
                             <span class="card-text product-item__category">Lĩnh vực: {{fieldName}}</span>
+                            <div class="card-text product-item__totalCourse">Số lượng học viên: {{totalStudent}}</div>
                         </div>
-                        <div class="card-footer  product-item__footer">
-                            <a class="btn btn-outline-danger mr-3" href="/user/addbookmark/{{_id}}" role="button">
-                                <i class="fas fa-heart"></i>
-                                Yêu Thích
-                            </a>
-                            <a class="btn btn-outline-success" href="/cart/add/{{_id}}" role="button">
-                                <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                                Thêm Giỏ Hàng
+                        <div class="card-footer  product-item__footer" style="display: flex; justify-content:center;">
+                            <a class="btn btn-outline-success " href="/courses/{{slug}}" role="button">
+                                <i class="fas fa-align-center" aria-hidden="true"></i>
+                                Tìm hiểu thêm
                             </a>
                         </div>
                     </div>

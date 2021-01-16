@@ -142,6 +142,12 @@ module.exports = {
         })
     },
 
+    getTotalStudent (courses) {
+        courses.forEach(course => {
+            course.totalStudent = course.students.length;
+        })
+    },
+
     modifyCoursesByLecturer(courses) {
         return courses.map(course => {
             return {

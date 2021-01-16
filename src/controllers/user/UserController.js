@@ -5,6 +5,7 @@ const User = require('../../models/User');
 const Course = require('../../models/Course');
 const nodemailer =  require('nodemailer');
 const {mongooseToObject, multipleMongooseToObject} = require('../../utils/mongoose');
+const courseService = require('../course/courseService');
 
 const SALT = 10;
 
@@ -182,9 +183,10 @@ class UserController {
                     const course = await Course.findOne({_id: id}).lean();
                     courses.push(course);
                 }
+                courseService.getTotalStudent(courses);
                 res.render('vwUser/mycourses', {
                     layout: 'user',
-                    courses
+                    courses: await courseService.getInforCourses(courses)
                 })
             })
     }
