@@ -149,3 +149,14 @@ li{
    padding-left: 15px;
    padding-right: 15px;
 }
+
+.val-group.invalid input {
+    border-color: red;
+    color: red;
+}
+
+.val-group.invalid .val-message {
+    color: red;
+    font-size: 1.3rem;
+    font-weight: 500;
+}

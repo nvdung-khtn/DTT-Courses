@@ -162,4 +162,27 @@ module.exports = {
             return 'err'
         })
     },
+
+    getCourseBySlug: (slug) => {
+        return Course.find({slug})
+        .exec()
+        .then((data)=> {
+            if (data.length > 0 ){
+                return data[0]; //user object
+            }
+            return null;
+        })
+        .catch(err => err)
+    },
+
+    updateRatingCourseBySlug: (slug, totalRating, countStarRating) => {
+        return Course.updateOne({slug: slug }, {$set: {totalRating: totalRating, rating: countStarRating}})
+        .exec()
+        .then(()=> {
+            console.log("Update total rating course success");
+        })
+        .catch(err => {
+            return 'err'
+        })
+    }
 }

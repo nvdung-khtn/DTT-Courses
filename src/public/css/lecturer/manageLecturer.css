@@ -38,3 +38,13 @@
 textarea.form-control {
     height: 90px !important;
 }
+
+
+.form-group.invalid input {
+    border-color: red;
+    color: red;
+}
+
+.form-group.invalid .form-message {
+    color: red;
+}

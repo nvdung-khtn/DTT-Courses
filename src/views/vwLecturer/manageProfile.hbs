@@ -19,30 +19,34 @@
         </h3>
 
         <div class="row">
-            <form id="" action="/lecturer/profile" method="POST" class="form-container">
+            <form id="frm-manage-lecturer" action="/lecturer/profile" method="POST" class="form-container">
             <div class="form-body">
                 <div class="form-group col-sm-6">
                     <label>Họ tên</label>
-                    <input type="text" name="name" class="form-control" value="{{authUser.name}}">
-                </div><!-- /.form-group -->
-
-                {{!-- <div class="form-group col-sm-6">
-                    <label>Username</label>
-                    <input type="text" class="form-control" value="phamtrinhisme">
-                </div><!-- /.form-group --> --}}
+                    <input type="text" id="name-lec" name="name" class="form-control" style="height: 40px;" value="{{authUser.name}}">
+                    <span class="form-message" style="font-size: 1.2rem;"></span>
+                    <span style="opacity: 0;">1</span>
+                </div>
 
                 <div class="form-group col-sm-6">
                     <label>E-mail</label>
-                    <input type="text" name="email" readonly class="form-control" value="{{authUser.email}}">
+                    <input type="text" name="email" readonly class="form-control" style="height: 40px;" value="{{authUser.email}}">
+                    <span class="form-message" ></span>
+                    <span style="opacity: 0;">1</span>
                 </div><!-- /.form-group -->
 
                 <div class="form-group col-sm-6">
                     <label>Số điện thoại</label>
-                    <input type="text" name="phone" class="form-control" value="{{authUser.phone}}">
+                    <input type="text" id="phone-lec" name="phone" class="form-control" style="height: 40px;" value="{{authUser.phone}}">
+                    <span class="form-message" style="font-size: 1.2rem;"></span>
+                    <span style="opacity: 0;">1</span>
                 </div><!-- /.form-group -->
+
                 <div class="form-group col-sm-6">
                     <label>Địa chỉ</label>
-                    <input type="text" name="address" class="form-control" value="{{authUser.address}}">
+                    <input type="text" name="address" id="address-lec" class="form-control" style="height: 40px;" value="{{authUser.address}}">
+                    <span class="form-message" style="font-size: 1.2rem;"></span>
+                    <span style="opacity: 0;">1</span>
                 </div><!-- /.form-group -->
 
                 <span class="save mt-2">
@@ -52,8 +56,22 @@
             </form>
         </div><!-- /.row -->
     </div>
-
-
 </div><!-- /.content -->
+
+<script src="/javascript/validator.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        Validator({
+            form: "#frm-manage-lecturer",
+            formGroupSelector: ".form-group",
+            errorSelector: ".form-message",
+            rules: [
+                Validator.isRequired("#name-lec", "Xin vui lòng nhập tên"),
+                Validator.minLength("#phone-lec", 9, "Số điện thoại phải dài hơn 9 số"),
+                Validator.isRequired("#address-lec", "Xin vui lòng nhập địa chỉ"),
+            ]
+        });
+    });
+</script>
                     
 

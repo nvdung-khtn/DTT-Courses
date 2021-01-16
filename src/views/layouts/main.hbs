@@ -52,7 +52,18 @@
         })
         $('#text-search').change(function () {
             var stringSearch = $('#text-search').val();
-            $('#link-search').attr('href', `/courses/?page=1${stringSearch}`)
+            $('#link-search').attr('href', `/courses/?page=1&search=${stringSearch}`)
+        })
+
+        $('#btnFilter').click(function() {
+            const stringSearch = $('#search-status').text();
+            const checked = $("input[name='sort']:checked").val();
+            if (checked && checked==="index") {
+                window.location.assign(`/courses?page=1&search=${stringSearch}&sort=index`)
+            }
+            if (checked && checked==="price") {
+                window.location.assign(`/courses?page=1&search=${stringSearch}&sort=price`)
+            }
         })
 
     </script>

@@ -16,13 +16,31 @@
 		$('#text-search').keypress(function (event) {
 			if (event.keyCode == 13) {
 				var stringSearch = $('#text-search').val();
-				window.location.assign(`/admin/field?search=${stringSearch}`);
+				window.location.assign(`/admin/course?page=1&search=${stringSearch}`);
 			}
 		})
 		$('#text-search').change(function() {
 			var stringSearch = $('#text-search').val();
-			$('#link-search').attr('href',`/admin/course?search=${stringSearch}`)
+			$('#link-search').attr('href',`/admin/course?page=1&search=${stringSearch}`)
 		})
+
+		//-- ---------FILTER------------ --
+
+		$('#btnClick').click(function() {
+			const lecId = $('#searchlecId option:selected').val();
+			const fieldId = $('#searchfieldId option:selected').val();
+			if (lecId === "All" && fieldId === "All") {
+				window.location.assign('/admin/course?page=1');
+			}
+			if (lecId !== "All" && fieldId === "All") {
+				window.location.assign(`/admin/course?page=1&lecId=${lecId}`);
+			}
+			if (lecId === "All" && fieldId !== "All") {
+				window.location.assign(`/admin/course?page=1&fieldId=${fieldId}`);
+			}
+		})
+
+		
 
 </script>
 {{/section}}
@@ -40,7 +58,33 @@
 								<a id="link-search" href="" class="header-search__icon">
 									<i class="fa fa-search" aria-hidden="true"></i>
 								</a>
-						</div>				
+						</div>	
+						<div class="filter-wrapper">
+							<div class="filter-button">
+								<button type="button" class="filter-icon" id="btnClick">
+									<span><i class="fa fa-filter" aria-hidden="true"></i></span>
+									<span>Filter</span>
+								</button>
+							</div>
+							<div class="form-group">
+								<label for="searchlecId">Tên giảng viên</label>
+								<select name="searchlecId" id="searchlecId" class="form-control">
+									<option value="All">Tất cả</option>
+									{{#each lecturers}}
+									<option value="{{_id}}">{{name}}</option>
+									{{/each}}
+								</select>
+							</div>
+							<div class="form-group">
+								<label for="searchfieldId">Lĩnh vực</label>
+								<select name="searchfieldId" id="searchfieldId" class="form-control">
+									<option value="All">Tất cả</option>
+									{{#each fields}}
+									<option value="{{_id}}">{{name}}</option>
+									{{/each}}
+								</select>
+							</div>
+						</div>			
 					</div>
 					<div class="card-content">
 						<table>
@@ -48,7 +92,8 @@
 								<tr>
 									<th>ID</th>
 									<th>Tên khóa học</th>
-									<th>Danh mục</th>
+									<th>Lĩnh vực</th>
+									<th>Giảng viên</th>
 									<th>Giá hiện tại</th>
 									<th>Trạng thái</th>
 									<th>Quản lý</th>
@@ -59,7 +104,8 @@
 								<tr>
 									<td>{{_id}}</td>
 									<td class="custom-display">{{name}}</td>
-									<td>{{slug}}</td>
+									<td>{{fieldName}}</td>
+									<td>{{lecName}}</td>
 									<td>{{format currentPrice}}</td>
 									<td>{{stringStatus}}</td>
 									<td>
@@ -76,21 +122,21 @@
 							<div class="empty">Không tìm thấy kết quả nào</div>
 						{{/if}}
 					</div>
-					{{#unless disable_page}}
+					{{#unless empty}}
 					<nav>
 						<ul class="pager">
 							<li class="pager__item pager__item--prev" {{#if can_go_prev }}style="pointer-events: none;"{{/if}}>
-								<a class="pager__link" href="/admin/course?page={{prev_page}}">
+								<a class="pager__link" href="/admin/course?page={{prev_page}}{{#if stringSearch}}&search={{stringSearch}}{{/if}}">
 								<svg xmlns="" width="8" height="12" viewbox="0 0 8 12">
 									<g fill="none" fill-rule="evenodd">
 									<path fill="#33313C" d="M7.41 1.41L6 0 0 6l6 6 1.41-1.41L2.83 6z"></path>
 									</g>
 								</svg></a></li>
 							{{#each page_items}}
-								<li class="pager__item"><a class="pager__link" href="/admin/course?page={{value}}">{{value}}</a></li>
+								<li class="pager__item"><a class="pager__link" href="/admin/course?page={{value}}{{#if stringSearch}}&search={{stringSearch}}{{/if}}">{{value}}</a></li>
 							{{/each}}
 							<li class="pager__item pager__item--next" {{#if can_go_next }}style="pointer-events: none;"{{/if}} >
-								<a class="pager__link" href="/admin/course?page={{next_page}}">
+								<a class="pager__link" href="/admin/course?page={{next_page}}{{#if stringSearch}}&search={{stringSearch}}{{/if}}">
 									<svg xmlns="" width="8" height="12" viewbox="0 0 8 12">
 										<g fill="none" fill-rule="evenodd">
 										<path fill="#33313C" d="M7.41 1.41L6 0 0 6l6 6 1.41-1.41L2.83 6z"></path>

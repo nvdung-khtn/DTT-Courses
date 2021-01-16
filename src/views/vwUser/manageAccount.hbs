@@ -6,45 +6,47 @@
 <div class="container">
         <h1 class="big-title">Thông tin tài khoản</h1>
         <div class="content">
-            <form method="POST" action="/user/manage">
+            <form id="formManageUser" method="POST" action="/user/manage">
 
-                <div class="row mt-3 mb-3">
+                <div class="row mt-3 mb-3 val-group">
                     <div class="col-3 title">
                         Họ và tên
                     </div>
                     <div class="col-9">
-                        <input type="text" name="name" class="input-value unactive" value="{{authUser.name}}">
+                        <input type="text" id="name-user" name="name" class="input-value unactive" value="{{authUser.name}}">
+                        <span class="val-message"></span>
                     </div>
-                    
-                    
                 </div>
 
-                <div class="row content-small">
+                <div class="row content-small val-group">
                     <div class="col-3 title">
                         Email
                     </div>
                     <div class="col-9">
-                        <input type="email" name="email" class="input-value unactive" value="{{authUser.email}}">
+                        <input type="email" id="email" required="false" name="email" class="input-value unactive" value="{{authUser.email}}">
+                        <span class="val-message"></span>
                     </div>
                    
                 </div>
 
-                <div class="row content-small">
+                <div class="row content-small val-group">
                     <div class="col-3 title">
                         Địa chỉ
                     </div>
                     <div class="col-9">
-                        <input type="text" name="address" class="input-value unactive" value="{{authUser.address}}">
+                        <input type="text" id="address" name="address" class="input-value unactive" value="{{authUser.address}}">
+                        <span class="val-message"></span>
                     </div>
                    
                 </div>
 
-                <div class="row content-small">
+                <div class="row content-small val-group">
                     <div class="col-3 title">
                         Số điện thoại
                     </div>
                     <div class="col-9">
-                        <input type="text" name="phone" class="input-value unactive" value="{{authUser.phone}}">
+                        <input type="text" id="phone" name="phone" class="input-value unactive" value="{{authUser.phone}}">
+                        <span class="val-message"></span>
                     </div>
                    
                 </div>
@@ -61,3 +63,22 @@
             </form>
         </div>
     </div>
+    <script src="/javascript/validator.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            Validator({
+                form: "#formManageUser",
+                formGroupSelector: ".val-group",
+                errorSelector: ".val-message",
+                rules: [
+                    Validator.isRequired("#name-user", "Xin vui lòng nhập tên"),
+                    Validator.isEmail("#email", "Email không hợp lệ"),
+                    Validator.minLength("#phone", 9, "Số điện thoại phải dài trên 9 số"),
+                    Validator.isRequired("#address", "Vui lòng nhập địa chỉ"),
+                ]
+            });
+        });
+    </script>
+
+    

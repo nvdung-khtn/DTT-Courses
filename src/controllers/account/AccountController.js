@@ -37,7 +37,9 @@ const sendMail = (email) => {
     content += `
         <div>
             <div>
+                <p>Xin chào bạn. Chúng tôi là công ty DDT Courses</p>
                 <span style="color: black">Mã xác nhận email của bạn là: <b>${otp}</b> </span>
+                <p>Cảm ơn bạn đã sử dụng dịch vụ của chúng tôi </p>
             </div>
         </div>
     `;
@@ -88,7 +90,9 @@ const sendMailForgotPassword = (email) => {
     content += `
         <div>
             <div>
+                <p>Xin chào bạn. Chúng tôi là công ty DDT Courses</p>
                 <span style="color: black">Mã xác nhận email của bạn là: <b>${otp}</b> </span>
+                <p>Cảm ơn bạn đã sử dụng dịch vụ của chúng tôi </p>
             </div>
         </div>
     `;
@@ -262,7 +266,11 @@ class AccountController {
                 .catch(next);
         }else{
             console.log("OTP không chính xác");
-            res.redirect('/account/confirm');
+            //return res.json({status: false})
+            res.render('vwAccount/confirmregister', {
+                layout: false,
+                alert: false
+            });
         }
         
     }

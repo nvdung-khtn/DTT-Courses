@@ -14,16 +14,17 @@ class CourseController {
     async index(req, res, next) {  
         page = req.query.page;
         const stringSearch = req.query.search;
+        const filter = req.query.sort
             page = parseInt(page);
             if (page<1) {
                 page = 1;
             }
 
             var totalCourse = 0;
-            if (!stringSearch || stringSearch === "0") {
+            if (!stringSearch) {
                 totalCourse = await Course.countDocuments();
             } else {
-                const courses_search = await Course.find({$text: {$search: stringSearch}}).lean();
+                const courses_search = await Course.find({$text: {$search: stringSearch}, status: true}).lean();
                 totalCourse = courses_search.length;
             }
             
@@ -42,28 +43,39 @@ class CourseController {
             var skip = (page - 1)*PAGE_SIZE;
             
             var courses = [];
-            
-            if (!stringSearch || stringSearch === "0") {
+            if (totalPage !== 0) {
+            if (!stringSearch) {
                 courses = await Course.find()
                 .skip(skip)
                 .limit(PAGE_SIZE).lean();
-            } else if (totalPage !== 0) {
-                courses = await Course.find({$text: {$search: stringSearch}})
+            } 
+            if (stringSearch && !filter) {
+                courses = await Course.find({$text: {$search: stringSearch}, status: true})
                 .skip(skip)
                 .limit(PAGE_SIZE).lean();
             }
-            
-            await courseService.getInforCourses(courses);
+            if (stringSearch && filter==="index"){
+                courses = await Course.find({$text: {$search: stringSearch}, status: true})
+                .sort({nIndex: 1})
+                .skip(skip)
+                .limit(PAGE_SIZE).lean();
+            }
+            if (stringSearch && filter==="price"){
+                courses = await Course.find({$text: {$search: stringSearch}, status: true})
+                .sort({currentPrice: 1 })
+                .skip(skip)
+                .limit(PAGE_SIZE).lean();
+            }}
             return res.render('home_fullCourse', {
-                courses,
+                courses: await courseService.getInforCourses(courses),
                 page_items,
                 prev_page : page - 1,
                 next_page : page + 1,
                 can_go_prev : (page <= 1),
                 can_go_next : (page >= totalPage),
-                disable_page : false,
                 stringSearch,
                 empty: courses.length === 0,
+                filter
             })
         
     }
@@ -223,16 +235,9 @@ class CourseController {
             })
     }
 
-    postComment(req, res, next){
-        // if (!req.params.slug){
-        //     return res.redirect('/');
-        // }
-        // const user = req.session.authUser;
-        // if(!user){
-        //     return res.redirect('/account/login');
-        // }
+    async postComment(req, res, next){
         const data = req.body;
-        //console.log(data);
+        
         if(data.rating === undefined ){
             const url = '/courses/' + req.params.slug;
             return res.redirect(url);
@@ -249,7 +254,13 @@ class CourseController {
             cmt: data.comment,
             rate: parseInt(data.rating, 10), 
         }
-        
+        const courses = await courseService.getCourseBySlug(req.params.slug);
+        //console.log(course);
+        let totalRating = courses.totalRating;
+        totalRating = totalRating + 1;
+        //console.log(totalRating);
+        const countStarRating = courses.rating + parseInt(data.rating, 10);
+        await courseService.updateRatingCourseBySlug(req.params.slug, totalRating, countStarRating);
         Comment.create(newdata)
             .then(() => {
                 const url = '/courses/' + req.params.slug;

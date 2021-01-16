@@ -15,7 +15,7 @@
 		$('#text-search').keypress(function (event) {
         if (event.keyCode == 13) {
 			var stringSearch = $('#text-search').val();
-            window.location.assign(`/admin/field?search=${stringSearch}`);
+            window.location.assign(`/admin/student?search=${stringSearch}`);
         	}
     	})
 		$('#text-search').change(function() {
