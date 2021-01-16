@@ -1,145 +1,40 @@
 {{#section 'css'}}
-    <link rel="stylesheet" href="/css/user/bookmark.css">
-    <link rel="stylesheet" href="/css/home.css">
+<link rel="stylesheet" href="/css/user/bookmark.css">
+<link rel="stylesheet" href="/css/home.css">
 {{/section}}
 
 <div class="container mt-5">
-        <h1 class="big-title">Khóa học của tôi</h1>  
-        <!-- Product item -->
-        <div class="product mt-5">
-            <!-- Khóa học nổi bật -->
-            <div class="row">
-                <div class="col-sm-3 mb-5">
-                    <a href="#" class="product-item">
-                        <div class="card card-item">
-                            <img src="index.png" class="product-item__img card-img-top" alt="" title="">
-                            <div class="card-body">
-                                <h5 class="card-title product-item__title">Lập trình di động</h5>
-                                <h4 class="card-subtitle mb-2 text-muted">Học lập trình cơ bản vơi React Native</h4>
-                                <span class="card-text product-item__category">Lĩnh vực: Di động</span>
-                                <div class="product-item__rating">
-                                    <span class="product-item__total-star"></span>
-                                    <i class="product-item__star--gold fas fa-star"></i>
-                                    <i class="product-item__star--gold fas fa-star"></i>
-                                    <i class="product-item__star--gold fas fa-star"></i>
-                                    <i class="product-item__star--gold fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <h6 class="product-item__total-rating card-subtitle text-muted">(4.5)</h6>
-                                </div>
-                                <div class="product-item__price mt-1">
-                                    <span class="product-item__price-old">650.000</span>
-                                    <span class="product-item__price-current">300.000</span>
-                                </div>
-                            </div>
-                            <div class="card-footer  product-item__footer">
-                                <a class="btn btn-outline-primary mr-3" href="#" role="button">
-                                    <i class="fas fa-eye"></i>
-                                    Xem khóa học
-                                </a>
-                                
-                            </div>
+    <h1 class="big-title">Khóa học của tôi</h1>
+    <!-- Product item -->
+    <div class="product mt-5">
+        <!-- Khóa học nổi bật -->
+        <div class="row">
+            {{#each courses}}
+            <div class="col-sm-3 mb-5">
+                <a href="#" class="product-item">
+                    <div class="card card-item">
+                        <img src="/products/{{folderName}}/images/{{avatar}}" class="product-item__img card-img-top"
+                            alt="avatar" title="avatar of course">
+                        <div class="card-body">
+                            <h5 class="card-title product-item__title">{{name}}</h5>
+                            <h4 class="card-subtitle mb-2 text-muted">{{lecName}}</h4>
+                            <span class="card-text product-item__category">Lĩnh vực: {{fieldName}}</span>
                         </div>
-                    </a>
-                </div>
-
-                <div class="col-sm-3 mb-5">
-                    <a href="#" class="product-item">
-                        <div class="card card-item">
-                            <img src="index.png" class="product-item__img card-img-top" alt="" title="">
-                            <div class="card-body">
-                                <h5 class="card-title product-item__title">Lập trình di động</h5>
-                                <h4 class="card-subtitle mb-2 text-muted">Học lập trình cơ bản vơi React Native</h4>
-                                <span class="card-text product-item__category">Lĩnh vực: Di động</span>
-                                <div class="product-item__rating">
-                                    <span class="product-item__total-star"></span>
-                                    <i class="product-item__star--gold fas fa-star"></i>
-                                    <i class="product-item__star--gold fas fa-star"></i>
-                                    <i class="product-item__star--gold fas fa-star"></i>
-                                    <i class="product-item__star--gold fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <h6 class="product-item__total-rating card-subtitle text-muted">(4.5)</h6>
-                                </div>
-                                <div class="product-item__price mt-1">
-                                    <span class="product-item__price-old">650.000</span>
-                                    <span class="product-item__price-current">300.000</span>
-                                </div>
-                            </div>
-                            <div class="card-footer  product-item__footer">
-                                <a class="btn btn-outline-primary mr-3" href="#" role="button">
-                                    <i class="fas fa-eye"></i>
-                                    Xem khóa học
-                                </a>
-                                
-                            </div>
+                        <div class="card-footer  product-item__footer">
+                            <a class="btn btn-outline-danger mr-3" href="/user/addbookmark/{{_id}}" role="button">
+                                <i class="fas fa-heart"></i>
+                                Yêu Thích
+                            </a>
+                            <a class="btn btn-outline-success" href="/cart/add/{{_id}}" role="button">
+                                <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                                Thêm Giỏ Hàng
+                            </a>
                         </div>
-                    </a>
-                </div>
-
-                <div class="col-sm-3 mb-5">
-                    <a href="#" class="product-item">
-                        <div class="card card-item">
-                            <img src="index.png" class="product-item__img card-img-top" alt="" title="">
-                            <div class="card-body">
-                                <h5 class="card-title product-item__title">Lập trình di động</h5>
-                                <h4 class="card-subtitle mb-2 text-muted">Học lập trình cơ bản vơi React Native</h4>
-                                <span class="card-text product-item__category">Lĩnh vực: Di động</span>
-                                <div class="product-item__rating">
-                                    <span class="product-item__total-star"></span>
-                                    <i class="product-item__star--gold fas fa-star"></i>
-                                    <i class="product-item__star--gold fas fa-star"></i>
-                                    <i class="product-item__star--gold fas fa-star"></i>
-                                    <i class="product-item__star--gold fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <h6 class="product-item__total-rating card-subtitle text-muted">(4.5)</h6>
-                                </div>
-                                <div class="product-item__price mt-1">
-                                    <span class="product-item__price-old">650.000</span>
-                                    <span class="product-item__price-current">300.000</span>
-                                </div>
-                            </div>
-                            <div class="card-footer  product-item__footer">
-                                <a class="btn btn-outline-primary mr-3" href="#" role="button">
-                                    <i class="fas fa-eye"></i>
-                                    Xem khóa học
-                                </a>
-                                
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="col-sm-3 mb-5">
-                    <a href="#" class="product-item">
-                        <div class="card card-item">
-                            <img src="index.png" class="product-item__img card-img-top" alt="" title="">
-                            <div class="card-body">
-                                <h5 class="card-title product-item__title">Lập trình di động</h5>
-                                <h4 class="card-subtitle mb-2 text-muted">Học lập trình cơ bản vơi React Native</h4>
-                                <span class="card-text product-item__category">Lĩnh vực: Di động</span>
-                                <div class="product-item__rating">
-                                    <span class="product-item__total-star"></span>
-                                    <i class="product-item__star--gold fas fa-star"></i>
-                                    <i class="product-item__star--gold fas fa-star"></i>
-                                    <i class="product-item__star--gold fas fa-star"></i>
-                                    <i class="product-item__star--gold fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <h6 class="product-item__total-rating card-subtitle text-muted">(4.5)</h6>
-                                </div>
-                                <div class="product-item__price mt-1">
-                                    <span class="product-item__price-old">650.000</span>
-                                    <span class="product-item__price-current">300.000</span>
-                                </div>
-                            </div>
-                            <div class="card-footer  product-item__footer">
-                                <a class="btn btn-outline-primary mr-3" href="#" role="button">
-                                    <i class="fas fa-eye"></i>
-                                    Xem khóa học
-                                </a>
-                                
-                            </div>
-                        </div>
-                    </a>
-                </div>
+                    </div>
+                </a>
             </div>
+            {{/each}}
+
         </div>
+    </div>
 </div>

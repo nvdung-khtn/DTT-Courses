@@ -120,24 +120,39 @@
                             <img src="/products/{{folderName}}/images/{{avatar}}" class="product-item__img card-img-top"
                                 alt="avatar" title="avatar of course">
                             <div class="card-body">
-                                <h5 class="card-title product-item__title">{{name}}</h5>
-                                <h4 class="card-subtitle mb-2 text-muted">{{lecName}}</h4>
-                                <span class="card-text product-item__category">Lĩnh vực: {{fieldName}}</span>
-                                <div class="product-item__rating">
-                                    <span class="product-item__total-star">{{rating}}</span>
-                                    <i class="product-item__star--gold fas fa-star"></i>
-                                    <i class="product-item__star--gold fas fa-star"></i>
-                                    <i class="product-item__star--gold fas fa-star"></i>
-                                    <i class="product-item__star--gold fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <h6 class="product-item__total-rating card-subtitle text-muted">({{totalRating}})
-                                    </h6>
-                                </div>
-                                <div class="product-item__price mt-1">
-                                    <span class="product-item__price-old">{{initialPrice}}</span>
-                                    <span class="product-item__price-current">{{currentPrice}}</span>
-                                </div>
+                            <h5 class="card-title product-item__title">{{name}}</h5>
+                            <h4 class="card-subtitle mb-2 text-muted">{{lecName}}</h4>
+                            <span class="card-text product-item__category">Lĩnh vực: {{fieldName}}</span>
+                            {{#if ratingPoint}}
+                            <div class="product-item__rating">
+                                <span class="product-item__total-star">{{ratingPoint}}</span>
+                                <div id="{{_id}}" value="{{ratingPoint}}"></div>
+                                <h6 class="product-item__total-rating card-subtitle text-muted">({{totalRating}})</h6>
                             </div>
+                            {{/if}}
+                            {{#if currentPrice}}
+                            <div class="product-item__price mt-1">
+                                <span class="product-item__price-old">{{format initialPrice}}</span>
+                                <span class="product-item__price-current">{{format currentPrice}}</span>
+                            </div>
+                            {{else}}
+                            <div class="product-item__price mt-1">
+                                <span class="product-item__price-current">{{format initialPrice}}</span>
+                            </div>
+                            {{/if}}
+                            
+                            {{!-- Thể hiện biểu tượng --}}
+                            <div class="product-item__favourite">
+                                <i class="fas fa-check"></i>
+                                <span>Bestseller</span>
+                            </div>
+                            {{#if saleOffPercent}}
+                            <div class="product-item__sale-off">
+                                <span class="product-item__sale-off-percent">{{saleOffPercent}}%</span>
+                                <span class="product-item__sale-off-label">GIẢM</span>
+                            </div>
+                            {{/if}}
+                        </div>
                             <div class="card-footer  product-item__footer">
                                 <a class="btn btn-outline-danger mr-3" href="#" role="button">
                                     <i class="fas fa-heart"></i>
@@ -170,34 +185,39 @@
                             <img src="/products/{{folderName}}/images/{{avatar}}" class="product-item__img card-img-top"
                                 alt="avatar" title="avatar of course">
                             <div class="card-body">
-                                <h5 class="card-title product-item__title">{{name}}</h5>
-                                <h4 class="card-subtitle mb-2 text-muted">{{lecName}}</h4>
-                                <span class="card-text product-item__category">Lĩnh vực: {{fieldName}}</span>
-                                <div class="product-item__rating">
-                                    <span class="product-item__total-star">{{rating}}</span>
-                                    <i class="product-item__star--gold fas fa-star"></i>
-                                    <i class="product-item__star--gold fas fa-star"></i>
-                                    <i class="product-item__star--gold fas fa-star"></i>
-                                    <i class="product-item__star--gold fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <h6 class="product-item__total-rating card-subtitle text-muted">({{totalRating}})
-                                    </h6>
-                                </div>
-                                <div class="product-item__price mt-1">
-                                    <span class="product-item__price-old">{{initialPrice}}</span>
-                                    <span class="product-item__price-current">{{currentPrice}}</span>
-                                </div>
-                                {{!-- Thể hiện biểu tượng --}}
-                                <div class="new-course product-item__favourite">
-                                    {{!-- <i class="fas fa-check"></i> --}}
-                                    <i class="fab fa-discourse"></i>
-                                    <span>New</span>
-                                </div>
-                                <div class="product-item__sale-off">
-                                    <span class="product-item__sale-off-percent">43%</span>
-                                    <span class="product-item__sale-off-label">GIẢM</span>
-                                </div>
+                            <h5 class="card-title product-item__title">{{name}}</h5>
+                            <h4 class="card-subtitle mb-2 text-muted">{{lecName}}</h4>
+                            <span class="card-text product-item__category">Lĩnh vực: {{fieldName}}</span>
+                            {{#if ratingPoint}}
+                            <div class="product-item__rating">
+                                <span class="product-item__total-star">{{ratingPoint}}</span>
+                                <div id="{{_id}}" value="{{ratingPoint}}"></div>
+                                <h6 class="product-item__total-rating card-subtitle text-muted">({{totalRating}})</h6>
                             </div>
+                            {{/if}}
+                            {{#if currentPrice}}
+                            <div class="product-item__price mt-1">
+                                <span class="product-item__price-old">{{format initialPrice}}</span>
+                                <span class="product-item__price-current">{{format currentPrice}}</span>
+                            </div>
+                            {{else}}
+                            <div class="product-item__price mt-1">
+                                <span class="product-item__price-current">{{format initialPrice}}</span>
+                            </div>
+                            {{/if}}
+                            
+                            {{!-- Thể hiện biểu tượng --}}
+                            <div class="product-item__favourite">
+                                <i class="fas fa-check"></i>
+                                <span>Bestseller</span>
+                            </div>
+                            {{#if saleOffPercent}}
+                            <div class="product-item__sale-off">
+                                <span class="product-item__sale-off-percent">{{saleOffPercent}}%</span>
+                                <span class="product-item__sale-off-label">GIẢM</span>
+                            </div>
+                            {{/if}}
+                        </div>
                             <div class="card-footer  product-item__footer">
                                 <a class="btn btn-outline-danger mr-3" href="#" role="button">
                                     <i class="fas fa-heart"></i>

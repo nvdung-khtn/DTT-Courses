@@ -6,7 +6,6 @@ const adminRouter = require('./admin/admin.route');
 const lecturerRouter = require('./lecturer/lecturer.route');
 const homeRouter = require('./home.route');
 const userRouter = require('./user/user.route');
-const cartRouter = require('./cart/cart.route');
 const { auth, authAdmin, authLecturer} = require('../middleWares/auth.mdw');
 
 function route(app) {

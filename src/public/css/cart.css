@@ -90,10 +90,13 @@
 
 .cart-item-field {
     color: #333;
+    font-size: 1.6rem;
+    margin: 5px 0;
 }
 
 .cart-item-author {
     font-weight: 500;
+    margin-bottom: 2px;
 }
 
 .cart-item-name {
@@ -147,4 +150,8 @@
 
 .hidden {
     display: none;
+}
+
+.badge-item-cart {
+    font-size: 1.2rem;
 }

@@ -16,7 +16,6 @@ class SiteController {
                 // convert Mongoose Object to Object Literals
                 let ids = [];
                 const courses = await courseService.getInforCourses(multipleMongooseToObject(coursesDB), ids);
-                console.log("ids: ", ids);
                 // Customize Course
                 //console.log(courses);
                 const hightLightCourse = homeService.getHighLightCourse(courses, 4);

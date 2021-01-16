@@ -2,8 +2,9 @@ const userService = require('./userService');
 const bcrypt = require('bcryptjs');
 const Otp = require('../../models/Otp');
 const User = require('../../models/User');
+const Course = require('../../models/Course');
 const nodemailer =  require('nodemailer');
-const {mongooseToObject} = require('../../utils/mongoose');
+const {mongooseToObject, multipleMongooseToObject} = require('../../utils/mongoose');
 
 const SALT = 10;
 
@@ -169,9 +170,21 @@ class UserController {
     }
 
     mycourse(req, res){
-        res.render('vwUser/mycourses', {
-            layout: 'user'
-        })
+        const userId = req.session.authUser._id;
+        User.findOne({_id: userId})
+            .then(user => user.courses)
+            .then(async courseIds => {
+                console.log("abc", courseIds);
+                let courses = [];
+                for(let id of courseIds) {
+                    const course = await Course.findOne({_id: id}).lean();
+                    courses.push(course);
+                }
+                res.render('vwUser/mycourses', {
+                    layout: 'user',
+                    courses
+                })
+            })
     }
 
     async addCourseBookmark(req, res, next){
