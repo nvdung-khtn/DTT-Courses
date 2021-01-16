@@ -18,6 +18,6 @@ router.get('/courses/:id', courseController.videoCourse);
 router.post('/courses/:slug', courseController.postComment);
 
 
-router.get('/addbookmark/:id', userController.addCourseBookmark);
+//router.get('/addbookmark/:id', userController.addCourseBookmark);
 
 module.exports = router;

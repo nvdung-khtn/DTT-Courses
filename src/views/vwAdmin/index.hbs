@@ -1,3 +1,16 @@
+{{#section 'css'}}
+<link rel="stylesheet" href="/css/admin/manage.css">
+{{/section}}
+
+{{#section 'js'}}
+<script>
+	var page = parseInt($('#page').text()) + 1;
+	$('.pager__item').eq(`${page}`).addClass('active')
+</script>
+{{/section}}
+
+
+<span id="page" style="display: none;">{{prev_page}}</span>
 <div class="wrapper">
 		<div class="row">
 			<div class="khoi">
@@ -53,7 +66,7 @@
 						<h3>
 							Quản lý khóa học nổi bật
 						</h3>
-						<div class="btn-reset">								
+						<div class="">								
 							<a href="/admin/resetIndex" class="reset"><i class="material-icons" title="Reset">wifi_protected_setup</i></a>
 						</div>
 					</div>
@@ -87,6 +100,29 @@
 							</tbody>
 						</table>
 					</div>
+					<nav>
+						<ul class="pager">
+							<li class="pager__item pager__item--prev" {{#if can_go_prev }}style="pointer-events: none;"{{/if}}>
+								<a class="pager__link" href="/admin?page={{prev_page}}">
+								<svg xmlns="" width="8" height="12" viewbox="0 0 8 12">
+									<g fill="none" fill-rule="evenodd">
+									<path fill="#33313C" d="M7.41 1.41L6 0 0 6l6 6 1.41-1.41L2.83 6z"></path>
+									</g>
+								</svg></a></li>
+							{{#each page_items}}
+								<li class="pager__item"><a class="pager__link" href="/admin?page={{value}}">{{value}}</a></li>
+							{{/each}}
+							<li class="pager__item pager__item--next" {{#if can_go_next }}style="pointer-events: none;"{{/if}} >
+								<a class="pager__link" href="/admin?page={{next_page}}">
+									<svg xmlns="" width="8" height="12" viewbox="0 0 8 12">
+										<g fill="none" fill-rule="evenodd">
+										<path fill="#33313C" d="M7.41 1.41L6 0 0 6l6 6 1.41-1.41L2.83 6z"></path>
+										</g>
+									</svg>
+								</a>
+							</li>
+						</ul>
+					</nav>
 				</div>
 			</div>
 		</div>
