@@ -20,9 +20,9 @@
 .product {
 }
 
-.card-body {
+/* .card-body {
     min-height: 190px;
-}
+} */
 
 .product-item:hover {
     text-decoration: none;
@@ -220,3 +220,125 @@
     font-size: 1.5rem;
 
 }
+
+/* CSS thể hiện khác biệt */
+.product-item__favourite{
+    position: absolute;
+    top: 10px;
+    left: -4px;
+    color: var(--primary-color);
+    background-color: var(--highlight-color);
+    font-size: 1.6rem;
+    font-weight: 500;
+    line-height: 1.6rem;
+    padding: 2px 6px 4px 0;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+/* Hướng dẫn làm label */
+.product-item__favourite::after{
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    background-color: var(--highlight-color);
+    border-top: 3px solid var(--highlight-color);
+    border-left: 3px solid transparent;
+    filter: brightness(60%);
+}
+
+.product-item__favourite span{
+    color: #FFF;
+}
+
+.product-item__favourite i{
+    color: #FFF;
+    font-size: 1rem;
+    margin: 0 2px 0 5px;
+}
+
+.product-item__sale-off{
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 40px;
+    height: 36px;
+    background-color: rgba(255, 216, 64, 0.92);
+    text-align: center;
+}
+
+.product-item__sale-off::after{
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    border-width: 0 20px 4px;
+    border-style: solid;
+    border-color: transparent rgba(255, 216, 64, 0.92) transparent rgba(255, 216, 64, 0.92);
+}
+
+.product-item__sale-off-percent{
+    color: #EE4D2D;
+    font-weight: 600;
+    font-size: 1.6rem;
+    line-height: 1.6rem;
+    position: relative;
+    top: 2px;
+}
+
+.product-item__sale-off-label{
+    font-size: 1.3rem;
+    line-height: 1.3rem;
+    font-weight: 600;
+    position: relative;
+    top: 5px;
+    color: var(--white-color);
+}
+
+.new-course .product-item__favourite::after {
+    background-color: var(--primary-color);
+    border-top: 3px solid var(--primary-color);
+}
+
+.new-course.product-item__favourite {
+    background-color: var(--primary-color);
+}
+
+/* Top lĩnh vực */
+.home-category {
+    margin-top: 30px;
+}
+
+.home-category__heading {
+    font-size: 3rem;
+    color: #111;
+    font-weight: 600;
+}
+
+.home-category__top5 {
+}
+
+.home-category__item {
+
+}
+
+.home-category__link {
+
+}
+
+.home-category__link:hover {
+    text-decoration: none;
+}
+
+.home-category__item-name {
+    color: #333;
+    font-size: 2.2rem;
+}
+
+.home-category__item-img {
+    height: 150px;
+}
+
+
+
