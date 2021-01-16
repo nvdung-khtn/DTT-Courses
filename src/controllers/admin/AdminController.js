@@ -22,18 +22,27 @@ class AdminController {
 
         const students = await User.find({permission:2}).lean();
         const lecturers = await User.find({permission:1}).lean();
-        const courses = await Course.find().lean();
-        const category = await Category.find().lean()
+        const courses = await Course.find().sort({nIndex: 1}).lean();
+        // courseService.getEveRating(courses);
+        courseService.convertStatusToStatusStringCourses(courses);
+        const category = await Category.find().lean();
+        const fields = await Field.find().lean();
         res.render('vwAdmin/index', {
             layout: "admin",
             students,
             lecturers,
-            courses,
-            category
+            courses: await courseService.getInforCourses(courses),
+            category,
+            fields
         });
     }
 
+    async resetIndex(req, res) {
+        const courses = await Course.find().lean();
+        // courseService.getSumIndex(courses);
+        res.redirect('/');
 
+    }
 
     // ---------------MANAGE STUDENT-----------------------
 
@@ -361,7 +370,7 @@ class AdminController {
         });
     }
 
-    updateCourse(req, res, next) {
+    updateCourse(req, res, next) {  
         const userData = {
             name : req.body.name,
             fieldId : req.body.field,

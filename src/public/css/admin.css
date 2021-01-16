@@ -557,7 +557,7 @@ table td .edit i:hover {
 	color: #44d444;
 }
 
-.btn-add {
+.btn-add .btn-reset{
 	background-color: #5bc0de;
 	font-weight: 400;
 	color: var(--white-color);
@@ -568,7 +568,7 @@ table td .edit i:hover {
 	transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
 
-.btn-add:hover {
+.btn-add:hover, .btn-reset:hover {
 	opacity: 0.8;
 }
 
@@ -576,6 +576,9 @@ table td .edit i:hover {
 	color: #fff;
 }
 
+.reset {
+	color: #333;
+}
 
 .material-icons {
 	text-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
@@ -637,4 +640,21 @@ table td .edit i:hover {
     overflow: hidden;
     text-overflow: ellipsis; 
 }
+
+.khoi {
+	width: 18%;
+    height: 100px;
+    margin: auto;
+    padding-bottom: 10%;
+}
+
+table {
+    counter-reset: tableCount;     
+}
+.counterCell:before {              
+    content: counter(tableCount); 
+    counter-increment: tableCount; 
+}
+
+
 

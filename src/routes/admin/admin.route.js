@@ -5,6 +5,7 @@ const adminController = require('../../controllers/admin/AdminController');
 
 
 router.get('/', adminController.index);
+router.get('/resetIndex', adminController.resetIndex);
 
 router.get('/course',adminController.manageCourse)
 router.get('/course/edit/:id',adminController.editCourse)
