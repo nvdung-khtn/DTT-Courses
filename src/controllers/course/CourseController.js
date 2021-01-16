@@ -6,7 +6,7 @@ const { getCommentBySlug } = require('./courseService');
 const User = require('../../models/User');
 
 
-const PAGE_SIZE = 4;
+const PAGE_SIZE = 8;
 var page;
 
 class CourseController {

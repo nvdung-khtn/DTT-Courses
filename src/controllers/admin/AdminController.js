@@ -19,11 +19,34 @@ var status;
 class AdminController {
     // [GET] /home
     async index(req, res) {
+        page = req.query.page;
+        page = parseInt(page);
+        if (page<1) {
+            page = 1;
+        }
+        const totalStudent = await Course.countDocuments();
+        const totalPage = Math.ceil(totalStudent/PAGE_SIZE);
+        if (page > totalPage) {
+            page = totalPage;
+        }
+        const page_items = [];
+        for ( var i = 1; i <= totalPage; i++) {
+            const item = {
+                value : i
+            }
+            page_items.push(item);
+        }
+        var skip = (page - 1)*PAGE_SIZE;
+
 
         const students = await User.find({permission:2}).lean();
         const lecturers = await User.find({permission:1}).lean();
-        const courses = await Course.find().sort({nIndex: 1}).lean();
-        // courseService.getEveRating(courses);
+        const courses = await Course.find()
+        .sort({nIndex: -1})
+        .skip(skip)
+        .limit(PAGE_SIZE)
+        .lean();
+        courseService.getEveRating(courses);
         courseService.convertStatusToStatusStringCourses(courses);
         const category = await Category.find().lean();
         const fields = await Field.find().lean();
@@ -33,14 +56,20 @@ class AdminController {
             lecturers,
             courses: await courseService.getInforCourses(courses),
             category,
-            fields
+            fields,
+            page_items,
+                prev_page : page - 1,
+                next_page : page + 1,
+                can_go_prev : (page <= 1),
+                can_go_next : (page >= totalPage),
+                disable_page : false
         });
     }
 
     async resetIndex(req, res) {
         const courses = await Course.find().lean();
-        // courseService.getSumIndex(courses);
-        res.redirect('/');
+        await courseService.getSumIndex(courses);
+        res.redirect('/admin');
 
     }
 
