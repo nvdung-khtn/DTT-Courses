@@ -127,6 +127,17 @@ module.exports = {
         return ret;
     },
 
+    // getEveRating(courses) {
+    //     courses.forEach(course => {
+    //         course.eveRating = Math.round((course.quantityRating/totalRating) * 100) / 100;
+    //     })
+    // },
+    // getSumIndex(courses) {
+    //     courses.forEach(course => {
+    //         course.nIndex = course.view*2 + course.quantityRating + course.totalRating;
+    //     })
+    // },
+
     modifyCoursesByLecturer(courses) {
         return courses.map(course => {
             return {
@@ -196,7 +207,7 @@ module.exports = {
     },
 
     updateRatingCourseBySlug: (slug, totalRating, countStarRating) => {
-        return Course.updateOne({slug: slug }, {$set: {totalRating: totalRating, rating: countStarRating}})
+        return Course.updateOne({slug: slug }, {$set: {totalRating: totalRating, quantityRating: countStarRating}})
         .exec()
         .then(()=> {
             console.log("Update total rating course success");

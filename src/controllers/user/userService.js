@@ -1,5 +1,6 @@
 const User = require('../../models/User');
 const Otp = require('../../models/Otp');
+const Course = require('../../models/Course');
 
 
 module.exports = {
@@ -89,5 +90,16 @@ module.exports = {
             return 'err'
         })
     },
+
+    getCourseById: (id) => {
+        return Course.find({_id: id })
+        .exec()
+        .then((data)=> {
+            return data[0];
+        })
+        .catch(err => {
+            return 'err'
+        })
+    }
 
 }

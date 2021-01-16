@@ -128,6 +128,7 @@ class CourseController {
             }
         }
     }*/
+    
     async show(req, res, next) {
         req.session.slug = req.params.slug;
         const course = await Course.findOne({ slug: req.params.slug }).lean();
@@ -260,7 +261,7 @@ class CourseController {
         let totalRating = courses.totalRating;
         totalRating = totalRating + 1;
         //console.log(totalRating);
-        const countStarRating = courses.rating + parseInt(data.rating, 10);
+        const countStarRating = courses.quantityRating + parseInt(data.rating, 10);
         await courseService.updateRatingCourseBySlug(req.params.slug, totalRating, countStarRating);
         Comment.create(newdata)
             .then(() => {
