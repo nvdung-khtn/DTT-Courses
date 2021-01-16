@@ -235,16 +235,9 @@ class CourseController {
             })
     }
 
-    postComment(req, res, next){
-        // if (!req.params.slug){
-        //     return res.redirect('/');
-        // }
-        // const user = req.session.authUser;
-        // if(!user){
-        //     return res.redirect('/account/login');
-        // }
+    async postComment(req, res, next){
         const data = req.body;
-        //console.log(data);
+        
         if(data.rating === undefined ){
             const url = '/courses/' + req.params.slug;
             return res.redirect(url);
@@ -261,7 +254,13 @@ class CourseController {
             cmt: data.comment,
             rate: parseInt(data.rating, 10), 
         }
-        
+        const courses = await courseService.getCourseBySlug(req.params.slug);
+        //console.log(course);
+        let totalRating = courses.totalRating;
+        totalRating = totalRating + 1;
+        //console.log(totalRating);
+        const countStarRating = courses.rating + parseInt(data.rating, 10);
+        await courseService.updateRatingCourseBySlug(req.params.slug, totalRating, countStarRating);
         Comment.create(newdata)
             .then(() => {
                 const url = '/courses/' + req.params.slug;
