@@ -1,6 +1,7 @@
 const userService = require('./userService');
 const bcrypt = require('bcryptjs');
 const Otp = require('../../models/Otp');
+const User = require('../../models/User');
 const nodemailer =  require('nodemailer');
 const {mongooseToObject} = require('../../utils/mongoose');
 
@@ -173,14 +174,35 @@ class UserController {
         })
     }
 
-    // async addCourseBookmark(req, res){
+    async addCourseBookmark(req, res, next){
         
-    //     let course = await userService.getCourseById(req.params.id);
-    //     course = mongooseToObject(course);
-    //     course.idUser = req.params.id;
-    //     console.log(course);
-    //     return res.redirect('/');
-    // }
+        let course = await userService.getCourseById(req.params.id);
+        course = mongooseToObject(course);
+        
+        const newData = {
+            id: course._id,
+            name: course.name,
+            initialPrice: course.initialPrice,
+            currentPrice: course.currentPrice,
+            folderName: course.folderName,
+            avatar: course.avatar,
+            totalRating: course.totalRating,
+            quantityRating: course.quantityRating
+        }
+        
+        let listcourse = req.session.authUser.favorCourse;
+
+        listcourse.forEach(element => {
+            if(element.id === newData.id){
+                console.log("Bạn đã yêu thích khóa học");
+                return res.redirect('back');
+            }
+        });
+        listcourse.push(newData);
+        console.log(listcourse);
+        await userService.updateListCourseUserById(req.session.authUser._id, listcourse);
+        return res.redirect('back');
+    }
 }
 
 module.exports = new UserController();

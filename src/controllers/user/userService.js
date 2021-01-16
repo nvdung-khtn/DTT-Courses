@@ -100,6 +100,15 @@ module.exports = {
         .catch(err => {
             return 'err'
         })
-    }
-
+    },
+    updateListCourseUserById: (id, listcourse ) => {
+        return User.updateOne({_id: id }, {$set: {favorCourse: listcourse}})
+        .exec()
+        .then(()=> {
+            console.log("Thêm yêu thích thành công");
+        })
+        .catch(err => {
+            return err
+        })
+    },
 }
