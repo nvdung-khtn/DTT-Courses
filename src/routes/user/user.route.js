@@ -19,5 +19,5 @@ router.post('/courses/:slug', courseController.postComment);
 
 
 router.get('/addbookmark/:id', userController.addCourseBookmark);
-
+router.get('/deletebookmark/:id', userController.removeCourseBookmark);
 module.exports = router;
