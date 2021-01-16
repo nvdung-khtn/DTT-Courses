@@ -116,9 +116,10 @@ module.exports = {
         };
     },
     // Thêm tên lính vực và tên giảng viên
-    async getInforCourses(courses) {
+    async getInforCourses(courses, ids = []) {
         const ret = [];
         for(course of courses) {
+            ids.push(course._id);
             const result = await this.getInforCourse(course);
             ret.push(result);
         }
