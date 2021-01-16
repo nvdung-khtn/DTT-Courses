@@ -21,7 +21,11 @@
                     </div>
                     <div class="form-group">
                         <input type="text" id="email" name="email" placeholder="Email..." />
-                        <span class="form-message"></span><span class="message-clone">0</span>
+                        <span class="form-message" style="color: red;">
+                            {{#if err_message}}
+                                Email đã được sử dụng
+                            {{/if}}
+                        </span><span class="message-clone">0</span>
                     </div>
                     <div class="form-group">
                         <input type="password" id="password" name="password" placeholder="Mật khẩu..."/> 

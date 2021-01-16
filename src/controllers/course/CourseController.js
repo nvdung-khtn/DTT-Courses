@@ -239,6 +239,7 @@ class CourseController {
         const data = req.body;
         
         if(data.rating === undefined ){
+            console.log("Vui lòng chọn sao đánh giá");
             const url = '/courses/' + req.params.slug;
             return res.redirect(url);
         }
