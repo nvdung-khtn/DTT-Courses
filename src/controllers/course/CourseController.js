@@ -24,7 +24,7 @@ class CourseController {
             if (!stringSearch) {
                 totalCourse = await Course.countDocuments();
             } else {
-                const courses_search = await Course.find({$text: {$search: stringSearch}}).lean();
+                const courses_search = await Course.find({$text: {$search: stringSearch}, status: true}).lean();
                 totalCourse = courses_search.length;
             }
             
@@ -50,23 +50,22 @@ class CourseController {
                 .limit(PAGE_SIZE).lean();
             } 
             if (stringSearch && !filter) {
-                courses = await Course.find({$text: {$search: stringSearch}})
+                courses = await Course.find({$text: {$search: stringSearch}, status: true})
                 .skip(skip)
                 .limit(PAGE_SIZE).lean();
             }
             if (stringSearch && filter==="index"){
-                courses = await Course.find({$text: {$search: stringSearch}})
+                courses = await Course.find({$text: {$search: stringSearch}, status: true})
                 .sort({nIndex: 1})
                 .skip(skip)
                 .limit(PAGE_SIZE).lean();
             }
             if (stringSearch && filter==="price"){
-                courses = await Course.find({$text: {$search: stringSearch}})
+                courses = await Course.find({$text: {$search: stringSearch}, status: true})
                 .sort({currentPrice: 1 })
                 .skip(skip)
                 .limit(PAGE_SIZE).lean();
             }}
-            
             return res.render('home_fullCourse', {
                 courses: await courseService.getInforCourses(courses),
                 page_items,
