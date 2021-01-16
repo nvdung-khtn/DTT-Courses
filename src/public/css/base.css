@@ -8,6 +8,7 @@
     --star-gold-color: #eb8a2f;
     --second-text-color: #333;
     --error-color: #f33a58;
+    --highlight-color: #ec5252;
 }
 
 @media (min-width: 1200px) {

@@ -1,4 +1,3 @@
-
 {{#section 'js'}}
 <script>
     $(document).ready(function () {
@@ -29,7 +28,8 @@
             <div class="col-sm-3 mb-4">
                 <a href="/courses/{{slug}}" class="product-item">
                     <div class="card card-item">
-                        <img src="/products/{{folderName}}/images/{{avatar}}" class="product-item__img card-img-top" alt="avatar" title="avatar of course">
+                        <img src="/products/{{folderName}}/images/{{avatar}}" class="product-item__img card-img-top"
+                            alt="avatar" title="avatar of course">
                         <div class="card-body">
                             <h5 class="card-title product-item__title">{{name}}</h5>
                             <h4 class="card-subtitle mb-2 text-muted">{{lecName}}</h4>
@@ -46,6 +46,15 @@
                             <div class="product-item__price mt-1">
                                 <span class="product-item__price-old">{{initialPrice}}</span>
                                 <span class="product-item__price-current">{{currentPrice}}</span>
+                            </div>
+                            {{!-- Thể hiện biểu tượng --}}
+                            <div class="product-item__favourite">
+                                <i class="fas fa-check"></i>
+                                <span>Bestseller</span>
+                            </div>
+                            <div class="product-item__sale-off">
+                                <span class="product-item__sale-off-percent">43%</span>
+                                <span class="product-item__sale-off-label">GIẢM</span>
                             </div>
                         </div>
                         <div class="card-footer  product-item__footer">
@@ -63,7 +72,9 @@
             </div>
             {{/each}}
             <div class="col-sm-12 d-flex justify-content-center mt-2 mb-1">
-                <a id="showCoursesBtn" class="btn btn-lg btn-success viewAllBtn" href="/courses?page=1" role="button">Tất cả khóa học</a>
+                <a style="font-size: 1.6rem; border-radius: 20px;" id="showCoursesBtn" class="btn btn-lg btn-success viewAllBtn" href="/courses?page=1" role="button">
+                    Tất cả khóa học
+                </a>
             </div>
         </div>
 
@@ -77,38 +88,40 @@
                 {{#each mostViewedCourses}}
                 <div class="mySlickShow">
                     <a href="/courses/{{slug}}" class="product-item">
-                    <div class="card card-item">
-                        <img src="/products/{{folderName}}/images/{{avatar}}" class="product-item__img card-img-top" alt="avatar" title="avatar of course">
-                        <div class="card-body">
-                            <h5 class="card-title product-item__title">{{name}}</h5>
-                            <h4 class="card-subtitle mb-2 text-muted">{{lecName}}</h4>
-                            <span class="card-text product-item__category">Lĩnh vực: {{fieldName}}</span>
-                            <div class="product-item__rating">
-                                <span class="product-item__total-star">{{rating}}</span>
-                                <i class="product-item__star--gold fas fa-star"></i>
-                                <i class="product-item__star--gold fas fa-star"></i>
-                                <i class="product-item__star--gold fas fa-star"></i>
-                                <i class="product-item__star--gold fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <h6 class="product-item__total-rating card-subtitle text-muted">({{totalRating}})</h6>
+                        <div class="card card-item">
+                            <img src="/products/{{folderName}}/images/{{avatar}}" class="product-item__img card-img-top"
+                                alt="avatar" title="avatar of course">
+                            <div class="card-body">
+                                <h5 class="card-title product-item__title">{{name}}</h5>
+                                <h4 class="card-subtitle mb-2 text-muted">{{lecName}}</h4>
+                                <span class="card-text product-item__category">Lĩnh vực: {{fieldName}}</span>
+                                <div class="product-item__rating">
+                                    <span class="product-item__total-star">{{rating}}</span>
+                                    <i class="product-item__star--gold fas fa-star"></i>
+                                    <i class="product-item__star--gold fas fa-star"></i>
+                                    <i class="product-item__star--gold fas fa-star"></i>
+                                    <i class="product-item__star--gold fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <h6 class="product-item__total-rating card-subtitle text-muted">({{totalRating}})
+                                    </h6>
+                                </div>
+                                <div class="product-item__price mt-1">
+                                    <span class="product-item__price-old">{{initialPrice}}</span>
+                                    <span class="product-item__price-current">{{currentPrice}}</span>
+                                </div>
                             </div>
-                            <div class="product-item__price mt-1">
-                                <span class="product-item__price-old">{{initialPrice}}</span>
-                                <span class="product-item__price-current">{{currentPrice}}</span>
+                            <div class="card-footer  product-item__footer">
+                                <a class="btn btn-outline-danger mr-3" href="#" role="button">
+                                    <i class="fas fa-heart"></i>
+                                    Yêu Thích
+                                </a>
+                                <a class="btn btn-outline-success" href="/cart/add/{{_id}}" role="button">
+                                    <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                                    Thêm Giỏ Hàng
+                                </a>
                             </div>
                         </div>
-                        <div class="card-footer  product-item__footer">
-                            <a class="btn btn-outline-danger mr-3" href="#" role="button">
-                                <i class="fas fa-heart"></i>
-                                Yêu Thích
-                            </a>
-                            <a class="btn btn-outline-success" href="/cart/add/{{_id}}" role="button">
-                                <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                                Thêm Giỏ Hàng
-                            </a>
-                        </div>
-                    </div>
-                </a>
+                    </a>
                 </div>
                 {{/each}}
             </div>
@@ -120,45 +133,129 @@
             <div class="col-sm-12">
                 <h2 class="text-left group-product-heading mt-5 mb-3">Khóa học mới nhất</h2>
             </div>
-             <!-- Carousel khóa học mới nhất -->
+            <!-- Carousel khóa học mới nhất -->
             <div class="myCarousel col-sm-12">
                 {{#each newCourses}}
                 <div class="mySlickShow">
                     <a href="/courses/{{slug}}" class="product-item">
-                    <div class="card card-item">
-                        <img src="/products/{{folderName}}/images/{{avatar}}" class="product-item__img card-img-top" alt="avatar" title="avatar of course">
-                        <div class="card-body">
-                            <h5 class="card-title product-item__title">{{name}}</h5>
-                            <h4 class="card-subtitle mb-2 text-muted">{{lecName}}</h4>
-                            <span class="card-text product-item__category">Lĩnh vực: {{fieldName}}</span>
-                            <div class="product-item__rating">
-                                <span class="product-item__total-star">{{rating}}</span>
-                                <i class="product-item__star--gold fas fa-star"></i>
-                                <i class="product-item__star--gold fas fa-star"></i>
-                                <i class="product-item__star--gold fas fa-star"></i>
-                                <i class="product-item__star--gold fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <h6 class="product-item__total-rating card-subtitle text-muted">({{totalRating}})</h6>
+                        <div class="card card-item">
+                            <img src="/products/{{folderName}}/images/{{avatar}}" class="product-item__img card-img-top"
+                                alt="avatar" title="avatar of course">
+                            <div class="card-body">
+                                <h5 class="card-title product-item__title">{{name}}</h5>
+                                <h4 class="card-subtitle mb-2 text-muted">{{lecName}}</h4>
+                                <span class="card-text product-item__category">Lĩnh vực: {{fieldName}}</span>
+                                <div class="product-item__rating">
+                                    <span class="product-item__total-star">{{rating}}</span>
+                                    <i class="product-item__star--gold fas fa-star"></i>
+                                    <i class="product-item__star--gold fas fa-star"></i>
+                                    <i class="product-item__star--gold fas fa-star"></i>
+                                    <i class="product-item__star--gold fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <h6 class="product-item__total-rating card-subtitle text-muted">({{totalRating}})
+                                    </h6>
+                                </div>
+                                <div class="product-item__price mt-1">
+                                    <span class="product-item__price-old">{{initialPrice}}</span>
+                                    <span class="product-item__price-current">{{currentPrice}}</span>
+                                </div>
+                                {{!-- Thể hiện biểu tượng --}}
+                                <div class="new-course product-item__favourite">
+                                    {{!-- <i class="fas fa-check"></i> --}}
+                                    <i class="fab fa-discourse"></i>
+                                    <span>New</span>
+                                </div>
+                                <div class="product-item__sale-off">
+                                    <span class="product-item__sale-off-percent">43%</span>
+                                    <span class="product-item__sale-off-label">GIẢM</span>
+                                </div>
                             </div>
-                            <div class="product-item__price mt-1">
-                                <span class="product-item__price-old">{{initialPrice}}</span>
-                                <span class="product-item__price-current">{{currentPrice}}</span>
+                            <div class="card-footer  product-item__footer">
+                                <a class="btn btn-outline-danger mr-3" href="#" role="button">
+                                    <i class="fas fa-heart"></i>
+                                    Yêu Thích
+                                </a>
+                                <a class="btn btn-outline-success" href="/cart/add/{{_id}}" role="button">
+                                    <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                                    Thêm Giỏ Hàng
+                                </a>
                             </div>
                         </div>
-                        <div class="card-footer  product-item__footer">
-                            <a class="btn btn-outline-danger mr-3" href="#" role="button">
-                                <i class="fas fa-heart"></i>
-                                Yêu Thích
-                            </a>
-                            <a class="btn btn-outline-success" href="/cart/add/{{_id}}" role="button">
-                                <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                                Thêm Giỏ Hàng
-                            </a>
-                        </div>
-                    </div>
-                </a>
+                    </a>
                 </div>
                 {{/each}}
+            </div>
+        </div>
+    </div>
+
+    <div class="home-category">
+        <h1 class="home-category__heading">Top 5 lĩnh vực được xem nhiều nhất trong tuần qua</h1>
+        <div class="row row-cols-5 text-center">
+            <div class="home-category__top5 col">
+                <div class="home-category__item">
+                    <a href="" class="home-category__link">
+                        <div class="card" style="">
+                            <img src="/image/home/main_thumbs.jpg" class="card-img-top home-category__item-img"
+                                alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title home-category__item-name">Javascript</h5>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="home-category__top5 col">
+                <div class="home-category__item">
+                    <a href="" class="home-category__link">
+                        <div class="card" style="">
+                            <img src="/image/home/main_thumbs.jpg" class="card-img-top home-category__item-img"
+                                alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title home-category__item-name">Javascript</h5>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="home-category__top5 col">
+                <div class="home-category__item">
+                    <a href="" class="home-category__link">
+                        <div class="card" style="">
+                            <img src="/image/home/main_thumbs.jpg" class="card-img-top home-category__item-img"
+                                alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title home-category__item-name">Javascript</h5>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="home-category__top5 col">
+                <div class="home-category__item">
+                    <a href="" class="home-category__link">
+                        <div class="card" style="">
+                            <img src="/image/home/main_thumbs.jpg" class="card-img-top home-category__item-img"
+                                alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title home-category__item-name">Javascript</h5>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="home-category__top5 col">
+                <div class="home-category__item">
+                    <a href="" class="home-category__link">
+                        <div class="card" style="">
+                            <img src="/image/home/main_thumbs.jpg" class="card-img-top home-category__item-img"
+                                alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title home-category__item-name">Javascript</h5>
+                            </div>
+                        </div>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
