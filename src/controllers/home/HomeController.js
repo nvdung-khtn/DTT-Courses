@@ -15,9 +15,11 @@ class SiteController {
             .then(async coursesDB => {
                 // convert Mongoose Object to Object Literals
                 const courses = await courseService.getInforCourses(multipleMongooseToObject(coursesDB));
+                // Customize Course
+                //console.log(courses);
                 const hightLightCourse = homeService.getHighLightCourse(courses, 4);
-                const mostViewedCourses = homeService.getMostViewedCourse(courses, 4);
-                const newCourses = homeService.getNewCourse(courses,5);
+                const mostViewedCourses = homeService.getMostViewedCourse(courses, 10);
+                const newCourses = homeService.getNewCourse(courses, 10);
                 
                 res.render('home', { 
                     hightLightCourse,

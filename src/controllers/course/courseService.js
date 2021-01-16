@@ -91,12 +91,31 @@ module.exports = {
         // };
         const lecturer = await User.findById(course.lecId, 'name');
         const field = await Field.findById(course.fieldId, 'name');
+        const initialPrice = course.initialPrice;
+        const currentPrice = course.currentPrice;
+
+        // Tính điểm rating
+        let ratingPoint = 0;
+        if(course.totalRating) {
+            ratingPoint = (course.quantityRating / course.totalRating).toFixed(1);
+        }
+
+        // Tính phần trăm giảm giá
+        let saleOffPercent = 0;
+        if(currentPrice) {
+            saleOffPercent = Math.round(((initialPrice - currentPrice) / initialPrice) * 100);
+        }
+        console.log(saleOffPercent);
+
         return {
             ...course,
             lecName: lecturer.name,
             fieldName: field.name,
+            ratingPoint,
+            saleOffPercent
         };
     },
+    // Thêm tên lính vực và tên giảng viên
     async getInforCourses(courses) {
         const ret = [];
         for(course of courses) {
@@ -106,6 +125,17 @@ module.exports = {
         
         return ret;
     },
+
+    // getEveRating(courses) {
+    //     courses.forEach(course => {
+    //         course.eveRating = Math.round((course.quantityRating/totalRating) * 100) / 100;
+    //     })
+    // },
+    // getSumIndex(courses) {
+    //     courses.forEach(course => {
+    //         course.nIndex = course.view*2 + course.quantityRating + course.totalRating;
+    //     })
+    // },
 
     modifyCoursesByLecturer(courses) {
         return courses.map(course => {

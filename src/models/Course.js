@@ -31,7 +31,8 @@ const Course = new Schema({
     fullDes: String,
     nIndex: Number,
     quantity: Number,
-    lessons: [Lesson]
+    lessons: [Lesson],
+    fieldName: String,
 }, {
     timestamps: true,
 });

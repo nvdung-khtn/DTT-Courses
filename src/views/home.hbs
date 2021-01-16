@@ -1,4 +1,9 @@
+{{#section 'css'}}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">
+{{/section}}
+
 {{#section 'js'}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
 <script>
     $(document).ready(function () {
         $('.myCarousel').slick({
@@ -8,6 +13,12 @@
             nextArrow: "<button type='button' class='slick-prev'>Next</button>",
             prevArrow: "<button type='button' class='slick-next'>Previous</button>",
             draggable: false,
+        });
+        $(".rateYo").rateYo({
+            starWidth: "20px",
+            readOnly: true,
+            rating: 4,
+            spacing: "5px"
         });
     });
 </script>
@@ -34,6 +45,7 @@
                             <h5 class="card-title product-item__title">{{name}}</h5>
                             <h4 class="card-subtitle mb-2 text-muted">{{lecName}}</h4>
                             <span class="card-text product-item__category">Lĩnh vực: {{fieldName}}</span>
+                            {{#if ratingPoint}}
                             <div class="product-item__rating">
                                 <span class="product-item__total-star">{{rating}}</span>
                                 <i class="product-item__star--gold fas fa-star"></i>
@@ -42,7 +54,13 @@
                                 <i class="product-item__star--gold fas fa-star"></i>
                                 <i class="fas fa-star"></i>
                                 <h6 class="product-item__total-rating card-subtitle text-muted">({{totalRating}})</h6>
+                                <div class="rateYo1"></div>
+                                <div class="rateYo2"></div>
+                                <script>
+                                   
+                                </script>
                             </div>
+                            {{/if}}
                             <div class="product-item__price mt-1">
                                 <span class="product-item__price-old">{{initialPrice}}</span>
                                 <span class="product-item__price-current">{{currentPrice}}</span>
@@ -52,10 +70,12 @@
                                 <i class="fas fa-check"></i>
                                 <span>Bestseller</span>
                             </div>
+                            {{#if saleOffPercent}}
                             <div class="product-item__sale-off">
-                                <span class="product-item__sale-off-percent">43%</span>
+                                <span class="product-item__sale-off-percent">{{saleOffPercent}}%</span>
                                 <span class="product-item__sale-off-label">GIẢM</span>
                             </div>
+                            {{/if}}
                         </div>
                         <div class="card-footer  product-item__footer">
                             <a class="btn btn-outline-danger mr-3" href="/user/addbookmark/{{_id}}" role="button">
@@ -72,7 +92,8 @@
             </div>
             {{/each}}
             <div class="col-sm-12 d-flex justify-content-center mt-2 mb-1">
-                <a style="font-size: 1.6rem; border-radius: 20px;" id="showCoursesBtn" class="btn btn-lg btn-success viewAllBtn" href="/courses?page=1" role="button">
+                <a style="font-size: 1.6rem; border-radius: 20px;" id="showCoursesBtn"
+                    class="btn btn-lg btn-success viewAllBtn" href="/courses?page=1" role="button">
                     Tất cả khóa học
                 </a>
             </div>
