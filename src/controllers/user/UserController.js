@@ -163,8 +163,10 @@ class UserController {
     }
 
     listcoursebookmark(req, res){
+        const listcourse = req.session.authUser.favorCourse;
         res.render('vwUser/bookmark', {
-            layout: 'user'
+            layout: 'user',
+            listcourse
         })
     }
 
@@ -182,26 +184,49 @@ class UserController {
         const newData = {
             id: course._id,
             name: course.name,
+            quantityRating: course.quantityRating,
+            totalRating: course.totalRating,
             initialPrice: course.initialPrice,
             currentPrice: course.currentPrice,
-            folderName: course.folderName,
+            fieldId: course.fieldId,
+            lecId: course.lecId,
+            folderName: course.folderName, 
             avatar: course.avatar,
-            totalRating: course.totalRating,
-            quantityRating: course.quantityRating
+            slug: course.slug
         }
         
         let listcourse = req.session.authUser.favorCourse;
-
+        let check = true;
         listcourse.forEach(element => {
-            if(element.id === newData.id){
-                console.log("Bạn đã yêu thích khóa học");
-                return res.redirect('back');
+            if(element.id == course._id){
+                check = false;
             }
         });
-        listcourse.push(newData);
-        console.log(listcourse);
+        if(check === false){
+            console.log("Bạn đã yêu thích khóa học");
+            return res.redirect('back');
+        }else{
+            listcourse.push(newData);
+            console.log(listcourse);
+            await userService.updateListCourseUserById(req.session.authUser._id, listcourse);
+            return res.redirect('back');
+        }
+    }
+    async removeCourseBookmark(req, res, next){
+        const iddel = req.params.id;
+        
+        let listcourse = req.session.authUser.favorCourse;
+        
+        for (let i = 0; i < listcourse.length; i++) {
+            if(listcourse[i].id == iddel){
+                const newlistaccount = listcourse.splice(i, 1);
+                console.log(newlistaccount);
+            }
+        }
+        
         await userService.updateListCourseUserById(req.session.authUser._id, listcourse);
-        return res.redirect('back');
+        const url = '/user/listbookmark/' + req.session.authUser._id;
+        return res.redirect(url);
     }
 }
 

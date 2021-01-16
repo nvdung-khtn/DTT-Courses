@@ -2,18 +2,23 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const ObjectId = Schema.ObjectId;
 
-const FavorCourse = new Schema({
+
+const courses = new Schema({
     id: String,
     name: String,
+    quantityRating: Number,
+    totalRating: Number,
     initialPrice: Number,
     currentPrice: Number,
-    folderName: String,
+    fieldId: String,
+    lecId: String,
+    folderName: String, 
     avatar: String,
-    rating: Number,
-    quantityRating: Number
+    slug: String
 }, {
     timestamps: true
 });
+
 const User = new Schema({
     password: String,
     name: String,
@@ -25,7 +30,7 @@ const User = new Schema({
     permission: Number,
     courses: [mongoose.ObjectId],
     status: Boolean,
-    favorCourse: [FavorCourse]
+    favorCourse: [courses],
 }, {
     timestamps: true,
 });
