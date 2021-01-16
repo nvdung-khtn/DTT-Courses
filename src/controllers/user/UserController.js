@@ -2,7 +2,7 @@ const userService = require('./userService');
 const bcrypt = require('bcryptjs');
 const Otp = require('../../models/Otp');
 const nodemailer =  require('nodemailer');
-
+const {mongooseToObject} = require('../../utils/mongoose');
 
 const SALT = 10;
 
@@ -172,6 +172,15 @@ class UserController {
             layout: 'user'
         })
     }
+
+    // async addCourseBookmark(req, res){
+        
+    //     let course = await userService.getCourseById(req.params.id);
+    //     course = mongooseToObject(course);
+    //     course.idUser = req.params.id;
+    //     console.log(course);
+    //     return res.redirect('/');
+    // }
 }
 
 module.exports = new UserController();

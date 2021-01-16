@@ -176,7 +176,7 @@ module.exports = {
     },
 
     updateRatingCourseBySlug: (slug, totalRating, countStarRating) => {
-        return Course.updateOne({slug: slug }, {$set: {totalRating: totalRating, rating: countStarRating}})
+        return Course.updateOne({slug: slug }, {$set: {totalRating: totalRating, quantityRating: countStarRating}})
         .exec()
         .then(()=> {
             console.log("Update total rating course success");

@@ -119,25 +119,7 @@
                                     </li>
                                 </ul>
                             </div>
-                            {{!-- <div class="header__category-dropdown-field">
-                                <ul class="header__category-dropdown-list1">
-                                    <li class="header__category-dropdown-item">
-                                        <a href="">Lĩnh vực phổ biến</a>
-                                    </li>
-                                    <li class="header__category-dropdown-item">
-                                        <a href="">Lập trình ứng dụng Web</a>
-                                    </li>
-                                    <li class="header__category-dropdown-item">
-                                        <a href="">Lập trình ứng dụng di động</a>
-                                    </li>
-                                    <li class="header__category-dropdown-item">
-                                        <a href="">Tin học văn phòng</a>
-                                    </li>
-                                    <li class="header__category-dropdown-item">
-                                        <a href="">Lập trình ứng dụng</a>
-                                    </li>
-                                </ul>
-                            </div> --}}
+                            
                         </div>
 
                     </div>
@@ -173,19 +155,20 @@
                     {{/if}}
                 </a>
                 <ul class="user-login">
-                    <li class="user1">
+                    <li class="user1" style="min-width: 150px;">
                         <img src="/image/login/avt.jpg" alt="avatar" class="avt">
-                        <b>{{authUser.name}}</b>
+                        <b style="font-size: 1.5rem;">{{authUser.name}}</b>
                         <ul class="subuser">
-                            <li class="sub-menu-choose"><a href="/user/manage/{{authUser._id}}" class="link"><i
-                                        class="fas fa-cog mr-2"></i>Quản lý tài khoản</a></li>
-                            <li class="sub-menu-choose"><a href="/user/mycourses/{{authUser._id}}" class="link"><i
+                            <li class="sub-menu-choose" style="font-size: 1.5rem;">
+                                <a href="/user/manage/{{authUser._id}}" class="link"><i class="fas fa-cog mr-2"></i>Quản lý tài khoản</a>
+                            </li>
+                            <li class="sub-menu-choose" style="font-size: 1.5rem;"><a href="/user/mycourses/{{authUser._id}}" class="link"><i
                                         class="fas fa-list mr-2"></i>Khóa học của tôi</a></li>
-                            <li class="sub-menu-choose"><a href="/user/listbookmark/{{authUser._id}}" class="link"><i
+                            <li class="sub-menu-choose" style="font-size: 1.5rem;"><a href="/user/listbookmark/{{authUser._id}}" class="link"><i
                                         class="fas fa-clipboard-list mr-2"></i>Khóa học yêu thích</a></li>
-                            <li class="sub-menu-choose"><a href="/user/changepassword/{{authUser._id}}" class="link"><i
+                            <li class="sub-menu-choose" style="font-size: 1.5rem;"><a href="/user/changepassword/{{authUser._id}}" class="link"><i
                                         class="fas fa-key mr-2"></i></i>Đổi mật khẩu</a></li>
-                            <li class="sub-menu-choose"><span class="link" onclick="resetOtp()">
+                            <li class="sub-menu-choose" style="font-size: 1.5rem;"><span class="link" onclick="resetOtp()">
                                     <i class="fas fa-sign-out-alt mr-2"></i>Đăng xuất</span>
                             </li>
                         </ul>
@@ -194,17 +177,17 @@
                 {{else}}
                 {{#if isAuthLecturer}}
                 <ul class="user-login">
-                    <li class="user1">
+                    <li class="user1" style="min-width: 150px;">
                         <img src="/image/login/avt.jpg" alt="avatar" class="avt">
-                        <b>GV. {{authUser.name}}</b>
+                        <b style="font-size: 1.5rem;">GV. {{authUser.name}}</b>
                         <ul class="subuser">
-                            <li class="sub-menu-choose"><a href="/lecturer/courses" class="link"><i
+                            <li class="sub-menu-choose" style="font-size: 1.5rem;"><a href="/lecturer/courses" class="link"><i
                                         class="fas fa-list mr-2"></i>Quản lý khóa học</a></li>
-                            <li class="sub-menu-choose"><a href="/lecturer/profile" class="link"><i
+                            <li class="sub-menu-choose" style="font-size: 1.5rem;"><a href="/lecturer/profile" class="link"><i
                                         class="fas fa-cog mr-2"></i>Quản lý tài khoản</a></li>
-                            <li class="sub-menu-choose"><a href="/user/changepassword/{{authUser._id}}" class="link"><i
+                            <li class="sub-menu-choose" style="font-size: 1.5rem;"><a href="/user/changepassword/{{authUser._id}}" class="link"><i
                                         class="fas fa-key mr-2"></i></i>Đổi mật khẩu</a></li>
-                            <li class="sub-menu-choose"><span class="link" onclick="resetOtp()">
+                            <li class="sub-menu-choose" style="font-size: 1.5rem;"><span class="link" onclick="resetOtp()">
                                     <i class="fas fa-sign-out-alt mr-2"></i>Đăng xuất</span>
                             </li>
                         </ul>
