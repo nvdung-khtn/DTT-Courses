@@ -37,7 +37,9 @@ const sendMail = (email) => {
     content += `
         <div>
             <div>
+                <p>Xin chào bạn. Chúng tôi là công ty DDT Courses</p>
                 <span style="color: black">Mã xác nhận email của bạn là: <b>${otp}</b> </span>
+                <p>Cảm ơn bạn đã sử dụng dịch vụ của chúng tôi </p>
             </div>
         </div>
     `;
@@ -88,7 +90,9 @@ const sendMailForgotPassword = (email) => {
     content += `
         <div>
             <div>
+                <p>Xin chào bạn. Chúng tôi là công ty DDT Courses</p>
                 <span style="color: black">Mã xác nhận email của bạn là: <b>${otp}</b> </span>
+                <p>Cảm ơn bạn đã sử dụng dịch vụ của chúng tôi </p>
             </div>
         </div>
     `;
@@ -202,9 +206,9 @@ class AccountController {
         const checkEmail = await accountService.findUserByEmail(req.body.email);
         if (checkEmail === false){
             console.log("Email đã được sử dụng");
-            //swal.fire('Oops...', 'Something went wrong!', 'error')
             return res.render('vwAccount/register', {
                 layout: false,
+                err_message: true
             });
         }
 
@@ -221,7 +225,7 @@ class AccountController {
     }
 
     // [GET] account/confirm
-    async confirmRegister(req, res) {
+    confirmRegister(req, res) {
         if(req.session.isRegister !== true ){
             return res.redirect('/account/register');
         }
@@ -265,7 +269,7 @@ class AccountController {
             //return res.json({status: false})
             res.render('vwAccount/confirmregister', {
                 layout: false,
-                alert: false
+                err_message: true
             });
         }
         

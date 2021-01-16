@@ -10,6 +10,7 @@ router.get('/changepassword/:id', userController.changepassword);
 router.post('/changepassword', userController.postChangePassword);
 router.get('/confirm', userController.confirm);
 router.post('/confirm', userController.postconfirm);
+
 router.get('/listbookmark/:id', userController.listcoursebookmark);
 router.get('/mycourses/:id', userController.mycourse);
 

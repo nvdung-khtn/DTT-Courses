@@ -15,9 +15,9 @@ const Lesson = new Schema({
 const Course = new Schema({
     name: String,
     slug: { type: String, slug: "name", unique: true },
-    rating: Number,
+    quantityRating: Number,  //tổng số điểm rate.
     tinyDes: String,
-    totalRating: Number,
+    totalRating: Number,  //SỐ lượng rating
     folderName: String,
     avatar: String,
     introVideo: String,
@@ -31,7 +31,8 @@ const Course = new Schema({
     fullDes: String,
     nIndex: Number,
     quantity: Number,
-    lessons: [Lesson]
+    lessons: [Lesson],
+    fieldName: String,
 }, {
     timestamps: true,
 });
