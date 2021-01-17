@@ -56,9 +56,9 @@
             {{#each courses}}
             <div class="col-sm-3 mb-5">
                 <a href="/courses/{{slug}}" class="product-item">
-                    <div class="card card-item">
+                    <div class="card card-item hightlight">
                         <img src="/products/{{folderName}}/images/{{avatar}}" class="product-item__img card-img-top" alt="avatar" title="avatar of course">
-                        <div class="card-body">
+                        <div class="card-body hightlight">
                             <h5 class="card-title product-item__title">{{name}}</h5>
                             <h4 class="card-subtitle mb-2 text-muted">{{lecName}}</h4>
                             <span class="card-text product-item__category">Lĩnh vực: {{fieldName}}</span>
@@ -72,8 +72,8 @@
                                 <h6 class="product-item__total-rating card-subtitle text-muted">({{totalRating}})</h6>
                             </div>
                             <div class="product-item__price mt-1">
-                                <span class="product-item__price-old">{{initialPrice}}</span>
-                                <span class="product-item__price-current">{{currentPrice}}</span>
+                                <span class="product-item__price-old">{{format initialPrice}}</span>
+                                <span class="product-item__price-current">{{format currentPrice}}</span>
                             </div>
                         </div>
                         <div class="card-footer  product-item__footer">

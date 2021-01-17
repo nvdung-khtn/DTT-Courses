@@ -79,8 +79,10 @@ class CourseController {
                     .lean();
             }
         }
+        let ids = [];
         return res.render('home_fullCourse', {
-            courses: await courseService.getInforCourses(courses),
+            //courses: await courseService.getInforCourses(courses),
+            courses: await courseService.getInforCourses(courses, ids),
             page_items,
             prev_page: page - 1,
             next_page: page + 1,
@@ -89,6 +91,7 @@ class CourseController {
             stringSearch,
             empty: courses.length === 0,
             filter,
+            ids
         });
     }
 
