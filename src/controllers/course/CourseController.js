@@ -238,7 +238,25 @@ class CourseController {
 
     async postComment(req, res, next){
         const data = req.body;
-        
+
+        const courses = await courseService.getCourseBySlug(req.params.slug);
+        console.log(courses);
+        // const list_student = courses.students;
+        // let checkStudent = false;
+
+        // for (let i = 0; i < list_student.length; i++) {
+        //     const element = list_student[i];
+        //     if (element.id === req.session.authUser._id){
+        //         checkStudent = true;
+        //     }
+        // }
+
+        // if (checkStudent === false){
+        //     console.log("Vui lòng đánh giá khóa học để được học");
+        //     const url = '/courses/' + req.params.slug;
+        //     return res.redirect(url);
+        // }
+
         if(data.rating === undefined ){
             console.log("Vui lòng chọn sao đánh giá");
             const url = '/courses/' + req.params.slug;
@@ -256,7 +274,7 @@ class CourseController {
             cmt: data.comment,
             rate: parseInt(data.rating, 10), 
         }
-        const courses = await courseService.getCourseBySlug(req.params.slug);
+        
         //console.log(course);
         let totalRating = courses.totalRating;
         totalRating = totalRating + 1;
