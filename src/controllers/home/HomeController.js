@@ -13,18 +13,26 @@ class SiteController {
     // Khóa học mới nhất: newCourses
 
     async index(req, res, next) {
-        const courses = await Course.find().lean();
-        await courseService.getInforCourses(courses);
-        const hightLightCourse = homeService.getHighLightCourse(courses, 4);
-        const mostViewedCourses = homeService.getMostViewedCourse(courses, 10);
-        const newCourses = homeService.getNewCourse(courses, 10);
-
-        res.render('home', { 
-            hightLightCourse,
-            mostViewedCourses,
-            newCourses,
-            courses,
-        })
+        
+        Course.find({})
+            .then(async coursesDB => {
+                // convert Mongoose Object to Object Literals
+                let ids = [];
+                const courses = await courseService.getInforCourses(multipleMongooseToObject(coursesDB), ids);
+                // Customize Course
+                //console.log(courses);
+                const hightLightCourse = homeService.getHighLightCourse(courses, 4);
+                const mostViewedCourses = homeService.getMostViewedCourse(courses, 10);
+                const newCourses = homeService.getNewCourse(courses, 10);
+                
+                res.render('home', { 
+                    hightLightCourse,
+                    mostViewedCourses,
+                    newCourses,
+                    ids
+                })
+            })
+            .catch(next);
     }
 
 }

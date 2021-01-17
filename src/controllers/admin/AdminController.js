@@ -155,8 +155,8 @@ class AdminController {
         userService.convertStatusToStatusStringUser(student)
         student.dob = moment(student.dob).format("DD/MM/YYYY");
         student.createdAt = moment(student.createdAt).format("DD/MM/YYYY");
-        if (student.courseArr) {
-            student.totalCourse =  student.courseArr.length;
+        if (student.courses) {
+            student.totalCourse =  student.courses.length;
         } else {
             student.totalCourse =  0;
         }
@@ -224,8 +224,8 @@ class AdminController {
         userService.convertStatusToStatusStringUser(lecturer)
         lecturer.dob = moment(lecturer.dob).format("DD/MM/YYYY");
         lecturer.createdAt = moment(lecturer.createdAt).format("DD/MM/YYYY");
-        if (lecturer.courseArr) {
-            lecturer.totalCourse =  lecturer.courseArr.length;
+        if (lecturer.courses) {
+            lecturer.totalCourse =  lecturer.courses.length;
         } else {
             lecturer.totalCourse =  0;
         }
