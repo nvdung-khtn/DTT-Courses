@@ -200,6 +200,23 @@ class CourseController {
         const id = req.params.id.slice(req.params.id.indexOf('>')+1, req.params.id.length)
 
         const course = await Course.findOne({slug});
+
+        // const list_student = course.students;
+        // let checkStudent = false;
+
+        // for (let i = 0; i < list_student.length; i++) {
+        //     const element = list_student[i];
+        //     if (element.id === req.session.authUser._id){
+        //         checkStudent = true;
+        //     }
+        // }
+
+        // if (checkStudent === false){
+        //     console.log("Vui lòng đánh giá khóa học để được học");
+        //     const url = '/courses/' + req.params.slug;
+        //     return res.redirect(url);
+        // }
+
         const lesson = course.lessons.id(id);
         const lessons = course.lessons.map(lesson => {
             return {
@@ -240,7 +257,8 @@ class CourseController {
         const data = req.body;
 
         const courses = await courseService.getCourseBySlug(req.params.slug);
-        console.log(courses);
+        
+        //console.log(courses);
         // const list_student = courses.students;
         // let checkStudent = false;
 
