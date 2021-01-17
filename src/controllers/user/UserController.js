@@ -227,6 +227,7 @@ class UserController {
             return res.redirect('back');
         }
     }
+    
     async removeCourseBookmark(req, res, next){
         const iddel = req.params.id;
         
