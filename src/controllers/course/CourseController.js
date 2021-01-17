@@ -212,21 +212,21 @@ class CourseController {
 
         const course = await Course.findOne({slug});
 
-        // const list_student = course.students;
-        // let checkStudent = false;
+        const list_student = course.students;
+        let checkStudent = false;
 
-        // for (let i = 0; i < list_student.length; i++) {
-        //     const element = list_student[i];
-        //     if (element.id === req.session.authUser._id){
-        //         checkStudent = true;
-        //     }
-        // }
+        for (let i = 0; i < list_student.length; i++) {
+            const element = list_student[i];
+            if (element == req.session.authUser._id){
+                checkStudent = true;
+            }
+        }
 
-        // if (checkStudent === false){
-        //     console.log("Vui lòng đánh giá khóa học để được học");
-        //     const url = '/courses/' + req.params.slug;
-        //     return res.redirect(url);
-        // }
+        if (checkStudent === false){
+            console.log("Vui lòng mua khóa học để được học");
+            const url = '/courses/' + slug;
+            return res.redirect(url);
+        }
 
         const lesson = course.lessons.id(id);
         const lessons = course.lessons.map(lesson => {
@@ -268,7 +268,6 @@ class CourseController {
 
         const courses = await courseService.getCourseBySlug(req.params.slug);
         
-        
         const list_student = courses.students;
         // console.log("id user",req.session.authUser._id);
         // console.log("list student",list_student);
@@ -282,7 +281,7 @@ class CourseController {
         }
 
         if (checkStudent === false){
-            console.log("Vui lòng đánh giá khóa học để được học");
+            console.log("Vui lòng học khóa học để đánh giá");
             const url = '/courses/' + req.params.slug;
             return res.redirect(url);
         }
