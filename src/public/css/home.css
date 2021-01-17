@@ -70,6 +70,13 @@
     font-weight: 600;
 }
 
+.product-item__totalCourse {
+    font-size: 1.6rem;
+    color: #333;
+    margin-top: 3px;
+    font-weight: 600;
+}
+
 .product-item__rating {
     color: #d5d5d5;
     margin-left: auto;
@@ -430,5 +437,4 @@
     margin-bottom: 10px;
     font-size: 18px;
   }
-  
 
