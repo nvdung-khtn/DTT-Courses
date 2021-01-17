@@ -23,8 +23,20 @@
 /* .card-body {
     min-height: 190px;
 } */
+.card.card-item.hightlight {
+    min-height: 397px;
+}
+
 .card.card-item {
-    min-height: 370px;
+    min-height: 377px;
+}
+
+.card-body.hightlight {
+    height: 191px !important;
+}
+
+.card-body {
+    height: 161px !important;
 }
 
 /* .card-footer.product-item__footer {
@@ -47,7 +59,7 @@
 
 .product-item__title {
     color: var(--text-color);
-    font-size: 2.2rem;
+    font-size: 2rem;
     margin-bottom: 12px;
 }
 

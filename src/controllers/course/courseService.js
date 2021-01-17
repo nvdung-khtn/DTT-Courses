@@ -100,7 +100,6 @@ module.exports = {
         if(currentPrice) {
             saleOffPercent = Math.round(((initialPrice - currentPrice) / initialPrice) * 100);
         }
-        console.log(saleOffPercent);
 
         return {
             ...course,

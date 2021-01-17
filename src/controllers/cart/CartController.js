@@ -61,19 +61,32 @@ class CartController {
     checkout(req, res, next) {
         const userId = req.session.authUser._id;
         const registeredCourses = req.session.cart;
+        console.log(registeredCourses);
+
+        for(course of registeredCourses) {
+            Course.findOne({ _id: course })
+                .then(course1 => course1.students)
+                .then(async students => {
+                    students.push(userId);
+                    await Course.findOneAndUpdate({ _id: course }, { students: students })
+                });
+        }
+
         User.findOne({ _id: userId })
             .then(user => user.courses)
             .then(courses => {
                 registeredCourses.forEach(course => {
                     courses.push(course);
-                    User.findOneAndUpdate({ _id: userId }, {courses: courses, cart: []})
-                        .then( () => {
-                            req.session.cart = [];
-                            res.redirect('back');
-                        });
+                    User.findOneAndUpdate(
+                        { _id: userId },
+                        { courses: courses, cart: [] },
+                    ).then(() => {
+                        req.session.cart = [];
+                        res.redirect('back');
+                    });
                 });
             });
-    
+        // Thêm vào danh sách học viên
     }
 }
 

@@ -27,8 +27,15 @@
         }
     });
 
-
-
+    $('.product-item').on('click', function(e) {
+        e.preventDefault();
+        const href = this.href;
+        axios.post('/course/count-view', {
+            id: $(this).attr("data-id")
+        })
+        window.location.assign(this.href);
+    })
+    
 
 </script>
 {{/section}}
@@ -46,11 +53,11 @@
         <div class="row">
             {{#each hightLightCourse}}
             <div class="col-sm-3 mb-4">
-                <a href="/courses/{{slug}}" class="product-item">
-                    <div class="card card-item">
+                <a href="/courses/{{slug}}" class="product-item hightlight" data-id="{{_id}}" >
+                    <div class="card card-item hightlight">
                         <img src="/products/{{folderName}}/images/{{avatar}}" class="product-item__img card-img-top"
                             alt="avatar" title="avatar of course">
-                        <div class="card-body">
+                        <div class="card-body hightlight">
                             <h5 class="card-title product-item__title">{{name}}</h5>
                             <h4 class="card-subtitle mb-2 text-muted">{{lecName}}</h4>
                             <span class="card-text product-item__category">Lĩnh vực: {{fieldName}}</span>
@@ -115,7 +122,7 @@
             <div class="myCarousel col-sm-12">
                 {{#each mostViewedCourses}}
                 <div class="mySlickShow">
-                    <a href="/courses/{{slug}}" class="product-item">
+                    <a href="/courses/{{slug}}" class="product-item" data-id="{{_id}}">
                         <div class="card card-item">
                             <img src="/products/{{folderName}}/images/{{avatar}}" class="product-item__img card-img-top"
                                 alt="avatar" title="avatar of course">
@@ -180,7 +187,7 @@
             <div class="myCarousel col-sm-12">
                 {{#each newCourses}}
                 <div class="mySlickShow">
-                    <a href="/courses/{{slug}}" class="product-item">
+                    <a href="/courses/{{slug}}" class="product-item" data-id="{{_id}}">
                         <div class="card card-item">
                             <img src="/products/{{folderName}}/images/{{avatar}}" class="product-item__img card-img-top"
                                 alt="avatar" title="avatar of course">
